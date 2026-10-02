@@ -4,18 +4,29 @@ import { X, Sparkles, Swords, RefreshCw, ChevronRight, ShieldCheck, Zap } from '
 export default function RotationModal({ team, onClose }) {
   if (!team) return null;
 
+  // Lấy danh sách nhân vật đầy đủ từ team
   const characters = team.characters || [];
   const coreResonator = characters.find(c => c.id === team.core) || characters[0];
 
-  const hasQuickswap = characters.some(c => c?.rotations?.quickswap);
+  // Kiểm tra xem có hướng dẫn quickswap không
+  const hasQuickswap = Boolean(team.customRotations?.quickswap || characters.some(c => c?.rotations?.quickswap));
   const [activeTab, setActiveTab] = useState(hasQuickswap ? 'quickswap' : 'standard');
 
+  // Lấy các bước rotation
   let rotationSteps = [];
   if (activeTab === 'quickswap') {
-    const qsChar = characters.find(c => c?.rotations?.quickswap);
-    rotationSteps = qsChar?.rotations?.quickswap || [];
+    if (team.customRotations?.quickswap) {
+      rotationSteps = team.customRotations.quickswap;
+    } else {
+      const qsChar = characters.find(c => c?.rotations?.quickswap);
+      rotationSteps = qsChar?.rotations?.quickswap || [];
+    }
   } else {
-    rotationSteps = coreResonator?.rotations?.standard || [];
+    if (team.customRotations?.standard) {
+      rotationSteps = team.customRotations.standard;
+    } else {
+      rotationSteps = coreResonator?.rotations?.standard || [];
+    }
   }
 
   return (
