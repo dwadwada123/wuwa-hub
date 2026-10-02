@@ -14,53 +14,119 @@ import {
   Check, 
   Zap, 
   ChevronRight,
-  ShieldCheck
+  ShieldCheck,
+  Search,
+  Star,
+  RotateCcw
 } from 'lucide-react';
 
 export default function App() {
+  // Navigation Tabs: 'builder' | 'toa' | 'pity' | 'stamina'
   const [activeTab, setActiveTab] = useState('builder');
 
+  // Kho nhân vật sở hữu (Default tick sẵn một số con meta để trải nghiệm tức thì)
   const [ownedIds, setOwnedIds] = useState([
     'hsin', 'camellya', 'shorekeeper', 'jinhsi', 'changli', 
     'xiangli_yao', 'yinlin', 'zhezhi', 'verina', 'sanhua', 'mortefi', 'yuanwu'
   ]);
 
+  // Selected Team để mở Rotation Modal Game8
   const [selectedTeamForRotation, setSelectedTeamForRotation] = useState(null);
-  const [elementFilter, setElementFilter] = useState('All');
 
+  // Filter nguyên tố & tìm kiếm ở kho nhân vật
+  const [elementFilter, setElementFilter] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Lịch sử quay giả lập / load từ Supabase
   const [conveneRecords, setConveneRecords] = useState([
     { card_pool_type: 'character_event', resource_name: 'Hsin', quality_level: 5, time: '2026-10-01' },
     { card_pool_type: 'character_event', resource_name: 'Sanhua', quality_level: 4, time: '2026-10-01' }
   ]);
 
+  // Đồng bộ lên Supabase
+  const [isCloudSynced, setIsCloudSynced] = useState(true);
+
+  // Tải danh sách sở hữu từ Supabase Cloud khi mở trang
+  useEffect(() => {
+    async function loadOwnedFromCloud() {
+      try {
+        const { data, error } = await supabase
+          .from('user_state')
+          .select('value')
+          .eq('key', 'owned_characters')
+          .single();
+        if (data && Array.isArray(data.value) && data.value.length > 0) {
+          setOwnedIds(data.value);
+        }
+      } catch (e) {
+        console.log('Chưa có cấu hình cloud trước đó, dùng mặc định:', e);
+      }
+    }
+    loadOwnedFromCloud();
+  }, []);
+
+  // Lưu danh sách nhân vật vào Supabase
+  const saveToSupabase = async (list) => {
+    setIsCloudSynced(false);
+    try {
+      await supabase.from('user_state').upsert({
+        key: 'owned_characters',
+        value: list,
+        updated_at: new Date().toISOString()
+      });
+      setIsCloudSynced(true);
+    } catch (err) {
+      console.log('Supabase sync note:', err);
+    }
+  };
+
+  // Toggle sở hữu nhân vật
   const toggleCharacterOwnership = async (id) => {
     const updated = ownedIds.includes(id) 
       ? ownedIds.filter(item => item !== id)
       : [...ownedIds, id];
     
     setOwnedIds(updated);
-
-    try {
-      await supabase.from('user_state').upsert({
-        key: 'owned_characters',
-        value: updated,
-        updated_at: new Date().toISOString()
-      });
-    } catch (err) {
-      console.log('Supabase sync note:', err);
-    }
+    saveToSupabase(updated);
   };
 
+  // Chọn toàn bộ 36 nhân vật
+  const selectAllResonators = () => {
+    const allIds = RESONATORS.map(r => r.id);
+    setOwnedIds(allIds);
+    saveToSupabase(allIds);
+  };
+
+  // Chỉ chọn các nhân vật 5 sao
+  const selectOnly5StarResonators = () => {
+    const fiveStarIds = RESONATORS.filter(r => r.rarity === 5).map(r => r.id);
+    setOwnedIds(fiveStarIds);
+    saveToSupabase(fiveStarIds);
+  };
+
+  // Bỏ chọn tất cả
+  const clearAllResonators = () => {
+    setOwnedIds([]);
+    saveToSupabase([]);
+  };
+
+  // Tính toán các team khả dụng
   const suggestedTeams = generateOptimalTeams(ownedIds);
   const toaSolution = solveTowerOfAdversity(ownedIds);
 
   const elements = ['All', 'Spectro', 'Havoc', 'Fusion', 'Aero', 'Electro', 'Glacio'];
-  const filteredResonators = elementFilter === 'All' 
-    ? RESONATORS 
-    : RESONATORS.filter(r => r.element === elementFilter);
+  const filteredResonators = RESONATORS.filter(r => {
+    const matchesElement = elementFilter === 'All' || r.element === elementFilter;
+    const matchesQuery = searchQuery === '' || 
+      r.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      r.weaponType.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      r.tags.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()));
+    return matchesElement && matchesQuery;
+  });
 
   return (
     <div style={{ maxWidth: '1240px', margin: '0 auto', padding: '24px 16px 80px 16px' }}>
+      {/* Top Navigation Bar */}
       <header style={{
         display: 'flex',
         justifyContent: 'space-between',
@@ -106,6 +172,7 @@ export default function App() {
           </div>
         </div>
 
+        {/* Supabase Status Pill & Nav Tabs */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <div style={{
             display: 'flex',
@@ -124,6 +191,7 @@ export default function App() {
         </div>
       </header>
 
+      {/* Main Tabs Navigation */}
       <div style={{
         display: 'flex',
         gap: '8px',
@@ -161,8 +229,10 @@ export default function App() {
         ))}
       </div>
 
+      {/* TAB 1: AUTO TEAM BUILDER */}
       {activeTab === 'builder' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
+          {/* Section: Kho Nhân Vật (Roster Selection) */}
           <section className="glass-panel" style={{ padding: '24px' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '12px' }}>
               <div>
@@ -175,28 +245,113 @@ export default function App() {
                 </p>
               </div>
 
-              <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
-                {elements.map(el => (
-                  <button
-                    key={el}
-                    onClick={() => setElementFilter(el)}
+              {/* Search & Element Filter Controls */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'flex-end' }}>
+                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
+                  {/* Search Input */}
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    background: 'rgba(0, 0, 0, 0.4)',
+                    border: '1px solid var(--border-color)',
+                    borderRadius: '6px',
+                    padding: '4px 10px'
+                  }}>
+                    <Search size={14} color="var(--text-muted)" />
+                    <input 
+                      type="text" 
+                      placeholder="Tìm kiếm nhân vật / vũ khí..." 
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      style={{
+                        background: 'transparent',
+                        border: 'none',
+                        color: '#fff',
+                        fontSize: '0.75rem',
+                        outline: 'none',
+                        width: '170px'
+                      }}
+                    />
+                    {searchQuery && (
+                      <button 
+                        onClick={() => setSearchQuery('')}
+                        style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '11px' }}
+                      >
+                        ✕
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Element Filter Buttons */}
+                  <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
+                    {elements.map(el => (
+                      <button
+                        key={el}
+                        onClick={() => setElementFilter(el)}
+                        style={{
+                          padding: '4px 10px',
+                          borderRadius: '6px',
+                          fontSize: '0.75rem',
+                          fontWeight: 600,
+                          background: elementFilter === el ? 'rgba(255, 255, 255, 0.15)' : 'transparent',
+                          color: elementFilter === el ? '#fff' : 'var(--text-muted)',
+                          border: '1px solid',
+                          borderColor: elementFilter === el ? 'rgba(255, 255, 255, 0.3)' : 'transparent'
+                        }}
+                      >
+                        {el}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Bulk Actions */}
+                <div style={{ display: 'flex', gap: '6px', fontSize: '0.75rem' }}>
+                  <button 
+                    onClick={selectAllResonators}
                     style={{
-                      padding: '4px 10px',
-                      borderRadius: '6px',
-                      fontSize: '0.75rem',
-                      fontWeight: 600,
-                      background: elementFilter === el ? 'rgba(255, 255, 255, 0.15)' : 'transparent',
-                      color: elementFilter === el ? '#fff' : 'var(--text-muted)',
-                      border: '1px solid',
-                      borderColor: elementFilter === el ? 'rgba(255, 255, 255, 0.3)' : 'transparent'
+                      padding: '3px 8px',
+                      borderRadius: '4px',
+                      background: 'rgba(255, 255, 255, 0.05)',
+                      border: '1px solid var(--border-color)',
+                      color: 'var(--text-secondary)',
+                      cursor: 'pointer'
                     }}
                   >
-                    {el}
+                    Chọn tất cả ({RESONATORS.length})
                   </button>
-                ))}
+                  <button 
+                    onClick={selectOnly5StarResonators}
+                    style={{
+                      padding: '3px 8px',
+                      borderRadius: '4px',
+                      background: 'rgba(250, 204, 21, 0.1)',
+                      border: '1px solid rgba(250, 204, 21, 0.3)',
+                      color: 'var(--accent-gold)',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    Chỉ chọn 5★
+                  </button>
+                  <button 
+                    onClick={clearAllResonators}
+                    style={{
+                      padding: '3px 8px',
+                      borderRadius: '4px',
+                      background: 'rgba(239, 68, 68, 0.1)',
+                      border: '1px solid rgba(239, 68, 68, 0.3)',
+                      color: '#f87171',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    Bỏ chọn
+                  </button>
+                </div>
               </div>
             </div>
 
+            {/* Character Grid */}
             <div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fill, minmax(115px, 1fr))',
@@ -212,16 +367,17 @@ export default function App() {
                       display: 'flex',
                       flexDirection: 'column',
                       alignItems: 'center',
-                      padding: '12px 8px',
+                      padding: '12px 8px 10px 8px',
                       borderRadius: '10px',
                       cursor: 'pointer',
                       position: 'relative',
                       transition: 'all 0.2s ease',
-                      background: isOwned ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.3)',
-                      border: `1px solid ${isOwned ? 'rgba(250, 204, 21, 0.4)' : 'rgba(255, 255, 255, 0.04)'}`,
-                      opacity: isOwned ? 1 : 0.45
+                      background: isOwned ? 'rgba(255, 255, 255, 0.06)' : 'rgba(0, 0, 0, 0.35)',
+                      border: `1px solid ${isOwned ? 'rgba(250, 204, 21, 0.45)' : 'rgba(255, 255, 255, 0.04)'}`,
+                      opacity: isOwned ? 1 : 0.42
                     }}
                   >
+                    {/* Checkmark badge */}
                     {isOwned && (
                       <div style={{
                         position: 'absolute',
@@ -242,9 +398,26 @@ export default function App() {
                       </div>
                     )}
 
+                    {/* Rarity Star Pill */}
                     <div style={{
-                      width: '48px',
-                      height: '48px',
+                      position: 'absolute',
+                      top: '6px',
+                      left: '6px',
+                      fontSize: '0.65rem',
+                      fontWeight: 700,
+                      color: char.rarity === 5 ? '#facc15' : '#c084fc',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '1px'
+                    }}>
+                      <Star size={10} fill={char.rarity === 5 ? '#facc15' : '#c084fc'} color="none" />
+                      {char.rarity}★
+                    </div>
+
+                    {/* Avatar Initials / Color Circle */}
+                    <div style={{
+                      width: '46px',
+                      height: '46px',
                       borderRadius: '50%',
                       background: char.iconColor,
                       display: 'flex',
@@ -252,7 +425,8 @@ export default function App() {
                       justifyContent: 'center',
                       fontWeight: 800,
                       color: '#000',
-                      fontSize: '1.2rem',
+                      fontSize: '1.15rem',
+                      marginTop: '4px',
                       marginBottom: '8px',
                       boxShadow: isOwned ? `0 0 14px ${char.iconColor}88` : 'none'
                     }}>
@@ -262,15 +436,23 @@ export default function App() {
                     <span style={{ fontSize: '0.85rem', fontWeight: 600, color: '#fff', textAlign: 'center', lineHeight: 1.2 }}>
                       {char.name}
                     </span>
-                    <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '2px' }}>
-                      {char.element}
-                    </span>
+                    
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', marginTop: '3px', flexWrap: 'wrap', justifyContent: 'center' }}>
+                      <span style={{ fontSize: '0.65rem', color: 'var(--text-muted)' }}>
+                        {char.element}
+                      </span>
+                      <span style={{ fontSize: '0.65rem', color: 'rgba(255, 255, 255, 0.3)' }}>•</span>
+                      <span style={{ fontSize: '0.65rem', color: 'var(--text-secondary)' }}>
+                        {char.weaponType}
+                      </span>
+                    </div>
                   </div>
                 );
               })}
             </div>
           </section>
 
+          {/* Section: Đề xuất Đội Hình (Suggested Teams) */}
           <section>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
               <div>
@@ -307,6 +489,7 @@ export default function App() {
                     }}
                   >
                     <div>
+                      {/* Team Header */}
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
                         <div>
                           <h3 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#fff', marginBottom: '2px' }}>
@@ -329,6 +512,7 @@ export default function App() {
                         </span>
                       </div>
 
+                      {/* 3 Members Display */}
                       <div style={{
                         display: 'grid',
                         gridTemplateColumns: 'repeat(3, 1fr)',
@@ -366,6 +550,7 @@ export default function App() {
                       </p>
                     </div>
 
+                    {/* View Rotation Action Button */}
                     <button
                       onClick={() => setSelectedTeamForRotation(team)}
                       style={{
@@ -393,6 +578,7 @@ export default function App() {
         </div>
       )}
 
+      {/* TAB 2: TOWER OF ADVERSITY SOLVER */}
       {activeTab === 'toa' && (
         <div>
           <div style={{ marginBottom: '20px' }}>
@@ -411,6 +597,7 @@ export default function App() {
             </div>
           ) : (
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '18px' }}>
+              {/* Tower 1 */}
               <div className="glass-panel" style={{ padding: '20px', borderTop: '4px solid #ef4444' }}>
                 <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#ef4444', textTransform: 'uppercase', marginBottom: '4px' }}>
                   Tháp 1: Hazard Tower (Tầng 4 Boss khó nhất)
@@ -436,6 +623,7 @@ export default function App() {
                 </button>
               </div>
 
+              {/* Tower 2 */}
               <div className="glass-panel" style={{ padding: '20px', borderTop: '4px solid #38bdf8' }}>
                 <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#38bdf8', textTransform: 'uppercase', marginBottom: '4px' }}>
                   Tháp 2: Resonant Tower
@@ -461,6 +649,7 @@ export default function App() {
                 </button>
               </div>
 
+              {/* Tower 3 */}
               <div className="glass-panel" style={{ padding: '20px', borderTop: '4px solid #a855f7' }}>
                 <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#a855f7', textTransform: 'uppercase', marginBottom: '4px' }}>
                   Tháp 3: Echoing Tower
@@ -490,6 +679,7 @@ export default function App() {
         </div>
       )}
 
+      {/* TAB 3: PITY TRACKER */}
       {activeTab === 'pity' && (
         <PityTracker
           conveneRecords={conveneRecords}
@@ -497,10 +687,12 @@ export default function App() {
         />
       )}
 
+      {/* TAB 4: WAVEPLATE TRACKER */}
       {activeTab === 'stamina' && (
         <WaveplateTracker />
       )}
 
+      {/* Rotation Modal Game8 (Popup) */}
       {selectedTeamForRotation && (
         <RotationModal
           team={selectedTeamForRotation}
