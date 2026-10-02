@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Clock, BatteryCharging, CheckSquare, Calendar, AlertCircle, RefreshCw, Zap } from 'lucide-react';
+import { Clock, BatteryCharging, Calendar, AlertCircle } from 'lucide-react';
 import { supabase } from '../supabaseClient';
 
 const STORAGE_KEY = 'wuwa_waveplate_state';
@@ -43,7 +43,7 @@ export default function WaveplateTracker() {
   useEffect(() => {
     async function fetchCloudState() {
       try {
-        const { data, error } = await supabase
+        const { data } = await supabase
           .from('user_state')
           .select('value')
           .eq('key', 'waveplate_state')
@@ -143,8 +143,15 @@ export default function WaveplateTracker() {
             <BatteryCharging size={22} color="var(--accent-cyan)" />
             Theo Dõi Waveplate (Thể Lực)
           </h3>
-          <span style={{ fontSize: '0.75rem', padding: '3px 8px', borderRadius: '4px', background: 'rgba(56, 189, 248, 0.12)', color: 'var(--accent-cyan)', fontWeight: 600 }}>
-            Tự động tính giờ trôi qua
+          <span style={{ 
+            fontSize: '0.75rem', 
+            padding: '3px 8px', 
+            borderRadius: '4px', 
+            background: syncStatus === 'saving' ? 'rgba(243, 186, 47, 0.15)' : 'rgba(56, 189, 248, 0.12)', 
+            color: syncStatus === 'saving' ? 'var(--accent-gold)' : 'var(--accent-cyan)', 
+            fontWeight: 600 
+          }}>
+            {syncStatus === 'saving' ? 'Đang lưu Cloud...' : 'Tự động tính giờ trôi qua'}
           </span>
         </div>
 
