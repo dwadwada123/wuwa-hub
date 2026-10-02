@@ -6,7 +6,7 @@ export default function RotationModal({ team, onClose }) {
 
   // Lấy danh sách nhân vật đầy đủ từ team
   const characters = team.characters || [];
-  const coreResonator = characters.find(c => c.id === team.core) || characters[0];
+  const coreResonator = characters.find(c => c?.id === team.core) || characters[0];
 
   // Kiểm tra xem có hướng dẫn quickswap không
   const hasQuickswap = Boolean(team.customRotations?.quickswap || characters.some(c => c?.rotations?.quickswap));
@@ -36,8 +36,8 @@ export default function RotationModal({ team, onClose }) {
       left: 0,
       right: 0,
       bottom: 0,
-      backgroundColor: 'rgba(0, 0, 0, 0.75)',
-      backdropFilter: 'blur(8px)',
+      backgroundColor: 'rgba(0, 0, 0, 0.82)',
+      backdropFilter: 'blur(10px)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
@@ -47,11 +47,11 @@ export default function RotationModal({ team, onClose }) {
       <div className="glass-panel" style={{
         maxWidth: '750px',
         width: '100%',
-        maxHeight: '90vh',
+        maxHeight: '92vh',
         overflowY: 'auto',
-        background: '#131824',
-        border: '1px solid rgba(255, 255, 255, 0.15)',
-        boxShadow: '0 20px 40px rgba(0, 0, 0, 0.8)',
+        background: '#0d121c',
+        border: '1px solid rgba(243, 186, 47, 0.3)',
+        boxShadow: '0 25px 60px rgba(0, 0, 0, 0.9), 0 0 25px rgba(243, 186, 47, 0.1)',
         position: 'relative',
         display: 'flex',
         flexDirection: 'column'
@@ -68,14 +68,14 @@ export default function RotationModal({ team, onClose }) {
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
               <Swords size={20} color="var(--accent-gold)" />
-              <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#fff' }}>{team.name}</h2>
+              <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#fff' }}>{team.name}</h2>
               <span style={{
                 fontSize: '0.75rem',
                 padding: '2px 8px',
                 borderRadius: '4px',
                 background: 'rgba(250, 204, 21, 0.15)',
                 color: 'var(--accent-gold)',
-                fontWeight: 600
+                fontWeight: 700
               }}>
                 {team.type}
               </span>
@@ -93,12 +93,12 @@ export default function RotationModal({ team, onClose }) {
           </button>
         </div>
 
-        {/* Members Roster View */}
+        {/* Members Roster View with Real Avatars */}
         <div style={{
           padding: '16px 24px',
           display: 'flex',
           gap: '12px',
-          background: 'rgba(0, 0, 0, 0.2)',
+          background: 'rgba(0, 0, 0, 0.3)',
           borderBottom: '1px solid var(--border-color)',
           overflowX: 'auto'
         }}>
@@ -106,30 +106,39 @@ export default function RotationModal({ team, onClose }) {
             <div key={idx} style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '10px',
+              gap: '12px',
               padding: '8px 12px',
               background: 'rgba(255, 255, 255, 0.03)',
               borderRadius: '8px',
-              border: '1px solid rgba(255, 255, 255, 0.06)',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
               minWidth: '200px'
             }}>
               <div style={{
-                width: '38px',
-                height: '38px',
+                width: '42px',
+                height: '42px',
                 borderRadius: '8px',
-                background: char.iconColor || '#38bdf8',
+                overflow: 'hidden',
+                background: char?.iconColor || '#38bdf8',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                fontWeight: 'bold',
-                color: '#000',
-                fontSize: '1rem'
+                flexShrink: 0,
+                border: '1px solid rgba(255, 255, 255, 0.15)'
               }}>
-                {char.name[0]}
+                {char?.avatar ? (
+                  <img
+                    src={char.avatar}
+                    alt={char.name}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                  />
+                ) : (
+                  <span style={{ fontWeight: 'bold', color: '#000' }}>{char?.name?.[0]}</span>
+                )}
               </div>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: '0.9rem', fontWeight: 600, color: '#fff' }}>{char.name}</div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{char.role}</div>
+                <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#fff' }}>{char?.name}</div>
+                <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>{idx === 0 ? 'Main DPS' : idx === 1 ? 'Sub-DPS/Buffer' : 'Sustain/Healer'}</div>
               </div>
             </div>
           ))}
@@ -146,17 +155,17 @@ export default function RotationModal({ team, onClose }) {
             style={{
               padding: '8px 16px',
               borderRadius: '8px 8px 0 0',
-              fontWeight: 600,
-              fontSize: '0.9rem',
+              fontWeight: 700,
+              fontSize: '0.88rem',
               display: 'flex',
               alignItems: 'center',
               gap: '6px',
-              background: activeTab === 'standard' ? 'rgba(255, 255, 255, 0.08)' : 'transparent',
-              color: activeTab === 'standard' ? '#fff' : 'var(--text-muted)',
+              background: activeTab === 'standard' ? 'rgba(250, 204, 21, 0.12)' : 'transparent',
+              color: activeTab === 'standard' ? 'var(--accent-gold)' : 'var(--text-muted)',
               borderBottom: activeTab === 'standard' ? '2px solid var(--accent-gold)' : 'none'
             }}
           >
-            <RefreshCw size={16} /> Standard Rotation (Concerto)
+            <RefreshCw size={16} /> Chuỗi Tiêu Chuẩn (Concerto Rotation)
           </button>
 
           {hasQuickswap && (
@@ -165,17 +174,17 @@ export default function RotationModal({ team, onClose }) {
               style={{
                 padding: '8px 16px',
                 borderRadius: '8px 8px 0 0',
-                fontWeight: 600,
-                fontSize: '0.9rem',
+                fontWeight: 700,
+                fontSize: '0.88rem',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '6px',
-                background: activeTab === 'quickswap' ? 'rgba(255, 255, 255, 0.08)' : 'transparent',
-                color: activeTab === 'quickswap' ? '#fff' : 'var(--text-muted)',
+                background: activeTab === 'quickswap' ? 'rgba(192, 132, 252, 0.15)' : 'transparent',
+                color: activeTab === 'quickswap' ? 'var(--accent-purple)' : 'var(--text-muted)',
                 borderBottom: activeTab === 'quickswap' ? '2px solid var(--accent-purple)' : 'none'
               }}
             >
-              <Zap size={16} /> Quickswap Rotation (Animation Cancel)
+              <Zap size={16} /> Chuỗi Quickswap (Hủy Hoạt Ảnh Đỉnh Cao)
             </button>
           )}
         </div>
@@ -183,11 +192,12 @@ export default function RotationModal({ team, onClose }) {
         {/* Step-by-Step Rotation Instruction List (Game8 Style) */}
         <div style={{ padding: '20px 24px', flex: 1 }}>
           <div style={{
-            fontSize: '0.8rem',
+            fontSize: '0.78rem',
             color: 'var(--text-muted)',
             marginBottom: '16px',
             textTransform: 'uppercase',
-            letterSpacing: '1px'
+            letterSpacing: '1px',
+            fontWeight: 700
           }}>
             Vòng lặp xuất chiêu chi tiết (Thứ tự từ Bước 1 ➔ Bước cuối)
           </div>
@@ -200,7 +210,7 @@ export default function RotationModal({ team, onClose }) {
                 padding: '14px 16px',
                 background: 'rgba(255, 255, 255, 0.02)',
                 borderRadius: '10px',
-                border: '1px solid rgba(255, 255, 255, 0.05)'
+                border: '1px solid rgba(255, 255, 255, 0.06)'
               }}>
                 <div style={{
                   display: 'flex',
@@ -217,13 +227,13 @@ export default function RotationModal({ team, onClose }) {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontWeight: 700,
+                    fontWeight: 800,
                     fontSize: '0.85rem',
                     marginBottom: '6px'
                   }}>
                     {s.step || idx + 1}
                   </div>
-                  <span style={{ fontSize: '0.75rem', fontWeight: 600, color: '#fff', textAlign: 'center' }}>
+                  <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#fff', textAlign: 'center' }}>
                     {s.char}
                   </span>
                 </div>
@@ -232,7 +242,7 @@ export default function RotationModal({ team, onClose }) {
                   flex: 1,
                   display: 'flex',
                   alignItems: 'center',
-                  fontSize: '0.9rem',
+                  fontSize: '0.88rem',
                   lineHeight: 1.6,
                   color: 'var(--text-primary)'
                 }}>
@@ -250,10 +260,10 @@ export default function RotationModal({ team, onClose }) {
             background: 'rgba(56, 189, 248, 0.05)',
             border: '1px solid rgba(56, 189, 248, 0.15)'
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px', color: 'var(--accent-cyan)', fontWeight: 600, fontSize: '0.85rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px', color: 'var(--accent-cyan)', fontWeight: 700, fontSize: '0.85rem' }}>
               <ShieldCheck size={16} /> Gợi ý Echo & Trang bị cho Core {coreResonator?.name}:
             </div>
-            <div style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+            <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
               • <strong>Vũ khí tốt nhất:</strong> {coreResonator?.bestWeapon || 'Signature'} <br />
               • <strong>Sonata Echo Set:</strong> {coreResonator?.bestEchoSet} <br />
               • <strong>Phân bổ chỉ số chính:</strong> {coreResonator?.echoMainStats}
@@ -270,11 +280,11 @@ export default function RotationModal({ team, onClose }) {
           background: 'rgba(0, 0, 0, 0.3)'
         }}>
           <button onClick={onClose} style={{
-            padding: '8px 20px',
+            padding: '8px 24px',
             borderRadius: '8px',
-            background: 'var(--border-color)',
+            background: 'rgba(255, 255, 255, 0.1)',
             color: '#fff',
-            fontWeight: 600,
+            fontWeight: 700,
             fontSize: '0.85rem'
           }}>
             Đóng
