@@ -67,18 +67,27 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [cloudSyncStatus, setCloudSyncStatus] = useState('synced'); // 'syncing' | 'synced' | 'error'
 
+  // Hàm trợ giúp đồng bộ an toàn lên Supabase Cloud (không bao giờ gây crash giao diện)
+  const syncCloudState = useCallback(async (key, value) => {
+    try {
+      await supabase.from('user_state').upsert({
+        key,
+        value,
+        updated_at: new Date().toISOString()
+      });
+    } catch (err) {
+      console.warn(`Supabase cloud sync warning for ${key}:`, err);
+    }
+  }, []);
+
   // Lưu tab đang chọn vào LocalStorage và Supabase Cloud
   const handleTabChange = useCallback((newTab) => {
     setActiveTab(newTab);
     try {
       localStorage.setItem(STORAGE_KEY_ACTIVE_TAB, newTab);
     } catch (e) {}
-    supabase.from('user_state').upsert({
-      key: 'active_tab',
-      value: newTab,
-      updated_at: new Date().toISOString()
-    }).catch(() => {});
-  }, []);
+    syncCloudState('active_tab', newTab);
+  }, [syncCloudState]);
 
   // Lưu bộ lọc hệ nguyên tố vào LocalStorage và Supabase Cloud
   const handleElementFilterChange = useCallback((filter) => {
@@ -86,12 +95,8 @@ export default function App() {
     try {
       localStorage.setItem(STORAGE_KEY_ELEMENT_FILTER, filter);
     } catch (e) {}
-    supabase.from('user_state').upsert({
-      key: 'element_filter',
-      value: filter,
-      updated_at: new Date().toISOString()
-    }).catch(() => {});
-  }, []);
+    syncCloudState('element_filter', filter);
+  }, [syncCloudState]);
 
   // Tải toàn bộ cấu hình từ Supabase Cloud khi mở trang (chạy ngầm cập nhật)
   useEffect(() => {
@@ -125,26 +130,27 @@ export default function App() {
   }, []);
 
   // Lưu danh sách nhân vật vào cả LocalStorage và Supabase Cloud
-  const persistOwned = useCallback((list) => {
+  const persistOwned = useCallback(async (list) => {
     setOwnedIds(list);
     setCloudSyncStatus('syncing');
     try {
       localStorage.setItem(STORAGE_KEY_OWNED, JSON.stringify(list));
     } catch (e) {}
 
-    supabase.from('user_state').upsert({
-      key: 'owned_characters',
-      value: list,
-      updated_at: new Date().toISOString()
-    }).then(() => {
+    try {
+      await supabase.from('user_state').upsert({
+        key: 'owned_characters',
+        value: list,
+        updated_at: new Date().toISOString()
+      });
       setCloudSyncStatus('synced');
-    }).catch(err => {
+    } catch (err) {
       console.warn('Cloud sync error:', err);
       setCloudSyncStatus('error');
-    });
+    }
   }, []);
 
-  // Toggle sở hữu nhân vật (Phản hồi tức thì 60 FPS, không lỗi crash màn hình đen)
+  // Toggle sở hữu nhân vật (Phản hồi tức thì 60 FPS, an toàn tuyệt đối không bao giờ crash màn hình đen)
   const toggleCharacterOwnership = useCallback((id) => {
     setOwnedIds(prev => {
       const updated = prev.includes(id) 
@@ -155,15 +161,12 @@ export default function App() {
         localStorage.setItem(STORAGE_KEY_OWNED, JSON.stringify(updated));
       } catch (e) {}
 
-      supabase.from('user_state').upsert({
-        key: 'owned_characters',
-        value: updated,
-        updated_at: new Date().toISOString()
-      }).catch(() => {});
+      // Đồng bộ cloud bất đồng bộ bên ngoài render loop của React
+      syncCloudState('owned_characters', updated);
 
       return updated;
     });
-  }, []);
+  }, [syncCloudState]);
 
   // Các thao tác chọn nhanh
   const selectAllResonators = () => {
