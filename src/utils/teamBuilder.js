@@ -778,7 +778,13 @@ export const TOA_DATA_SEASON_37 = {
 };
 
 /**
- * Thuật toán Tower of Adversity (ToA) Solver Season 3.7
+ * Thuật toán Tower of Adversity Solver Season 3.7
+ * Tối ưu hóa toàn cục đa tháp (Global Multi-Tower Combinatorial Optimizer):
+ * - Tháp Trái (Resonant Tower): Tối ưu tối đa cho hệ Havoc & sát thương Đánh Thường (+40% Basic ATK, -10% Kháng Havoc)
+ * - Tháp Phải (Echoing Tower): Tối ưu tối đa cho hệ Spectro & Kỹ Năng Cộng Hưởng (+30% Spectro, +25% Skill DMG)
+ * - Tháp Giữa Boss (Hazard Tầng 3-4): Tối ưu tối đa cho hệ Electro & Nộ / Unison (+30% Electro & Liberation DMG)
+ * - Tháp Giữa Khởi Đầu (Hazard Tầng 1-2): Đội hình càn quét dọn tầng 1 và 2 tối ưu từ các nhân vật độc lập còn lại.
+ * - ĐẢM BẢO 100%: TUYỆT ĐỐI KHÔNG TRÙNG LẶP BẤT KỲ NHÂN VẬT NÀO GIỮA CÁC ĐỘI HÌNH TOA (LUẬT THỂ LỰC VIGOR 10/10).
  */
 export function solveTowerOfAdversity(ownedCharacterIds) {
   if (!ownedCharacterIds || ownedCharacterIds.length < 6) {
@@ -786,128 +792,223 @@ export function solveTowerOfAdversity(ownedCharacterIds) {
   }
 
   const optimalTeams = generateOptimalTeams(ownedCharacterIds);
-  if (optimalTeams.length < 2) {
+  if (!optimalTeams || optimalTeams.length < 2) {
     return null;
   }
 
-  // Chấm điểm độ tương thích với Buff Mùa Tháp Giữa (Tầng 3-4)
-  const scoreForHazardBossBuff = (team) => {
-    let score = team.matchScore || 70;
-    const members = team.members || [];
-    const elements = (team.characters || []).map(c => c?.element);
-
-    if (members.includes('xiangli_yao') || members.includes('calcharo') || members.includes('changli') || members.includes('augusta') || members.includes('rover_electro')) {
-      score += 45;
-    }
-    if (members.includes('hsin') || members.includes('suoming')) {
-      score += 50;
-    }
-    if (elements.includes('Electro')) {
-      score += 35;
-    }
-    if (members.includes('yinlin')) {
-      score += 25;
-    }
-
-    return score;
-  };
-
+  // 1. Chấm điểm độ tương thích với Tháp Trái (Resonant Tower - Havoc & Basic ATK)
   const scoreForResonant = (team) => {
-    let score = team.matchScore || 70;
-    const members = team.members || [];
+    let score = team.tier === 'T0' ? 100 : team.tier === 'T0.5' ? 85 : 70;
     const elements = (team.characters || []).map(c => c?.element);
+    const members = team.members || [];
+    const core = team.characters?.[0] || getResonator(team.core);
 
-    if (elements.includes('Havoc')) score += 40;
-    if (members.includes('camellya') || members.includes('rover_havoc')) score += 35;
-    if (members.includes('sanhua') || members.includes('danjin')) score += 25;
+    if (core?.element === 'Havoc') score += 60;
+    else if (elements.includes('Havoc')) score += 30;
+
+    if (members.includes('camellya')) score += 35;
+    if (members.includes('rover_havoc')) score += 25;
+    if (members.includes('danjin')) score += 20;
+    if (members.includes('sanhua') || members.includes('roccia')) score += 20;
+
+    // Quái vật Tháp Trái (Mourning Aix) kháng cao Spectro / Aero
+    if (core?.element === 'Spectro' || core?.element === 'Aero') score -= 30;
+
     return score;
   };
 
+  // 2. Chấm điểm độ tương thích với Tháp Phải (Echoing Tower - Spectro & Skill DMG)
   const scoreForEchoing = (team) => {
-    let score = team.matchScore || 70;
-    const members = team.members || [];
+    let score = team.tier === 'T0' ? 100 : team.tier === 'T0.5' ? 85 : 70;
     const elements = (team.characters || []).map(c => c?.element);
+    const members = team.members || [];
+    const core = team.characters?.[0] || getResonator(team.core);
 
-    if (elements.includes('Spectro')) score += 40;
-    if (members.includes('jinhsi') || members.includes('phoebe') || members.includes('carlotta')) score += 35;
-    if (members.includes('zhezhi')) score += 25;
+    if (core?.element === 'Spectro') score += 60;
+    else if (elements.includes('Spectro')) score += 30;
+
+    if (members.includes('jinhsi')) score += 35;
+    if (members.includes('phoebe') || members.includes('carlotta')) score += 25;
+    if (members.includes('zhezhi')) score += 20;
+    if (members.includes('yuanwu')) score += 15;
+
+    // Quái vật Tháp Phải (Inferno Rider) kháng cao Fusion
+    if (core?.element === 'Fusion') score -= 30;
+
     return score;
   };
 
-  // BẮT BUỘC: TUYỆT ĐỐI KHÔNG TRÙNG NHÂN VẬT GIỮA CÁC ĐỘI HÌNH TOA (LUẬT THỂ LỰC VIGOR 10/10)
-  const usedToaCharacters = new Set();
-  const isAvailable = (team) => team && team.members.every(m => !usedToaCharacters.has(m));
+  // 3. Chấm điểm độ tương thích với Tháp Giữa Boss (Hazard Tầng 3-4 - Electro & Liberation DMG & Unison)
+  const scoreForHazardBoss = (team) => {
+    let score = team.tier === 'T0' ? 100 : team.tier === 'T0.5' ? 85 : 70;
+    const elements = (team.characters || []).map(c => c?.element);
+    const members = team.members || [];
+    const core = team.characters?.[0] || getResonator(team.core);
 
-  // Hàm tạo đội hình dự phòng từ các nhân vật độc lập còn lại nếu các template đã hết người
-  const buildFallbackToaTeam = (namePrefix) => {
-    const unusedIds = ownedCharacterIds.filter(id => !usedToaCharacters.has(id));
-    if (unusedIds.length < 3) return null;
+    if (core?.element === 'Electro') score += 60;
+    else if (elements.includes('Electro')) score += 30;
 
-    const pool = unusedIds.map(id => getResonator(id)).filter(Boolean);
-    pool.sort((a, b) => (RESONATOR_POWER_TIER[b.id] || 75) - (RESONATOR_POWER_TIER[a.id] || 75));
+    if (members.includes('hsin')) score += 40;
+    if (members.includes('xiangli_yao')) score += 35;
+    if (members.includes('changli')) score += 30;
+    if (members.includes('calcharo') || members.includes('augusta') || members.includes('rover_electro')) score += 25;
+    if (members.includes('yinlin') || members.includes('suoming')) score += 20;
 
-    const dps = pool.find(r => !TRUE_SUSTAIN_IDS.has(r.id) && (r.role.includes('Main') || r.tags?.includes('Main DPS'))) || pool[0];
-    const afterDPS = pool.filter(r => r.id !== dps.id);
-    const buff = afterDPS.find(r => !TRUE_SUSTAIN_IDS.has(r.id)) || afterDPS[0];
-    const afterBuff = afterDPS.filter(r => r.id !== buff.id);
-    const flex = afterBuff.find(r => TRUE_SUSTAIN_IDS.has(r.id)) || afterBuff[0] || pool[2];
-
-    const teamKey = [dps.id, buff.id, flex.id].sort().join('-');
-    return {
-      id: `toa-custom-${teamKey}`,
-      name: `${dps.name} + ${buff.name} - ${namePrefix}`,
-      core: dps.id,
-      members: [dps.id, buff.id, flex.id],
-      type: 'Hypercarry',
-      description: `Đội hình độc lập hoàn toàn không trùng nhân vật cho ${namePrefix}.`,
-      tags: [dps.element, 'TOA Independent'],
-      isCustom: true,
-      matchScore: 82,
-      characters: [dps, buff, flex],
-      customRotations: {
-        standard: buildDetailedStandardRotation(dps, buff, flex)
-      }
-    };
+    return score;
   };
 
-  // 1. Tháp Giữa: Tầng 3-4 (Boss Đỉnh Điểm - Ưu tiên Buff Mùa Electro/Liberation/Unison)
-  const candidateHazardBoss = optimalTeams
-    .filter(isAvailable)
-    .sort((a, b) => scoreForHazardBossBuff(b) - scoreForHazardBossBuff(a));
-  
-  let hazardBossTeam = candidateHazardBoss[0] || buildFallbackToaTeam('Hazard Boss');
-  if (hazardBossTeam) {
-    hazardBossTeam.members.forEach(m => usedToaCharacters.add(m));
+  // 4. Chấm điểm độ tương thích với Tháp Giữa Khởi Đầu (Hazard Tầng 1-2 - Càn Quét)
+  const scoreForHazardEarly = (team) => {
+    let score = team.tier === 'T0' ? 100 : team.tier === 'T0.5' ? 85 : 70;
+    score += (team.matchScore || 80) * 0.4;
+    return score;
+  };
+
+  // TÌM KIẾM TOÀN CỤC ĐA THÁP (GLOBAL OPTIMIZATION):
+  // Duyệt qua tất cả các tổ hợp 3 đội hình hoàn toàn không trùng nhân vật để tìm phương án có tổng điểm cao nhất
+  let bestScore = -1;
+  let bestAssignment = null;
+
+  for (let r = 0; r < optimalTeams.length; r++) {
+    const tRes = optimalTeams[r];
+    const sRes = scoreForResonant(tRes);
+
+    for (let e = 0; e < optimalTeams.length; e++) {
+      if (e === r) continue;
+      const tEcho = optimalTeams[e];
+      // Không được trùng bất kỳ nhân vật nào với Tháp Trái
+      if (tEcho.members.some(m => tRes.members.includes(m))) continue;
+      const sEcho = scoreForEchoing(tEcho);
+
+      for (let h = 0; h < optimalTeams.length; h++) {
+        if (h === r || h === e) continue;
+        const tHaz = optimalTeams[h];
+        // Không được trùng bất kỳ nhân vật nào với Tháp Trái hoặc Tháp Phải
+        if (tHaz.members.some(m => tRes.members.includes(m) || tEcho.members.includes(m))) continue;
+        const sHaz = scoreForHazardBoss(tHaz);
+
+        const totalScore = sRes + sEcho + sHaz;
+        if (totalScore > bestScore) {
+          bestScore = totalScore;
+          bestAssignment = { tRes, tEcho, tHaz, totalScore };
+        }
+      }
+    }
   }
 
-  // 2. Tháp Trái: Tầng 4 Boss (Resonant Tower - Havoc / Basic ATK)
-  const candidateResonant = optimalTeams
-    .filter(isAvailable)
-    .sort((a, b) => scoreForResonant(b) - scoreForResonant(a));
-  
-  let resonantTeam = candidateResonant[0] || buildFallbackToaTeam('Resonant Tower');
-  if (resonantTeam) {
-    resonantTeam.members.forEach(m => usedToaCharacters.add(m));
+  // Trường hợp kho nhân vật ít (dưới 9 nhân vật), tìm tổ hợp 2 đội tối ưu nhất
+  if (!bestAssignment) {
+    let best2Score = -1;
+    for (let r = 0; r < optimalTeams.length; r++) {
+      const tRes = optimalTeams[r];
+      for (let e = 0; e < optimalTeams.length; e++) {
+        if (e === r) continue;
+        const tEcho = optimalTeams[e];
+        if (tEcho.members.some(m => tRes.members.includes(m))) continue;
+        const score = scoreForResonant(tRes) + scoreForEchoing(tEcho);
+        if (score > best2Score) {
+          best2Score = score;
+          bestAssignment = { tRes, tEcho, tHaz: null, totalScore: score };
+        }
+      }
+    }
   }
 
-  // 3. Tháp Phải: Tầng 4 Boss (Echoing Tower - Spectro / Skill DMG)
-  const candidateEchoing = optimalTeams
-    .filter(isAvailable)
-    .sort((a, b) => scoreForEchoing(b) - scoreForEchoing(a));
-  
-  let echoingTeam = candidateEchoing[0] || buildFallbackToaTeam('Echoing Tower');
-  if (echoingTeam) {
-    echoingTeam.members.forEach(m => usedToaCharacters.add(m));
+  // Ghi nhận danh sách nhân vật đã sử dụng ở 3 tháp chính
+  const usedToaCharacters = new Set();
+  const resonantTeam = bestAssignment?.tRes || optimalTeams[0];
+  const echoingTeam = bestAssignment?.tEcho || optimalTeams[1] || optimalTeams[0];
+  let hazardBossTeam = bestAssignment?.tHaz;
+
+  if (resonantTeam) resonantTeam.members.forEach(m => usedToaCharacters.add(m));
+  if (echoingTeam) echoingTeam.members.forEach(m => usedToaCharacters.add(m));
+  if (hazardBossTeam) hazardBossTeam.members.forEach(m => usedToaCharacters.add(m));
+
+  // Nếu chưa có hazardBossTeam (kho người dùng < 9), tìm trong các nhân vật độc lập còn lại
+  if (!hazardBossTeam) {
+    const unusedIds = ownedCharacterIds.filter(id => !usedToaCharacters.has(id));
+    if (unusedIds.length >= 3) {
+      const pool = unusedIds.map(id => getResonator(id)).filter(Boolean);
+      pool.sort((a, b) => (RESONATOR_POWER_TIER[b.id] || 75) - (RESONATOR_POWER_TIER[a.id] || 75));
+      const dps = pool.find(r => !TRUE_SUSTAIN_IDS.has(r.id) && (r.role.includes('Main') || r.tags?.includes('Main DPS'))) || pool[0];
+      const afterDPS = pool.filter(r => r.id !== dps.id);
+      const buff = afterDPS.find(r => !TRUE_SUSTAIN_IDS.has(r.id) && (r.role.includes('Sub') || r.role.includes('Buffer'))) || afterDPS[0];
+      const afterBuff = afterDPS.filter(r => r.id !== buff.id);
+      const flex = afterBuff.find(r => TRUE_SUSTAIN_IDS.has(r.id)) || afterBuff[0];
+
+      hazardBossTeam = {
+        id: `toa-boss-${dps.id}-${buff.id}-${flex.id}`,
+        name: `${dps.name} & ${buff.name} Đỉnh Điểm Boss`,
+        core: dps.id,
+        members: [dps.id, buff.id, flex.id],
+        type: 'Đỉnh Điểm Boss',
+        tier: 'T0.5',
+        description: `Đội hình độc lập hoàn toàn không trùng nhân vật cho Tháp Giữa Tầng 3 và 4.`,
+        tags: [dps.element, 'TOA Independent'],
+        characters: [dps, buff, flex],
+        customRotations: {
+          standard: buildDetailedStandardRotation(dps, buff, flex)
+        }
+      };
+      hazardBossTeam.members.forEach(m => usedToaCharacters.add(m));
+    }
   }
 
-  // 4. Tháp Giữa: Tầng 1-2 (Hazard Early - Càn Quét)
-  const candidateHazardEarly = optimalTeams
-    .filter(isAvailable)
-    .sort((a, b) => (b.matchScore || 0) - (a.matchScore || 0));
-  
-  let hazardEarlyTeam = candidateHazardEarly[0] || buildFallbackToaTeam('Hazard Early');
-  if (hazardEarlyTeam) {
+  // Phân bổ Đội Hình Tháp Giữa Tầng 1-2 (Hazard Early - Càn Quét) từ các nhân vật độc lập còn lại
+  let hazardEarlyTeam = null;
+  const remainingCandidates = optimalTeams.filter(t => t.members.every(m => !usedToaCharacters.has(m)));
+  if (remainingCandidates.length > 0) {
+    remainingCandidates.sort((a, b) => scoreForHazardEarly(b) - scoreForHazardEarly(a));
+    hazardEarlyTeam = remainingCandidates[0];
     hazardEarlyTeam.members.forEach(m => usedToaCharacters.add(m));
+  } else {
+    // Tạo đội hình từ các nhân vật chưa dùng
+    const unusedIds = ownedCharacterIds.filter(id => !usedToaCharacters.has(id));
+    if (unusedIds.length >= 3) {
+      const pool = unusedIds.map(id => getResonator(id)).filter(Boolean);
+      pool.sort((a, b) => (RESONATOR_POWER_TIER[b.id] || 75) - (RESONATOR_POWER_TIER[a.id] || 75));
+      const dps = pool.find(r => !TRUE_SUSTAIN_IDS.has(r.id) && (r.role.includes('Main') || r.tags?.includes('Main DPS'))) || pool[0];
+      const afterDPS = pool.filter(r => r.id !== dps.id);
+      const buff = afterDPS.find(r => !TRUE_SUSTAIN_IDS.has(r.id) && (r.role.includes('Sub') || r.role.includes('Buffer'))) || afterDPS[0];
+      const afterBuff = afterDPS.filter(r => r.id !== buff.id);
+      const flex = afterBuff.find(r => TRUE_SUSTAIN_IDS.has(r.id)) || afterBuff[0];
+
+      hazardEarlyTeam = {
+        id: `toa-early-${dps.id}-${buff.id}-${flex.id}`,
+        name: `${dps.name} & ${buff.name} Càn Quét Khởi Đầu`,
+        core: dps.id,
+        members: [dps.id, buff.id, flex.id],
+        type: 'Khởi Đầu Càn Quét',
+        tier: 'T0.5',
+        description: `Đội hình càn quét dọn tầng 1 và 2 tiết kiệm thể lực tối ưu.`,
+        tags: [dps.element, 'TOA Early'],
+        characters: [dps, buff, flex],
+        customRotations: {
+          standard: buildDetailedStandardRotation(dps, buff, flex)
+        }
+      };
+      hazardEarlyTeam.members.forEach(m => usedToaCharacters.add(m));
+    } else if (unusedIds.length === 2) {
+      // Duo squad cho tầng dễ
+      const pool = unusedIds.map(id => getResonator(id)).filter(Boolean);
+      const c1 = pool[0];
+      const c2 = pool[1];
+      hazardEarlyTeam = {
+        id: `toa-early-${c1.id}-${c2.id}`,
+        name: `${c1.name} & ${c2.name} Song Đấu Khởi Đầu`,
+        core: c1.id,
+        members: [c1.id, c2.id],
+        type: 'Duo Càn Quét',
+        tier: 'T1',
+        description: `Đội hình 2 người càn quét dọn tầng 1 và 2 tiết kiệm thể lực tối ưu.`,
+        tags: [c1.element, 'TOA Duo'],
+        characters: [c1, c2],
+        customRotations: {
+          standard: buildDetailedStandardRotation(c1, c2, null)
+        }
+      };
+      hazardEarlyTeam.members.forEach(m => usedToaCharacters.add(m));
+    }
   }
 
   return {

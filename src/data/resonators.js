@@ -2643,1102 +2643,1858 @@ export const RESONATORS = [
 
 export const TEAM_TEMPLATES = [
   {
-    "id": "hsin-suoming-chisa",
-    "name": "Hsin & Suoming Khúc Ca Hắc Lôi",
-    "core": "hsin",
-    "members": [
-      "hsin",
-      "suoming",
-      "chisa"
-    ],
-    "tier": "T0",
-    "type": "Unison Hypercarry",
-    "description": "Đội hình Unison đỉnh cao phiên bản 3.7. Suoming khuếch đại sát thương Lôi trong khi Chisa duy trì hồi phục và gia tăng số tầng hiệu ứng bất lợi lên quái vật.",
-    "tags": [
-      "Electro",
-      "T0",
-      "Unison"
-    ]
+      "id": "hsin-suoming-chisa",
+      "name": "Hsin & Suoming Khúc Ca Hắc Lôi",
+      "core": "hsin",
+      "members": [
+          "hsin",
+          "suoming",
+          "chisa"
+      ],
+      "tier": "T0",
+      "type": "Unison Hypercarry",
+      "description": "Đội hình Unison đỉnh cao phiên bản 3.7. Suoming khuếch đại sát thương Lôi trong khi Chisa duy trì hồi phục và gia tăng số tầng hiệu ứng bất lợi lên quái vật.",
+      "tags": [
+          "Electro",
+          "T0",
+          "Unison"
+      ]
   },
   {
-    "id": "hsin-suoming-shorekeeper",
-    "name": "Hsin & Suoming Lôi Quang Vĩnh Cửu",
-    "core": "hsin",
-    "members": [
-      "hsin",
-      "suoming",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Unison Hypercarry",
-    "description": "Shorekeeper mở rộng Stella Field đẩy tỉ lệ bạo kích và sát thương toàn hệ lên mức tối đa cho bộ đôi Lôi.",
-    "tags": [
-      "Electro",
-      "T0",
-      "Unison"
-    ]
+      "id": "hsin-suoming-shorekeeper",
+      "name": "Hsin & Suoming Lôi Quang Vĩnh Cửu",
+      "core": "hsin",
+      "members": [
+          "hsin",
+          "suoming",
+          "shorekeeper"
+      ],
+      "tier": "T0",
+      "type": "Unison Hypercarry",
+      "description": "Shorekeeper mở rộng Stella Field đẩy tỉ lệ bạo kích và sát thương toàn hệ lên mức tối đa cho bộ đôi Lôi.",
+      "tags": [
+          "Electro",
+          "T0",
+          "Unison"
+      ]
   },
   {
-    "id": "hsin-yinlin-chisa",
-    "name": "Hsin & Yinlin Lôi Điệp Cuồng Nộ",
-    "core": "hsin",
-    "members": [
-      "hsin",
-      "yinlin",
-      "chisa"
-    ],
-    "tier": "T0.5",
-    "type": "Electro Hypercarry",
-    "description": "Yinlin liên tục kích hoạt đòn đánh phối hợp ngoài sân giúp Hsin tối ưu hóa chuỗi sát thương bão sét.",
-    "tags": [
-      "Electro",
-      "T0.5",
-      "Hypercarry"
-    ]
+      "id": "hsin-yinlin-chisa",
+      "name": "Hsin & Yinlin Lôi Điệp Cuồng Nộ",
+      "core": "hsin",
+      "members": [
+          "hsin",
+          "yinlin",
+          "chisa"
+      ],
+      "tier": "T0.5",
+      "type": "Electro Hypercarry",
+      "description": "Yinlin liên tục kích hoạt đòn đánh phối hợp ngoài sân giúp Hsin tối ưu hóa chuỗi sát thương bão sét.",
+      "tags": [
+          "Electro",
+          "T0.5",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "qingxiao-ciaccona-verina",
-    "name": "Qingxiao Kiếm Khí Phong Lôi",
-    "core": "qingxiao",
-    "members": [
-      "qingxiao",
-      "ciaccona",
-      "verina"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Aero",
-    "description": "Ciaccona gieo rắc hiệu ứng bào mòn gió Aero Erosion liên tục tạo điều kiện cho kiếm khí của Qingxiao chém gục đối thủ.",
-    "tags": [
-      "Aero",
-      "T0",
-      "Hypercarry"
-    ]
+      "id": "qingxiao-ciaccona-verina",
+      "name": "Qingxiao Kiếm Khí Phong Lôi",
+      "core": "qingxiao",
+      "members": [
+          "qingxiao",
+          "ciaccona",
+          "verina"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Aero",
+      "description": "Ciaccona gieo rắc hiệu ứng bào mòn gió Aero Erosion liên tục tạo điều kiện cho kiếm khí của Qingxiao chém gục đối thủ.",
+      "tags": [
+          "Aero",
+          "T0",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "qingxiao-yangyang-shorekeeper",
-    "name": "Qingxiao Phong Vũ Thần Tốc",
-    "core": "qingxiao",
-    "members": [
-      "qingxiao",
-      "yangyang",
-      "shorekeeper"
-    ],
-    "tier": "T0.5",
-    "type": "Hypercarry Aero",
-    "description": "Yangyang nạp năng lượng cực nhanh giúp Qingxiao liên tục tung chiêu cuối trảm phong diện rộng.",
-    "tags": [
-      "Aero",
-      "T0.5",
-      "Hypercarry"
-    ]
+      "id": "qingxiao-yangyang-shorekeeper",
+      "name": "Qingxiao Phong Vũ Thần Tốc",
+      "core": "qingxiao",
+      "members": [
+          "qingxiao",
+          "yangyang",
+          "shorekeeper"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Aero",
+      "description": "Yangyang nạp năng lượng cực nhanh giúp Qingxiao liên tục tung chiêu cuối trảm phong diện rộng.",
+      "tags": [
+          "Aero",
+          "T0.5",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "jingran-lupa-mornye",
-    "name": "Jingran & Lupa Hỏa Diệm Nethermancer",
-    "core": "jingran",
-    "members": [
-      "jingran",
-      "lupa",
-      "mornye"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Fusion",
-    "description": "Lupa buff sát thương Hỏa và đòn đánh phối hợp, Mornye hồi máu và giới hạn sát thương tối đa cho Jingran tích lũy HP cực đại.",
-    "tags": [
-      "Fusion",
-      "T0",
-      "Hypercarry"
-    ]
+      "id": "jingran-lupa-mornye",
+      "name": "Jingran & Lupa Hỏa Diệm Nethermancer",
+      "core": "jingran",
+      "members": [
+          "jingran",
+          "lupa",
+          "mornye"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Fusion",
+      "description": "Lupa buff sát thương Hỏa và đòn đánh phối hợp, Mornye hồi máu và giới hạn sát thương tối đa cho Jingran tích lũy HP cực đại.",
+      "tags": [
+          "Fusion",
+          "T0",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "jingran-mortefi-verina",
-    "name": "Jingran Bão Lửa Trọng Kích",
-    "core": "jingran",
-    "members": [
-      "jingran",
-      "mortefi",
-      "verina"
-    ],
-    "tier": "T0.5",
-    "type": "Hypercarry Fusion",
-    "description": "Mortefi truyền 38% sát thương Trọng Kích giúp đại kiếm của Jingran giáng những đòn búa tạ thiêu đốt đối thủ.",
-    "tags": [
-      "Fusion",
-      "T0.5",
-      "Hypercarry"
-    ]
+      "id": "jingran-mortefi-verina",
+      "name": "Jingran Bão Lửa Trọng Kích",
+      "core": "jingran",
+      "members": [
+          "jingran",
+          "mortefi",
+          "verina"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Fusion",
+      "description": "Mortefi truyền 38% sát thương Trọng Kích giúp đại kiếm của Jingran giáng những đòn búa tạ thiêu đốt đối thủ.",
+      "tags": [
+          "Fusion",
+          "T0.5",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "yangyang-xuanling-sanhua-chisa",
-    "name": "Yangyang Xuanling & Chisa Dạ Vũ",
-    "core": "yangyang_xuanling",
-    "members": [
-      "yangyang_xuanling",
-      "sanhua",
-      "chisa"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Havoc",
-    "description": "Sanhua nạp Concerto thần tốc buff đòn đánh thường, Chisa gia tăng số tầng hiệu ứng bất lợi giúp thức tỉnh của Yangyang bộc phá sát thương tối đa.",
-    "tags": [
-      "Havoc",
-      "T0",
-      "Hypercarry"
-    ]
+      "id": "yangyang-xuanling-sanhua-chisa",
+      "name": "Yangyang Xuanling & Chisa Dạ Vũ",
+      "core": "yangyang_xuanling",
+      "members": [
+          "yangyang_xuanling",
+          "sanhua",
+          "chisa"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Havoc",
+      "description": "Sanhua nạp Concerto thần tốc buff đòn đánh thường, Chisa gia tăng số tầng hiệu ứng bất lợi giúp thức tỉnh của Yangyang bộc phá sát thương tối đa.",
+      "tags": [
+          "Havoc",
+          "T0",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "yangyang-xuanling-danjin-shorekeeper",
-    "name": "Yangyang Xuanling Huyết Hắc Ám",
-    "core": "yangyang_xuanling",
-    "members": [
-      "yangyang_xuanling",
-      "danjin",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Havoc",
-    "description": "Danjin khuếch đại 23% sát thương Havoc đưa thanh kiếm của Yangyang Xuanling lên đỉnh cao sức mạnh.",
-    "tags": [
-      "Havoc",
-      "T0",
-      "Hypercarry"
-    ]
+      "id": "yangyang-xuanling-danjin-shorekeeper",
+      "name": "Yangyang Xuanling Huyết Hắc Ám",
+      "core": "yangyang_xuanling",
+      "members": [
+          "yangyang_xuanling",
+          "danjin",
+          "shorekeeper"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Havoc",
+      "description": "Danjin khuếch đại 23% sát thương Havoc đưa thanh kiếm của Yangyang Xuanling lên đỉnh cao sức mạnh.",
+      "tags": [
+          "Havoc",
+          "T0",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "lucy-rebecca-mornye",
-    "name": "Lucy & Rebecca Tân Thế Giới Cyberpunk",
-    "core": "lucy",
-    "members": [
-      "lucy",
-      "rebecca",
-      "mornye"
-    ],
-    "tier": "T0",
-    "type": "Quick-Hack Hypercarry",
-    "description": "Bộ ba đồng điệu chính thức. Rebecca liên tục đặt trạng thái Hack và xả mưa đạn phụ trợ, Mornye bảo hộ bằng Drone giảm sát thương để Lucy xả pháo Spectro dứt điểm.",
-    "tags": [
-      "Spectro",
-      "T0",
-      "Quick-Hack"
-    ]
+      "id": "lucy-rebecca-mornye",
+      "name": "Lucy & Rebecca Tân Thế Giới Cyberpunk",
+      "core": "lucy",
+      "members": [
+          "lucy",
+          "rebecca",
+          "mornye"
+      ],
+      "tier": "T0",
+      "type": "Quick-Hack Hypercarry",
+      "description": "Bộ ba đồng điệu chính thức. Rebecca liên tục đặt trạng thái Hack và xả mưa đạn phụ trợ, Mornye bảo hộ bằng Drone giảm sát thương để Lucy xả pháo Spectro dứt điểm.",
+      "tags": [
+          "Spectro",
+          "T0",
+          "Quick-Hack"
+      ]
   },
   {
-    "id": "lucy-rebecca-shorekeeper",
-    "name": "Lucy & Rebecca Pháo Quang Điện Tử",
-    "core": "lucy",
-    "members": [
-      "lucy",
-      "rebecca",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Quick-Hack Hypercarry",
-    "description": "Shorekeeper mở rộng Stella Field đẩy tỉ lệ bạo kích và sát thương toàn hệ lên mức tối đa cho cặp xạ thủ súng đôi.",
-    "tags": [
-      "Spectro",
-      "T0",
-      "Quick-Hack"
-    ]
+      "id": "lucy-rebecca-shorekeeper",
+      "name": "Lucy & Rebecca Pháo Quang Điện Tử",
+      "core": "lucy",
+      "members": [
+          "lucy",
+          "rebecca",
+          "shorekeeper"
+      ],
+      "tier": "T0",
+      "type": "Quick-Hack Hypercarry",
+      "description": "Shorekeeper mở rộng Stella Field đẩy tỉ lệ bạo kích và sát thương toàn hệ lên mức tối đa cho cặp xạ thủ súng đôi.",
+      "tags": [
+          "Spectro",
+          "T0",
+          "Quick-Hack"
+      ]
   },
   {
-    "id": "hiyuki-lucilla-suisui",
-    "name": "Hiyuki & Lucilla Hàn Băng Chafe",
-    "core": "hiyuki",
-    "members": [
-      "hiyuki",
-      "lucilla",
-      "suisui"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Glacio",
-    "description": "Đội hình Glacio Chafe chuẩn mực. Lucilla khuếch đại sát thương Glacio và kỹ năng Echo, Suisui hồi máu và nạp năng lượng giúp Hiyuki trảm sương liên tục.",
-    "tags": [
-      "Glacio",
-      "T0",
-      "Glacio Chafe"
-    ]
+      "id": "hiyuki-lucilla-suisui",
+      "name": "Hiyuki & Lucilla Hàn Băng Chafe",
+      "core": "hiyuki",
+      "members": [
+          "hiyuki",
+          "lucilla",
+          "suisui"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Glacio",
+      "description": "Đội hình Glacio Chafe chuẩn mực. Lucilla khuếch đại sát thương Glacio và kỹ năng Echo, Suisui hồi máu và nạp năng lượng giúp Hiyuki trảm sương liên tục.",
+      "tags": [
+          "Glacio",
+          "T0",
+          "Glacio Chafe"
+      ]
   },
   {
-    "id": "hiyuki-lucilla-shorekeeper",
-    "name": "Hiyuki & Lucilla Băng Tuyết Tinh Vân",
-    "core": "hiyuki",
-    "members": [
-      "hiyuki",
-      "lucilla",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Glacio",
-    "description": "Lucilla khuếch đại sát thương Băng kết hợp vùng sao hồi máu của Shorekeeper đưa Hiyuki lên đỉnh cao sức mạnh.",
-    "tags": [
-      "Glacio",
-      "T0",
-      "Hypercarry"
-    ]
+      "id": "hiyuki-lucilla-shorekeeper",
+      "name": "Hiyuki & Lucilla Băng Tuyết Tinh Vân",
+      "core": "hiyuki",
+      "members": [
+          "hiyuki",
+          "lucilla",
+          "shorekeeper"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Glacio",
+      "description": "Lucilla khuếch đại sát thương Băng kết hợp vùng sao hồi máu của Shorekeeper đưa Hiyuki lên đỉnh cao sức mạnh.",
+      "tags": [
+          "Glacio",
+          "T0",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "carlotta-lucilla-verina",
-    "name": "Carlotta & Lucilla Băng Tuyết Bộc Phá",
-    "core": "carlotta",
-    "members": [
-      "carlotta",
-      "lucilla",
-      "verina"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Glacio",
-    "description": "Lucilla buff sát thương Băng và hỗ trợ ngoài sân giúp những phát bắn tinh thể của Carlotta đạt sát thương bạo kích khổng lồ.",
-    "tags": [
-      "Glacio",
-      "T0",
-      "Hypercarry"
-    ]
+      "id": "carlotta-lucilla-verina",
+      "name": "Carlotta & Lucilla Băng Tuyết Bộc Phá",
+      "core": "carlotta",
+      "members": [
+          "carlotta",
+          "lucilla",
+          "verina"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Glacio",
+      "description": "Lucilla buff sát thương Băng và hỗ trợ ngoài sân giúp những phát bắn tinh thể của Carlotta đạt sát thương bạo kích khổng lồ.",
+      "tags": [
+          "Glacio",
+          "T0",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "denia-lupa-mornye",
-    "name": "Denia Hỏa Ngục Bộc Phá",
-    "core": "denia",
-    "members": [
-      "denia",
-      "lupa",
-      "mornye"
-    ],
-    "tier": "T0",
-    "type": "Burst DPS Fusion",
-    "description": "Lupa buff sát thương Hỏa diện rộng, Mornye hồi máu và tạo lá chắn công nghệ giúp Denia tích lũy tài nguyên và xả nộ hủy diệt.",
-    "tags": [
-      "Fusion",
-      "T0",
-      "Burst DPS"
-    ]
+      "id": "denia-lupa-mornye",
+      "name": "Denia Hỏa Ngục Bộc Phá",
+      "core": "denia",
+      "members": [
+          "denia",
+          "lupa",
+          "mornye"
+      ],
+      "tier": "T0",
+      "type": "Burst DPS Fusion",
+      "description": "Lupa buff sát thương Hỏa diện rộng, Mornye hồi máu và tạo lá chắn công nghệ giúp Denia tích lũy tài nguyên và xả nộ hủy diệt.",
+      "tags": [
+          "Fusion",
+          "T0",
+          "Burst DPS"
+      ]
   },
   {
-    "id": "denia-changli-brant",
-    "name": "Denia & Changli Song Hỏa Lưu Ly",
-    "core": "denia",
-    "members": [
-      "denia",
-      "changli",
-      "brant"
-    ],
-    "tier": "T0.5",
-    "type": "Dual DPS Fusion",
-    "description": "Changli và Denia thay nhau tung chuỗi chiêu thức biến hình hỏa diễm, Brant cung cấp khiên chắn và hồi phục vững chắc.",
-    "tags": [
-      "Fusion",
-      "T0.5",
-      "Dual DPS"
-    ]
+      "id": "denia-changli-brant",
+      "name": "Denia & Changli Song Hỏa Lưu Ly",
+      "core": "denia",
+      "members": [
+          "denia",
+          "changli",
+          "brant"
+      ],
+      "tier": "T0.5",
+      "type": "Dual DPS Fusion",
+      "description": "Changli và Denia thay nhau tung chuỗi chiêu thức biến hình hỏa diễm, Brant cung cấp khiên chắn và hồi phục vững chắc.",
+      "tags": [
+          "Fusion",
+          "T0.5",
+          "Dual DPS"
+      ]
   },
   {
-    "id": "sigrika-qiuyuan-verina",
-    "name": "Sigrika Quyền Năng Echo Bão Tố",
-    "core": "sigrika",
-    "members": [
-      "sigrika",
-      "qiuyuan",
-      "verina"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Aero",
-    "description": "Qiuyuan tối ưu hóa toàn diện sát thương kỹ năng Echo cho Sigrika kích nổ các bùa chú cổ đại quét sạch kẻ thù.",
-    "tags": [
-      "Aero",
-      "T0",
-      "Echo DMG"
-    ]
+      "id": "sigrika-qiuyuan-verina",
+      "name": "Sigrika Quyền Năng Echo Bão Tố",
+      "core": "sigrika",
+      "members": [
+          "sigrika",
+          "qiuyuan",
+          "verina"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Aero",
+      "description": "Qiuyuan tối ưu hóa toàn diện sát thương kỹ năng Echo cho Sigrika kích nổ các bùa chú cổ đại quét sạch kẻ thù.",
+      "tags": [
+          "Aero",
+          "T0",
+          "Echo DMG"
+      ]
   },
   {
-    "id": "aemeath-lupa-brant",
-    "name": "Aemeath Cơ Giáp Hỏa Thần",
-    "core": "aemeath",
-    "members": [
-      "aemeath",
-      "lupa",
-      "brant"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Fusion",
-    "description": "Lupa buff sát thương Hỏa và đòn đánh thường, Brant hồi máu nạp năng lượng giúp Aemeath liên tục kích hoạt chiêu cuối Giải Phóng Cộng Hưởng.",
-    "tags": [
-      "Fusion",
-      "T0",
-      "Hypercarry"
-    ]
+      "id": "aemeath-lupa-brant",
+      "name": "Aemeath Cơ Giáp Hỏa Thần",
+      "core": "aemeath",
+      "members": [
+          "aemeath",
+          "lupa",
+          "brant"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Fusion",
+      "description": "Lupa buff sát thương Hỏa và đòn đánh thường, Brant hồi máu nạp năng lượng giúp Aemeath liên tục kích hoạt chiêu cuối Giải Phóng Cộng Hưởng.",
+      "tags": [
+          "Fusion",
+          "T0",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "luuk-sanhua-shorekeeper",
-    "name": "Luuk Herssen Quyền Vương Không Chiến",
-    "core": "luuk_herssen",
-    "members": [
-      "luuk_herssen",
-      "sanhua",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Spectro",
-    "description": "Sanhua Outro truyền 38% sát thương Đánh Thường, Shorekeeper buff bạo kích giúp những chuỗi đòn không chiến của Luuk Herssen chém tan nát boss.",
-    "tags": [
-      "Spectro",
-      "T0",
-      "Hypercarry"
-    ]
+      "id": "luuk-sanhua-shorekeeper",
+      "name": "Luuk Herssen Quyền Vương Không Chiến",
+      "core": "luuk_herssen",
+      "members": [
+          "luuk_herssen",
+          "sanhua",
+          "shorekeeper"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Spectro",
+      "description": "Sanhua Outro truyền 38% sát thương Đánh Thường, Shorekeeper buff bạo kích giúp những chuỗi đòn không chiến của Luuk Herssen chém tan nát boss.",
+      "tags": [
+          "Spectro",
+          "T0",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "luuk-lynae-verina",
-    "name": "Luuk Herssen & Lynae Quang Minh Đỉnh",
-    "core": "luuk_herssen",
-    "members": [
-      "luuk_herssen",
-      "lynae",
-      "verina"
-    ],
-    "tier": "T0.5",
-    "type": "Hypercarry Spectro",
-    "description": "Lynae gieo rắc trạng thái Spectro Frazzle giúp Luuk Herssen gia tăng sát thương trên không áp đảo đối thủ.",
-    "tags": [
-      "Spectro",
-      "T0.5",
-      "Hypercarry"
-    ]
+      "id": "luuk-lynae-verina",
+      "name": "Luuk Herssen & Lynae Quang Minh Đỉnh",
+      "core": "luuk_herssen",
+      "members": [
+          "luuk_herssen",
+          "lynae",
+          "verina"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Spectro",
+      "description": "Lynae gieo rắc trạng thái Spectro Frazzle giúp Luuk Herssen gia tăng sát thương trên không áp đảo đối thủ.",
+      "tags": [
+          "Spectro",
+          "T0.5",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "augusta-iuno-shorekeeper",
-    "name": "Augusta & Iuno Lôi Đình Thiết Giáp",
-    "core": "augusta",
-    "members": [
-      "augusta",
-      "iuno",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Electro",
-    "description": "Cặp đôi hoàn mỹ. Iuno khuếch đại cực đại sát thương Heavy Attack và hồi phục thể lực, giúp đại kiếm của Augusta tung những nhát chém sấm sét hủy diệt.",
-    "tags": [
-      "Electro",
-      "T0",
-      "Heavy ATK"
-    ]
+      "id": "augusta-iuno-shorekeeper",
+      "name": "Augusta & Iuno Lôi Đình Thiết Giáp",
+      "core": "augusta",
+      "members": [
+          "augusta",
+          "iuno",
+          "shorekeeper"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Electro",
+      "description": "Cặp đôi hoàn mỹ. Iuno khuếch đại cực đại sát thương Heavy Attack và hồi phục thể lực, giúp đại kiếm của Augusta tung những nhát chém sấm sét hủy diệt.",
+      "tags": [
+          "Electro",
+          "T0",
+          "Heavy ATK"
+      ]
   },
   {
-    "id": "augusta-iuno-buling",
-    "name": "Augusta & Iuno Lôi Quang Thần Tốc",
-    "core": "augusta",
-    "members": [
-      "augusta",
-      "iuno",
-      "buling"
-    ],
-    "tier": "T0.5",
-    "type": "Hypercarry Electro",
-    "description": "Buling hồi máu liên tục và buff sát thương kỹ năng cho Augusta càn quét chiến trường.",
-    "tags": [
-      "Electro",
-      "T0.5",
-      "Hypercarry"
-    ]
+      "id": "augusta-iuno-buling",
+      "name": "Augusta & Iuno Lôi Quang Thần Tốc",
+      "core": "augusta",
+      "members": [
+          "augusta",
+          "iuno",
+          "buling"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Electro",
+      "description": "Buling hồi máu liên tục và buff sát thương kỹ năng cho Augusta càn quét chiến trường.",
+      "tags": [
+          "Electro",
+          "T0.5",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "galbrena-qiuyuan-mornye",
-    "name": "Galbrena Xạ Thủ Ma Quỷ Hỏa Lực",
-    "core": "galbrena",
-    "members": [
-      "galbrena",
-      "qiuyuan",
-      "mornye"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Fusion",
-    "description": "Qiuyuan khuếch đại sát thương kỹ năng Echo, Mornye tạo lá chắn giảm tải sát thương để Galbrena bước vào trạng thái Demon Hypostasis xả đạn.",
-    "tags": [
-      "Fusion",
-      "T0",
-      "Echo DMG"
-    ]
+      "id": "galbrena-qiuyuan-mornye",
+      "name": "Galbrena Xạ Thủ Ma Quỷ Hỏa Lực",
+      "core": "galbrena",
+      "members": [
+          "galbrena",
+          "qiuyuan",
+          "mornye"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Fusion",
+      "description": "Qiuyuan khuếch đại sát thương kỹ năng Echo, Mornye tạo lá chắn giảm tải sát thương để Galbrena bước vào trạng thái Demon Hypostasis xả đạn.",
+      "tags": [
+          "Fusion",
+          "T0",
+          "Echo DMG"
+      ]
   },
   {
-    "id": "galbrena-qiuyuan-verina",
-    "name": "Galbrena & Qiuyuan Phong Hỏa Hợp Thể",
-    "core": "galbrena",
-    "members": [
-      "galbrena",
-      "qiuyuan",
-      "verina"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Fusion",
-    "description": "Đội hình sát thương Echo cực đại giúp Galbrena dễ dàng dứt điểm boss trong chớp mắt.",
-    "tags": [
-      "Fusion",
-      "T0",
-      "Hypercarry"
-    ]
+      "id": "galbrena-qiuyuan-verina",
+      "name": "Galbrena & Qiuyuan Phong Hỏa Hợp Thể",
+      "core": "galbrena",
+      "members": [
+          "galbrena",
+          "qiuyuan",
+          "verina"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Fusion",
+      "description": "Đội hình sát thương Echo cực đại giúp Galbrena dễ dàng dứt điểm boss trong chớp mắt.",
+      "tags": [
+          "Fusion",
+          "T0",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "phrolova-cantarella-chisa",
-    "name": "Phrolova & Cantarella Khúc Ca Tang Lễ",
-    "core": "phrolova",
-    "members": [
-      "phrolova",
-      "cantarella",
-      "chisa"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Havoc",
-    "description": "Cantarella khuếch đại sát thương Havoc và đòn đánh phối hợp, Chisa tăng tối đa số tầng trạng thái tiêu cực để nốt nhạc tử thần của Phrolova kết liễu toàn bộ đối thủ.",
-    "tags": [
-      "Havoc",
-      "T0",
-      "Hypercarry"
-    ]
+      "id": "phrolova-cantarella-chisa",
+      "name": "Phrolova & Cantarella Khúc Ca Tang Lễ",
+      "core": "phrolova",
+      "members": [
+          "phrolova",
+          "cantarella",
+          "chisa"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Havoc",
+      "description": "Cantarella khuếch đại sát thương Havoc và đòn đánh phối hợp, Chisa tăng tối đa số tầng trạng thái tiêu cực để nốt nhạc tử thần của Phrolova kết liễu toàn bộ đối thủ.",
+      "tags": [
+          "Havoc",
+          "T0",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "phrolova-cantarella-shorekeeper",
-    "name": "Phrolova Hắc Ám Huyền Bí",
-    "core": "phrolova",
-    "members": [
-      "phrolova",
-      "cantarella",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Havoc",
-    "description": "Shorekeeper mở rộng Stella Field đẩy cao bạo kích đưa chuỗi nộ của Phrolova đạt ngưỡng sát thương tuyệt đối.",
-    "tags": [
-      "Havoc",
-      "T0",
-      "Hypercarry"
-    ]
+      "id": "phrolova-cantarella-shorekeeper",
+      "name": "Phrolova Hắc Ám Huyền Bí",
+      "core": "phrolova",
+      "members": [
+          "phrolova",
+          "cantarella",
+          "shorekeeper"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Havoc",
+      "description": "Shorekeeper mở rộng Stella Field đẩy cao bạo kích đưa chuỗi nộ của Phrolova đạt ngưỡng sát thương tuyệt đối.",
+      "tags": [
+          "Havoc",
+          "T0",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "cartethyia-ciaccona-shorekeeper",
-    "name": "Cartethyia Trảm Phong Bão Tố",
-    "core": "cartethyia",
-    "members": [
-      "cartethyia",
-      "ciaccona",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Aero",
-    "description": "Ciaccona gieo rắc hiệu ứng bào mòn gió liên tục để Cartethyia chuyển thể Fleurdelys xả kiếm khí bão táp.",
-    "tags": [
-      "Aero",
-      "T0",
-      "Hypercarry"
-    ]
+      "id": "cartethyia-ciaccona-shorekeeper",
+      "name": "Cartethyia Trảm Phong Bão Tố",
+      "core": "cartethyia",
+      "members": [
+          "cartethyia",
+          "ciaccona",
+          "shorekeeper"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Aero",
+      "description": "Ciaccona gieo rắc hiệu ứng bào mòn gió liên tục để Cartethyia chuyển thể Fleurdelys xả kiếm khí bão táp.",
+      "tags": [
+          "Aero",
+          "T0",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "cartethyia-yangyang-verina",
-    "name": "Cartethyia Kiếm Vũ Nạp Năng Lượng",
-    "core": "cartethyia",
-    "members": [
-      "cartethyia",
-      "yangyang",
-      "verina"
-    ],
-    "tier": "T0.5",
-    "type": "Hypercarry Aero",
-    "description": "Yangyang hút quái và hồi phục năng lượng cho Cartethyia xoay chuyển chiêu thức không ngừng.",
-    "tags": [
-      "Aero",
-      "T0.5",
-      "Hypercarry"
-    ]
+      "id": "cartethyia-yangyang-verina",
+      "name": "Cartethyia Kiếm Vũ Nạp Năng Lượng",
+      "core": "cartethyia",
+      "members": [
+          "cartethyia",
+          "yangyang",
+          "verina"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Aero",
+      "description": "Yangyang hút quái và hồi phục năng lượng cho Cartethyia xoay chuyển chiêu thức không ngừng.",
+      "tags": [
+          "Aero",
+          "T0.5",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "zani-phoebe-shorekeeper",
-    "name": "Zani & Phoebe Kim Cang Phục Ma",
-    "core": "zani",
-    "members": [
-      "zani",
-      "phoebe",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Spectro",
-    "description": "Phoebe thiết lập trạng thái Spectro Frazzle giúp quyền pháp Inferno của Zani bộc phát sát thương dồn dập.",
-    "tags": [
-      "Spectro",
-      "T0",
-      "Spectro Frazzle"
-    ]
+      "id": "zani-phoebe-shorekeeper",
+      "name": "Zani & Phoebe Kim Cang Phục Ma",
+      "core": "zani",
+      "members": [
+          "zani",
+          "phoebe",
+          "shorekeeper"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Spectro",
+      "description": "Phoebe thiết lập trạng thái Spectro Frazzle giúp quyền pháp Inferno của Zani bộc phát sát thương dồn dập.",
+      "tags": [
+          "Spectro",
+          "T0",
+          "Spectro Frazzle"
+      ]
   },
   {
-    "id": "zani-lynae-verina",
-    "name": "Zani Kim Cang Thần Quyền",
-    "core": "zani",
-    "members": [
-      "zani",
-      "lynae",
-      "verina"
-    ],
-    "tier": "T0.5",
-    "type": "Hypercarry Spectro",
-    "description": "Lynae hỗ trợ từ xa bồi đắp sát thương giúp Zani chiếm trọn thế trận cận chiến.",
-    "tags": [
-      "Spectro",
-      "T0.5",
-      "Hypercarry"
-    ]
+      "id": "zani-lynae-verina",
+      "name": "Zani Kim Cang Thần Quyền",
+      "core": "zani",
+      "members": [
+          "zani",
+          "lynae",
+          "verina"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Spectro",
+      "description": "Lynae hỗ trợ từ xa bồi đắp sát thương giúp Zani chiếm trọn thế trận cận chiến.",
+      "tags": [
+          "Spectro",
+          "T0.5",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "carlotta-zhezhi-shorekeeper",
-    "name": "Carlotta & Zhezhi Băng Giá Tuyệt Đỉnh",
-    "core": "carlotta",
-    "members": [
-      "carlotta",
-      "zhezhi",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Glacio",
-    "description": "Zhezhi buff sát thương Glacio và hồi năng lượng nộ giúp Carlotta bắn nát boss trong chớp mắt.",
-    "tags": [
-      "Glacio",
-      "T0",
-      "Hypercarry"
-    ]
+      "id": "carlotta-zhezhi-shorekeeper",
+      "name": "Carlotta & Zhezhi Băng Giá Tuyệt Đỉnh",
+      "core": "carlotta",
+      "members": [
+          "carlotta",
+          "zhezhi",
+          "shorekeeper"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Glacio",
+      "description": "Zhezhi buff sát thương Glacio và hồi năng lượng nộ giúp Carlotta bắn nát boss trong chớp mắt.",
+      "tags": [
+          "Glacio",
+          "T0",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "carlotta-sanhua-verina",
-    "name": "Carlotta Băng Giá Thần Tốc",
-    "core": "carlotta",
-    "members": [
-      "carlotta",
-      "sanhua",
-      "verina"
-    ],
-    "tier": "T0.5",
-    "type": "Hypercarry Glacio",
-    "description": "Đội hình quốc dân cực kỳ mượt mà giúp Carlotta xả đạn liên tục.",
-    "tags": [
-      "Glacio",
-      "T0.5",
-      "Hypercarry"
-    ]
+      "id": "carlotta-sanhua-verina",
+      "name": "Carlotta Băng Giá Thần Tốc",
+      "core": "carlotta",
+      "members": [
+          "carlotta",
+          "sanhua",
+          "verina"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Glacio",
+      "description": "Đội hình quốc dân cực kỳ mượt mà giúp Carlotta xả đạn liên tục.",
+      "tags": [
+          "Glacio",
+          "T0.5",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "carlotta-sanhua-baizhi",
-    "name": "Carlotta Thân Thiện Tân Thủ",
-    "core": "carlotta",
-    "members": [
-      "carlotta",
-      "sanhua",
-      "baizhi"
-    ],
-    "tier": "T1",
-    "type": "Hypercarry Glacio",
-    "description": "Phiên bản tiếp cận dễ dàng cho mọi người chơi với hai nhân vật 4 sao hỗ trợ đắc lực.",
-    "tags": [
-      "Glacio",
-      "T1",
-      "F2P Friendly"
-    ]
+      "id": "carlotta-sanhua-baizhi",
+      "name": "Carlotta Thân Thiện Tân Thủ",
+      "core": "carlotta",
+      "members": [
+          "carlotta",
+          "sanhua",
+          "baizhi"
+      ],
+      "tier": "T1",
+      "type": "Hypercarry Glacio",
+      "description": "Phiên bản tiếp cận dễ dàng cho mọi người chơi với hai nhân vật 4 sao hỗ trợ đắc lực.",
+      "tags": [
+          "Glacio",
+          "T1",
+          "F2P Friendly"
+      ]
   },
   {
-    "id": "rover-havoc-roccia-shorekeeper",
-    "name": "Rover Havoc & Roccia Rối Bóng Cuồng Nộ",
-    "core": "rover_havoc",
-    "members": [
-      "rover_havoc",
-      "roccia",
-      "shorekeeper"
-    ],
-    "tier": "T0.5",
-    "type": "Hypercarry Havoc",
-    "description": "Roccia gom quái và buff trực tiếp sát thương đòn đánh thường giúp lưỡi hái Dark Surge của Rover Havoc càn quét toàn sàn đấu.",
-    "tags": [
-      "Havoc",
-      "T0.5",
-      "Hypercarry"
-    ]
+      "id": "rover-havoc-roccia-shorekeeper",
+      "name": "Rover Havoc & Roccia Rối Bóng Cuồng Nộ",
+      "core": "rover_havoc",
+      "members": [
+          "rover_havoc",
+          "roccia",
+          "shorekeeper"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Havoc",
+      "description": "Roccia gom quái và buff trực tiếp sát thương đòn đánh thường giúp lưỡi hái Dark Surge của Rover Havoc càn quét toàn sàn đấu.",
+      "tags": [
+          "Havoc",
+          "T0.5",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "camellya-sanhua-shorekeeper",
-    "name": "Camellya Gai Hoa Hắc Ám",
-    "core": "camellya",
-    "members": [
-      "camellya",
-      "sanhua",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Havoc",
-    "description": "Đội hình chuẩn chỉ hàng đầu cho Camellya. Sanhua Outro buff 38% sát thương Đánh Thường giúp Camellya quét sạch boss.",
-    "tags": [
-      "Havoc",
-      "T0",
-      "Hypercarry"
-    ]
+      "id": "camellya-sanhua-shorekeeper",
+      "name": "Camellya Gai Hoa Hắc Ám",
+      "core": "camellya",
+      "members": [
+          "camellya",
+          "sanhua",
+          "shorekeeper"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Havoc",
+      "description": "Đội hình chuẩn chỉ hàng đầu cho Camellya. Sanhua Outro buff 38% sát thương Đánh Thường giúp Camellya quét sạch boss.",
+      "tags": [
+          "Havoc",
+          "T0",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "camellya-sanhua-chisa",
-    "name": "Camellya & Chisa Cuồng Hoan Havoc",
-    "core": "camellya",
-    "members": [
-      "camellya",
-      "sanhua",
-      "chisa"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Havoc",
-    "description": "Chisa hỗ trợ trị liệu, tăng tối đa số tầng hiệu ứng bất lợi và xuyên kháng, đẩy sát thương roi gai của Camellya lên đỉnh điểm.",
-    "tags": [
-      "Havoc",
-      "T0",
-      "Hypercarry"
-    ]
+      "id": "camellya-sanhua-chisa",
+      "name": "Camellya & Chisa Cuồng Hoan Havoc",
+      "core": "camellya",
+      "members": [
+          "camellya",
+          "sanhua",
+          "chisa"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Havoc",
+      "description": "Chisa hỗ trợ trị liệu, tăng tối đa số tầng hiệu ứng bất lợi và xuyên kháng, đẩy sát thương roi gai của Camellya lên đỉnh điểm.",
+      "tags": [
+          "Havoc",
+          "T0",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "camellya-danjin-shorekeeper",
-    "name": "Camellya & Danjin Huyết Vũ",
-    "core": "camellya",
-    "members": [
-      "camellya",
-      "danjin",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Havoc",
-    "description": "Danjin khuếch đại 23% sát thương Havoc đẩy ngưỡng sát thương của Camellya lên đỉnh điểm.",
-    "tags": [
-      "Havoc",
-      "T0",
-      "Hypercarry"
-    ]
+      "id": "camellya-danjin-shorekeeper",
+      "name": "Camellya & Danjin Huyết Vũ",
+      "core": "camellya",
+      "members": [
+          "camellya",
+          "danjin",
+          "shorekeeper"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Havoc",
+      "description": "Danjin khuếch đại 23% sát thương Havoc đẩy ngưỡng sát thương của Camellya lên đỉnh điểm.",
+      "tags": [
+          "Havoc",
+          "T0",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "camellya-roccia-chisa",
-    "name": "Camellya & Roccia Bão Tố Havoc",
-    "core": "camellya",
-    "members": [
-      "camellya",
-      "roccia",
-      "chisa"
-    ],
-    "tier": "T0.5",
-    "type": "Hypercarry Havoc",
-    "description": "Roccia gom quái và buff đòn đánh thường, Chisa hồi máu và giảm kháng giúp Camellya càn quét mọi chiến trường.",
-    "tags": [
-      "Havoc",
-      "T0.5",
-      "Hypercarry"
-    ]
+      "id": "camellya-roccia-chisa",
+      "name": "Camellya & Roccia Bão Tố Havoc",
+      "core": "camellya",
+      "members": [
+          "camellya",
+          "roccia",
+          "chisa"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Havoc",
+      "description": "Roccia gom quái và buff đòn đánh thường, Chisa hồi máu và giảm kháng giúp Camellya càn quét mọi chiến trường.",
+      "tags": [
+          "Havoc",
+          "T0.5",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "jinhsi-zhezhi-shorekeeper",
-    "name": "Jinhsi Long Thần Giáng Thế",
-    "core": "jinhsi",
-    "members": [
-      "jinhsi",
-      "zhezhi",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Spectro",
-    "description": "Zhezhi cung cấp đòn đánh phối hợp nạp 50 tầng Incandescence thần tốc để Jinhsi giáng đòn rồng thần hủy diệt.",
-    "tags": [
-      "Spectro",
-      "T0",
-      "Hypercarry"
-    ]
+      "id": "jinhsi-zhezhi-shorekeeper",
+      "name": "Jinhsi Long Thần Giáng Thế",
+      "core": "jinhsi",
+      "members": [
+          "jinhsi",
+          "zhezhi",
+          "shorekeeper"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Spectro",
+      "description": "Zhezhi cung cấp đòn đánh phối hợp nạp 50 tầng Incandescence thần tốc để Jinhsi giáng đòn rồng thần hủy diệt.",
+      "tags": [
+          "Spectro",
+          "T0",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "jinhsi-yuanwu-verina",
-    "name": "Jinhsi & Yuanwu Lôi Long Quang Minh",
-    "core": "jinhsi",
-    "members": [
-      "jinhsi",
-      "yuanwu",
-      "verina"
-    ],
-    "tier": "T0.5",
-    "type": "Hypercarry Spectro",
-    "description": "Trụ sét của Yuanwu kích hoạt đòn phối hợp nạp tầng cho Jinhsi mà không cần đầu tư nhiều tài nguyên.",
-    "tags": [
-      "Spectro",
-      "T0.5",
-      "Hypercarry"
-    ]
+      "id": "jinhsi-yuanwu-verina",
+      "name": "Jinhsi & Yuanwu Lôi Long Quang Minh",
+      "core": "jinhsi",
+      "members": [
+          "jinhsi",
+          "yuanwu",
+          "verina"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Spectro",
+      "description": "Trụ sét của Yuanwu kích hoạt đòn phối hợp nạp tầng cho Jinhsi mà không cần đầu tư nhiều tài nguyên.",
+      "tags": [
+          "Spectro",
+          "T0.5",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "jinhsi-yinlin-shorekeeper",
-    "name": "Jinhsi & Yinlin Lôi Điệp Phối Hợp",
-    "core": "jinhsi",
-    "members": [
-      "jinhsi",
-      "yinlin",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Spectro",
-    "description": "Yinlin liên tục kích hoạt lôi điệp giúp Jinhsi tích lũy tài nguyên tung chiêu thức kết liễu.",
-    "tags": [
-      "Spectro",
-      "T0",
-      "Hypercarry"
-    ]
+      "id": "jinhsi-yinlin-shorekeeper",
+      "name": "Jinhsi & Yinlin Lôi Điệp Phối Hợp",
+      "core": "jinhsi",
+      "members": [
+          "jinhsi",
+          "yinlin",
+          "shorekeeper"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Spectro",
+      "description": "Yinlin liên tục kích hoạt lôi điệp giúp Jinhsi tích lũy tài nguyên tung chiêu thức kết liễu.",
+      "tags": [
+          "Spectro",
+          "T0",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "jinhsi-taoqi-verina",
-    "name": "Jinhsi Hộ Vệ Khiên Vàng",
-    "core": "jinhsi",
-    "members": [
-      "jinhsi",
-      "taoqi",
-      "verina"
-    ],
-    "tier": "T1",
-    "type": "Hypercarry Spectro",
-    "description": "Taoqi truyền 38% sát thương Kỹ năng Cộng hưởng gia tăng uy lực cú thả rồng của Jinhsi.",
-    "tags": [
-      "Spectro",
-      "T1",
-      "Skill Buffer"
-    ]
+      "id": "jinhsi-taoqi-verina",
+      "name": "Jinhsi Hộ Vệ Khiên Vàng",
+      "core": "jinhsi",
+      "members": [
+          "jinhsi",
+          "taoqi",
+          "verina"
+      ],
+      "tier": "T1",
+      "type": "Hypercarry Spectro",
+      "description": "Taoqi truyền 38% sát thương Kỹ năng Cộng hưởng gia tăng uy lực cú thả rồng của Jinhsi.",
+      "tags": [
+          "Spectro",
+          "T1",
+          "Skill Buffer"
+      ]
   },
   {
-    "id": "changli-lupa-brant",
-    "name": "Changli & Lupa Phượng Hoàng Lang Tộc",
-    "core": "changli",
-    "members": [
-      "changli",
-      "lupa",
-      "brant"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Fusion",
-    "description": "Lupa buff sát thương Hỏa và đòn đánh thường, Brant hồi máu nạp năng lượng bảo hộ Changli thiêu rụi đối thủ.",
-    "tags": [
-      "Fusion",
-      "T0",
-      "Hypercarry"
-    ]
+      "id": "changli-lupa-brant",
+      "name": "Changli & Lupa Phượng Hoàng Lang Tộc",
+      "core": "changli",
+      "members": [
+          "changli",
+          "lupa",
+          "brant"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Fusion",
+      "description": "Lupa buff sát thương Hỏa và đòn đánh thường, Brant hồi máu nạp năng lượng bảo hộ Changli thiêu rụi đối thủ.",
+      "tags": [
+          "Fusion",
+          "T0",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "changli-yinlin-shorekeeper",
-    "name": "Changli & Yinlin Lôi Hỏa Song Hành",
-    "core": "changli",
-    "members": [
-      "changli",
-      "yinlin",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Dual DPS Fusion-Electro",
-    "description": "Cặp đôi hoán đổi linh hoạt chiêu thức bùng nổ sát thương liên tục làm chủ sàn đấu.",
-    "tags": [
-      "Fusion",
-      "T0",
-      "Dual DPS"
-    ]
+      "id": "changli-yinlin-shorekeeper",
+      "name": "Changli & Yinlin Lôi Hỏa Song Hành",
+      "core": "changli",
+      "members": [
+          "changli",
+          "yinlin",
+          "shorekeeper"
+      ],
+      "tier": "T0",
+      "type": "Dual DPS Fusion-Electro",
+      "description": "Cặp đôi hoán đổi linh hoạt chiêu thức bùng nổ sát thương liên tục làm chủ sàn đấu.",
+      "tags": [
+          "Fusion",
+          "T0",
+          "Dual DPS"
+      ]
   },
   {
-    "id": "changli-encore-verina",
-    "name": "Changli & Encore Hỏa Diệm Bùng Cháy",
-    "core": "changli",
-    "members": [
-      "changli",
-      "encore",
-      "verina"
-    ],
-    "tier": "T0.5",
-    "type": "Dual DPS Fusion",
-    "description": "Encore và Changli luân phiên xả sát thương hỏa lực dồn dập khiến đối thủ bốc hơi.",
-    "tags": [
-      "Fusion",
-      "T0.5",
-      "Dual DPS"
-    ]
+      "id": "changli-encore-verina",
+      "name": "Changli & Encore Hỏa Diệm Bùng Cháy",
+      "core": "changli",
+      "members": [
+          "changli",
+          "encore",
+          "verina"
+      ],
+      "tier": "T0.5",
+      "type": "Dual DPS Fusion",
+      "description": "Encore và Changli luân phiên xả sát thương hỏa lực dồn dập khiến đối thủ bốc hơi.",
+      "tags": [
+          "Fusion",
+          "T0.5",
+          "Dual DPS"
+      ]
   },
   {
-    "id": "rover-havoc-danjin-shorekeeper",
-    "name": "Rover Havoc & Danjin Hắc Ám Bộc Phá",
-    "core": "rover_havoc",
-    "members": [
-      "rover_havoc",
-      "danjin",
-      "shorekeeper"
-    ],
-    "tier": "T0.5",
-    "type": "Hypercarry Havoc",
-    "description": "Danjin Outro truyền 23% sát thương Havoc giúp lưỡi hái Dark Surge của Rover xé nát kẻ địch.",
-    "tags": [
-      "Havoc",
-      "T0.5",
-      "Hypercarry"
-    ]
+      "id": "rover-havoc-danjin-shorekeeper",
+      "name": "Rover Havoc & Danjin Hắc Ám Bộc Phá",
+      "core": "rover_havoc",
+      "members": [
+          "rover_havoc",
+          "danjin",
+          "shorekeeper"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Havoc",
+      "description": "Danjin Outro truyền 23% sát thương Havoc giúp lưỡi hái Dark Surge của Rover xé nát kẻ địch.",
+      "tags": [
+          "Havoc",
+          "T0.5",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "rover-havoc-danjin-chisa",
-    "name": "Rover Havoc & Chisa Hắc Ám Bộc Phá",
-    "core": "rover_havoc",
-    "members": [
-      "rover_havoc",
-      "danjin",
-      "chisa"
-    ],
-    "tier": "T0.5",
-    "type": "Hypercarry Havoc",
-    "description": "Chisa hỗ trợ trị liệu và gia tăng hiệu ứng bất lợi kết hợp cùng Danjin tối ưu hóa sát thương Dark Surge cho Rover Havoc.",
-    "tags": [
-      "Havoc",
-      "T0.5",
-      "Hypercarry"
-    ]
+      "id": "rover-havoc-danjin-chisa",
+      "name": "Rover Havoc & Chisa Hắc Ám Bộc Phá",
+      "core": "rover_havoc",
+      "members": [
+          "rover_havoc",
+          "danjin",
+          "chisa"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Havoc",
+      "description": "Chisa hỗ trợ trị liệu và gia tăng hiệu ứng bất lợi kết hợp cùng Danjin tối ưu hóa sát thương Dark Surge cho Rover Havoc.",
+      "tags": [
+          "Havoc",
+          "T0.5",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "rover-havoc-sanhua-verina",
-    "name": "Rover Havoc Thần Tốc Miễn Phí",
-    "core": "rover_havoc",
-    "members": [
-      "rover_havoc",
-      "sanhua",
-      "verina"
-    ],
-    "tier": "T1",
-    "type": "Hypercarry Havoc",
-    "description": "Đội hình F2P hoàn hảo với độ mượt mà cao và sát thương ổn định trong mọi content.",
-    "tags": [
-      "Havoc",
-      "T1",
-      "F2P Friendly"
-    ]
+      "id": "rover-havoc-sanhua-verina",
+      "name": "Rover Havoc Thần Tốc Miễn Phí",
+      "core": "rover_havoc",
+      "members": [
+          "rover_havoc",
+          "sanhua",
+          "verina"
+      ],
+      "tier": "T1",
+      "type": "Hypercarry Havoc",
+      "description": "Đội hình F2P hoàn hảo với độ mượt mà cao và sát thương ổn định trong mọi content.",
+      "tags": [
+          "Havoc",
+          "T1",
+          "F2P Friendly"
+      ]
   },
   {
-    "id": "rover-electro-yinlin-shorekeeper",
-    "name": "Rover Electro & Yinlin Lôi Đình Cuồng Nộ",
-    "core": "rover_electro",
-    "members": [
-      "rover_electro",
-      "yinlin",
-      "shorekeeper"
-    ],
-    "tier": "T0.5",
-    "type": "Hypercarry Electro",
-    "description": "Yinlin khuếch đại sát thương Lôi và Giải Phóng Cộng Hưởng giúp Rover Electro chém bão sét liên hoàn.",
-    "tags": [
-      "Electro",
-      "T0.5",
-      "Hypercarry"
-    ]
+      "id": "rover-electro-yinlin-shorekeeper",
+      "name": "Rover Electro & Yinlin Lôi Đình Cuồng Nộ",
+      "core": "rover_electro",
+      "members": [
+          "rover_electro",
+          "yinlin",
+          "shorekeeper"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Electro",
+      "description": "Yinlin khuếch đại sát thương Lôi và Giải Phóng Cộng Hưởng giúp Rover Electro chém bão sét liên hoàn.",
+      "tags": [
+          "Electro",
+          "T0.5",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "rover-electro-suoming-buling",
-    "name": "Rover Electro & Suoming Lôi Minh Song Hiệp",
-    "core": "rover_electro",
-    "members": [
-      "rover_electro",
-      "suoming",
-      "buling"
-    ],
-    "tier": "T0.5",
-    "type": "Hypercarry Electro",
-    "description": "Suoming khuếch đại sát thương Lôi kết hợp Buling hồi máu tạo nên đội hình Lôi công thủ toàn diện.",
-    "tags": [
-      "Electro",
-      "T0.5",
-      "Hypercarry"
-    ]
+      "id": "rover-electro-suoming-buling",
+      "name": "Rover Electro & Suoming Lôi Minh Song Hiệp",
+      "core": "rover_electro",
+      "members": [
+          "rover_electro",
+          "suoming",
+          "buling"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Electro",
+      "description": "Suoming khuếch đại sát thương Lôi kết hợp Buling hồi máu tạo nên đội hình Lôi công thủ toàn diện.",
+      "tags": [
+          "Electro",
+          "T0.5",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "jiyan-mortefi-shorekeeper",
-    "name": "Jiyan Thanh Long Thương Bão Tố",
-    "core": "jiyan",
-    "members": [
-      "jiyan",
-      "mortefi",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Aero",
-    "description": "Mortefi truyền 38% sát thương Heavy Attack, Shorekeeper mở Stella Field đưa thương rồng của Jiyan càn quét mọi tầng tháp.",
-    "tags": [
-      "Aero",
-      "T0",
-      "Hypercarry"
-    ]
+      "id": "jiyan-mortefi-shorekeeper",
+      "name": "Jiyan Thanh Long Thương Bão Tố",
+      "core": "jiyan",
+      "members": [
+          "jiyan",
+          "mortefi",
+          "shorekeeper"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Aero",
+      "description": "Mortefi truyền 38% sát thương Heavy Attack, Shorekeeper mở Stella Field đưa thương rồng của Jiyan càn quét mọi tầng tháp.",
+      "tags": [
+          "Aero",
+          "T0",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "jiyan-mortefi-verina",
-    "name": "Jiyan & Mortefi Phong Hỏa Song Hành",
-    "core": "jiyan",
-    "members": [
-      "jiyan",
-      "mortefi",
-      "verina"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Aero",
-    "description": "Bộ đôi truyền thống uy lực bậc nhất giúp Jiyan tung hoành không đối thủ.",
-    "tags": [
-      "Aero",
-      "T0",
-      "Hypercarry"
-    ]
+      "id": "jiyan-mortefi-verina",
+      "name": "Jiyan & Mortefi Phong Hỏa Song Hành",
+      "core": "jiyan",
+      "members": [
+          "jiyan",
+          "mortefi",
+          "verina"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Aero",
+      "description": "Bộ đôi truyền thống uy lực bậc nhất giúp Jiyan tung hoành không đối thủ.",
+      "tags": [
+          "Aero",
+          "T0",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "jiyan-iuno-jianxin",
-    "name": "Jiyan Bão Tố Khiên Khí Công",
-    "core": "jiyan",
-    "members": [
-      "jiyan",
-      "iuno",
-      "jianxin"
-    ],
-    "tier": "T0.5",
-    "type": "Hypercarry Aero",
-    "description": "Iuno buff Heavy Attack, Jianxin gom quái và tạo khiên bảo hộ Jiyan an tâm xuất kích.",
-    "tags": [
-      "Aero",
-      "T0.5",
-      "Heavy ATK"
-    ]
+      "id": "jiyan-iuno-jianxin",
+      "name": "Jiyan Bão Tố Khiên Khí Công",
+      "core": "jiyan",
+      "members": [
+          "jiyan",
+          "iuno",
+          "jianxin"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Aero",
+      "description": "Iuno buff Heavy Attack, Jianxin gom quái và tạo khiên bảo hộ Jiyan an tâm xuất kích.",
+      "tags": [
+          "Aero",
+          "T0.5",
+          "Heavy ATK"
+      ]
   },
   {
-    "id": "xiangli-yao-yinlin-shorekeeper",
-    "name": "Xiangli Yao & Yinlin Quyền Vương Công Nghệ",
-    "core": "xiangli_yao",
-    "members": [
-      "xiangli_yao",
-      "yinlin",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Electro",
-    "description": "Yinlin truyền 20% sát thương Electro và 25% sát thương Liberation giúp Xiangli Yao tung cú đấm hạt nhân quét sạch đối thủ.",
-    "tags": [
-      "Electro",
-      "T0",
-      "Hypercarry"
-    ]
+      "id": "xiangli-yao-yinlin-shorekeeper",
+      "name": "Xiangli Yao & Yinlin Quyền Vương Công Nghệ",
+      "core": "xiangli_yao",
+      "members": [
+          "xiangli_yao",
+          "yinlin",
+          "shorekeeper"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Electro",
+      "description": "Yinlin truyền 20% sát thương Electro và 25% sát thương Liberation giúp Xiangli Yao tung cú đấm hạt nhân quét sạch đối thủ.",
+      "tags": [
+          "Electro",
+          "T0",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "xiangli-yao-yinlin-verina",
-    "name": "Xiangli Yao & Yinlin Cặp Đôi Hoàn Hảo",
-    "core": "xiangli_yao",
-    "members": [
-      "xiangli_yao",
-      "yinlin",
-      "verina"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Electro",
-    "description": "Đội hình chuẩn chỉ được khuyến nghị hàng đầu trên mọi bảng xếp hạng meta.",
-    "tags": [
-      "Electro",
-      "T0",
-      "Hypercarry"
-    ]
+      "id": "xiangli-yao-yinlin-verina",
+      "name": "Xiangli Yao & Yinlin Cặp Đôi Hoàn Hảo",
+      "core": "xiangli_yao",
+      "members": [
+          "xiangli_yao",
+          "yinlin",
+          "verina"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Electro",
+      "description": "Đội hình chuẩn chỉ được khuyến nghị hàng đầu trên mọi bảng xếp hạng meta.",
+      "tags": [
+          "Electro",
+          "T0",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "xiangli-yao-jianxin-buling",
-    "name": "Xiangli Yao Lôi Quyền Khiên Khí",
-    "core": "xiangli_yao",
-    "members": [
-      "xiangli_yao",
-      "jianxin",
-      "buling"
-    ],
-    "tier": "T1",
-    "type": "Hypercarry Electro",
-    "description": "Jianxin buff sát thương Liberation, Buling hồi máu giúp Xiangli Yao an tâm dồn sát thương.",
-    "tags": [
-      "Electro",
-      "T1",
-      "F2P Friendly"
-    ]
+      "id": "xiangli-yao-jianxin-buling",
+      "name": "Xiangli Yao Lôi Quyền Khiên Khí",
+      "core": "xiangli_yao",
+      "members": [
+          "xiangli_yao",
+          "jianxin",
+          "buling"
+      ],
+      "tier": "T1",
+      "type": "Hypercarry Electro",
+      "description": "Jianxin buff sát thương Liberation, Buling hồi máu giúp Xiangli Yao an tâm dồn sát thương.",
+      "tags": [
+          "Electro",
+          "T1",
+          "F2P Friendly"
+      ]
   },
   {
-    "id": "calcharo-yinlin-verina",
-    "name": "Calcharo Thức Tỉnh Lôi Thần",
-    "core": "calcharo",
-    "members": [
-      "calcharo",
-      "yinlin",
-      "verina"
-    ],
-    "tier": "T0.5",
-    "type": "Hypercarry Electro",
-    "description": "Yinlin hỗ trợ trọn vẹn sát thương Lôi và chiêu cuối cho chuỗi chém điện thần tốc của Calcharo.",
-    "tags": [
-      "Electro",
-      "T0.5",
-      "Hypercarry"
-    ]
+      "id": "calcharo-yinlin-verina",
+      "name": "Calcharo Thức Tỉnh Lôi Thần",
+      "core": "calcharo",
+      "members": [
+          "calcharo",
+          "yinlin",
+          "verina"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Electro",
+      "description": "Yinlin hỗ trợ trọn vẹn sát thương Lôi và chiêu cuối cho chuỗi chém điện thần tốc của Calcharo.",
+      "tags": [
+          "Electro",
+          "T0.5",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "encore-sanhua-shorekeeper",
-    "name": "Encore Hỏa Lực Ma Pháp Siêu Tốc",
-    "core": "encore",
-    "members": [
-      "encore",
-      "sanhua",
-      "shorekeeper"
-    ],
-    "tier": "T0.5",
-    "type": "Hypercarry Fusion",
-    "description": "Sanhua nạp Concerto nhanh buff 38% đòn đánh thường cho trạng thái cận chiến bùng nổ của Encore.",
-    "tags": [
-      "Fusion",
-      "T0.5",
-      "Hypercarry"
-    ]
+      "id": "encore-sanhua-shorekeeper",
+      "name": "Encore Hỏa Lực Ma Pháp Siêu Tốc",
+      "core": "encore",
+      "members": [
+          "encore",
+          "sanhua",
+          "shorekeeper"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Fusion",
+      "description": "Sanhua nạp Concerto nhanh buff 38% đòn đánh thường cho trạng thái cận chiến bùng nổ của Encore.",
+      "tags": [
+          "Fusion",
+          "T0.5",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "encore-lupa-mornye",
-    "name": "Encore & Lupa Hỏa Diệm Búp Bê",
-    "core": "encore",
-    "members": [
-      "encore",
-      "lupa",
-      "mornye"
-    ],
-    "tier": "T0.5",
-    "type": "Hypercarry Fusion",
-    "description": "Lupa buff sát thương Hỏa, Mornye hồi máu và tạo khiên drone để Encore tha hồ xả tia lửa ma pháp.",
-    "tags": [
-      "Fusion",
-      "T0.5",
-      "Hypercarry"
-    ]
+      "id": "encore-lupa-mornye",
+      "name": "Encore & Lupa Hỏa Diệm Búp Bê",
+      "core": "encore",
+      "members": [
+          "encore",
+          "lupa",
+          "mornye"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Fusion",
+      "description": "Lupa buff sát thương Hỏa, Mornye hồi máu và tạo khiên drone để Encore tha hồ xả tia lửa ma pháp.",
+      "tags": [
+          "Fusion",
+          "T0.5",
+          "Hypercarry"
+      ]
   },
   {
-    "id": "lingyang-sanhua-verina",
-    "name": "Lingyang Vũ Điệu Múa Lân Băng",
-    "core": "lingyang",
-    "members": [
-      "lingyang",
-      "sanhua",
-      "verina"
-    ],
-    "tier": "T1",
-    "type": "Hypercarry Glacio",
-    "description": "Sanhua buff đòn đánh thường hỗ trợ các đòn quyền cước sư tử trên không của Lingyang.",
-    "tags": [
-      "Glacio",
-      "T1",
-      "Aerial Combat"
-    ]
+      "id": "lingyang-sanhua-verina",
+      "name": "Lingyang Vũ Điệu Múa Lân Băng",
+      "core": "lingyang",
+      "members": [
+          "lingyang",
+          "sanhua",
+          "verina"
+      ],
+      "tier": "T1",
+      "type": "Hypercarry Glacio",
+      "description": "Sanhua buff đòn đánh thường hỗ trợ các đòn quyền cước sư tử trên không của Lingyang.",
+      "tags": [
+          "Glacio",
+          "T1",
+          "Aerial Combat"
+      ]
   },
   {
-    "id": "chixia-mortefi-verina",
-    "name": "Chixia Xạ Thủ Bão Lửa",
-    "core": "chixia",
-    "members": [
-      "chixia",
-      "mortefi",
-      "verina"
-    ],
-    "tier": "T1",
-    "type": "Hypercarry Fusion",
-    "description": "Mortefi phối hợp rồng lửa ngoài sân theo từng viên đạn liên thanh của Chixia.",
-    "tags": [
-      "Fusion",
-      "T1",
-      "Rapid Fire"
-    ]
+      "id": "chixia-mortefi-verina",
+      "name": "Chixia Xạ Thủ Bão Lửa",
+      "core": "chixia",
+      "members": [
+          "chixia",
+          "mortefi",
+          "verina"
+      ],
+      "tier": "T1",
+      "type": "Hypercarry Fusion",
+      "description": "Mortefi phối hợp rồng lửa ngoài sân theo từng viên đạn liên thanh của Chixia.",
+      "tags": [
+          "Fusion",
+          "T1",
+          "Rapid Fire"
+      ]
+  },
+  {
+      "id": "camellya-sanhua-verina",
+      "name": "Camellya Gai Hoa Hắc Ám",
+      "core": "camellya",
+      "members": [
+          "camellya",
+          "sanhua",
+          "verina"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Havoc",
+      "description": "Đội hình quốc dân chuẩn chỉ cho Camellya. Sanhua Outro buff 38% sát thương Đánh Thường kết hợp Verina buff toàn diện.",
+      "tags": [
+          "Havoc",
+          "T0",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "camellya-roccia-shorekeeper",
+      "name": "Camellya & Roccia Bão Tố Havoc",
+      "core": "camellya",
+      "members": [
+          "camellya",
+          "roccia",
+          "shorekeeper"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Havoc",
+      "description": "Roccia gom quái và buff trực tiếp sát thương đòn đánh thường, Shorekeeper đẩy bạo kích tuyệt đối.",
+      "tags": [
+          "Havoc",
+          "T0",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "camellya-roccia-verina",
+      "name": "Camellya & Roccia Bão Tố Havoc",
+      "core": "camellya",
+      "members": [
+          "camellya",
+          "roccia",
+          "verina"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Havoc",
+      "description": "Roccia gom quái và buff đòn đánh thường kết hợp Verina gia tăng sát thương toàn đội.",
+      "tags": [
+          "Havoc",
+          "T0.5",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "camellya-danjin-verina",
+      "name": "Camellya & Danjin Huyết Vũ",
+      "core": "camellya",
+      "members": [
+          "camellya",
+          "danjin",
+          "verina"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Havoc",
+      "description": "Danjin khuếch đại 23% sát thương Havoc đưa Camellya lên đỉnh cao bạo kích.",
+      "tags": [
+          "Havoc",
+          "T0.5",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "jinhsi-zhezhi-verina",
+      "name": "Jinhsi Long Thần Giáng Thế",
+      "core": "jinhsi",
+      "members": [
+          "jinhsi",
+          "zhezhi",
+          "verina"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Spectro",
+      "description": "Zhezhi nạp 50 tầng Incandescence thần tốc với đòn phối hợp ngoài sân, Verina buff toàn diện sát thương giải phóng rồng thần.",
+      "tags": [
+          "Spectro",
+          "T0",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "jinhsi-zhezhi-yuanwu",
+      "name": "Jinhsi & Zhezhi Lôi Long Thần Tốc",
+      "core": "jinhsi",
+      "members": [
+          "jinhsi",
+          "zhezhi",
+          "yuanwu"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Spectro",
+      "description": "Trụ sét Yuanwu và chim tuyết Zhezhi đồng thời kích hoạt đòn phối hợp nạp 50 tầng Forte cho Jinhsi trong 3 giây, tiết kiệm slot Trị Liệu cho các tháp khác.",
+      "tags": [
+          "Spectro",
+          "T0",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "jinhsi-yuanwu-shorekeeper",
+      "name": "Jinhsi & Yuanwu Lôi Long Quang Minh",
+      "core": "jinhsi",
+      "members": [
+          "jinhsi",
+          "yuanwu",
+          "shorekeeper"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Spectro",
+      "description": "Trụ sét Yuanwu nạp tầng tức thì kết hợp Stella Field của Shorekeeper đưa cú khạc rồng đạt 300K+ sát thương.",
+      "tags": [
+          "Spectro",
+          "T0",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "jinhsi-yinlin-verina",
+      "name": "Jinhsi & Yinlin Lôi Điệp Phối Hợp",
+      "core": "jinhsi",
+      "members": [
+          "jinhsi",
+          "yinlin",
+          "verina"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Spectro",
+      "description": "Yinlin liên tục kích hoạt lôi điệp tích tầng cho Jinhsi xả nộ kết liễu quái vật.",
+      "tags": [
+          "Spectro",
+          "T0.5",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "jinhsi-yuanwu-baizhi",
+      "name": "Jinhsi Lôi Long Tân Thủ",
+      "core": "jinhsi",
+      "members": [
+          "jinhsi",
+          "yuanwu",
+          "baizhi"
+      ],
+      "tier": "T1",
+      "type": "Hypercarry Spectro",
+      "description": "Phiên bản tiếp cận thân thiện với hai nhân vật 4 sao hỗ trợ nạp tầng và trị liệu ổn định.",
+      "tags": [
+          "Spectro",
+          "T1",
+          "F2P Friendly"
+      ]
+  },
+  {
+      "id": "changli-yinlin-verina",
+      "name": "Changli & Yinlin Lôi Hỏa Song Hành",
+      "core": "changli",
+      "members": [
+          "changli",
+          "yinlin",
+          "verina"
+      ],
+      "tier": "T0",
+      "type": "Dual DPS Fusion-Electro",
+      "description": "Cặp đôi hoán đổi liên hoàn sát thương bùng nổ, Verina hồi máu và kích buff toàn hệ.",
+      "tags": [
+          "Fusion",
+          "T0",
+          "Dual DPS"
+      ]
+  },
+  {
+      "id": "changli-encore-shorekeeper",
+      "name": "Changli & Encore Hỏa Diệm Bùng Cháy",
+      "core": "changli",
+      "members": [
+          "changli",
+          "encore",
+          "shorekeeper"
+      ],
+      "tier": "T0",
+      "type": "Dual DPS Fusion",
+      "description": "Changli buff hỏa lực và nộ kết hợp Stella Field của Shorekeeper thiêu rụi toàn sàn đấu.",
+      "tags": [
+          "Fusion",
+          "T0",
+          "Dual DPS"
+      ]
+  },
+  {
+      "id": "changli-chixia-shorekeeper",
+      "name": "Changli & Chixia Song Hỏa Liệt Diễm",
+      "core": "changli",
+      "members": [
+          "changli",
+          "chixia",
+          "shorekeeper"
+      ],
+      "tier": "T0.5",
+      "type": "Dual DPS Fusion",
+      "description": "Changli buff 20% Fusion DMG và 25% Liberation DMG đẩy phát bắn Daka Daka của Chixia lên đỉnh cao.",
+      "tags": [
+          "Fusion",
+          "T0.5",
+          "Dual DPS"
+      ]
+  },
+  {
+      "id": "changli-chixia-verina",
+      "name": "Changli & Chixia Song Hỏa Liệt Diễm",
+      "core": "changli",
+      "members": [
+          "changli",
+          "chixia",
+          "verina"
+      ],
+      "tier": "T0.5",
+      "type": "Dual DPS Fusion",
+      "description": "Bộ đôi hỏa lực truyền thống cực kỳ cơ động dọn sạch mọi tầng tháp.",
+      "tags": [
+          "Fusion",
+          "T0.5",
+          "Dual DPS"
+      ]
+  },
+  {
+      "id": "changli-mortefi-verina",
+      "name": "Changli & Mortefi Hỏa Long Liệt Diễm",
+      "core": "changli",
+      "members": [
+          "changli",
+          "mortefi",
+          "verina"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Fusion",
+      "description": "Mortefi xả mưa đạn rồng lửa phối hợp đòn đánh và nạp nhanh chuỗi nộ cho Changli.",
+      "tags": [
+          "Fusion",
+          "T0.5",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "changli-mortefi-shorekeeper",
+      "name": "Changli & Mortefi Hỏa Long Liệt Diễm",
+      "core": "changli",
+      "members": [
+          "changli",
+          "mortefi",
+          "shorekeeper"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Fusion",
+      "description": "Shorekeeper mở Stella Field đưa đòn kiếm lửa và rồng phối hợp của Mortefi đạt sát thương tối đa.",
+      "tags": [
+          "Fusion",
+          "T0.5",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "hsin-yinlin-shorekeeper",
+      "name": "Hsin & Yinlin Lôi Điệp Cuồng Nộ",
+      "core": "hsin",
+      "members": [
+          "hsin",
+          "yinlin",
+          "shorekeeper"
+      ],
+      "tier": "T0",
+      "type": "Electro Hypercarry",
+      "description": "Yinlin liên tục kích hoạt đòn đánh phối hợp ngoài sân, Shorekeeper đẩy bạo kích tối đa cho Hsin bộc phá bão sét.",
+      "tags": [
+          "Electro",
+          "T0",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "hsin-yinlin-verina",
+      "name": "Hsin & Yinlin Lôi Điệp Cuồng Nộ",
+      "core": "hsin",
+      "members": [
+          "hsin",
+          "yinlin",
+          "verina"
+      ],
+      "tier": "T0",
+      "type": "Electro Hypercarry",
+      "description": "Yinlin buff 20% Electro và 25% Liberation DMG giúp Hsin giáng sấm sét hủy diệt đối thủ.",
+      "tags": [
+          "Electro",
+          "T0",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "hsin-suoming-verina",
+      "name": "Hsin & Suoming Lôi Quang Vĩnh Cửu",
+      "core": "hsin",
+      "members": [
+          "hsin",
+          "suoming",
+          "verina"
+      ],
+      "tier": "T0",
+      "type": "Unison Hypercarry",
+      "description": "Suoming khuếch đại Unison và sát thương Lôi, Verina buff toàn diện đưa sát thương của Hsin lên đỉnh điểm.",
+      "tags": [
+          "Electro",
+          "T0",
+          "Unison"
+      ]
+  },
+  {
+      "id": "hsin-sanhua-shorekeeper",
+      "name": "Hsin & Sanhua Bão Sét Thần Tốc",
+      "core": "hsin",
+      "members": [
+          "hsin",
+          "sanhua",
+          "shorekeeper"
+      ],
+      "tier": "T0.5",
+      "type": "Electro Hypercarry",
+      "description": "Sanhua nạp Concerto cực nhanh truyền buff đòn đánh thường kết hợp bạo kích từ Shorekeeper cho Hsin.",
+      "tags": [
+          "Electro",
+          "T0.5",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "hsin-sanhua-verina",
+      "name": "Hsin & Sanhua Bão Sét Thần Tốc",
+      "core": "hsin",
+      "members": [
+          "hsin",
+          "sanhua",
+          "verina"
+      ],
+      "tier": "T0.5",
+      "type": "Electro Hypercarry",
+      "description": "Đội hình linh hoạt với tốc độ xoay tua cao giúp Hsin tích Unison liên tục.",
+      "tags": [
+          "Electro",
+          "T0.5",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "xiangli-yao-sanhua-shorekeeper",
+      "name": "Xiangli Yao Bão Quyền Thần Tốc",
+      "core": "xiangli_yao",
+      "members": [
+          "xiangli_yao",
+          "sanhua",
+          "shorekeeper"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Electro",
+      "description": "Sanhua xoay tua cực nhanh nạp nộ cho Xiangli Yao liên tục tung nắm đấm công nghệ bộc phá.",
+      "tags": [
+          "Electro",
+          "T0.5",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "xiangli-yao-sanhua-verina",
+      "name": "Xiangli Yao Bão Quyền Thần Tốc",
+      "core": "xiangli_yao",
+      "members": [
+          "xiangli_yao",
+          "sanhua",
+          "verina"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Electro",
+      "description": "Phiên bản cực kỳ mượt mà giúp Xiangli Yao duy trì nhịp độ dồn sát thương không gián đoạn.",
+      "tags": [
+          "Electro",
+          "T0.5",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "xiangli-yao-yinlin-baizhi",
+      "name": "Xiangli Yao Công Nghệ Tiếp Cận",
+      "core": "xiangli_yao",
+      "members": [
+          "xiangli_yao",
+          "yinlin",
+          "baizhi"
+      ],
+      "tier": "T1",
+      "type": "Hypercarry Electro",
+      "description": "Yinlin nâng tầm sát thương Lôi trong khi Baizhi cung cấp hồi phục và gia tăng tấn công toàn đội.",
+      "tags": [
+          "Electro",
+          "T1",
+          "F2P Friendly"
+      ]
+  },
+  {
+      "id": "carlotta-zhezhi-verina",
+      "name": "Carlotta & Zhezhi Băng Giá Tuyệt Đỉnh",
+      "core": "carlotta",
+      "members": [
+          "carlotta",
+          "zhezhi",
+          "verina"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Glacio",
+      "description": "Zhezhi buff sát thương Glacio và Kỹ năng Cộng hưởng, Verina buff toàn hệ giúp Carlotta bắn nát đối thủ.",
+      "tags": [
+          "Glacio",
+          "T0",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "carlotta-sanhua-shorekeeper",
+      "name": "Carlotta Băng Giá Thần Tốc",
+      "core": "carlotta",
+      "members": [
+          "carlotta",
+          "sanhua",
+          "shorekeeper"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Glacio",
+      "description": "Sanhua nạp Concerto tức thì kết hợp Stella Field của Shorekeeper gia tăng bạo kích tối đa.",
+      "tags": [
+          "Glacio",
+          "T0.5",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "phoebe-zhezhi-shorekeeper",
+      "name": "Phoebe & Zhezhi Ánh Sáng Tuyệt Đỉnh",
+      "core": "phoebe",
+      "members": [
+          "phoebe",
+          "zhezhi",
+          "shorekeeper"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Spectro",
+      "description": "Zhezhi hỗ trợ nạp năng lượng và buff kỹ năng cộng hưởng kết hợp bạo kích tuyệt đối của Shorekeeper.",
+      "tags": [
+          "Spectro",
+          "T0",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "phoebe-zhezhi-verina",
+      "name": "Phoebe & Zhezhi Ánh Sáng Tuyệt Đỉnh",
+      "core": "phoebe",
+      "members": [
+          "phoebe",
+          "zhezhi",
+          "verina"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Spectro",
+      "description": "Bộ đôi ma pháp hỗ trợ đắc lực giúp Phoebe tung các quả cầu ánh sáng thiêu đốt kẻ địch.",
+      "tags": [
+          "Spectro",
+          "T0",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "phoebe-sanhua-verina",
+      "name": "Phoebe Thần Tốc Quang Minh",
+      "core": "phoebe",
+      "members": [
+          "phoebe",
+          "sanhua",
+          "verina"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Spectro",
+      "description": "Sanhua nạp nhanh xoay tua mượt mà đưa chiêu thức của Phoebe đạt hiệu quả tối ưu.",
+      "tags": [
+          "Spectro",
+          "T0.5",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "phrolova-cantarella-verina",
+      "name": "Phrolova Khúc Ca U Tối",
+      "core": "phrolova",
+      "members": [
+          "phrolova",
+          "cantarella",
+          "verina"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Havoc",
+      "description": "Cantarella bồi đắp sát thương Havoc liên tục, Verina duy trì sinh mệnh và buff toàn diện cho Phrolova.",
+      "tags": [
+          "Havoc",
+          "T0",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "rover-havoc-danjin-verina",
+      "name": "Rover Havoc & Danjin Hắc Ám Bộc Phá",
+      "core": "rover_havoc",
+      "members": [
+          "rover_havoc",
+          "danjin",
+          "verina"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Havoc",
+      "description": "Danjin Outro truyền 23% sát thương Havoc, Verina hồi máu an toàn cho Danjin rút máu thi triển võ kỹ.",
+      "tags": [
+          "Havoc",
+          "T0.5",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "rover-havoc-sanhua-shorekeeper",
+      "name": "Rover Havoc Thần Tốc Toàn Diện",
+      "core": "rover_havoc",
+      "members": [
+          "rover_havoc",
+          "sanhua",
+          "shorekeeper"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Havoc",
+      "description": "Sanhua buff đòn đánh thường kết hợp bạo kích từ Shorekeeper đưa Dark Surge của Rover càn quét chiến trường.",
+      "tags": [
+          "Havoc",
+          "T0.5",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "rover-havoc-roccia-verina",
+      "name": "Rover Havoc & Roccia Rối Bóng Cuồng Nộ",
+      "core": "rover_havoc",
+      "members": [
+          "rover_havoc",
+          "roccia",
+          "verina"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Havoc",
+      "description": "Roccia gom quái và buff sát thương đòn đánh thường giúp lưỡi hái Dark Surge chém gục quái vật.",
+      "tags": [
+          "Havoc",
+          "T0.5",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "rover-electro-yinlin-verina",
+      "name": "Rover Electro & Yinlin Lôi Đình Cuồng Nộ",
+      "core": "rover_electro",
+      "members": [
+          "rover_electro",
+          "yinlin",
+          "verina"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Electro",
+      "description": "Yinlin khuếch đại sát thương Lôi và Giải Phóng Cộng Hưởng kết hợp Verina buff toàn diện.",
+      "tags": [
+          "Electro",
+          "T0.5",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "rover-electro-sanhua-verina",
+      "name": "Rover Electro Bão Kiếm Thần Tốc",
+      "core": "rover_electro",
+      "members": [
+          "rover_electro",
+          "sanhua",
+          "verina"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Electro",
+      "description": "Sanhua nạp Concerto cực nhanh giúp Rover Electro liên tục tung kiếm nộ lôi đình.",
+      "tags": [
+          "Electro",
+          "T0.5",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "rover-electro-sanhua-shorekeeper",
+      "name": "Rover Electro Bão Kiếm Thần Tốc",
+      "core": "rover_electro",
+      "members": [
+          "rover_electro",
+          "sanhua",
+          "shorekeeper"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Electro",
+      "description": "Shorekeeper mở rộng Stella Field đẩy cao bạo kích cho từng nhát chém lôi vũ của Rover Electro.",
+      "tags": [
+          "Electro",
+          "T0.5",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "encore-sanhua-verina",
+      "name": "Encore & Sanhua Hỏa Băng Phép Thuật",
+      "core": "encore",
+      "members": [
+          "encore",
+          "sanhua",
+          "verina"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Fusion",
+      "description": "Đội hình quốc dân cực mạnh cho Encore. Sanhua nạp nhanh buff đòn đánh thường trong trạng thái Cosmos Rampage.",
+      "tags": [
+          "Fusion",
+          "T0.5",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "encore-mortefi-verina",
+      "name": "Encore & Mortefi Bão Lửa Trọng Kích",
+      "core": "encore",
+      "members": [
+          "encore",
+          "mortefi",
+          "verina"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Fusion",
+      "description": "Mortefi xả rồng lửa hỗ trợ liên tục theo từng cú ném cầu lửa của Encore.",
+      "tags": [
+          "Fusion",
+          "T0.5",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "encore-mortefi-shorekeeper",
+      "name": "Encore & Mortefi Bão Lửa Trọng Kích",
+      "core": "encore",
+      "members": [
+          "encore",
+          "mortefi",
+          "shorekeeper"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Fusion",
+      "description": "Shorekeeper đẩy cao bạo kích cho bộ đôi pháp sư và xạ thủ hệ Hỏa.",
+      "tags": [
+          "Fusion",
+          "T0.5",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "jiyan-mortefi-baizhi",
+      "name": "Jiyan Thương Long Tiếp Cận",
+      "core": "jiyan",
+      "members": [
+          "jiyan",
+          "mortefi",
+          "baizhi"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Aero",
+      "description": "Mortefi buff 38% Heavy Attack kết hợp Baizhi hỗ trợ hồi phục và tăng tấn công cho Jiyan càn quét tháp.",
+      "tags": [
+          "Aero",
+          "T0.5",
+          "F2P Friendly"
+      ]
+  },
+  {
+      "id": "calcharo-yinlin-shorekeeper",
+      "name": "Calcharo & Yinlin Sát Thủ Lôi Đình",
+      "core": "calcharo",
+      "members": [
+          "calcharo",
+          "yinlin",
+          "shorekeeper"
+      ],
+      "tier": "T0.5",
+      "type": "Hypercarry Electro",
+      "description": "Yinlin buff 20% Electro và 25% Liberation DMG, Shorekeeper đẩy bạo kích cho trạng thái Deathblade Gear.",
+      "tags": [
+          "Electro",
+          "T0.5",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "luuk-sanhua-verina",
+      "name": "Luuk Herssen & Sanhua Quyền Pháp Tốc Độ",
+      "core": "luuk_herssen",
+      "members": [
+          "luuk_herssen",
+          "sanhua",
+          "verina"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Spectro",
+      "description": "Sanhua buff đòn đánh thường nạp Concerto tức thì giúp quyền trượng Spectro của Luuk oanh tạc sàn đấu.",
+      "tags": [
+          "Spectro",
+          "T0",
+          "Hypercarry"
+      ]
+  },
+  {
+      "id": "augusta-iuno-verina",
+      "name": "Augusta Sấm Sét Hoàng Gia",
+      "core": "augusta",
+      "members": [
+          "augusta",
+          "iuno",
+          "verina"
+      ],
+      "tier": "T0",
+      "type": "Hypercarry Electro",
+      "description": "Iuno phối hợp đòn đánh và khuếch đại sát thương, Verina buff toàn diện cho đại kiếm sấm sét của Augusta.",
+      "tags": [
+          "Electro",
+          "T0",
+          "Hypercarry"
+      ]
   }
 ];
 
