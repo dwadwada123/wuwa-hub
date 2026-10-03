@@ -1277,7 +1277,7 @@ export const RESONATORS = [
     "element": "Electro",
     "rarity": 4,
     "weaponType": "Gauntlets",
-    "role": "Fast Coordinated Support / Shield Shredder",
+    "role": "Fast Coordinated Sub-DPS / Vibration Shredder",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Yuanwu.png",
     "iconColor": "#a855f7",
     "tags": [
@@ -1746,39 +1746,39 @@ export const RESONATORS = [
   {
     "id": "luuk_herssen",
     "name": "Luuk Herssen",
-    "title": "The Vanguard Paladin of Court",
-    "element": "Spectro",
+    "title": "The Vanguard Knight of Rinascita",
+    "element": "Glacio",
     "rarity": 5,
-    "weaponType": "Gauntlets",
-    "role": "Shielder / Spectro Buffer",
+    "weaponType": "Broadblade",
+    "role": "Main DPS / Glacio Broadblade",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Luuk-Herssen.png",
-    "iconColor": "#facc15",
+    "iconColor": "#38bdf8",
     "tags": [
-      "Spectro",
-      "Gauntlets",
-      "Shielder",
-      "Paladin"
+      "Glacio",
+      "Broadblade",
+      "Main DPS",
+      "Burst Carry"
     ],
-    "bestWeapon": "Abyss Surges / Marcato",
-    "bestEchoSet": "5-pc Rejuvenating Glow",
-    "echoMainStats": "4-Cost: Healing Bonus (Bell-Borne) | 3-Cost: Energy Regen | 1-Cost: DEF% / ATK%",
-    "outroDescription": "Khiên Thần Bất Diệt: Tạo lá chắn hấp thụ sát thương bằng 120% phòng ngự và tăng 15% All-Type DMG trong 30 giây.",
+    "bestWeapon": "Ages of Harvest / Verdant Summit / Autumntrace",
+    "bestEchoSet": "5-pc Freezing Frost",
+    "echoMainStats": "4-Cost: Crit Rate/DMG (Lampylumen Myriad) | 3-Cost: Glacio DMG | 1-Cost: ATK%",
+    "outroDescription": "Băng Kiếm Trảm: Gây 520% Sát thương Glacio và gia tăng 25% Resonance Liberation DMG cho đồng minh kế tiếp.",
     "rotations": {
       "standard": [
         {
           "step": 1,
-          "char": "Luuk Herssen",
-          "action": "Vào sân đầu tiên ➔ E tạo khiên ánh sáng ➔ Bell-Borne Echo ➔ Outro bảo vệ đội."
+          "char": "Sustain (Shorekeeper / Verina / Baizhi)",
+          "action": "Vào sân đầu tiên ➔ Dùng Skill E và Liberation R tạo buff All-Type DMG và hồi máu ➔ Outro."
         },
         {
           "step": 2,
-          "char": "Buffer (Zhezhi / Sanhua)",
-          "action": "Tiếp nhận khiên ➔ Xả combo nạp Concerto ➔ Outro."
+          "char": "Buffer (Sanhua / Zhezhi)",
+          "action": "Tiếp nhận buff ➔ Dùng E và R xả nộ nạp Concerto ➔ Outro buff 38% Basic ATK hoặc 20% Glacio DMG."
         },
         {
           "step": 3,
-          "char": "Main DPS (Jinhsi / Phoebe)",
-          "action": "Gây sát thương thoải mái không sợ bị gián đoạn."
+          "char": "Luuk Herssen",
+          "action": "Intro vào sân nhận toàn bộ buff ➔ Kích hoạt Skill E trảm kích băng giá ➔ Xả Resonance Liberation R quét sạch sàn đấu."
         }
       ]
     }

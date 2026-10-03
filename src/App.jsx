@@ -16,7 +16,12 @@ import {
   Star, 
   LayoutGrid,
   Calendar, 
-  Award
+  Award,
+  Shield,
+  Flame,
+  Activity,
+  CheckCircle2,
+  ChevronRight
 } from 'lucide-react';
 
 const STORAGE_KEY_OWNED = 'wuwa_owned_resonators';
@@ -56,7 +61,7 @@ export default function App() {
   // Selected Team để mở Rotation Modal Game8
   const [selectedTeamForRotation, setSelectedTeamForRotation] = useState(null);
 
-  // Filter nguyên tố (Tiếng Anh nguyên bản: All, Spectro, Havoc, Fusion, Aero, Electro, Glacio) & tìm kiếm
+  // Filter nguyên tố (All, Spectro, Havoc, Fusion, Aero, Electro, Glacio) & tìm kiếm
   const [elementFilter, setElementFilter] = useState(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY_ELEMENT_FILTER);
@@ -65,9 +70,8 @@ export default function App() {
     return 'All';
   });
   const [searchQuery, setSearchQuery] = useState('');
-  const [cloudSyncStatus, setCloudSyncStatus] = useState('synced'); // 'syncing' | 'synced' | 'error'
 
-  // Hàm trợ giúp đồng bộ an toàn lên Supabase Cloud (không bao giờ gây crash giao diện)
+  // Hàm trợ giúp đồng bộ ngầm an toàn lên Supabase Cloud (không bao giờ gây phiền người dùng hay crash giao diện)
   const syncCloudState = useCallback(async (key, value) => {
     try {
       await supabase.from('user_state').upsert({
@@ -76,17 +80,17 @@ export default function App() {
         updated_at: new Date().toISOString()
       });
     } catch (err) {
-      console.warn(`Supabase cloud sync warning for ${key}:`, err);
+      // Chạy ngầm, không spam log
     }
   }, []);
 
   // Lưu tab đang chọn vào LocalStorage và Supabase Cloud
-  const handleTabChange = useCallback((newTab) => {
-    setActiveTab(newTab);
+  const handleTabChange = useCallback((tabId) => {
+    setActiveTab(tabId);
     try {
-      localStorage.setItem(STORAGE_KEY_ACTIVE_TAB, newTab);
+      localStorage.setItem(STORAGE_KEY_ACTIVE_TAB, tabId);
     } catch (e) {}
-    syncCloudState('active_tab', newTab);
+    syncCloudState('active_tab', tabId);
   }, [syncCloudState]);
 
   // Lưu bộ lọc hệ nguyên tố vào LocalStorage và Supabase Cloud
@@ -98,7 +102,7 @@ export default function App() {
     syncCloudState('element_filter', filter);
   }, [syncCloudState]);
 
-  // Tải toàn bộ cấu hình từ Supabase Cloud khi mở trang (chạy ngầm cập nhật)
+  // Tải cấu hình từ Supabase Cloud khi mở trang (chạy ngầm cập nhật)
   useEffect(() => {
     async function loadCloudState() {
       try {
@@ -123,34 +127,22 @@ export default function App() {
           });
         }
       } catch (e) {
-        console.warn('Cloud state load error:', e);
+        // Fallback LocalStorage đã hoạt động
       }
     }
     loadCloudState();
   }, []);
 
   // Lưu danh sách nhân vật vào cả LocalStorage và Supabase Cloud
-  const persistOwned = useCallback(async (list) => {
+  const persistOwned = useCallback((list) => {
     setOwnedIds(list);
-    setCloudSyncStatus('syncing');
     try {
       localStorage.setItem(STORAGE_KEY_OWNED, JSON.stringify(list));
     } catch (e) {}
+    syncCloudState('owned_characters', list);
+  }, [syncCloudState]);
 
-    try {
-      await supabase.from('user_state').upsert({
-        key: 'owned_characters',
-        value: list,
-        updated_at: new Date().toISOString()
-      });
-      setCloudSyncStatus('synced');
-    } catch (err) {
-      console.warn('Cloud sync error:', err);
-      setCloudSyncStatus('error');
-    }
-  }, []);
-
-  // Toggle sở hữu nhân vật (Phản hồi tức thì 60 FPS, an toàn tuyệt đối không bao giờ crash màn hình đen)
+  // Toggle sở hữu nhân vật (Phản hồi tức thì 60 FPS)
   const toggleCharacterOwnership = useCallback((id) => {
     setOwnedIds(prev => {
       const updated = prev.includes(id) 
@@ -161,14 +153,12 @@ export default function App() {
         localStorage.setItem(STORAGE_KEY_OWNED, JSON.stringify(updated));
       } catch (e) {}
 
-      // Đồng bộ cloud bất đồng bộ bên ngoài render loop của React
       syncCloudState('owned_characters', updated);
-
       return updated;
     });
   }, [syncCloudState]);
 
-  // Các thao tác chọn nhanh
+  // Thao tác chọn nhanh
   const selectAllResonators = () => {
     const allIds = RESONATORS.map(r => r.id);
     persistOwned(allIds);
@@ -179,93 +169,76 @@ export default function App() {
     persistOwned(fiveStarIds);
   };
 
-  const selectOnly4StarResonators = () => {
-    const fourStarIds = RESONATORS.filter(r => r.rarity === 4).map(r => r.id);
-    persistOwned(fourStarIds);
-  };
-
-  const clearAllResonators = () => {
+  const clearAllSelections = () => {
     persistOwned([]);
   };
 
-  // Đề xuất các đội hình tối ưu hoàn toàn không trùng lặp nhân vật
-  const suggestedTeams = useMemo(() => {
-    try {
-      return generateOptimalTeams(ownedIds);
-    } catch (e) {
-      console.error('Error generating optimal teams:', e);
-      return [];
-    }
-  }, [ownedIds]);
-
-  // Phân bổ ToA 3 tháp 12 tầng dựa trên các đội hình tối ưu
-  const toaSolution = useMemo(() => {
-    try {
-      return solveTowerOfAdversity(ownedIds);
-    } catch (e) {
-      console.error('Error solving ToA:', e);
-      return null;
-    }
-  }, [ownedIds]);
-
-  // Bộ lọc danh sách nhân vật
+  // Lọc danh sách nhân vật theo Hệ và Tìm Kiếm
   const filteredResonators = useMemo(() => {
-    const q = searchQuery.trim().toLowerCase();
     return RESONATORS.filter(r => {
-      const matchesElement = elementFilter === 'All' || r.element === elementFilter;
-      const matchesQuery = q === '' || 
-        r.name.toLowerCase().includes(q) ||
-        r.weaponType.toLowerCase().includes(q) ||
-        r.tags?.some(t => t.toLowerCase().includes(q));
-      return matchesElement && matchesQuery;
+      const matchElement = elementFilter === 'All' || r.element.toLowerCase() === elementFilter.toLowerCase();
+      const matchSearch = searchQuery === '' || 
+        r.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        r.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        r.weaponType?.toLowerCase().includes(searchQuery.toLowerCase());
+      return matchElement && matchSearch;
     });
   }, [elementFilter, searchQuery]);
 
-  // Danh sách các hệ nguyên tố WuWa chính thống (GIỮ NGUYÊN TIẾNG ANH THEO YÊU CẦU)
-  const elementList = [
-    { id: 'All', name: 'All Elements', icon: null },
-    { id: 'Spectro', name: 'Spectro', icon: ELEMENT_ICONS.Spectro, color: '#facc15' },
-    { id: 'Havoc', name: 'Havoc', icon: ELEMENT_ICONS.Havoc, color: '#f43f5e' },
-    { id: 'Fusion', name: 'Fusion', icon: ELEMENT_ICONS.Fusion, color: '#f97316' },
-    { id: 'Aero', name: 'Aero', icon: ELEMENT_ICONS.Aero, color: '#10b981' },
-    { id: 'Electro', name: 'Electro', icon: ELEMENT_ICONS.Electro, color: '#a855f7' },
-    { id: 'Glacio', name: 'Glacio', icon: ELEMENT_ICONS.Glacio, color: '#38bdf8' }
-  ];
+  // Sinh đội hình tối ưu hoàn toàn không trùng nhân vật
+  const optimalTeams = useMemo(() => {
+    return generateOptimalTeams(ownedIds);
+  }, [ownedIds]);
+
+  // Phân bổ ToA 3 tháp (Tháp giữa 2 team riêng biệt cho Tầng 1-2 & Tầng 3-4)
+  const toaSolution = useMemo(() => {
+    return solveTowerOfAdversity(ownedIds);
+  }, [ownedIds]);
 
   return (
-    <div style={{ maxWidth: '1320px', margin: '0 auto', padding: '24px 20px 80px 20px' }}>
-      {/* Top Header Bar - Mang phong cách Tacet Field WuWa Cao Cấp */}
+    <div style={{
+      maxWidth: '1380px',
+      margin: '0 auto',
+      padding: '24px 20px 80px 20px',
+      minHeight: '100vh',
+      color: 'var(--text-primary)'
+    }}>
+      {/* Top Header • Authentic Kuro Games WuWa Tactical HUD */}
       <header style={{
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        paddingBottom: '20px',
+        paddingBottom: '22px',
         borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
         marginBottom: '26px',
         flexWrap: 'wrap',
-        gap: '16px'
+        gap: '16px',
+        position: 'relative'
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          {/* Logo Badge with Tactical Glow */}
           <div style={{
             width: '48px',
             height: '48px',
-            borderRadius: '14px',
+            borderRadius: '12px',
             background: 'linear-gradient(135deg, #facc15 0%, #f59e0b 50%, #d97706 100%)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: '0 0 24px rgba(250, 204, 21, 0.45)',
-            border: '1px solid rgba(255, 255, 255, 0.4)'
+            boxShadow: '0 0 25px rgba(250, 204, 21, 0.45)',
+            border: '1px solid rgba(255, 255, 255, 0.5)',
+            position: 'relative'
           }}>
-            <Swords size={26} color="#000" />
+            <Swords size={26} color="#05080f" />
           </div>
+
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <h1 style={{ 
-                fontSize: '1.65rem', 
+                fontSize: '1.75rem', 
                 fontWeight: 900, 
                 fontFamily: 'var(--font-heading)',
-                letterSpacing: '1px', 
+                letterSpacing: '1.5px', 
                 background: 'linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent'
@@ -275,7 +248,7 @@ export default function App() {
               <span style={{
                 fontSize: '0.72rem',
                 padding: '2px 8px',
-                borderRadius: '6px',
+                borderRadius: '4px',
                 background: 'rgba(243, 186, 47, 0.12)',
                 color: 'var(--accent-gold)',
                 border: '1px solid rgba(243, 186, 47, 0.35)',
@@ -283,35 +256,36 @@ export default function App() {
                 letterSpacing: '0.5px',
                 fontFamily: 'var(--font-tactical)'
               }}>
-                TACTICAL ASSISTANT
+                SOLARIS-3 TACTICAL
               </span>
             </div>
-            <p style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', marginTop: '2px' }}>
-              Đề Xuất Đội Hình Không Trùng Lặp • Combo Rotations Game8 • Tháp ToA 12 Tầng
+            <p style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', marginTop: '2px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span>Đề Xuất Đội Hình Meta</span>
+              <span style={{ opacity: 0.4 }}>•</span>
+              <span>Chuỗi Combo Thực Chiến</span>
+              <span style={{ opacity: 0.4 }}>•</span>
+              <span>Tower of Adversity Mùa 3.7</span>
             </p>
           </div>
         </div>
 
-        {/* Cloud Sync Status Indicator */}
+        {/* Ambient Soundwave Indicator */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '8px',
-          padding: '6px 14px',
-          borderRadius: '20px',
-          background: 'rgba(0, 0, 0, 0.4)',
-          border: '1px solid rgba(255, 255, 255, 0.08)',
-          fontSize: '0.76rem',
-          color: cloudSyncStatus === 'synced' ? 'var(--accent-green)' : 'var(--accent-gold)'
+          gap: '4px',
+          padding: '8px 16px',
+          borderRadius: '8px',
+          background: 'rgba(255, 255, 255, 0.02)',
+          border: '1px solid rgba(255, 255, 255, 0.06)'
         }}>
-          <span style={{
-            width: '8px',
-            height: '8px',
-            borderRadius: '50%',
-            background: cloudSyncStatus === 'synced' ? 'var(--accent-green)' : 'var(--accent-gold)',
-            boxShadow: cloudSyncStatus === 'synced' ? '0 0 8px rgba(52, 211, 153, 0.6)' : 'none'
-          }} />
-          <span>{cloudSyncStatus === 'synced' ? 'Supabase Sync Active' : 'Đang đồng bộ...'}</span>
+          <span className="soundwave-bar" style={{ animationDelay: '0s' }} />
+          <span className="soundwave-bar" style={{ animationDelay: '0.2s' }} />
+          <span className="soundwave-bar" style={{ animationDelay: '0.4s' }} />
+          <span className="soundwave-bar" style={{ animationDelay: '0.1s' }} />
+          <span style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--accent-gold)', marginLeft: '6px', letterSpacing: '0.5px', fontFamily: 'var(--font-tactical)' }}>
+            RESONANCE ONLINE
+          </span>
         </div>
       </header>
 
@@ -340,10 +314,10 @@ export default function App() {
                 gap: '8px',
                 padding: '12px 22px',
                 borderRadius: '10px',
-                fontWeight: 700,
+                fontWeight: 800,
                 fontSize: '0.9rem',
                 transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
-                background: isActive ? 'linear-gradient(135deg, #f3ba2f 0%, #d97706 100%)' : 'rgba(255, 255, 255, 0.04)',
+                background: isActive ? 'linear-gradient(135deg, #f3ba2f 0%, #d97706 100%)' : 'rgba(255, 255, 255, 0.03)',
                 color: isActive ? '#05080f' : 'var(--text-secondary)',
                 border: isActive ? '1px solid #f3ba2f' : '1px solid var(--border-color)',
                 boxShadow: isActive ? '0 4px 20px rgba(243, 186, 47, 0.35)' : 'none',
@@ -359,55 +333,117 @@ export default function App() {
 
       {/* TAB 1: AUTO TEAM BUILDER */}
       {activeTab === 'builder' && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-          {/* Section: Kho Nhân Vật (Roster Selection) */}
-          <section className="glass-panel" style={{ padding: '26px' }}>
-            {/* Header kho nhân vật */}
-            <div style={{ marginBottom: '22px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
-                <h2 style={{ fontSize: '1.25rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '10px', color: '#fff' }}>
-                  <Users size={22} color="var(--accent-cyan)" />
-                  Kho Nhân Vật Sở Hữu ({ownedIds.length}/{RESONATORS.length})
-                </h2>
-                <span style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-                  Đã tự động lưu vào tài khoản Supabase của bạn
-                </span>
-              </div>
-              <p style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
-                Nhấn chọn các Resonator bạn đang có. Hệ thống sẽ lọc và ghép các đội hình mạnh nhất, <strong>đảm bảo không trùng bất kỳ nhân vật nào</strong> giữa các đội gợi ý.
-              </p>
-            </div>
-
-            {/* Toolbar: Tìm kiếm & Thao tác nhanh */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
+          {/* Panel Chọn Nhân Vật • Tactical Console */}
+          <div className="glass-panel" style={{ padding: '24px', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
             <div style={{
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
               flexWrap: 'wrap',
-              gap: '12px',
-              marginBottom: '18px',
-              paddingBottom: '16px',
-              borderBottom: '1px solid rgba(255, 255, 255, 0.06)'
+              gap: '16px',
+              marginBottom: '20px'
             }}>
-              {/* Search Box */}
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <Users size={20} color="var(--accent-gold)" />
+                  <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#fff' }}>
+                    Kho Nhân Vật Resonator
+                  </h2>
+                  <span style={{
+                    fontSize: '0.8rem',
+                    padding: '2px 10px',
+                    borderRadius: '12px',
+                    background: 'rgba(250, 204, 21, 0.15)',
+                    color: 'var(--accent-gold)',
+                    fontWeight: 800
+                  }}>
+                    {ownedIds.length} / {RESONATORS.length}
+                  </span>
+                </div>
+                <p style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
+                  Tick chọn các nhân vật bạn sở hữu để hệ thống tự động tính toán các đội hình mạnh nhất không trùng lặp.
+                </p>
+              </div>
+
+              {/* Quick Select Buttons */}
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                <button
+                  onClick={selectAllResonators}
+                  style={{
+                    padding: '8px 14px',
+                    borderRadius: '8px',
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    fontSize: '0.8rem',
+                    fontWeight: 700,
+                    color: 'var(--text-primary)'
+                  }}
+                >
+                  Chọn Tất Cả ({RESONATORS.length})
+                </button>
+                <button
+                  onClick={selectOnly5StarResonators}
+                  style={{
+                    padding: '8px 14px',
+                    borderRadius: '8px',
+                    background: 'rgba(250, 204, 21, 0.12)',
+                    border: '1px solid rgba(250, 204, 21, 0.3)',
+                    fontSize: '0.8rem',
+                    fontWeight: 700,
+                    color: 'var(--accent-gold)'
+                  }}
+                >
+                  Chỉ Chọn 5 Sao
+                </button>
+                <button
+                  onClick={clearAllSelections}
+                  style={{
+                    padding: '8px 14px',
+                    borderRadius: '8px',
+                    background: 'rgba(244, 63, 94, 0.1)',
+                    border: '1px solid rgba(244, 63, 94, 0.25)',
+                    fontSize: '0.8rem',
+                    fontWeight: 700,
+                    color: '#fb7185'
+                  }}
+                >
+                  Bỏ Chọn Hết
+                </button>
+              </div>
+            </div>
+
+            {/* Toolbar: Search & Element Filter */}
+            <div style={{
+              display: 'flex',
+              gap: '12px',
+              flexWrap: 'wrap',
+              alignItems: 'center',
+              marginBottom: '20px',
+              padding: '14px 18px',
+              background: 'rgba(0, 0, 0, 0.35)',
+              borderRadius: '12px',
+              border: '1px solid rgba(255, 255, 255, 0.06)'
+            }}>
+              {/* Search Bar */}
               <div style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '8px',
-                background: 'rgba(0, 0, 0, 0.45)',
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                borderRadius: '8px',
+                gap: '10px',
+                background: 'rgba(255, 255, 255, 0.04)',
                 padding: '8px 14px',
-                minWidth: '260px'
+                borderRadius: '8px',
+                border: '1px solid rgba(255, 255, 255, 0.08)',
+                flex: '1 1 240px'
               }}>
-                <Search size={16} color="var(--accent-gold)" />
-                <input 
-                  type="text" 
-                  placeholder="Tìm tên, vũ khí, vai trò..." 
+                <Search size={16} color="var(--text-muted)" />
+                <input
+                  type="text"
+                  placeholder="Tìm kiếm theo tên nhân vật, vũ khí..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   style={{
-                    background: 'transparent',
+                    background: 'none',
                     border: 'none',
                     color: '#fff',
                     fontSize: '0.85rem',
@@ -415,473 +451,356 @@ export default function App() {
                     width: '100%'
                   }}
                 />
-                {searchQuery && (
-                  <button 
-                    onClick={() => setSearchQuery('')}
-                    style={{ background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '12px' }}
-                  >
-                    ✕
-                  </button>
-                )}
               </div>
 
-              {/* Bulk Action Buttons */}
-              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                <button 
-                  onClick={selectAllResonators}
-                  style={{
-                    padding: '8px 14px',
-                    borderRadius: '8px',
-                    background: 'rgba(255, 255, 255, 0.06)',
-                    border: '1px solid rgba(255, 255, 255, 0.12)',
-                    color: '#fff',
-                    fontSize: '0.8rem',
-                    fontWeight: 700,
-                    cursor: 'pointer'
-                  }}
-                >
-                  Chọn tất cả ({RESONATORS.length})
-                </button>
-                <button 
-                  onClick={selectOnly5StarResonators}
-                  style={{
-                    padding: '8px 14px',
-                    borderRadius: '8px',
-                    background: 'rgba(250, 204, 21, 0.12)',
-                    border: '1px solid rgba(250, 204, 21, 0.35)',
-                    color: 'var(--accent-gold)',
-                    fontSize: '0.8rem',
-                    fontWeight: 700,
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '4px'
-                  }}
-                >
-                  <Star size={13} fill="var(--accent-gold)" /> Chỉ chọn 5★
-                </button>
-                <button 
-                  onClick={selectOnly4StarResonators}
-                  style={{
-                    padding: '8px 14px',
-                    borderRadius: '8px',
-                    background: 'rgba(192, 132, 252, 0.12)',
-                    border: '1px solid rgba(192, 132, 252, 0.35)',
-                    color: 'var(--accent-purple)',
-                    fontSize: '0.8rem',
-                    fontWeight: 700,
-                    cursor: 'pointer'
-                  }}
-                >
-                  Chỉ chọn 4★
-                </button>
-                <button 
-                  onClick={clearAllResonators}
-                  style={{
-                    padding: '8px 14px',
-                    borderRadius: '8px',
-                    background: 'rgba(239, 68, 68, 0.1)',
-                    border: '1px solid rgba(239, 68, 68, 0.3)',
-                    color: '#f87171',
-                    fontSize: '0.8rem',
-                    fontWeight: 700,
-                    cursor: 'pointer'
-                  }}
-                >
-                  Bỏ chọn tất cả
-                </button>
+              {/* Element Filter Pills (Tiếng Anh Nguyên Bản) */}
+              <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', alignItems: 'center' }}>
+                {['All', 'Spectro', 'Havoc', 'Fusion', 'Aero', 'Electro', 'Glacio'].map((ele) => {
+                  const isActive = elementFilter.toLowerCase() === ele.toLowerCase();
+                  return (
+                    <button
+                      key={ele}
+                      onClick={() => handleElementFilterChange(ele)}
+                      style={{
+                        padding: '6px 14px',
+                        borderRadius: '6px',
+                        fontSize: '0.8rem',
+                        fontWeight: 700,
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        background: isActive ? 'rgba(250, 204, 21, 0.2)' : 'rgba(255, 255, 255, 0.03)',
+                        color: isActive ? 'var(--accent-gold)' : 'var(--text-secondary)',
+                        border: isActive ? '1px solid var(--accent-gold)' : '1px solid rgba(255, 255, 255, 0.06)',
+                        transition: 'all 0.15s ease'
+                      }}
+                    >
+                      {ELEMENT_ICONS[ele] && (
+                        <img src={ELEMENT_ICONS[ele]} alt={ele} style={{ width: '14px', height: '14px' }} />
+                      )}
+                      {ele}
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
-            {/* Element Filter Tabs (Giữ nguyên tên tiếng Anh) */}
-            <div style={{
-              display: 'flex',
-              gap: '8px',
-              overflowX: 'auto',
-              paddingBottom: '8px',
-              marginBottom: '20px'
-            }}>
-              {elementList.map(el => {
-                const isActive = elementFilter === el.id;
-                return (
-                  <button
-                    key={el.id}
-                    onClick={() => handleElementFilterChange(el.id)}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      padding: '8px 16px',
-                      borderRadius: '8px',
-                      fontSize: '0.82rem',
-                      fontWeight: 700,
-                      background: isActive 
-                        ? (el.id === 'All' ? 'rgba(255, 255, 255, 0.16)' : `${el.color}25`)
-                        : 'rgba(255, 255, 255, 0.03)',
-                      color: isActive ? '#fff' : 'var(--text-muted)',
-                      border: '1px solid',
-                      borderColor: isActive 
-                        ? (el.id === 'All' ? 'rgba(255, 255, 255, 0.4)' : el.color) 
-                        : 'rgba(255, 255, 255, 0.06)',
-                      boxShadow: isActive && el.id !== 'All' ? `0 0 12px ${el.color}40` : 'none',
-                      whiteSpace: 'nowrap',
-                      transition: 'all 0.18s ease'
-                    }}
-                  >
-                    {el.icon ? (
-                      <img 
-                        src={el.icon} 
-                        alt={el.name} 
-                        style={{ width: '20px', height: '20px', objectFit: 'contain' }} 
-                      />
-                    ) : (
-                      <LayoutGrid size={18} />
-                    )}
-                    <span>{el.name}</span>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Resonator Roster Grid */}
+            {/* Resonators Grid */}
             <div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))',
               gap: '12px'
             }}>
-              {filteredResonators.map((char) => {
-                const isOwned = ownedIds.includes(char.id);
-                const elementIconUrl = ELEMENT_ICONS[char.element];
+              {filteredResonators.map((r) => {
+                const isSelected = ownedIds.includes(r.id);
+                const is5Star = r.rarity === 5;
 
                 return (
                   <div
-                    key={char.id}
-                    onClick={() => toggleCharacterOwnership(char.id)}
-                    className={`resonator-card ${isOwned ? 'selected' : 'unselected'}`}
+                    key={r.id}
+                    onClick={() => toggleCharacterOwnership(r.id)}
+                    className={`resonator-card ${isSelected ? 'selected' : 'unselected'}`}
                     style={{
                       padding: '8px',
-                      height: '185px',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'space-between'
+                      position: 'relative'
                     }}
                   >
-                    {/* Top Row: Rarity Star Badge & Element Icon */}
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', zIndex: 2 }}>
-                      <span className={char.rarity === 5 ? 'star-badge-5' : 'star-badge-4'} style={{
-                        fontSize: '0.65rem',
-                        fontWeight: 800,
-                        padding: '1px 6px',
-                        borderRadius: '4px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '2px'
-                      }}>
-                        <Star size={9} fill="currentColor" color="none" />
-                        {char.rarity}★
-                      </span>
-
-                      {/* Element Icon PNG */}
-                      {elementIconUrl && (
-                        <div style={{
-                          width: '22px',
-                          height: '22px',
-                          borderRadius: '50%',
-                          background: 'rgba(0, 0, 0, 0.65)',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          border: '1px solid rgba(255, 255, 255, 0.15)'
-                        }}>
-                          <img 
-                            src={elementIconUrl} 
-                            alt={char.element} 
-                            style={{ width: '16px', height: '16px', objectFit: 'contain' }} 
-                          />
-                        </div>
-                      )}
+                    {/* Star Badge */}
+                    <div style={{
+                      position: 'absolute',
+                      top: '6px',
+                      left: '6px',
+                      zIndex: 2,
+                      padding: '2px 6px',
+                      borderRadius: '4px',
+                      fontSize: '0.65rem',
+                      fontWeight: 800
+                    }} className={is5Star ? 'star-badge-5' : 'star-badge-4'}>
+                      {r.rarity}★
                     </div>
 
-                    {/* Character Real Portrait Artwork */}
+                    {/* Element Icon Badge */}
+                    {ELEMENT_ICONS[r.element] && (
+                      <div style={{
+                        position: 'absolute',
+                        top: '6px',
+                        right: '6px',
+                        zIndex: 2,
+                        width: '20px',
+                        height: '20px',
+                        borderRadius: '50%',
+                        background: 'rgba(0, 0, 0, 0.6)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        border: '1px solid rgba(255, 255, 255, 0.2)'
+                      }}>
+                        <img src={ELEMENT_ICONS[r.element]} alt={r.element} style={{ width: '13px', height: '13px' }} />
+                      </div>
+                    )}
+
+                    {/* Character Avatar Container */}
                     <div style={{
-                      position: 'relative',
                       width: '100%',
-                      height: '92px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
+                      paddingTop: '100%',
+                      position: 'relative',
+                      borderRadius: '8px',
                       overflow: 'hidden',
-                      borderRadius: '6px',
-                      margin: '4px 0'
+                      background: 'rgba(0, 0, 0, 0.5)',
+                      marginBottom: '8px'
                     }}>
-                      {char.avatar ? (
+                      {r.avatar ? (
                         <img
-                          src={char.avatar}
-                          alt={char.name}
-                          loading="lazy"
+                          src={r.avatar}
+                          alt={r.name}
                           style={{
-                            width: '84px',
-                            height: '84px',
-                            objectFit: 'cover',
-                            borderRadius: '50%',
-                            border: `2px solid ${isOwned ? 'var(--accent-gold)' : 'rgba(255, 255, 255, 0.15)'}`,
-                            filter: isOwned ? 'none' : 'grayscale(30%)',
-                            boxShadow: isOwned ? '0 0 12px rgba(243, 186, 47, 0.3)' : 'none'
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover'
                           }}
-                          onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                          }}
+                          onError={(e) => { e.currentTarget.style.display = 'none'; }}
                         />
                       ) : (
                         <div style={{
-                          width: '70px',
-                          height: '70px',
-                          borderRadius: '50%',
-                          background: char.iconColor,
+                          position: 'absolute',
+                          top: 0,
+                          left: 0,
+                          width: '100%',
+                          height: '100%',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          fontWeight: 800,
-                          fontSize: '1.4rem',
-                          color: '#000'
+                          color: '#fff',
+                          fontWeight: 900
                         }}>
-                          {char.name[0]}
+                          {r.name[0]}
                         </div>
                       )}
 
-                      {/* Checkmark Tag */}
-                      {isOwned && (
+                      {/* Selected Overlay Checkmark */}
+                      {isSelected && (
                         <div style={{
                           position: 'absolute',
-                          bottom: '2px',
-                          right: '12px',
-                          width: '20px',
-                          height: '20px',
+                          bottom: '4px',
+                          right: '4px',
+                          width: '18px',
+                          height: '18px',
                           borderRadius: '50%',
                           background: 'var(--accent-gold)',
-                          color: '#000',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          fontSize: '11px',
-                          fontWeight: 900,
                           boxShadow: '0 0 8px rgba(0, 0, 0, 0.8)'
                         }}>
-                          ✓
+                          <CheckCircle2 size={14} color="#000" />
                         </div>
                       )}
                     </div>
 
-                    {/* Character Name & Class */}
-                    <div style={{ textAlign: 'center', zIndex: 2 }}>
+                    {/* Character Name & Role Preview */}
+                    <div style={{ textAlign: 'center' }}>
                       <div style={{
                         fontSize: '0.82rem',
-                        fontWeight: 700,
-                        color: isOwned ? '#fff' : 'var(--text-secondary)',
+                        fontWeight: 800,
+                        color: isSelected ? '#fff' : 'var(--text-secondary)',
                         whiteSpace: 'nowrap',
                         overflow: 'hidden',
                         textOverflow: 'ellipsis'
                       }}>
-                        {char.name}
+                        {r.name}
                       </div>
                       <div style={{
                         fontSize: '0.68rem',
-                        color: 'var(--text-muted)',
-                        marginTop: '2px'
+                        color: is5Star ? 'var(--accent-gold)' : 'var(--accent-purple)',
+                        marginTop: '2px',
+                        fontWeight: 700
                       }}>
-                        {char.weaponType}
+                        {r.weaponType}
                       </div>
                     </div>
                   </div>
                 );
               })}
             </div>
-          </section>
+          </div>
 
-          {/* Section: Đề Xuất Đội Hình Tối Ưu (KHÔNG TRÙNG LẶP NHÂN VẬT) */}
-          <section>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px', flexWrap: 'wrap', gap: '10px' }}>
-              <div>
-                <h2 style={{ fontSize: '1.3rem', fontWeight: 800, display: 'flex', alignItems: 'center', gap: '10px', color: '#fff' }}>
-                  <Sparkles size={22} color="var(--accent-gold)" />
-                  Đội Hình Đề Xuất Tối Ưu ({suggestedTeams.length} đội - Hoàn toàn không trùng nhân vật)
+          {/* Section: Đội Hình Đề Xuất Tối Ưu */}
+          <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '10px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <Swords size={22} color="var(--accent-gold)" />
+                <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#fff' }}>
+                  Đội Hình Đề Xuất Tối Ưu ({optimalTeams.length} Đội Không Trùng Nhân Vật)
                 </h2>
-                <p style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', marginTop: '2px' }}>
-                  Mỗi nhân vật chỉ thuộc về 1 đội hình duy nhất. Bấm vào thẻ để xem <strong>Hướng dẫn Combo Rotation (Game8)</strong>.
-                </p>
               </div>
-
-              {suggestedTeams.length > 0 && (
-                <span style={{
-                  fontSize: '0.78rem',
-                  padding: '4px 12px',
-                  borderRadius: '20px',
-                  background: 'rgba(52, 211, 153, 0.12)',
-                  color: 'var(--accent-green)',
-                  border: '1px solid rgba(52, 211, 153, 0.3)',
-                  fontWeight: 700
-                }}>
-                  Đã khóa {suggestedTeams.length * 3} nhân vật tối ưu
-                </span>
-              )}
+              <span style={{ fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
+                Tất cả đội hình tuân thủ quy tắc <strong>1 Main DPS + 1 Buffer + 1 Sustain</strong>
+              </span>
             </div>
 
-            {suggestedTeams.length === 0 ? (
-              <div className="glass-panel" style={{ padding: '48px 24px', textAlign: 'center', color: 'var(--text-muted)' }}>
-                Chưa đủ nhân vật để ghép thành 1 đội hình 3 người hoàn chỉnh. Hãy tick chọn thêm nhân vật ở kho bên trên!
+            {optimalTeams.length === 0 ? (
+              <div className="glass-panel" style={{ padding: '60px 24px', textAlign: 'center', color: 'var(--text-muted)' }}>
+                <Users size={48} style={{ margin: '0 auto 16px auto', opacity: 0.4 }} />
+                <p style={{ fontSize: '1.1rem', fontWeight: 700, color: '#fff', marginBottom: '8px' }}>
+                  Chưa đủ nhân vật để ghép thành 1 đội hình hoàn chỉnh!
+                </p>
+                <p style={{ fontSize: '0.88rem', maxWidth: '480px', margin: '0 auto' }}>
+                  Hãy tick chọn ít nhất 3 nhân vật (gồm Main DPS, Buffer và Sustain) ở bảng trên để nhận đề xuất đội hình.
+                </p>
               </div>
             ) : (
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
-                gap: '20px'
-              }}>
-                {suggestedTeams.map((team, tIdx) => {
-                  const safeCharacters = Array.isArray(team?.characters) && team.characters.length > 0
-                    ? team.characters
-                    : (team?.members || []).map(id => RESONATORS.find(r => r.id === id)).filter(Boolean);
-
-                  return (
-                    <div
-                      key={team?.id || tIdx}
-                      className="glass-panel glass-panel-hover"
-                      style={{
-                        padding: '24px',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'space-between',
-                        borderLeft: `4px solid ${team.matchScore >= 95 ? 'var(--accent-gold)' : 'var(--accent-cyan)'}`,
-                        background: 'linear-gradient(145deg, rgba(16, 22, 33, 0.85) 0%, rgba(10, 14, 22, 0.95) 100%)'
-                      }}
-                    >
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                {optimalTeams.map((team, tIdx) => (
+                  <div
+                    key={team.id || tIdx}
+                    className="glass-panel tactical-box"
+                    style={{
+                      padding: '22px 24px',
+                      background: 'linear-gradient(145deg, rgba(14, 20, 31, 0.85) 0%, rgba(8, 12, 20, 0.95) 100%)'
+                    }}
+                  >
+                    {/* Team Header */}
+                    <div style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'flex-start',
+                      marginBottom: '16px',
+                      flexWrap: 'wrap',
+                      gap: '12px'
+                    }}>
                       <div>
-                        {/* Team Header */}
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '14px' }}>
-                          <div>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                              <span style={{
-                                width: '22px',
-                                height: '22px',
-                                borderRadius: '50%',
-                                background: 'rgba(255, 255, 255, 0.1)',
-                                display: 'inline-flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                fontSize: '0.75rem',
-                                fontWeight: 800,
-                                color: 'var(--accent-gold)'
-                              }}>
-                                #{tIdx + 1}
-                              </span>
-                              <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#fff' }}>
-                                {team?.name || 'Đội Hình Đề Xuất'}
-                              </h3>
-                            </div>
-                            <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginTop: '6px' }}>
-                              <span style={{ fontSize: '0.72rem', padding: '2px 8px', borderRadius: '4px', background: 'rgba(250, 204, 21, 0.12)', color: 'var(--accent-gold)', fontWeight: 700 }}>
-                                {team?.type || 'Hypercarry'}
-                              </span>
-                              {team?.tier && (
-                                <span style={{ fontSize: '0.72rem', padding: '2px 8px', borderRadius: '4px', background: 'rgba(239, 68, 68, 0.15)', color: '#f87171', fontWeight: 800 }}>
-                                  {team.tier} Meta
-                                </span>
-                              )}
-                            </div>
-                          </div>
-
-                          <span style={{ fontSize: '0.8rem', fontWeight: 800, color: 'var(--accent-green)', padding: '4px 10px', borderRadius: '6px', background: 'rgba(52, 211, 153, 0.12)' }}>
-                            {team?.matchScore || 85}% Meta Score
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                          <span style={{
+                            fontSize: '0.72rem',
+                            fontWeight: 900,
+                            padding: '3px 8px',
+                            borderRadius: '4px',
+                            background: 'rgba(250, 204, 21, 0.15)',
+                            color: 'var(--accent-gold)',
+                            fontFamily: 'var(--font-tactical)',
+                            letterSpacing: '0.5px'
+                          }}>
+                            TEAM #{tIdx + 1}
+                          </span>
+                          <h3 style={{ fontSize: '1.25rem', fontWeight: 900, color: '#fff' }}>
+                            {team.name}
+                          </h3>
+                          <span style={{
+                            fontSize: '0.72rem',
+                            fontWeight: 800,
+                            padding: '2px 8px',
+                            borderRadius: '4px',
+                            background: team.hasQuickswap ? 'rgba(192, 132, 252, 0.15)' : 'rgba(56, 189, 248, 0.15)',
+                            color: team.hasQuickswap ? 'var(--accent-purple)' : 'var(--accent-cyan)',
+                            border: `1px solid ${team.hasQuickswap ? 'rgba(192, 132, 252, 0.35)' : 'rgba(56, 189, 248, 0.35)'}`
+                          }}>
+                            {team.type}
                           </span>
                         </div>
-
-                        {/* 3 Members Display with Real Avatars */}
-                        <div style={{
-                          display: 'grid',
-                          gridTemplateColumns: 'repeat(3, 1fr)',
-                          gap: '10px',
-                          marginBottom: '16px',
-                          background: 'rgba(0, 0, 0, 0.35)',
-                          padding: '14px 10px',
-                          borderRadius: '12px',
-                          border: '1px solid rgba(255, 255, 255, 0.05)'
-                        }}>
-                          {safeCharacters.map((m, idx) => (
-                            <div key={idx} style={{ textAlign: 'center' }}>
-                              <div style={{
-                                width: '50px',
-                                height: '50px',
-                                borderRadius: '50%',
-                                margin: '0 auto 6px auto',
-                                overflow: 'hidden',
-                                border: `2px solid ${idx === 0 ? 'var(--accent-gold)' : 'rgba(255, 255, 255, 0.2)'}`,
-                                background: m?.iconColor || '#38bdf8',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                              }}>
-                                {m?.avatar ? (
-                                  <img
-                                    src={m.avatar}
-                                    alt={m.name}
-                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                                    onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                                  />
-                                ) : (
-                                  <span style={{ fontWeight: 'bold', color: '#000' }}>{m?.name?.[0]}</span>
-                                )}
-                              </div>
-                              <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                                {m?.name}
-                              </div>
-                              <div style={{ fontSize: '0.68rem', color: idx === 0 ? 'var(--accent-gold)' : 'var(--text-muted)', fontWeight: 600 }}>
-                                {idx === 0 ? 'Main DPS' : idx === 1 ? 'Sub-DPS/Buffer' : 'Sustain/Healer'}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-
-                        <p style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', marginBottom: '18px', lineHeight: 1.5 }}>
-                          {team?.description}
+                        <p style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
+                          {team.description}
                         </p>
                       </div>
 
-                      {/* View Rotation Action Button */}
+                      {/* Nút Xem Rotation */}
                       <button
-                        onClick={() => setSelectedTeamForRotation({ ...team, characters: safeCharacters })}
+                        onClick={() => setSelectedTeamForRotation(team)}
                         style={{
-                          width: '100%',
-                          padding: '12px 16px',
-                          borderRadius: '8px',
-                          background: 'rgba(250, 204, 21, 0.12)',
-                          border: '1px solid rgba(250, 204, 21, 0.35)',
-                          color: 'var(--accent-gold)',
-                          fontWeight: 800,
-                          fontSize: '0.88rem',
                           display: 'flex',
                           alignItems: 'center',
-                          justifyContent: 'center',
                           gap: '8px',
-                          cursor: 'pointer',
-                          transition: 'all 0.15s ease'
+                          padding: '10px 18px',
+                          borderRadius: '8px',
+                          background: 'linear-gradient(135deg, rgba(250, 204, 21, 0.15) 0%, rgba(245, 158, 11, 0.25) 100%)',
+                          border: '1px solid rgba(250, 204, 21, 0.4)',
+                          color: 'var(--accent-gold)',
+                          fontWeight: 800,
+                          fontSize: '0.86rem',
+                          transition: 'all 0.2s ease'
                         }}
-                        onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(250, 204, 21, 0.2)'; }}
-                        onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(250, 204, 21, 0.12)'; }}
                       >
-                        <Swords size={18} /> Xem Hướng Dẫn Combo (Game8)
+                        <Swords size={16} />
+                        <span>Xem Rotation & Combo Chi Tiết</span>
+                        <ChevronRight size={16} />
                       </button>
                     </div>
-                  );
-                })}
+
+                    {/* 3 Thành Viên Trong Đội • Roster Display */}
+                    <div style={{
+                      display: 'grid',
+                      gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+                      gap: '12px'
+                    }}>
+                      {team.characters.map((char, cIdx) => (
+                        <div
+                          key={cIdx}
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '12px',
+                            padding: '12px 14px',
+                            background: 'rgba(255, 255, 255, 0.025)',
+                            borderRadius: '10px',
+                            border: '1px solid rgba(255, 255, 255, 0.06)'
+                          }}
+                        >
+                          {/* Character Avatar */}
+                          <div style={{
+                            width: '48px',
+                            height: '48px',
+                            borderRadius: '10px',
+                            overflow: 'hidden',
+                            background: char?.iconColor || '#38bdf8',
+                            flexShrink: 0,
+                            position: 'relative',
+                            border: `2px solid ${cIdx === 0 ? 'var(--accent-gold)' : cIdx === 1 ? 'var(--accent-cyan)' : 'var(--accent-green)'}`
+                          }}>
+                            {char?.avatar ? (
+                              <img
+                                src={char.avatar}
+                                alt={char.name}
+                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                              />
+                            ) : (
+                              <span style={{ fontWeight: 'bold', color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+                                {char?.name?.[0]}
+                              </span>
+                            )}
+                          </div>
+
+                          {/* Role & Name */}
+                          <div style={{ flex: 1, minWidth: 0 }}>
+                            <div style={{ fontSize: '0.9rem', fontWeight: 800, color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                              {char?.name}
+                            </div>
+                            <div style={{
+                              fontSize: '0.74rem',
+                              fontWeight: 700,
+                              color: cIdx === 0 ? 'var(--accent-gold)' : cIdx === 1 ? 'var(--accent-cyan)' : 'var(--accent-green)',
+                              marginTop: '2px'
+                            }}>
+                              {cIdx === 0 ? 'Main DPS' : cIdx === 1 ? 'Sub-DPS / Buffer' : 'Sustain / Healer'} • {char?.element}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
               </div>
             )}
-          </section>
+          </div>
         </div>
       )}
 
-      {/* TAB 2: TOWER OF ADVERSITY (TOA) SOLVER - ĐẦY ĐỦ 12 TẦNG (4 TẦNG X 3 THÁP) */}
+      {/* TAB 2: TOWER OF ADVERSITY (TOA) SOLVER • ĐÚNG CHUẨN THÁP GIỮA 2 TEAM VÀ 2 THÁP BÊN */}
       {activeTab === 'toa' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '26px' }}>
-          {/* Header ToA Tinh Gọn (Chỉ ghi Mùa và Khoảng Thời Gian theo yêu cầu) */}
+          {/* Header ToA Tinh Gọn */}
           <div className="glass-panel" style={{
             padding: '20px 24px',
             border: '1px solid rgba(243, 186, 47, 0.35)',
@@ -920,12 +839,12 @@ export default function App() {
               fontSize: '0.8rem',
               padding: '6px 14px',
               borderRadius: '8px',
-              background: 'rgba(52, 211, 153, 0.12)',
-              color: 'var(--accent-green)',
+              background: 'rgba(56, 189, 248, 0.12)',
+              color: 'var(--accent-cyan)',
               fontWeight: 700,
-              border: '1px solid rgba(52, 211, 153, 0.3)'
+              border: '1px solid rgba(56, 189, 248, 0.3)'
             }}>
-              Phân bổ 3 team độc lập cho 12 tầng tháp
+              Phân Phối Thể Lực 10 Vigor / Nhân Vật
             </div>
           </div>
 
@@ -933,201 +852,347 @@ export default function App() {
             <div className="glass-panel" style={{ padding: '60px 24px', textAlign: 'center', color: 'var(--text-muted)' }}>
               <Layers size={44} style={{ margin: '0 auto 16px auto', opacity: 0.4, color: 'var(--accent-gold)' }} />
               <p style={{ fontSize: '1.1rem', fontWeight: 700, color: '#fff', marginBottom: '8px' }}>
-                Cần tối thiểu 9 nhân vật đã chọn để phân bổ cho 3 tháp!
+                Cần tối thiểu 6 nhân vật đã chọn để phân bổ vào các tháp!
               </p>
               <p style={{ fontSize: '0.86rem', maxWidth: '500px', margin: '0 auto' }}>
-                Hiện tại bạn đã chọn {ownedIds.length}/9 nhân vật. Hãy quay lại tab "Tự Động Xếp Đội" và tick thêm nhân vật để thuật toán phân phối 12 tầng ToA.
+                Hãy quay lại tab "Tự Động Xếp Đội" và tick thêm nhân vật để giải bài toán Tower of Adversity.
               </p>
             </div>
           ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '26px' }}>
-              {toaSolution.towers.map((tower) => {
-                const isHazard = tower.id === 'hazard';
-                const isResonant = tower.id === 'resonant';
-                const towerColor = isHazard ? '#ef4444' : isResonant ? '#f43f5e' : '#facc15';
-
-                return (
-                  <div
-                    key={tower.id}
-                    className="glass-panel"
-                    style={{
-                      padding: '24px',
-                      borderLeft: `5px solid ${towerColor}`,
-                      background: 'linear-gradient(145deg, rgba(14, 20, 31, 0.9) 0%, rgba(8, 12, 20, 0.98) 100%)'
-                    }}
-                  >
-                    {/* Tower Header */}
-                    <div style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'flex-start',
-                      flexWrap: 'wrap',
-                      gap: '12px',
-                      marginBottom: '18px',
-                      paddingBottom: '16px',
-                      borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
-                    }}>
-                      <div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                          <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#fff' }}>
-                            {tower.name}
-                          </h3>
-                          {tower.elementAdvantage && (
-                            <span style={{
-                              fontSize: '0.72rem',
-                              fontWeight: 800,
-                              color: 'var(--accent-green)',
-                              background: 'rgba(52, 211, 153, 0.15)',
-                              padding: '2px 8px',
-                              borderRadius: '4px',
-                              border: '1px solid rgba(52, 211, 153, 0.3)'
-                            }}>
-                              ✓ Đạt Ưu Thế Hệ
-                            </span>
-                          )}
-                        </div>
-                        <div style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
-                          ⚡ Buff Mùa 3.7 (Ưu tiên: <strong style={{ color: towerColor }}>{tower.recommendedElement}</strong>): {tower.buff}
-                        </div>
-                      </div>
-
-                      {/* Nút Xem Combo ToA */}
-                      <button
-                        onClick={() => setSelectedTeamForRotation(tower.team)}
-                        style={{
-                          padding: '10px 18px',
-                          borderRadius: '8px',
-                          background: 'rgba(250, 204, 21, 0.12)',
-                          border: '1px solid rgba(250, 204, 21, 0.35)',
-                          color: 'var(--accent-gold)',
-                          fontWeight: 800,
-                          fontSize: '0.85rem',
-                          cursor: 'pointer',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '6px'
-                        }}
-                      >
-                        <Swords size={16} /> Xem Rotation Tháp Này
-                      </button>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
+              
+              {/* 1. THÁP GIỮA (Hazard Tower) • 2 TEAM RIÊNG BIỆT (TẦNG 1-2 & TẦNG 3-4) */}
+              <div className="glass-panel" style={{
+                padding: '24px',
+                borderLeft: '5px solid #ef4444',
+                background: 'linear-gradient(145deg, rgba(24, 14, 20, 0.9) 0%, rgba(10, 8, 14, 0.98) 100%)'
+              }}>
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'flex-start',
+                  flexWrap: 'wrap',
+                  gap: '12px',
+                  marginBottom: '16px',
+                  paddingBottom: '14px',
+                  borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
+                }}>
+                  <div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <Flame size={22} color="#ef4444" />
+                      <h3 style={{ fontSize: '1.35rem', fontWeight: 900, color: '#fff' }}>
+                        Hazard Tower (Tháp Hiểm Họa - Giữa)
+                      </h3>
+                      <span style={{
+                        fontSize: '0.74rem',
+                        fontWeight: 800,
+                        padding: '2px 8px',
+                        borderRadius: '4px',
+                        background: 'rgba(239, 68, 68, 0.2)',
+                        color: '#f87171',
+                        border: '1px solid rgba(239, 68, 68, 0.4)'
+                      }}>
+                        4 Tầng • Tiêu Hao 5 Thể Lực / Tầng
+                      </span>
                     </div>
-
-                    {/* Đội Hình Phân Bổ Cho Tháp Này */}
-                    <div style={{
-                      background: 'rgba(0, 0, 0, 0.3)',
-                      padding: '16px 20px',
-                      borderRadius: '12px',
-                      border: '1px solid rgba(255, 255, 255, 0.06)',
-                      marginBottom: '20px'
-                    }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', flexWrap: 'wrap', gap: '8px' }}>
-                        <div style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--accent-gold)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                          Đội Hình Chủ Lực Phân Bổ: <span style={{ color: '#fff' }}>{tower.team.name}</span>
-                        </div>
-                        <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                          Sử dụng cho cả 4 tầng của tháp này
-                        </span>
-                      </div>
-
-                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '12px' }}>
-                        {tower.team.characters.map((m, idx) => (
-                          <div key={idx} style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '12px',
-                            background: 'rgba(255, 255, 255, 0.03)',
-                            padding: '10px 12px',
-                            borderRadius: '10px',
-                            border: '1px solid rgba(255, 255, 255, 0.05)'
-                          }}>
-                            <div style={{
-                              width: '44px',
-                              height: '44px',
-                              borderRadius: '50%',
-                              overflow: 'hidden',
-                              border: `2px solid ${idx === 0 ? towerColor : 'rgba(255, 255, 255, 0.2)'}`,
-                              background: m?.iconColor || '#38bdf8',
-                              flexShrink: 0
-                            }}>
-                              {m?.avatar ? (
-                                <img src={m.avatar} alt={m.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => { e.currentTarget.style.display = 'none'; }} />
-                              ) : (
-                                <span style={{ fontWeight: 'bold', color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>{m?.name?.[0]}</span>
-                              )}
-                            </div>
-                            <div>
-                              <div style={{ fontSize: '0.88rem', fontWeight: 800, color: '#fff' }}>{m?.name}</div>
-                              <div style={{ fontSize: '0.72rem', color: idx === 0 ? towerColor : 'var(--text-muted)', fontWeight: 600 }}>
-                                {idx === 0 ? 'Main DPS' : idx === 1 ? 'Sub-DPS/Buffer' : 'Sustain/Healer'} • {m?.element}
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Danh Sách 4 Tầng Của Tháp Này (Đủ 4 tầng theo đúng yêu cầu) */}
-                    <div>
-                      <div style={{ fontSize: '0.84rem', fontWeight: 800, color: '#fff', marginBottom: '10px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <Award size={16} color="var(--accent-gold)" />
-                        Tiến Trình 4 Tầng Của Tháp ({tower.floors.length} Tầng)
-                      </div>
-
-                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '12px' }}>
-                        {tower.floors.map((floor) => (
-                          <div
-                            key={floor.floor}
-                            style={{
-                              background: 'rgba(0, 0, 0, 0.45)',
-                              padding: '14px',
-                              borderRadius: '10px',
-                              border: '1px solid rgba(255, 255, 255, 0.08)',
-                              display: 'flex',
-                              flexDirection: 'column',
-                              justifyContent: 'space-between'
-                            }}
-                          >
-                            <div>
-                              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                                <span style={{
-                                  fontSize: '0.75rem',
-                                  fontWeight: 800,
-                                  color: floor.floor === 4 ? towerColor : 'var(--accent-gold)',
-                                  background: 'rgba(255, 255, 255, 0.06)',
-                                  padding: '2px 8px',
-                                  borderRadius: '4px'
-                                }}>
-                                  {floor.name}
-                                </span>
-                                <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
-                                  Tiêu hao: {floor.vigorCost} Vigor
-                                </span>
-                              </div>
-                              <div style={{ fontSize: '0.86rem', fontWeight: 700, color: '#fff', marginTop: '4px' }}>
-                                Quái / Boss: {floor.boss}
-                              </div>
-                            </div>
-
-                            <div style={{
-                              marginTop: '12px',
-                              paddingTop: '8px',
-                              borderTop: '1px solid rgba(255, 255, 255, 0.06)',
-                              display: 'flex',
-                              justifyContent: 'space-between',
-                              alignItems: 'center',
-                              fontSize: '0.75rem',
-                              color: 'var(--text-secondary)'
-                            }}>
-                              <span>Độ khó: <strong style={{ color: floor.floor === 4 ? '#f87171' : '#34d399' }}>{floor.difficulty}</strong></span>
-                              <span style={{ color: 'var(--accent-gold)', fontWeight: 700 }}>✓ Team Sẵn Sàng</span>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
+                    <div style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', marginTop: '6px' }}>
+                      ⚡ <strong>Buff Tháp Giữa:</strong> {toaSolution.hazardTower.towerBuff}
                     </div>
                   </div>
-                );
-              })}
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '18px' }}>
+                  {/* Card 1: Team Tầng 3-4 (Boss Cuối - Ưu Tiên Buff Mùa) */}
+                  <div style={{
+                    background: 'rgba(0, 0, 0, 0.45)',
+                    padding: '18px',
+                    borderRadius: '12px',
+                    border: '1px solid rgba(239, 68, 68, 0.35)',
+                    position: 'relative'
+                  }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                      <span style={{
+                        fontSize: '0.78rem',
+                        fontWeight: 800,
+                        color: '#f87171',
+                        background: 'rgba(239, 68, 68, 0.15)',
+                        padding: '3px 8px',
+                        borderRadius: '4px'
+                      }}>
+                        TẦNG 3 & 4 (ĐỈNH ĐIỂM BOSS)
+                      </span>
+                      <span style={{ fontSize: '0.74rem', color: 'var(--accent-gold)', fontWeight: 700 }}>
+                        5 + 5 = 10 / 10 Vigor (Cạn Thể Lực)
+                      </span>
+                    </div>
+
+                    <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginBottom: '12px' }}>
+                      🎯 <strong>{toaSolution.hazardTower.bossFloors.priorityStrategy}</strong>
+                    </div>
+
+                    {/* Team Members */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '14px' }}>
+                      {toaSolution.hazardTower.bossFloors.assignedTeam?.characters.map((m, idx) => (
+                        <div key={idx} style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '10px',
+                          padding: '8px 10px',
+                          background: 'rgba(255, 255, 255, 0.03)',
+                          borderRadius: '8px'
+                        }}>
+                          <div style={{
+                            width: '36px',
+                            height: '36px',
+                            borderRadius: '8px',
+                            overflow: 'hidden',
+                            background: m?.iconColor || '#38bdf8',
+                            flexShrink: 0
+                          }}>
+                            {m?.avatar && <img src={m.avatar} alt={m.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => { e.currentTarget.style.display = 'none'; }} />}
+                          </div>
+                          <div style={{ flex: 1 }}>
+                            <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#fff' }}>{m?.name}</div>
+                            <div style={{ fontSize: '0.72rem', color: idx === 0 ? 'var(--accent-gold)' : 'var(--text-muted)' }}>
+                              {idx === 0 ? 'Main DPS' : idx === 1 ? 'Buffer' : 'Sustain'} • {m?.element}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <button
+                      onClick={() => setSelectedTeamForRotation(toaSolution.hazardTower.bossFloors.assignedTeam)}
+                      style={{
+                        width: '100%',
+                        padding: '8px',
+                        borderRadius: '6px',
+                        background: 'rgba(239, 68, 68, 0.15)',
+                        border: '1px solid rgba(239, 68, 68, 0.35)',
+                        color: '#f87171',
+                        fontWeight: 800,
+                        fontSize: '0.82rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '6px'
+                      }}
+                    >
+                      <Swords size={14} /> Xem Rotation Tầng 3 - 4
+                    </button>
+                  </div>
+
+                  {/* Card 2: Team Tầng 1-2 (Khởi Đầu - Ưu Tiên Khắc Chế Hệ) */}
+                  <div style={{
+                    background: 'rgba(0, 0, 0, 0.45)',
+                    padding: '18px',
+                    borderRadius: '12px',
+                    border: '1px solid rgba(255, 255, 255, 0.12)',
+                    position: 'relative'
+                  }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                      <span style={{
+                        fontSize: '0.78rem',
+                        fontWeight: 800,
+                        color: 'var(--accent-gold)',
+                        background: 'rgba(250, 204, 21, 0.12)',
+                        padding: '3px 8px',
+                        borderRadius: '4px'
+                      }}>
+                        TẦNG 1 & 2 (KHỞI ĐẦU)
+                      </span>
+                      <span style={{ fontSize: '0.74rem', color: 'var(--accent-gold)', fontWeight: 700 }}>
+                        5 + 5 = 10 / 10 Vigor (Cạn Thể Lực)
+                      </span>
+                    </div>
+
+                    <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)', marginBottom: '12px' }}>
+                      🎯 <strong>{toaSolution.hazardTower.earlyFloors.priorityStrategy}</strong>
+                    </div>
+
+                    {/* Team Members */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '14px' }}>
+                      {toaSolution.hazardTower.earlyFloors.assignedTeam?.characters.map((m, idx) => (
+                        <div key={idx} style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '10px',
+                          padding: '8px 10px',
+                          background: 'rgba(255, 255, 255, 0.03)',
+                          borderRadius: '8px'
+                        }}>
+                          <div style={{
+                            width: '36px',
+                            height: '36px',
+                            borderRadius: '8px',
+                            overflow: 'hidden',
+                            background: m?.iconColor || '#38bdf8',
+                            flexShrink: 0
+                          }}>
+                            {m?.avatar && <img src={m.avatar} alt={m.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => { e.currentTarget.style.display = 'none'; }} />}
+                          </div>
+                          <div style={{ flex: 1 }}>
+                            <div style={{ fontSize: '0.85rem', fontWeight: 800, color: '#fff' }}>{m?.name}</div>
+                            <div style={{ fontSize: '0.72rem', color: idx === 0 ? 'var(--accent-gold)' : 'var(--text-muted)' }}>
+                              {idx === 0 ? 'Main DPS' : idx === 1 ? 'Buffer' : 'Sustain'} • {m?.element}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    <button
+                      onClick={() => setSelectedTeamForRotation(toaSolution.hazardTower.earlyFloors.assignedTeam)}
+                      style={{
+                        width: '100%',
+                        padding: '8px',
+                        borderRadius: '6px',
+                        background: 'rgba(255, 255, 255, 0.05)',
+                        border: '1px solid rgba(255, 255, 255, 0.15)',
+                        color: 'var(--text-primary)',
+                        fontWeight: 800,
+                        fontSize: '0.82rem',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '6px'
+                      }}
+                    >
+                      <Swords size={14} /> Xem Rotation Tầng 1 - 2
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* 2. HAI THÁP BÊN (THÁP TRÁI & THÁP PHẢI) */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(460px, 1fr))', gap: '22px' }}>
+                
+                {/* 2A. Resonant Tower (Tháp Trái) */}
+                <div className="glass-panel" style={{
+                  padding: '22px',
+                  borderLeft: '5px solid #f43f5e',
+                  background: 'linear-gradient(145deg, rgba(18, 14, 24, 0.9) 0%, rgba(8, 10, 16, 0.98) 100%)'
+                }}>
+                  <div style={{ marginBottom: '14px', paddingBottom: '12px', borderBottom: '1px solid rgba(255, 255, 255, 0.08)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <Shield size={20} color="#f43f5e" />
+                      <h3 style={{ fontSize: '1.2rem', fontWeight: 900, color: '#fff' }}>
+                        Resonant Tower (Tháp Trái)
+                      </h3>
+                    </div>
+                    <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
+                      ⚡ <strong>Buff:</strong> {toaSolution.resonantTower.towerBuff}
+                    </div>
+                  </div>
+
+                  {/* Team Phân Bổ */}
+                  <div style={{ background: 'rgba(0, 0, 0, 0.4)', padding: '14px', borderRadius: '10px', marginBottom: '14px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                      <span style={{ fontSize: '0.82rem', fontWeight: 800, color: 'var(--accent-gold)' }}>
+                        Đội Hình Chủ Lực Tháp Trái: {toaSolution.resonantTower.bossFloor.assignedTeam?.name}
+                      </span>
+                      <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                        Tầng 4 (4 Vigor) • Tầng 1-3 (6 Vigor)
+                      </span>
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
+                      {toaSolution.resonantTower.bossFloor.assignedTeam?.characters.map((m, idx) => (
+                        <div key={idx} style={{ textAlign: 'center', background: 'rgba(255, 255, 255, 0.03)', padding: '8px', borderRadius: '8px' }}>
+                          <div style={{ width: '40px', height: '40px', borderRadius: '50%', margin: '0 auto 6px auto', overflow: 'hidden', background: m?.iconColor || '#38bdf8' }}>
+                            {m?.avatar && <img src={m.avatar} alt={m.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => { e.currentTarget.style.display = 'none'; }} />}
+                          </div>
+                          <div style={{ fontSize: '0.78rem', fontWeight: 800, color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{m?.name}</div>
+                          <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>{idx === 0 ? 'Main DPS' : idx === 1 ? 'Buffer' : 'Sustain'}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => setSelectedTeamForRotation(toaSolution.resonantTower.bossFloor.assignedTeam)}
+                    style={{
+                      width: '100%',
+                      padding: '8px',
+                      borderRadius: '6px',
+                      background: 'rgba(244, 63, 94, 0.15)',
+                      border: '1px solid rgba(244, 63, 94, 0.35)',
+                      color: '#f43f5e',
+                      fontWeight: 800,
+                      fontSize: '0.82rem',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '6px'
+                    }}
+                  >
+                    <Swords size={14} /> Xem Rotation Tháp Trái
+                  </button>
+                </div>
+
+                {/* 2B. Echoing Tower (Tháp Phải) */}
+                <div className="glass-panel" style={{
+                  padding: '22px',
+                  borderLeft: '5px solid #facc15',
+                  background: 'linear-gradient(145deg, rgba(22, 20, 14, 0.9) 0%, rgba(8, 10, 16, 0.98) 100%)'
+                }}>
+                  <div style={{ marginBottom: '14px', paddingBottom: '12px', borderBottom: '1px solid rgba(255, 255, 255, 0.08)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <Activity size={20} color="#facc15" />
+                      <h3 style={{ fontSize: '1.2rem', fontWeight: 900, color: '#fff' }}>
+                        Echoing Tower (Tháp Phải)
+                      </h3>
+                    </div>
+                    <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
+                      ⚡ <strong>Buff:</strong> {toaSolution.echoingTower.towerBuff}
+                    </div>
+                  </div>
+
+                  {/* Team Phân Bổ */}
+                  <div style={{ background: 'rgba(0, 0, 0, 0.4)', padding: '14px', borderRadius: '10px', marginBottom: '14px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                      <span style={{ fontSize: '0.82rem', fontWeight: 800, color: 'var(--accent-gold)' }}>
+                        Đội Hình Chủ Lực Tháp Phải: {toaSolution.echoingTower.bossFloor.assignedTeam?.name}
+                      </span>
+                      <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                        Tầng 4 (4 Vigor) • Tầng 1-3 (6 Vigor)
+                      </span>
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
+                      {toaSolution.echoingTower.bossFloor.assignedTeam?.characters.map((m, idx) => (
+                        <div key={idx} style={{ textAlign: 'center', background: 'rgba(255, 255, 255, 0.03)', padding: '8px', borderRadius: '8px' }}>
+                          <div style={{ width: '40px', height: '40px', borderRadius: '50%', margin: '0 auto 6px auto', overflow: 'hidden', background: m?.iconColor || '#38bdf8' }}>
+                            {m?.avatar && <img src={m.avatar} alt={m.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => { e.currentTarget.style.display = 'none'; }} />}
+                          </div>
+                          <div style={{ fontSize: '0.78rem', fontWeight: 800, color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{m?.name}</div>
+                          <div style={{ fontSize: '0.68rem', color: 'var(--text-muted)' }}>{idx === 0 ? 'Main DPS' : idx === 1 ? 'Buffer' : 'Sustain'}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => setSelectedTeamForRotation(toaSolution.echoingTower.bossFloor.assignedTeam)}
+                    style={{
+                      width: '100%',
+                      padding: '8px',
+                      borderRadius: '6px',
+                      background: 'rgba(250, 204, 21, 0.15)',
+                      border: '1px solid rgba(250, 204, 21, 0.35)',
+                      color: 'var(--accent-gold)',
+                      fontWeight: 800,
+                      fontSize: '0.82rem',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '6px'
+                    }}
+                  >
+                    <Swords size={14} /> Xem Rotation Tháp Phải
+                  </button>
+                </div>
+              </div>
             </div>
           )}
         </div>
