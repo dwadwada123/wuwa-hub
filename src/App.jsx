@@ -13,15 +13,12 @@ import {
   Compass, 
   Zap, 
   Search, 
-  Star, 
-  LayoutGrid,
   Calendar, 
-  Award,
-  Shield,
-  Flame,
-  Activity,
-  CheckCircle2,
-  ChevronRight
+  Shield, 
+  Flame, 
+  Activity, 
+  CheckCircle2, 
+  ChevronRight 
 } from 'lucide-react';
 
 const STORAGE_KEY_OWNED = 'wuwa_owned_resonators';
@@ -58,7 +55,7 @@ export default function App() {
     return DEFAULT_OWNED;
   });
 
-  // Selected Team để mở Rotation Modal Game8
+  // Selected Team để mở Rotation Modal
   const [selectedTeamForRotation, setSelectedTeamForRotation] = useState(null);
 
   // Filter nguyên tố (All, Spectro, Havoc, Fusion, Aero, Electro, Glacio) & tìm kiếm
@@ -71,7 +68,7 @@ export default function App() {
   });
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Hàm trợ giúp đồng bộ ngầm an toàn lên Supabase Cloud (không bao giờ gây phiền người dùng hay crash giao diện)
+  // Hàm trợ giúp đồng bộ ngầm an toàn lên Supabase Cloud
   const syncCloudState = useCallback(async (key, value) => {
     try {
       await supabase.from('user_state').upsert({
@@ -102,7 +99,7 @@ export default function App() {
     syncCloudState('element_filter', filter);
   }, [syncCloudState]);
 
-  // Tải cấu hình từ Supabase Cloud khi mở trang (chạy ngầm cập nhật)
+  // Tải cấu hình từ Supabase Cloud khi mở trang
   useEffect(() => {
     async function loadCloudState() {
       try {
@@ -126,9 +123,7 @@ export default function App() {
             }
           });
         }
-      } catch (e) {
-        // Fallback LocalStorage đã hoạt động
-      }
+      } catch (e) {}
     }
     loadCloudState();
   }, []);
@@ -142,7 +137,7 @@ export default function App() {
     syncCloudState('owned_characters', list);
   }, [syncCloudState]);
 
-  // Toggle sở hữu nhân vật (Phản hồi tức thì 60 FPS)
+  // Toggle sở hữu nhân vật
   const toggleCharacterOwnership = useCallback((id) => {
     setOwnedIds(prev => {
       const updated = prev.includes(id) 
@@ -185,12 +180,12 @@ export default function App() {
     });
   }, [elementFilter, searchQuery]);
 
-  // Sinh đội hình tối ưu hoàn toàn không trùng nhân vật
+  // Sinh đội hình tối ưu chỉ từ các đề xuất Meta chuẩn
   const optimalTeams = useMemo(() => {
     return generateOptimalTeams(ownedIds);
   }, [ownedIds]);
 
-  // Phân bổ ToA 3 tháp (Tháp giữa 2 team riêng biệt cho Tầng 1-2 & Tầng 3-4)
+  // Phân bổ ToA 3 tháp (Tháp giữa 2 team riêng biệt cho Tầng 1-2 & Tầng 3-4, tuyệt đối không trùng nhân vật)
   const toaSolution = useMemo(() => {
     return solveTowerOfAdversity(ownedIds);
   }, [ownedIds]);
@@ -203,7 +198,7 @@ export default function App() {
       minHeight: '100vh',
       color: 'var(--text-primary)'
     }}>
-      {/* Top Header • Authentic Kuro Games WuWa Tactical HUD */}
+      {/* Top Header • Kuro Games WuWa Tactical HUD */}
       <header style={{
         display: 'flex',
         justifyContent: 'space-between',
@@ -218,24 +213,24 @@ export default function App() {
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           {/* Logo Badge with Tactical Glow */}
           <div style={{
-            width: '48px',
-            height: '48px',
-            borderRadius: '12px',
+            width: '50px',
+            height: '50px',
+            borderRadius: '14px',
             background: 'linear-gradient(135deg, #facc15 0%, #f59e0b 50%, #d97706 100%)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: '0 0 25px rgba(250, 204, 21, 0.45)',
+            boxShadow: '0 0 28px rgba(250, 204, 21, 0.45)',
             border: '1px solid rgba(255, 255, 255, 0.5)',
             position: 'relative'
           }}>
-            <Swords size={26} color="#05080f" />
+            <Swords size={28} color="#05080f" />
           </div>
 
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <h1 style={{ 
-                fontSize: '1.75rem', 
+                fontSize: '1.8rem', 
                 fontWeight: 900, 
                 fontFamily: 'var(--font-heading)',
                 letterSpacing: '1.5px', 
@@ -246,12 +241,12 @@ export default function App() {
                 WUWA HUB
               </h1>
               <span style={{
-                fontSize: '0.72rem',
-                padding: '2px 8px',
-                borderRadius: '4px',
-                background: 'rgba(243, 186, 47, 0.12)',
+                fontSize: '0.74rem',
+                padding: '3px 10px',
+                borderRadius: '6px',
+                background: 'rgba(245, 158, 11, 0.15)',
                 color: 'var(--accent-gold)',
-                border: '1px solid rgba(243, 186, 47, 0.35)',
+                border: '1px solid rgba(245, 158, 11, 0.4)',
                 fontWeight: 800,
                 letterSpacing: '0.5px',
                 fontFamily: 'var(--font-tactical)'
@@ -259,7 +254,7 @@ export default function App() {
                 SOLARIS-3 TACTICAL
               </span>
             </div>
-            <p style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', marginTop: '2px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', marginTop: '2px', display: 'flex', alignItems: 'center', gap: '8px' }}>
               <span>Đề Xuất Đội Hình Meta</span>
               <span style={{ opacity: 0.4 }}>•</span>
               <span>Chuỗi Combo Thực Chiến</span>
@@ -269,27 +264,30 @@ export default function App() {
           </div>
         </div>
 
-        {/* Ambient Soundwave Indicator */}
+        {/* Ambient Signal Indicator */}
         <div style={{
           display: 'flex',
           alignItems: 'center',
-          gap: '4px',
+          gap: '8px',
           padding: '8px 16px',
-          borderRadius: '8px',
-          background: 'rgba(255, 255, 255, 0.02)',
-          border: '1px solid rgba(255, 255, 255, 0.06)'
+          borderRadius: '10px',
+          background: 'rgba(255, 255, 255, 0.03)',
+          border: '1px solid rgba(255, 255, 255, 0.08)'
         }}>
-          <span className="soundwave-bar" style={{ animationDelay: '0s' }} />
-          <span className="soundwave-bar" style={{ animationDelay: '0.2s' }} />
-          <span className="soundwave-bar" style={{ animationDelay: '0.4s' }} />
-          <span className="soundwave-bar" style={{ animationDelay: '0.1s' }} />
-          <span style={{ fontSize: '0.75rem', fontWeight: 800, color: 'var(--accent-gold)', marginLeft: '6px', letterSpacing: '0.5px', fontFamily: 'var(--font-tactical)' }}>
+          <span style={{
+            width: '8px',
+            height: '8px',
+            borderRadius: '50%',
+            background: 'var(--accent-gold)',
+            boxShadow: '0 0 10px var(--accent-gold)'
+          }} className="pulse-glow" />
+          <span style={{ fontSize: '0.78rem', fontWeight: 800, color: 'var(--accent-gold)', letterSpacing: '0.5px', fontFamily: 'var(--font-tactical)' }}>
             RESONANCE ONLINE
           </span>
         </div>
       </header>
 
-      {/* Main Tabs Navigation */}
+      {/* Main Tabs Navigation (Không chứa text trong ngoặc) */}
       <nav style={{
         display: 'flex',
         gap: '10px',
@@ -299,9 +297,9 @@ export default function App() {
       }}>
         {[
           { id: 'builder', label: 'Tự Động Xếp Đội', icon: <Swords size={18} /> },
-          { id: 'toa', label: 'Tower of Adversity (ToA)', icon: <Layers size={18} /> },
-          { id: 'pity', label: 'Pity Tracker (Lịch Sử Roll)', icon: <Compass size={18} /> },
-          { id: 'stamina', label: 'Waveplate (Thể Lực)', icon: <Zap size={18} /> }
+          { id: 'toa', label: 'Tower of Adversity', icon: <Layers size={18} /> },
+          { id: 'pity', label: 'Pity Tracker', icon: <Compass size={18} /> },
+          { id: 'stamina', label: 'Waveplate', icon: <Zap size={18} /> }
         ].map((tab) => {
           const isActive = activeTab === tab.id;
           return (
@@ -316,11 +314,11 @@ export default function App() {
                 borderRadius: '10px',
                 fontWeight: 800,
                 fontSize: '0.9rem',
-                transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
-                background: isActive ? 'linear-gradient(135deg, #f3ba2f 0%, #d97706 100%)' : 'rgba(255, 255, 255, 0.03)',
+                transition: 'all 0.22s cubic-bezier(0.16, 1, 0.3, 1)',
+                background: isActive ? 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)' : 'rgba(255, 255, 255, 0.03)',
                 color: isActive ? '#05080f' : 'var(--text-secondary)',
-                border: isActive ? '1px solid #f3ba2f' : '1px solid var(--border-color)',
-                boxShadow: isActive ? '0 4px 20px rgba(243, 186, 47, 0.35)' : 'none',
+                border: isActive ? '1px solid #f59e0b' : '1px solid var(--border-color)',
+                boxShadow: isActive ? '0 4px 20px rgba(245, 158, 11, 0.38)' : 'none',
                 whiteSpace: 'nowrap'
               }}
             >
@@ -333,7 +331,7 @@ export default function App() {
 
       {/* TAB 1: AUTO TEAM BUILDER */}
       {activeTab === 'builder' && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '30px' }} className="animate-fade-in-up">
           {/* Panel Chọn Nhân Vật • Tactical Console */}
           <div className="glass-panel" style={{ padding: '24px', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
             <div style={{
@@ -362,7 +360,7 @@ export default function App() {
                   </span>
                 </div>
                 <p style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
-                  Tick chọn các nhân vật bạn sở hữu để hệ thống tự động tính toán các đội hình mạnh nhất không trùng lặp.
+                  Tick chọn các nhân vật bạn sở hữu để hệ thống đối chiếu và đề xuất những đội hình Meta tốt nhất.
                 </p>
               </div>
 
@@ -379,22 +377,26 @@ export default function App() {
                     fontWeight: 700,
                     color: 'var(--text-primary)'
                   }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'; }}
                 >
-                  Chọn Tất Cả ({RESONATORS.length})
+                  Chọn Tất Cả 60
                 </button>
                 <button
                   onClick={selectOnly5StarResonators}
                   style={{
                     padding: '8px 14px',
                     borderRadius: '8px',
-                    background: 'rgba(250, 204, 21, 0.12)',
-                    border: '1px solid rgba(250, 204, 21, 0.3)',
+                    background: 'rgba(250, 204, 21, 0.1)',
+                    border: '1px solid rgba(250, 204, 21, 0.25)',
                     fontSize: '0.8rem',
                     fontWeight: 700,
                     color: 'var(--accent-gold)'
                   }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(250, 204, 21, 0.2)'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(250, 204, 21, 0.1)'; }}
                 >
-                  Chỉ Chọn 5 Sao
+                  Chỉ 5 Sao
                 </button>
                 <button
                   onClick={clearAllSelections}
@@ -405,36 +407,40 @@ export default function App() {
                     border: '1px solid rgba(244, 63, 94, 0.25)',
                     fontSize: '0.8rem',
                     fontWeight: 700,
-                    color: '#fb7185'
+                    color: '#f87171'
                   }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(244, 63, 94, 0.2)'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(244, 63, 94, 0.1)'; }}
                 >
                   Bỏ Chọn Hết
                 </button>
               </div>
             </div>
 
-            {/* Toolbar: Search & Element Filter */}
+            {/* Toolbar: Search & Dynamic Colored Element Filters */}
             <div style={{
               display: 'flex',
               gap: '12px',
               flexWrap: 'wrap',
               alignItems: 'center',
+              justifyContent: 'space-between',
               marginBottom: '20px',
-              padding: '14px 18px',
-              background: 'rgba(0, 0, 0, 0.35)',
-              borderRadius: '12px',
-              border: '1px solid rgba(255, 255, 255, 0.06)'
+              padding: '12px 16px',
+              background: 'rgba(0, 0, 0, 0.3)',
+              borderRadius: '10px',
+              border: '1px solid rgba(255, 255, 255, 0.05)'
             }}>
               {/* Search Bar */}
               <div style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: '10px',
-                background: 'rgba(255, 255, 255, 0.04)',
-                padding: '8px 14px',
+                gap: '8px',
+                background: 'rgba(255, 255, 255, 0.05)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
                 borderRadius: '8px',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
-                flex: '1 1 240px'
+                padding: '6px 12px',
+                flex: '1 1 240px',
+                maxWidth: '360px'
               }}>
                 <Search size={16} color="var(--text-muted)" />
                 <input
@@ -453,33 +459,22 @@ export default function App() {
                 />
               </div>
 
-              {/* Element Filter Pills (Tiếng Anh Nguyên Bản) */}
-              <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', alignItems: 'center' }}>
+              {/* Dynamic Colored Element Filter Buttons */}
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
                 {['All', 'Spectro', 'Havoc', 'Fusion', 'Aero', 'Electro', 'Glacio'].map((ele) => {
                   const isActive = elementFilter.toLowerCase() === ele.toLowerCase();
+                  const eleClass = `element-filter-btn active-${ele.toLowerCase()}`;
                   return (
                     <button
                       key={ele}
+                      className={isActive ? eleClass : 'element-filter-btn'}
                       onClick={() => handleElementFilterChange(ele)}
-                      style={{
-                        padding: '6px 14px',
-                        borderRadius: '6px',
-                        fontSize: '0.8rem',
-                        fontWeight: 700,
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '6px',
-                        background: isActive ? 'rgba(250, 204, 21, 0.2)' : 'rgba(255, 255, 255, 0.03)',
-                        color: isActive ? 'var(--accent-gold)' : 'var(--text-secondary)',
-                        border: isActive ? '1px solid var(--accent-gold)' : '1px solid rgba(255, 255, 255, 0.06)',
-                        transition: 'all 0.15s ease'
-                      }}
                     >
                       {ELEMENT_ICONS[ele] && (
                         <img 
                           src={ELEMENT_ICONS[ele]} 
                           alt={ele} 
-                          style={{ width: '14px', height: '14px' }} 
+                          style={{ width: '18px', height: '18px', objectFit: 'contain' }} 
                           onError={(e) => {
                             if (ELEMENT_ICONS_FALLBACK && ELEMENT_ICONS_FALLBACK[ele] && e.currentTarget.src !== ELEMENT_ICONS_FALLBACK[ele]) {
                               e.currentTarget.src = ELEMENT_ICONS_FALLBACK[ele];
@@ -487,14 +482,14 @@ export default function App() {
                           }}
                         />
                       )}
-                      {ele}
+                      <span>{ele}</span>
                     </button>
                   );
                 })}
               </div>
             </div>
 
-            {/* Resonators Grid */}
+            {/* Resonator Roster Grid (Sorted by Release Version Descending) */}
             <div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fill, minmax(130px, 1fr))',
@@ -528,26 +523,27 @@ export default function App() {
                       {r.rarity}★
                     </div>
 
-                    {/* Element Icon Badge */}
+                    {/* Element Icon Badge (Round Colored Official Badge) */}
                     {ELEMENT_ICONS[r.element] && (
                       <div style={{
                         position: 'absolute',
                         top: '6px',
                         right: '6px',
                         zIndex: 2,
-                        width: '20px',
-                        height: '20px',
+                        width: '22px',
+                        height: '22px',
                         borderRadius: '50%',
-                        background: 'rgba(0, 0, 0, 0.6)',
+                        background: 'rgba(0, 0, 0, 0.65)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        border: '1px solid rgba(255, 255, 255, 0.2)'
+                        border: '1px solid rgba(255, 255, 255, 0.25)',
+                        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.6)'
                       }}>
                         <img 
                           src={ELEMENT_ICONS[r.element]} 
                           alt={r.element} 
-                          style={{ width: '13px', height: '13px' }} 
+                          style={{ width: '16px', height: '16px', objectFit: 'contain' }} 
                           onError={(e) => {
                             if (ELEMENT_ICONS_FALLBACK && ELEMENT_ICONS_FALLBACK[r.element] && e.currentTarget.src !== ELEMENT_ICONS_FALLBACK[r.element]) {
                               e.currentTarget.src = ELEMENT_ICONS_FALLBACK[r.element];
@@ -604,16 +600,16 @@ export default function App() {
                           position: 'absolute',
                           bottom: '4px',
                           right: '4px',
-                          width: '18px',
-                          height: '18px',
+                          width: '20px',
+                          height: '20px',
                           borderRadius: '50%',
                           background: 'var(--accent-gold)',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          boxShadow: '0 0 8px rgba(0, 0, 0, 0.8)'
+                          boxShadow: '0 0 10px rgba(0, 0, 0, 0.9)'
                         }}>
-                          <CheckCircle2 size={14} color="#000" />
+                          <CheckCircle2 size={15} color="#000" />
                         </div>
                       )}
                     </div>
@@ -648,7 +644,7 @@ export default function App() {
                             borderRadius: '4px',
                             background: 'rgba(255, 255, 255, 0.08)',
                             color: '#94a3b8',
-                            fontWeight: 600
+                            fontWeight: 700
                           }}>
                             v{r.releaseVersion}
                           </span>
@@ -667,11 +663,11 @@ export default function App() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <Swords size={22} color="var(--accent-gold)" />
                 <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#fff' }}>
-                  Đội Hình Đề Xuất Tối Ưu ({optimalTeams.length} Đội Không Trùng Nhân Vật)
+                  Đội Hình Đề Xuất Tối Ưu • {optimalTeams.length} Đội Khuyến Nghị
                 </h2>
               </div>
               <span style={{ fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
-                Tất cả đội hình tuân thủ quy tắc <strong>1 Main DPS + 1 Buffer + 1 Sustain</strong>
+                Tất cả đội hình tuân thủ cấu trúc chuẩn <strong>Slot 1 Main DPS + Slot 2 Buffer + Slot 3 Sustain</strong>
               </span>
             </div>
 
@@ -679,10 +675,10 @@ export default function App() {
               <div className="glass-panel" style={{ padding: '60px 24px', textAlign: 'center', color: 'var(--text-muted)' }}>
                 <Users size={48} style={{ margin: '0 auto 16px auto', opacity: 0.4 }} />
                 <p style={{ fontSize: '1.1rem', fontWeight: 700, color: '#fff', marginBottom: '8px' }}>
-                  Chưa đủ nhân vật để ghép thành 1 đội hình hoàn chỉnh!
+                  Chưa đủ nhân vật để ghép thành 1 đội hình khuyến nghị!
                 </p>
                 <p style={{ fontSize: '0.88rem', maxWidth: '480px', margin: '0 auto' }}>
-                  Hãy tick chọn ít nhất 3 nhân vật (gồm Main DPS, Buffer và Sustain) ở bảng trên để nhận đề xuất đội hình.
+                  Hãy tick chọn thêm các nhân vật bạn sở hữu ở bảng trên để nhận danh sách đề xuất đội hình chuẩn Meta.
                 </p>
               </div>
             ) : (
@@ -717,7 +713,7 @@ export default function App() {
                             fontFamily: 'var(--font-tactical)',
                             letterSpacing: '0.5px'
                           }}>
-                            TEAM #{tIdx + 1}
+                            META #{tIdx + 1}
                           </span>
                           <h3 style={{ fontSize: '1.25rem', fontWeight: 900, color: '#fff' }}>
                             {team.name}
@@ -727,9 +723,9 @@ export default function App() {
                             fontWeight: 800,
                             padding: '2px 8px',
                             borderRadius: '4px',
-                            background: team.hasQuickswap ? 'rgba(192, 132, 252, 0.15)' : 'rgba(56, 189, 248, 0.15)',
-                            color: team.hasQuickswap ? 'var(--accent-purple)' : 'var(--accent-cyan)',
-                            border: `1px solid ${team.hasQuickswap ? 'rgba(192, 132, 252, 0.35)' : 'rgba(56, 189, 248, 0.35)'}`
+                            background: team.tier === 'T0' ? 'rgba(250, 204, 21, 0.15)' : 'rgba(56, 189, 248, 0.15)',
+                            color: team.tier === 'T0' ? 'var(--accent-gold)' : 'var(--accent-cyan)',
+                            border: `1px solid ${team.tier === 'T0' ? 'rgba(250, 204, 21, 0.35)' : 'rgba(56, 189, 248, 0.35)'}`
                           }}>
                             {team.type}
                           </span>
@@ -757,7 +753,7 @@ export default function App() {
                         }}
                       >
                         <Swords size={16} />
-                        <span>Xem Rotation & Combo Chi Tiết</span>
+                        <span>Xem Chuỗi Combo</span>
                         <ChevronRight size={16} />
                       </button>
                     </div>
@@ -771,6 +767,7 @@ export default function App() {
                       {team.characters.map((char, cIdx) => (
                         <div
                           key={cIdx}
+                          onClick={() => setSelectedTeamForRotation(team)}
                           style={{
                             display: 'flex',
                             alignItems: 'center',
@@ -778,8 +775,12 @@ export default function App() {
                             padding: '12px 14px',
                             background: 'rgba(255, 255, 255, 0.025)',
                             borderRadius: '10px',
-                            border: '1px solid rgba(255, 255, 255, 0.06)'
+                            border: '1px solid rgba(255, 255, 255, 0.06)',
+                            cursor: 'pointer',
+                            transition: 'all 0.2s ease'
                           }}
+                          onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255, 255, 255, 0.06)'; }}
+                          onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255, 255, 255, 0.025)'; }}
                         >
                           {/* Character Avatar */}
                           <div style={{
@@ -831,10 +832,10 @@ export default function App() {
         </div>
       )}
 
-      {/* TAB 2: TOWER OF ADVERSITY (TOA) SOLVER • ĐÚNG CHUẨN THÁP GIỮA 2 TEAM VÀ 2 THÁP BÊN */}
+      {/* TAB 2: TOWER OF ADVERSITY SOLVER • 100% KHÔNG TRÙNG NHÂN VẬT */}
       {activeTab === 'toa' && (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '26px' }}>
-          {/* Header ToA Tinh Gọn */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '26px' }} className="animate-fade-in-up">
+          {/* Header ToA */}
           <div className="glass-panel" style={{
             padding: '20px 24px',
             border: '1px solid rgba(243, 186, 47, 0.35)',
@@ -878,7 +879,7 @@ export default function App() {
               fontWeight: 700,
               border: '1px solid rgba(56, 189, 248, 0.3)'
             }}>
-              Phân Phối Thể Lực 10 Vigor / Nhân Vật
+              Phân Phối 10 Thể Lực Mỗi Nhân Vật • Không Trùng Lặp
             </div>
           </div>
 
@@ -889,13 +890,13 @@ export default function App() {
                 Cần tối thiểu 6 nhân vật đã chọn để phân bổ vào các tháp!
               </p>
               <p style={{ fontSize: '0.86rem', maxWidth: '500px', margin: '0 auto' }}>
-                Hãy quay lại tab "Tự Động Xếp Đội" và tick thêm nhân vật để giải bài toán Tower of Adversity.
+                Hãy quay lại tab Tự Động Xếp Đội và tick thêm nhân vật để giải bài toán Tower of Adversity.
               </p>
             </div>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
               
-              {/* 1. THÁP GIỮA (Hazard Tower) • 2 TEAM RIÊNG BIỆT (TẦNG 1-2 & TẦNG 3-4) */}
+              {/* 1. THÁP GIỮA (Hazard Tower) */}
               <div className="glass-panel" style={{
                 padding: '24px',
                 borderLeft: '5px solid #ef4444',
@@ -915,7 +916,7 @@ export default function App() {
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                       <Flame size={22} color="#ef4444" />
                       <h3 style={{ fontSize: '1.35rem', fontWeight: 900, color: '#fff' }}>
-                        Hazard Tower (Tháp Hiểm Họa - Giữa)
+                        Hazard Tower
                       </h3>
                       <span style={{
                         fontSize: '0.74rem',
@@ -926,7 +927,7 @@ export default function App() {
                         color: '#f87171',
                         border: '1px solid rgba(239, 68, 68, 0.4)'
                       }}>
-                        4 Tầng • Tiêu Hao 5 Thể Lực / Tầng
+                        4 Tầng • Tiêu Hao 5 Thể Lực Mỗi Tầng
                       </span>
                     </div>
                     <div style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', marginTop: '6px' }}>
@@ -936,7 +937,7 @@ export default function App() {
                 </div>
 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '18px' }}>
-                  {/* Card 1: Team Tầng 3-4 (Boss Cuối - Ưu Tiên Buff Mùa) */}
+                  {/* Card 1: Team Tầng 3-4 Boss */}
                   <div style={{
                     background: 'rgba(0, 0, 0, 0.45)',
                     padding: '18px',
@@ -953,10 +954,10 @@ export default function App() {
                         padding: '3px 8px',
                         borderRadius: '4px'
                       }}>
-                        TẦNG 3 & 4 (ĐỈNH ĐIỂM BOSS)
+                        TẦNG 3 VÀ 4 BOSS
                       </span>
                       <span style={{ fontSize: '0.74rem', color: 'var(--accent-gold)', fontWeight: 700 }}>
-                        5 + 5 = 10 / 10 Vigor (Cạn Thể Lực)
+                        10/10 Thể Lực
                       </span>
                     </div>
 
@@ -1016,7 +1017,7 @@ export default function App() {
                     </button>
                   </div>
 
-                  {/* Card 2: Team Tầng 1-2 (Khởi Đầu - Ưu Tiên Khắc Chế Hệ) */}
+                  {/* Card 2: Team Tầng 1-2 Khởi Đầu */}
                   <div style={{
                     background: 'rgba(0, 0, 0, 0.45)',
                     padding: '18px',
@@ -1033,10 +1034,10 @@ export default function App() {
                         padding: '3px 8px',
                         borderRadius: '4px'
                       }}>
-                        TẦNG 1 & 2 (KHỞI ĐẦU)
+                        TẦNG 1 VÀ 2 KHỞI ĐẦU
                       </span>
                       <span style={{ fontSize: '0.74rem', color: 'var(--accent-gold)', fontWeight: 700 }}>
-                        5 + 5 = 10 / 10 Vigor (Cạn Thể Lực)
+                        10/10 Thể Lực
                       </span>
                     </div>
 
@@ -1101,7 +1102,7 @@ export default function App() {
               {/* 2. HAI THÁP BÊN (THÁP TRÁI & THÁP PHẢI) */}
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(460px, 1fr))', gap: '22px' }}>
                 
-                {/* 2A. Resonant Tower (Tháp Trái) */}
+                {/* 2A. Resonant Tower */}
                 <div className="glass-panel" style={{
                   padding: '22px',
                   borderLeft: '5px solid #f43f5e',
@@ -1111,7 +1112,7 @@ export default function App() {
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <Shield size={20} color="#f43f5e" />
                       <h3 style={{ fontSize: '1.2rem', fontWeight: 900, color: '#fff' }}>
-                        Resonant Tower (Tháp Trái)
+                        Resonant Tower
                       </h3>
                     </div>
                     <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
@@ -1126,7 +1127,7 @@ export default function App() {
                         Đội Hình Chủ Lực Tháp Trái: {toaSolution.resonantTower.bossFloor.assignedTeam?.name}
                       </span>
                       <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
-                        Tầng 4 (4 Vigor) • Tầng 1-3 (6 Vigor)
+                        Tầng 4 • 4 Thể Lực | Tầng 1-3 • 6 Thể Lực
                       </span>
                     </div>
 
@@ -1164,7 +1165,7 @@ export default function App() {
                   </button>
                 </div>
 
-                {/* 2B. Echoing Tower (Tháp Phải) */}
+                {/* 2B. Echoing Tower */}
                 <div className="glass-panel" style={{
                   padding: '22px',
                   borderLeft: '5px solid #facc15',
@@ -1174,7 +1175,7 @@ export default function App() {
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <Activity size={20} color="#facc15" />
                       <h3 style={{ fontSize: '1.2rem', fontWeight: 900, color: '#fff' }}>
-                        Echoing Tower (Tháp Phải)
+                        Echoing Tower
                       </h3>
                     </div>
                     <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
@@ -1189,7 +1190,7 @@ export default function App() {
                         Đội Hình Chủ Lực Tháp Phải: {toaSolution.echoingTower.bossFloor.assignedTeam?.name}
                       </span>
                       <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
-                        Tầng 4 (4 Vigor) • Tầng 1-3 (6 Vigor)
+                        Tầng 4 • 4 Thể Lực | Tầng 1-3 • 6 Thể Lực
                       </span>
                     </div>
 
@@ -1234,15 +1235,19 @@ export default function App() {
 
       {/* TAB 3: PITY TRACKER */}
       {activeTab === 'pity' && (
-        <PityTracker />
+        <div className="animate-fade-in-up">
+          <PityTracker />
+        </div>
       )}
 
       {/* TAB 4: WAVEPLATE TRACKER */}
       {activeTab === 'stamina' && (
-        <WaveplateTracker />
+        <div className="animate-fade-in-up">
+          <WaveplateTracker />
+        </div>
       )}
 
-      {/* Rotation Modal Game8 (Popup) */}
+      {/* Rotation Modal Popup */}
       {selectedTeamForRotation && (
         <RotationModal
           team={selectedTeamForRotation}

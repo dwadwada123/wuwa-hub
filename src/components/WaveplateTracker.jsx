@@ -122,7 +122,7 @@ export default function WaveplateTracker() {
     const mins = fullDate.getMinutes().toString().padStart(2, '0');
     const remainH = Math.floor(minutesNeeded / 60);
     const remainM = minutesNeeded % 60;
-    return `${hours}:${mins} (khoảng ${remainH}h ${remainM}m nữa)`;
+    return `${hours}:${mins} • khoảng ${remainH}h ${remainM}m nữa`;
   };
 
   const percentFull = Math.round((currentStamina / MAX_STAMINA) * 100);
@@ -156,7 +156,7 @@ export default function WaveplateTracker() {
                 Theo Dõi Thể Lực Waveplate
               </h3>
               <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', margin: 0 }}>
-                Tự động tính toán điểm hồi phục theo thời gian thực (6 phút / 1 điểm)
+                Tự động tính toán điểm hồi phục theo thời gian thực • 6 phút / 1 điểm
               </p>
             </div>
           </div>
@@ -236,11 +236,11 @@ export default function WaveplateTracker() {
         {/* Quick action buttons */}
         <div style={{ display: 'flex', gap: '8px', marginBottom: '22px', flexWrap: 'wrap' }}>
           {[
-            { label: '-40 (Echo Boss)', val: currentStamina - 40 },
-            { label: '-60 (Boss Thế Giới)', val: currentStamina - 60 },
-            { label: '+60 (Khối Dung Môi)', val: currentStamina + 60 },
-            { label: 'Đầy (240)', val: 240 },
-            { label: 'Cạn (0)', val: 0 }
+            { label: '-40 Echo Boss', val: currentStamina - 40 },
+            { label: '-60 Boss Thế Giới', val: currentStamina - 60 },
+            { label: '+60 Khối Dung Môi', val: currentStamina + 60 },
+            { label: 'Đầy 240', val: 240 },
+            { label: 'Cạn 0', val: 0 }
           ].map((btn, idx) => (
             <button
               key={idx}
@@ -312,7 +312,7 @@ export default function WaveplateTracker() {
               <Info size={14} color="#a78bfa" /> Tốc độ hồi phục
             </div>
             <div style={{ fontSize: '0.95rem', fontWeight: 800, color: '#e2e8f0' }}>
-              1 điểm / 6 phút (10/h)
+              1 điểm / 6 phút • 10 điểm mỗi giờ
             </div>
           </div>
         </div>

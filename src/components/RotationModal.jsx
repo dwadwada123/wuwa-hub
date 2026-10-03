@@ -307,7 +307,7 @@ export default function RotationModal({ team, onClose }) {
               transition: 'all 0.2s ease'
             }}
           >
-            <BarChart3 size={16} /> Chỉ Số Chuẩn & Bộ Echo ({activeChar.name})
+            <BarChart3 size={16} /> Chỉ Số Chuẩn & Bộ Echo • {activeChar.name}
           </button>
         </div>
 
@@ -322,7 +322,7 @@ export default function RotationModal({ team, onClose }) {
               fontWeight: 800,
               marginBottom: '16px'
             }}>
-              🔄 VÒNG LẶP COMBO CHUẨN XÁC THEO THỨ TỰ (SUSTAIN ➔ BUFFER ➔ MAIN CARRY)
+              🔄 VÒNG LẶP COMBO CHUẨN XÁC: SUSTAIN ➔ BUFFER ➔ MAIN CARRY
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
@@ -430,7 +430,7 @@ export default function RotationModal({ team, onClose }) {
               </span>
             </div>
 
-            {/* 4 Chỉ Số Chuẩn Khuyến Nghị (Target Benchmark Stats) */}
+            {/* 4 Chỉ Số Chuẩn Khuyến Nghị */}
             <div style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
@@ -595,19 +595,19 @@ export default function RotationModal({ team, onClose }) {
                     </div>
                   )}
                   <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontSize: '0.74rem', color: 'var(--accent-gold)', fontWeight: 800 }}>Echo Chủ Lực (Cost 4):</div>
+                    <div style={{ fontSize: '0.74rem', color: 'var(--accent-gold)', fontWeight: 800 }}>Echo Chủ Lực Cost 4:</div>
                     <div style={{ fontSize: '0.88rem', fontWeight: 800, color: '#fff', marginTop: '2px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{buildGuide.mainEcho4Cost}</div>
                     <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)', marginTop: '2px' }}>Dòng chính: {buildGuide.mainStats.cost4}</div>
                   </div>
                 </div>
 
                 <div style={{ background: 'rgba(255, 255, 255, 0.03)', padding: '10px 14px', borderRadius: '8px' }}>
-                  <div style={{ fontSize: '0.74rem', color: 'var(--accent-cyan)', fontWeight: 800 }}>Echo Tầm Trung (Cost 3 x2):</div>
+                  <div style={{ fontSize: '0.74rem', color: 'var(--accent-cyan)', fontWeight: 800 }}>Echo Tầm Trung Cost 3 x2:</div>
                   <div style={{ fontSize: '0.86rem', fontWeight: 700, color: '#fff', marginTop: '2px' }}>{buildGuide.mainStats.cost3}</div>
                 </div>
 
                 <div style={{ background: 'rgba(255, 255, 255, 0.03)', padding: '10px 14px', borderRadius: '8px' }}>
-                  <div style={{ fontSize: '0.74rem', color: 'var(--accent-green)', fontWeight: 800 }}>Echo Cơ Bản (Cost 1 x2):</div>
+                  <div style={{ fontSize: '0.74rem', color: 'var(--accent-green)', fontWeight: 800 }}>Echo Cơ Bản Cost 1 x2:</div>
                   <div style={{ fontSize: '0.86rem', fontWeight: 700, color: '#fff', marginTop: '2px' }}>{buildGuide.mainStats.cost1}</div>
                 </div>
               </div>

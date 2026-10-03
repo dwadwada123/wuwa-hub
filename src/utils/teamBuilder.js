@@ -78,7 +78,7 @@ export const RESONATOR_POWER_TIER = {
 // Danh sách các nhân vật đảm nhiệm vai trò hồi phục / tạo lá chắn chân chính (Sustain / Healer / Shielder)
 // Danh sách các nhân vật đảm nhiệm vai trò hồi phục / tạo lá chắn chân chính (Sustain / Healer / Shielder)
 export const TRUE_SUSTAIN_IDS = new Set([
-  'shorekeeper', 'verina', 'baizhi', 'youhu', 'jianxin', 'taoqi', 'buling', 'suisui', 'denia', 'lucilla', 'mornye'
+  'shorekeeper', 'verina', 'chisa', 'baizhi', 'youhu', 'jianxin', 'taoqi', 'buling', 'suisui', 'denia'
 ]);
 
 // Bảng ánh xạ icon chính thức của toàn bộ 36 bộ Echo Sonata (từ 1.0 đến phiên bản 3.7)
@@ -212,9 +212,9 @@ function _getResonatorBuildGuideInternal(resonator) {
       },
       subStatsPriority: ['Hiệu Quả Nạp Năng Lượng', 'HP%', 'HP Cố Định', 'Kháng Sát Thương'],
       recommendedWeapons: [
-        'Stellar Symphony (Trấn 5★)',
-        'Variation (4★ Nạp Concerto Tối Ưu)',
-        'Rectifier of Voyager (3★ Nạp F2P)'
+        'Stellar Symphony',
+        'Variation',
+        'Rectifier of Voyager'
       ]
     };
   }
@@ -242,9 +242,9 @@ function _getResonatorBuildGuideInternal(resonator) {
       },
       subStatsPriority: ['Hiệu Quả Nạp Năng Lượng', 'Tấn Công%', 'Tấn Công Cố Định'],
       recommendedWeapons: [
-        'Variation (4★ Nạp Concerto Thần Tốc)',
-        'Cosmic Ripples (5★ Chuẩn)',
-        'Rectifier of Voyager (3★ F2P)'
+        'Variation',
+        'Cosmic Ripples',
+        'Rectifier of Voyager'
       ]
     };
   }
@@ -270,7 +270,7 @@ function _getResonatorBuildGuideInternal(resonator) {
         cost1: 'HP% + HP%'
       },
       subStatsPriority: ['Hiệu Quả Nạp Năng Lượng', 'HP%', 'HP Cố Định'],
-      recommendedWeapons: ['Variation (4★)', 'Rectifier of Voyager (3★)']
+      recommendedWeapons: ['Variation', 'Rectifier of Voyager']
     };
   }
 
@@ -296,9 +296,9 @@ function _getResonatorBuildGuideInternal(resonator) {
       },
       subStatsPriority: ['Hiệu Quả Nạp Năng Lượng', 'HP%', 'HP Cố Định', 'Phòng Ngự%'],
       recommendedWeapons: [
-        'Broadblade#41 (4★ Nạp Concerto)',
-        'Discord (4★)',
-        'Originite: Type IV (3★ Hồi Máu Toàn Đội)'
+        'Broadblade#41',
+        'Discord',
+        'Originite: Type IV'
       ]
     };
   }
@@ -325,7 +325,7 @@ function _getResonatorBuildGuideInternal(resonator) {
       },
       subStatsPriority: ['Phòng Ngự%', 'Hiệu Quả Nạp', 'Phòng Ngự Cố Định', 'Tỉ Lệ Bạo Kích'],
       recommendedWeapons: [
-        id === 'taoqi' ? 'Discord (4★ Hồi Concerto)' : 'Originite: Type IV (3★ Hồi Máu Toàn Đội)'
+        id === 'taoqi' ? 'Discord' : 'Originite: Type IV'
       ]
     };
   }
@@ -333,7 +333,7 @@ function _getResonatorBuildGuideInternal(resonator) {
   // 6. Hsin (5★ Electro Rectifier Sentinel - Main DPS)
   if (id === 'hsin') {
     return {
-      statType: 'Main Carry DPS (Unison)',
+      statType: 'Main Carry DPS',
       echoImage: ECHO_IMAGE_MAP['Thundering Mephis'],
       targetStats: {
         primaryLabel: 'Tấn Công',
@@ -359,9 +359,9 @@ function _getResonatorBuildGuideInternal(resonator) {
         'Sát Thương Kỹ Năng Cộng Hưởng'
       ],
       recommendedWeapons: [
-        'Blooming Jadehaven (Trấn 5★)',
-        'Cosmic Ripples (5★ Chuẩn)',
-        'Augment (4★ Battlepass)'
+        'Blooming Jadehaven',
+        'Cosmic Ripples',
+        'Augment'
       ]
     };
   }
@@ -395,9 +395,9 @@ function _getResonatorBuildGuideInternal(resonator) {
         'Sát Thương Giải Phóng Cộng Hưởng'
       ],
       recommendedWeapons: [
-        "Thunder's Horizon (Trấn 5★)",
-        'Emerald of Genesis (5★ Chuẩn)',
-        'Commando of Conviction (4★)'
+        "Thunder's Horizon",
+        'Emerald of Genesis',
+        'Commando of Conviction'
       ]
     };
   }
@@ -405,7 +405,7 @@ function _getResonatorBuildGuideInternal(resonator) {
   // 8. Lucy (5★ Spectro Pistols - Main DPS)
   if (id === 'lucy') {
     return {
-      statType: 'Main Carry DPS (Spectro)',
+      statType: 'Main Carry DPS',
       echoImage: ECHO_IMAGE_MAP['Jué'],
       targetStats: {
         primaryLabel: 'Tấn Công',
@@ -431,9 +431,9 @@ function _getResonatorBuildGuideInternal(resonator) {
         'Sát Thương Đánh Thường & Trọng Kích'
       ],
       recommendedWeapons: [
-        'Static Mist (5★ Chuẩn)',
-        'Novaburst (4★ Battlepass)',
-        'Cadenza (4★)'
+        'Static Mist',
+        'Novaburst',
+        'Cadenza'
       ]
     };
   }
@@ -519,8 +519,8 @@ function _getResonatorBuildGuideInternal(resonator) {
     ],
     recommendedWeapons: [
       resonator.bestWeapon || 'Vũ khí Trấn 5★',
-      'Vũ khí 5★ Chuẩn (Emerald of Genesis / Ages of Harvest / Cosmic Ripples)',
-      'Vũ khí 4★ Battlepass (Autumntrace / Novaburst / Lumingloss)'
+      'Vũ khí 5★ Chuẩn Emerald of Genesis / Ages of Harvest / Cosmic Ripples',
+      'Vũ khí 4★ Battlepass Autumntrace / Novaburst / Lumingloss'
     ]
   };
 }
@@ -535,30 +535,32 @@ function buildDetailedStandardRotation(mainDps, buffer, sustain) {
   const mId = mainDps?.id || '';
 
   // 1. Bước 1: Sustain / Healer
-  let sEcho = 'Bell-Borne Geochelone (Tạo khiên chắn giảm 50% sát thương và tăng 12% ATK)';
+  let sEcho = 'Bell-Borne Geochelone tạo khiên chắn giảm 50% sát thương và tăng 12% ATK';
   if (sustain?.id === 'shorekeeper') {
-    sEcho = 'Fallacy of No Return (Kích hoạt Stella Field buff 10% ATK & tăng 10% Energy Regen)';
+    sEcho = 'Fallacy of No Return kích hoạt Stella Field buff 10% ATK và tăng 10% nạp năng lượng';
   } else if (sustain?.id === 'mornye') {
-    sEcho = 'Bell-Borne Geochelone (Kích hoạt lá chắn dung nham giảm 50% sát thương)';
+    sEcho = 'Bell-Borne Geochelone kích hoạt lá chắn dung nham giảm 50% sát thương';
+  } else if (sustain?.id === 'chisa') {
+    sEcho = 'Nightmare Crownless kích hoạt đòn đánh phối hợp Havoc và hồi phục sinh mệnh cho đồng minh';
   }
 
   const step1 = {
     step: 1,
     char: sName,
     roleTitle: 'Sustain / Healer • Khởi Động Sàn Đấu',
-    tokens: ['E', 'R (Liberation)', 'Echo', 'Outro'],
-    actionText: `Ra sân đầu tiên ➔ Tung Resonance Skill (E) và bật Resonance Liberation (R) mở vùng hồi phục & buff công toàn đội ➔ Kích hoạt ${sEcho} ➔ Thực hiện đòn đánh thường/trọng kích tích đầy 100% thanh Concerto ➔ Kích hoạt Outro Skill buff 15% All-Type DMG Deepen cho đồng minh tiếp theo.`
+    tokens: ['Kỹ năng E', 'Chiêu R', 'Echo', 'Outro'],
+    actionText: `Ra sân đầu tiên ➔ Tung Kỹ năng E và bật Chiêu R mở vùng hồi phục & buff công toàn đội ➔ Kích hoạt ${sEcho} ➔ Thực hiện đòn đánh thường/trọng kích tích đầy 100% thanh Concerto ➔ Kích hoạt Outro Skill buff 15% All-Type DMG Deepen cho đồng minh tiếp theo.`
   };
 
   // 2. Bước 2: Sub-DPS / Buffer
-  let bufferDetail = `Intro nhận buff từ Sustain ➔ Dùng Skill E và Resonance Liberation (R) ➔ Bật Echo Sonata Moonlit Clouds (Impermanence Heron) khuếch đại 12% ATK ➔ Kích hoạt cơ chế Forte tích thần tốc 100% thanh Concerto ➔ Outro truyền buff chuyên biệt cho ${mName}.`;
+  let bufferDetail = `Intro nhận buff từ Sustain ➔ Dùng Kỹ năng E và Chiêu R ➔ Bật Echo Sonata Moonlit Clouds Impermanence Heron khuếch đại 12% ATK ➔ Kích hoạt cơ chế Forte tích thần tốc 100% thanh Concerto ➔ Outro truyền buff chuyên biệt cho ${mName}.`;
   
   if (buffer?.id === 'suoming') {
-    bufferDetail = `Intro vào sân nhận buff từ Sustain ➔ Tung Skill E chuyển đổi thế kiếm Azure Surge ➔ Tích nạp Concerto nhanh ➔ Bật Impermanence Heron ➔ Outro truyền Lôi Vũ Đồng Điệu nạp 25% Concerto và tăng cường sát thương Lôi cho ${mName}.`;
+    bufferDetail = `Intro vào sân nhận buff từ Sustain ➔ Tung Kỹ năng E chuyển đổi thế kiếm Azure Surge ➔ Tích nạp Concerto nhanh ➔ Bật Impermanence Heron ➔ Outro truyền Lôi Vũ Đồng Điệu nạp 25% Concerto và tăng cường sát thương Lôi cho ${mName}.`;
   } else if (buffer?.id === 'rebecca') {
     bufferDetail = `Intro vào sân ➔ Tung đòn súng điện Overdrive E ➔ Bấm R kích hoạt điện thế nạp đầy Concerto ➔ Bật Heron Echo ➔ Outro buff sát thương cho ${mName}.`;
   } else if (buffer?.id === 'sanhua') {
-    bufferDetail = `Intro vào sân ➔ Skill (E) giáng băng ➔ Liberation (R) tạo vết nứt băng ➔ Giữ Trọng Kích Detonate căn đúng thanh chuẩn nổ toàn bộ sông băng ➔ Bật Heron Echo ➔ Outro truyền trọn vẹn 38% Basic ATK DMG Deepen cho ${mName}.`;
+    bufferDetail = `Intro vào sân ➔ Kỹ năng E giáng băng ➔ Chiêu R tạo vết nứt băng ➔ Giữ Trọng Kích Detonate căn đúng thanh chuẩn nổ toàn bộ sông băng ➔ Bật Heron Echo ➔ Outro truyền trọn vẹn 38% Basic ATK DMG Deepen cho ${mName}.`;
   } else if (buffer?.id === 'zhezhi') {
     bufferDetail = `Intro vào sân nhận buff ➔ E ➔ R triệu hồi linh hồn mực vẽ bắn đòn phối hợp ➔ Chuỗi đánh thường lướt bút nạp đầy thanh Concerto ➔ Bật Heron Echo ➔ Outro buff 20% Glacio DMG và 25% Resonance Skill DMG Deepen cho ${mName}.`;
   } else if (buffer?.id === 'yinlin') {
@@ -566,49 +568,51 @@ function buildDetailedStandardRotation(mainDps, buffer, sustain) {
   } else if (buffer?.id === 'mortefi') {
     bufferDetail = `Intro vào sân ➔ E ➔ Bấm R kích hoạt rồng lửa Burning Rhapsody bắn theo mỗi đòn đánh của đồng minh ➔ Bật Heron Echo ➔ Outro truyền 38% Heavy Attack DMG Deepen cho ${mName}.`;
   } else if (buffer?.id === 'danjin') {
-    bufferDetail = `Intro nhận buff ➔ Tung chuỗi Skill E rút máu tích đầy thanh Ruby Blossom ➔ Trọng kích xoay kiếm tiêu hao máu nạp đầy Concerto ➔ Outro buff 23% Havoc DMG Deepen cho ${mName}.`;
+    bufferDetail = `Intro nhận buff ➔ Tung chuỗi Kỹ năng E rút máu tích đầy thanh Ruby Blossom ➔ Trọng kích xoay kiếm tiêu hao máu nạp đầy Concerto ➔ Outro buff 23% Havoc DMG Deepen cho ${mName}.`;
   }
 
   const step2 = {
     step: 2,
     char: bName,
     roleTitle: 'Sub-DPS / Buffer • Nạp Concerto & Truyền Trao Deepen',
-    tokens: ['Intro', 'E', 'R', 'Forte Burst', 'Heron Echo', 'Outro'],
+    tokens: ['Intro', 'Kỹ năng E', 'Chiêu R', 'Forte Burst', 'Heron Echo', 'Outro'],
     actionText: bufferDetail
   };
 
   // 3. Bước 3: Main DPS Burst Window
-  let dpsDetail = `Intro vào sân thừa hưởng toàn bộ hiệu ứng Deepen trong 14 giây ➔ Kích hoạt thế đánh cường hóa Forte đặc trưng ➔ Tung Skill E nạp đầy thanh năng lượng ➔ Bật Echo chủ lực (4-Cost) ➔ Xả Resonance Liberation (R) nộ dứt điểm toàn bộ kẻ địch ➔ Hoàn tất chuỗi và chuẩn bị lặp lại vòng xoay.`;
+  let dpsDetail = `Intro vào sân thừa hưởng toàn bộ hiệu ứng Deepen trong 14 giây ➔ Kích hoạt thế đánh cường hóa Forte đặc trưng ➔ Tung Kỹ năng E nạp đầy thanh năng lượng ➔ Bật Echo chủ lực 4-Cost ➔ Xả Chiêu R nộ dứt điểm toàn bộ kẻ địch ➔ Hoàn tất chuỗi và chuẩn bị lặp lại vòng xoay.`;
 
   if (mId === 'hsin') {
-    dpsDetail = `Intro vào sân nhận trọn vẹn buff Unison và Deepen ➔ Kích hoạt Skill E ở thể Lôi Cường Hóa (Electro Flare) ➔ Xả Resonance Liberation (R) nộ dứt điểm bão sét diện rộng ➔ Đánh thường cường hóa hoàn tất chuỗi sát thương.`;
+    dpsDetail = `Intro vào sân nhận trọn vẹn buff Unison và Deepen ➔ Kích hoạt Kỹ năng E ở thể Lôi Cường Hóa Electro Flare ➔ Xả Chiêu R nộ dứt điểm bão sét diện rộng ➔ Đánh thường cường hóa hoàn tất chuỗi sát thương.`;
   } else if (mId === 'lucy') {
-    dpsDetail = `Intro vào sân nhận buff ➔ Kích hoạt trạng thái Starlight Hack ➔ Tung chuỗi đạn Spectro định hướng cường hóa liên hoàn ➔ Xả Resonance Liberation (R) pháo sáng quét sạch sàn đấu.`;
+    dpsDetail = `Intro vào sân nhận buff ➔ Kích hoạt trạng thái Starlight Hack ➔ Tung chuỗi đạn Spectro định hướng cường hóa liên hoàn ➔ Xả Chiêu R pháo sáng quét sạch sàn đấu.`;
   } else if (mId === 'camellya') {
     dpsDetail = `Đột kích bằng Intro nhận 38% Basic ATK Deepen từ Sanhua ➔ Giữ Trọng Kích vào trạng thái Ephemeral nhào lộn trên không ➔ Xả chuỗi đánh thường BA4 roi gai xoay tròn liên hoàn ➔ Nhấn E kích hoạt nổ hạt giống gai ➔ Bấm R tung nộ bão hoa bóng tối xóa sổ toàn bộ sàn đấu.`;
   } else if (mId === 'jinhsi') {
-    dpsDetail = `Intro vào sân nhận đòn Coordinated Attack từ Buffer ➔ Lướt Skill E vào trạng thái Incarnation ➔ Tung chuỗi kiếm rồng tích đầy 50 tầng Incandescence ➔ Bấm R xả nộ sấm sét Thanh Long ➔ Giữ phím E kích hoạt đòn Illuminous Dragon nuke hàng triệu sát thương diện rộng.`;
+    dpsDetail = `Intro vào sân nhận đòn Coordinated Attack từ Buffer ➔ Lướt Kỹ năng E vào trạng thái Incarnation ➔ Tung chuỗi kiếm rồng tích đầy 50 tầng Incandescence ➔ Bấm R xả nộ sấm sét Thanh Long ➔ Giữ phím E kích hoạt đòn Illuminous Dragon nuke hàng triệu sát thương diện rộng.`;
   } else if (mId === 'changli') {
-    dpsDetail = `Intro vào sân ➔ Tung đòn đánh thường BA4 nạp 2 tầng Enflamement ➔ Bấm E (True Sight: Charge) lướt kiếm ➔ Nối tiếp BA (True Sight: Conquest) tích đủ 4 tầng ➔ Giữ Trọng Kích Flaming Sacrifice giáng bão kiếm lửa cực đại ➔ Bấm R xả nộ Radiance of Feathers thiêu rụi đối thủ.`;
+    dpsDetail = `Intro vào sân ➔ Tung đòn đánh thường BA4 nạp 2 tầng Enflamement ➔ Bấm E True Sight Charge lướt kiếm ➔ Nối tiếp BA True Sight Conquest tích đủ 4 tầng ➔ Giữ Trọng Kích Flaming Sacrifice giáng bão kiếm lửa cực đại ➔ Bấm R xả nộ Radiance of Feathers thiêu rụi đối thủ.`;
   } else if (mId === 'jiyan') {
     dpsDetail = `Intro vào sân nhận 38% Heavy Attack Deepen từ Mortefi ➔ Bấm R kích hoạt trạng thái Thanh Long hóa thần ➔ Giữ Trọng Kích tung thương rồng lốc xoáy liên tục hất tung và quét sạch quái vật trong 10 giây hiệu lực.`;
   } else if (mId === 'carlotta') {
-    dpsDetail = `Intro nhận buff Băng ➔ Nhấn Skill E nạp đạn Shotgun ➔ Xả 3 phát đạn băng tỏa rộng nát giáp đối thủ ➔ Bấm R nộ bắn pháo đại bác đóng băng và tiêu diệt hoàn toàn kẻ địch.`;
+    dpsDetail = `Intro nhận buff Băng ➔ Nhấn Kỹ năng E nạp đạn Shotgun ➔ Xả 3 phát đạn băng tỏa rộng nát giáp đối thủ ➔ Bấm R nộ bắn pháo đại bác đóng băng và tiêu diệt hoàn toàn kẻ địch.`;
   } else if (mId === 'xiangli_yao') {
     dpsDetail = `Intro nhận 20% Electro và 25% Liberation Deepen từ Yinlin ➔ Bấm R mở không gian Cogitation Horizon ➔ Liên tục bấm E cường hóa tung nắm đấm công nghệ ➔ Kết liễu bằng cú đấm nổ hạt nhân cuối cùng.`;
   } else if (mId === 'rover_havoc') {
     dpsDetail = `Intro nhận 23% Havoc Deepen từ Danjin ➔ Giữ Trọng kích vào trạng thái Dark Surge ➔ Xả chuỗi kiếm bóng tối cường hóa ➔ Bấm R tung nộ lưỡi hái Dead Realm ➔ Triệu hồi Dreamless Echo bổ xuống nổ 50% sát thương gia tăng.`;
   } else if (mId === 'rover_electro') {
-    dpsDetail = `Intro nhận buff Electro & Liberation từ Buffer ➔ Bật Skill E lôi kiếm chém quét tích đầy Forte ➔ Bấm R nộ giáng bão sét Lôi Minh Trảm ➔ Bật Echo Thundering Mephis càn quét toàn sàn đấu.`;
+    dpsDetail = `Intro nhận buff Electro & Liberation từ Buffer ➔ Bật Kỹ năng E lôi kiếm chém quét tích đầy Forte ➔ Bấm R nộ giáng bão sét Lôi Minh Trảm ➔ Bật Echo Thundering Mephis càn quét toàn sàn đấu.`;
   } else if (mId === 'luuk_herssen') {
-    dpsDetail = `Intro nhận buff Glacio & Basic ATK từ Sanhua ➔ Tung Skill E trảm kích băng giá tích lũy Forte ➔ Giữ Trọng Kích chém kiếm ánh sáng hàn băng ➔ Bấm R tung nộ đại kiếm băng phá hủy boss.`;
+    dpsDetail = `Intro nhận buff Glacio & Basic ATK từ Sanhua ➔ Tung Kỹ năng E trảm kích băng giá tích lũy Forte ➔ Giữ Trọng Kích chém kiếm ánh sáng hàn băng ➔ Bấm R tung nộ đại kiếm băng phá hủy boss.`;
+  } else if (mId === 'lucilla') {
+    dpsDetail = `Intro nhận buff Băng và Concerto từ Sanhua ➔ Tung Kỹ năng E đại kiếm băng quét sàn ➔ Giữ Trọng Kích xả chuỗi trảm sương giá cực đại ➔ Xả Chiêu R kết liễu toàn bộ quái vật.`;
   }
 
   const step3 = {
     step: 3,
     char: mName,
-    roleTitle: `Main DPS (${mName}) • Cửa Sổ Dồn Sát Thương Cực Đại`,
-    tokens: ['Intro', 'Forte Stance', 'E', 'Echo Trùm', 'R (Liberation Nuke)'],
+    roleTitle: `Main DPS ${mName} • Cửa Sổ Dồn Sát Thương Cực Đại`,
+    tokens: ['Intro', 'Thế Forte', 'Kỹ năng E', 'Echo Chủ Lực', 'Chiêu R'],
     actionText: dpsDetail
   };
 
@@ -630,34 +634,29 @@ export function generateOptimalTeams(ownedCharacterIds) {
   if (!ownedCharacterIds || ownedCharacterIds.length < 3) return [];
 
   const ownedSet = new Set(ownedCharacterIds);
-  const matchedTemplates = [];
+  const matchedTeams = [];
   const seenTeamKeys = new Set();
 
-  // 1. Thu thập tất cả các Template Meta định nghĩa sẵn mà người dùng sở hữu đủ (LOẠI BỎ TOÀN BỘ QUICKSWAP)
+  // Thu thập tất cả các Template Meta khuyến nghị mà người dùng sở hữu đủ
   for (const template of TEAM_TEMPLATES) {
-    const isQuickswap = 
-      template.type?.toLowerCase().includes('quickswap') ||
-      template.id?.toLowerCase().includes('quickswap') ||
-      template.name?.toLowerCase().includes('quickswap') ||
-      template.tags?.some(t => t.toLowerCase().includes('quickswap'));
-    if (isQuickswap) continue;
-
     const isFullTeam = template.members.every(m => ownedSet.has(m));
     if (isFullTeam) {
       const key = [...template.members].sort().join('-');
+      if (seenTeamKeys.has(key)) continue;
       seenTeamKeys.add(key);
-      const chars = template.members.map(id => getResonator(id)).filter(Boolean);
 
-      // Điểm ưu tiên cao cho Template chính thức (130 - 150 điểm để luôn ăn đứt custom team)
-      let baseScore = template.tier === 'T0' ? 140 : template.tags?.includes('Tier 0') ? 135 : 125;
-      const avgPower = chars.reduce((sum, c) => sum + (RESONATOR_POWER_TIER[c.id] || 75), 0) / (chars.length || 1);
-      const compositeScore = Math.round(baseScore * 0.6 + avgPower * 0.4);
+      const chars = template.members.map(id => getResonator(id)).filter(Boolean);
+      if (chars.length < 3) continue;
 
       const mainChar = chars[0];
       const buffChar = chars[1];
       const sustainChar = chars[2];
 
-      matchedTemplates.push({
+      let baseScore = template.tier === 'T0' ? 145 : template.tier === 'T0.5' ? 135 : 120;
+      const avgPower = chars.reduce((sum, c) => sum + (RESONATOR_POWER_TIER[c.id] || 75), 0) / chars.length;
+      const compositeScore = Math.round(baseScore * 0.6 + avgPower * 0.4);
+
+      matchedTeams.push({
         ...template,
         isCustom: false,
         matchScore: compositeScore,
@@ -669,133 +668,9 @@ export function generateOptimalTeams(ownedCharacterIds) {
     }
   }
 
-  // 2. Thuật toán tự sinh đội hình linh hoạt (Dynamic Heuristic Team Building)
-  const ownedResonators = RESONATORS.filter(r => ownedSet.has(r.id));
-  
-  // Phân loại vai trò chuẩn xác
-  const mainDPSList = ownedResonators.filter(r => 
-    !TRUE_SUSTAIN_IDS.has(r.id) && (r.role.includes('Main') || r.role.includes('Burst') || r.tags.includes('Main DPS'))
-  );
-  
-  const bufferList = ownedResonators.filter(r => 
-    !TRUE_SUSTAIN_IDS.has(r.id) && (r.role.includes('Sub-DPS') || r.role.includes('Buffer') || r.tags.includes('Buffer') || r.role.includes('Coordinated'))
-  );
-  
-  const healerList = ownedResonators.filter(r => TRUE_SUSTAIN_IDS.has(r.id));
-
-  // Fallback danh sách phòng thủ nếu người dùng thiếu healer thuần
-  const defensiveFallbackList = ownedResonators.filter(r => 
-    TRUE_SUSTAIN_IDS.has(r.id) || r.role.includes('Support') || r.role.includes('Shielder')
-  );
-  const sustainPool = healerList.length > 0 ? healerList : defensiveFallbackList.length > 0 ? defensiveFallbackList : ownedResonators;
-
-  const customTeamsByDPS = new Map();
-
-  for (const dps of mainDPSList) {
-    const teamsForDPS = [];
-
-    for (const buff of bufferList) {
-      if (buff.id === dps.id) continue;
-
-      for (const flex of sustainPool) {
-        if (flex.id === dps.id || flex.id === buff.id) continue;
-
-        // BẮT BUỘC: Không bao giờ được có 2 Healer trong cùng 1 đội
-        const healerCount = [dps.id, buff.id, flex.id].filter(id => TRUE_SUSTAIN_IDS.has(id)).length;
-        if (healerCount > 1) continue;
-
-        // BẮT BUỘC: Camellya không bao giờ đi cùng Luuk Herssen
-        if ((dps.id === 'camellya' && buff.id === 'luuk_herssen') || (dps.id === 'luuk_herssen' && buff.id === 'camellya')) continue;
-
-        const teamKey = [dps.id, buff.id, flex.id].sort().join('-');
-        if (seenTeamKeys.has(teamKey)) continue;
-
-        let synergyScore = 70;
-        let notes = `Đội hình linh hoạt với core ${dps.name}`;
-
-        // Kiểm tra tính tương thích Concerto/Outro Deepen đặc hữu
-        if (dps.id === 'camellya' && buff.id === 'sanhua') {
-          synergyScore += 32;
-          notes = 'Sanhua Outro buff 38% Basic ATK cực hợp thế roi gai của Camellya';
-        } else if (dps.id === 'jinhsi' && (buff.id === 'zhezhi' || buff.id === 'yuanwu' || buff.id === 'yinlin')) {
-          synergyScore += 30;
-          notes = `${buff.name} kích hoạt đòn Coordinated Attack nạp 50 tầng Incandescence thần tốc cho Jinhsi`;
-        } else if (dps.id === 'jiyan' && (buff.id === 'mortefi' || buff.id === 'ciaccona')) {
-          synergyScore += 30;
-          notes = `${buff.name} buff Heavy Attack / Aero Erosion khuếch đại Thanh Long Jiyan`;
-        } else if (dps.id === 'carlotta' && (buff.id === 'zhezhi' || buff.id === 'sanhua')) {
-          synergyScore += 28;
-          notes = `${buff.name} tối ưu hóa sát thương Shotgun Băng của Carlotta`;
-        } else if (dps.id === 'luuk_herssen' && (buff.id === 'sanhua' || buff.id === 'zhezhi')) {
-          synergyScore += 29;
-          notes = `${buff.name} gia tăng tốc độ và sát thương đại kiếm băng giá của Luuk Herssen`;
-        } else if (dps.id === 'xiangli_yao' && (buff.id === 'yinlin' || buff.id === 'jianxin')) {
-          synergyScore += 29;
-          notes = `${buff.name} buff Electro & Liberation biến cú đấm của Xiangli Yao thành sát thương cực đại`;
-        } else if (dps.id === 'rover_havoc' && buff.id === 'danjin') {
-          synergyScore += 28;
-          notes = 'Danjin Outro buff 23% Havoc DMG Deepen cho thanh kiếm Dark Surge của Rover Havoc';
-        } else if (dps.id === 'rover_electro' && (buff.id === 'yinlin' || buff.id === 'sanhua')) {
-          synergyScore += 28;
-          notes = `${buff.name} khuếch đại đòn chém sấm sét Lôi Minh Trảm của Rover Electro`;
-        } else if (dps.id === 'hsin' && buff.id === 'suoming') {
-          synergyScore += 35;
-          notes = 'Suoming kích hoạt Unison Boon buff cực mạnh cho Main DPS Hsin';
-        }
-
-        // Điểm cộng nếu có Sustain xịn
-        if (flex.id === 'shorekeeper' || flex.id === 'verina') {
-          synergyScore += 8;
-        }
-
-        const avgPower = ((RESONATOR_POWER_TIER[dps.id] || 75) + (RESONATOR_POWER_TIER[buff.id] || 75) + (RESONATOR_POWER_TIER[flex.id] || 75)) / 3;
-        const totalScore = Math.min(100, Math.round(synergyScore * 0.55 + avgPower * 0.45));
-
-        teamsForDPS.push({
-          id: `custom-${teamKey}`,
-          name: `${dps.name} + ${buff.name} Synergy`,
-          core: dps.id,
-          members: [dps.id, buff.id, flex.id],
-          type: 'Hypercarry',
-          description: notes,
-          tags: [dps.element, 'Synergy Match'],
-          isCustom: true,
-          matchScore: totalScore,
-          characters: [dps, buff, flex],
-          customRotations: {
-            standard: buildDetailedStandardRotation(dps, buff, flex)
-          }
-        });
-      }
-    }
-
-    teamsForDPS.sort((a, b) => b.matchScore - a.matchScore);
-    const topTeams = teamsForDPS.slice(0, 2);
-    topTeams.forEach(t => {
-      seenTeamKeys.add([...t.members].sort().join('-'));
-    });
-    customTeamsByDPS.set(dps.id, topTeams);
-  }
-
-  const flattenedCustomTeams = Array.from(customTeamsByDPS.values()).flat();
-
-  // Sắp xếp: Matched Templates lên đầu tiên (ưu tiên tuyệt đối các đội hình chuẩn meta), sau đó mới tới Custom Teams
-  matchedTemplates.sort((a, b) => b.matchScore - a.matchScore);
-  flattenedCustomTeams.sort((a, b) => b.matchScore - a.matchScore);
-
-  // KẾT HỢP TẤT CẢ ĐỘI HÌNH TỐI ƯU (CHO PHÉP TRÙNG NHÂN VẬT GIỮA CÁC ĐỘI ĐỀ XUẤT ĐỂ NGƯỜI DÙNG CÓ ĐỦ LỰA CHỌN)
-  const allCandidates = [...matchedTemplates, ...flattenedCustomTeams];
-  allCandidates.sort((a, b) => b.matchScore - a.matchScore);
-
-  return allCandidates.filter(team => {
-    const isQuickswap = 
-      team.type?.toLowerCase().includes('quickswap') ||
-      team.id?.toLowerCase().includes('quickswap') ||
-      team.name?.toLowerCase().includes('quickswap') ||
-      team.tags?.some(t => t?.toLowerCase().includes('quickswap')) ||
-      team.hasQuickswap;
-    return !isQuickswap;
-  });
+  // Sắp xếp các đội hình theo điểm sức mạnh và tier
+  matchedTeams.sort((a, b) => (b.matchScore || 0) - (a.matchScore || 0));
+  return matchedTeams;
 }
 
 /**
@@ -808,33 +683,33 @@ export function generateOptimalTeams(ownedCharacterIds) {
  * - 2 Tháp Bên (Tháp Trái & Tháp Phải): 4 Tầng mỗi tháp (Tầng 1: 1 Vigor, Tầng 2: 2 Vigor, Tầng 3: 3 Vigor, Tầng 4: 4 Vigor).
  */
 export const TOA_DATA_SEASON_37 = {
-  seasonName: 'Mùa 3.7 (Tower of Adversity)',
+  seasonName: 'Mùa 3.7',
   seasonPeriod: '01/10/2026 - 31/10/2026',
   
   // 1. THÁP GIỮA (Hazard Tower)
   hazardTower: {
     id: 'hazard',
-    name: 'Hazard Tower (Tháp Hiểm Họa - Giữa)',
+    name: 'Hazard Tower',
     vigorCostPerFloor: 5,
     maxVigorPerCharacter: 10,
     recommendedElement: 'Electro / Unison',
     towerBuff: '+30% Electro & Liberation DMG, +15% ATK khi kích hoạt Unison',
     bossFloors: {
-      name: 'Tầng 3 & 4 (Đỉnh Điểm Boss)',
+      name: 'Tầng 3 & 4 - Đỉnh Điểm Boss',
       vigorCost: 10, // 5 + 5 = 10 Vigor
-      priorityStrategy: 'Ưu tiên Đội Hình Tận Dụng Tối Đa Buff Tháp (+30% Liberation DMG & Unison)',
+      priorityStrategy: 'Ưu tiên Đội Hình Tận Dụng Tối Đa Buff Tháp +30% Liberation DMG & Unison',
       floors: [
-        { floor: 3, name: 'Tầng 3 (Lv 95)', boss: 'Crownless (Hóa Thân)', vigorCost: 5, difficulty: 'Rất Khó' },
-        { floor: 4, name: 'Tầng 4 (Lv 100)', boss: 'Mech Abomination & Thundering Mephis', vigorCost: 5, difficulty: 'Đỉnh Điểm La Hoàn' }
+        { floor: 3, name: 'Tầng 3 - Lv 95', boss: 'Crownless', vigorCost: 5, difficulty: 'Rất Khó' },
+        { floor: 4, name: 'Tầng 4 - Lv 100', boss: 'Mech Abomination & Thundering Mephis', vigorCost: 5, difficulty: 'Đỉnh Điểm La Hoàn' }
       ]
     },
     earlyFloors: {
-      name: 'Tầng 1 & 2 (Khởi Đầu)',
+      name: 'Tầng 1 & 2 - Khởi Đầu',
       vigorCost: 10, // 5 + 5 = 10 Vigor
-      priorityStrategy: 'Ưu tiên Đội Hình Khắc Chế Hệ (Electro / Sát thương diện rộng)',
+      priorityStrategy: 'Ưu tiên Đội Hình Khắc Chế Hệ Electro diện rộng',
       floors: [
-        { floor: 1, name: 'Tầng 1 (Lv 80)', boss: 'Autopuppet Scout & Viridblaze Saurian', vigorCost: 5, difficulty: 'Trung Bình' },
-        { floor: 2, name: 'Tầng 2 (Lv 90)', boss: 'Havoc Warrior & Geohide Saurian', vigorCost: 5, difficulty: 'Khó' }
+        { floor: 1, name: 'Tầng 1 - Lv 80', boss: 'Autopuppet Scout & Viridblaze Saurian', vigorCost: 5, difficulty: 'Trung Bình' },
+        { floor: 2, name: 'Tầng 2 - Lv 90', boss: 'Havoc Warrior & Geohide Saurian', vigorCost: 5, difficulty: 'Khó' }
       ]
     }
   },
@@ -842,21 +717,21 @@ export const TOA_DATA_SEASON_37 = {
   // 2. THÁP TRÁI (Resonant Tower - Tháp Cộng Hưởng)
   resonantTower: {
     id: 'resonant',
-    name: 'Resonant Tower (Tháp Cộng Hưởng - Trái)',
+    name: 'Resonant Tower',
     recommendedElement: 'Havoc / Basic ATK',
     towerBuff: '+40% Sát thương đòn Đánh thường, giảm 10% Kháng Havoc',
     bossFloor: {
       floor: 4,
-      name: 'Tầng 4 (Lv 90 - Boss Cuối)',
+      name: 'Tầng 4 - Lv 90 Boss Cuối',
       boss: 'Mourning Aix & Havoc Dreadmane',
       vigorCost: 4,
-      priorityStrategy: 'Ưu tiên Đội Havoc / Basic ATK (Camellya, Rover Havoc, Sanhua)'
+      priorityStrategy: 'Ưu tiên Đội Havoc / Basic ATK'
     },
     earlyFloors: {
       floors: [
-        { floor: 1, name: 'Tầng 1 (Lv 70)', boss: 'Chasm Guardian & Tambourinist', vigorCost: 1, difficulty: 'Dễ' },
-        { floor: 2, name: 'Tầng 2 (Lv 80)', boss: 'Traffic Illuminator & Spearback', vigorCost: 2, difficulty: 'Trung Bình' },
-        { floor: 3, name: 'Tầng 3 (Lv 85)', boss: 'Flautist & Glacio Dreadmane', vigorCost: 3, difficulty: 'Khó' }
+        { floor: 1, name: 'Tầng 1 - Lv 70', boss: 'Chasm Guardian & Tambourinist', vigorCost: 1, difficulty: 'Dễ' },
+        { floor: 2, name: 'Tầng 2 - Lv 80', boss: 'Traffic Illuminator & Spearback', vigorCost: 2, difficulty: 'Trung Bình' },
+        { floor: 3, name: 'Tầng 3 - Lv 85', boss: 'Flautist & Glacio Dreadmane', vigorCost: 3, difficulty: 'Khó' }
       ],
       totalVigor: 6, // 1 + 2 + 3 = 6 Vigor
       priorityStrategy: 'Đội hình càn quét dọn tầng tiết kiệm thể lực'
@@ -866,21 +741,21 @@ export const TOA_DATA_SEASON_37 = {
   // 3. THÁP PHẢI (Echoing Tower - Tháp Vang Vọng)
   echoingTower: {
     id: 'echoing',
-    name: 'Echoing Tower (Tháp Vang Vọng - Phải)',
+    name: 'Echoing Tower',
     recommendedElement: 'Spectro / Resonance Skill',
-    towerBuff: '+30% Spectro DMG, +25% Sát thương Kỹ năng Cộng hưởng (Skill)',
+    towerBuff: '+30% Spectro DMG, +25% Sát thương Kỹ năng Cộng hưởng',
     bossFloor: {
       floor: 4,
-      name: 'Tầng 4 (Lv 90 - Boss Cuối)',
+      name: 'Tầng 4 - Lv 90 Boss Cuối',
       boss: 'Inferno Rider & Feilian Beringal',
       vigorCost: 4,
-      priorityStrategy: 'Ưu tiên Đội Spectro / Skill DMG (Jinhsi, Phoebe, Zhezhi)'
+      priorityStrategy: 'Ưu tiên Đội Spectro / Skill DMG'
     },
     earlyFloors: {
       floors: [
-        { floor: 1, name: 'Tầng 1 (Lv 70)', boss: 'Cruisewing & Gulpuff Group', vigorCost: 1, difficulty: 'Dễ' },
-        { floor: 2, name: 'Tầng 2 (Lv 80)', boss: 'Cyan-Feathered Heron & Hoochief', vigorCost: 2, difficulty: 'Trung Bình' },
-        { floor: 3, name: 'Tầng 3 (Lv 85)', boss: 'Rocksteady Guardian & Roseshroom', vigorCost: 3, difficulty: 'Khó' }
+        { floor: 1, name: 'Tầng 1 - Lv 70', boss: 'Cruisewing & Gulpuff Group', vigorCost: 1, difficulty: 'Dễ' },
+        { floor: 2, name: 'Tầng 2 - Lv 80', boss: 'Cyan-Feathered Heron & Hoochief', vigorCost: 2, difficulty: 'Trung Bình' },
+        { floor: 3, name: 'Tầng 3 - Lv 85', boss: 'Rocksteady Guardian & Roseshroom', vigorCost: 3, difficulty: 'Khó' }
       ],
       totalVigor: 6, // 1 + 2 + 3 = 6 Vigor
       priorityStrategy: 'Đội hình càn quét dọn tầng tiết kiệm thể lực'
@@ -966,7 +841,7 @@ export function solveTowerOfAdversity(ownedCharacterIds) {
     const teamKey = [dps.id, buff.id, flex.id].sort().join('-');
     return {
       id: `toa-custom-${teamKey}`,
-      name: `${dps.name} + ${buff.name} (${namePrefix})`,
+      name: `${dps.name} + ${buff.name} - ${namePrefix}`,
       core: dps.id,
       members: [dps.id, buff.id, flex.id],
       type: 'Hypercarry',
@@ -1029,12 +904,12 @@ export function solveTowerOfAdversity(ownedCharacterIds) {
       bossFloors: {
         ...TOA_DATA_SEASON_37.hazardTower.bossFloors,
         assignedTeam: hazardBossTeam,
-        vigorUsed: '5 + 5 = 10 / 10 Thể Lực (Cạn kiệt sau Tầng 3-4)'
+        vigorUsed: '10/10 Thể Lực'
       },
       earlyFloors: {
         ...TOA_DATA_SEASON_37.hazardTower.earlyFloors,
         assignedTeam: hazardEarlyTeam,
-        vigorUsed: '5 + 5 = 10 / 10 Thể Lực (Cạn kiệt sau Tầng 1-2)'
+        vigorUsed: '10/10 Thể Lực'
       }
     },
     resonantTower: {
@@ -1042,12 +917,12 @@ export function solveTowerOfAdversity(ownedCharacterIds) {
       bossFloor: {
         ...TOA_DATA_SEASON_37.resonantTower.bossFloor,
         assignedTeam: resonantTeam,
-        vigorUsed: '4 / 10 Thể Lực'
+        vigorUsed: '4/10 Thể Lực'
       },
       earlyFloors: {
         ...TOA_DATA_SEASON_37.resonantTower.earlyFloors,
         assignedTeam: resonantTeam,
-        vigorUsed: '1 + 2 + 3 = 6 / 10 Thể Lực'
+        vigorUsed: '6/10 Thể Lực'
       }
     },
     echoingTower: {
@@ -1055,18 +930,18 @@ export function solveTowerOfAdversity(ownedCharacterIds) {
       bossFloor: {
         ...TOA_DATA_SEASON_37.echoingTower.bossFloor,
         assignedTeam: echoingTeam,
-        vigorUsed: '4 / 10 Thể Lực'
+        vigorUsed: '4/10 Thể Lực'
       },
       earlyFloors: {
         ...TOA_DATA_SEASON_37.echoingTower.earlyFloors,
         assignedTeam: echoingTeam,
-        vigorUsed: '1 + 2 + 3 = 6 / 10 Thể Lực'
+        vigorUsed: '6/10 Thể Lực'
       }
     },
     towers: [
       {
         id: 'hazard',
-        name: 'Hazard Tower (Tháp Hiểm Họa - Giữa)',
+        name: 'Hazard Tower',
         recommendedElement: 'Electro / Unison',
         buff: TOA_DATA_SEASON_37.hazardTower.towerBuff,
         bossTeam: hazardBossTeam,
@@ -1075,7 +950,7 @@ export function solveTowerOfAdversity(ownedCharacterIds) {
       },
       {
         id: 'resonant',
-        name: 'Resonant Tower (Tháp Cộng Hưởng - Trái)',
+        name: 'Resonant Tower',
         recommendedElement: 'Havoc / Basic ATK',
         buff: TOA_DATA_SEASON_37.resonantTower.towerBuff,
         bossTeam: resonantTeam,
@@ -1084,7 +959,7 @@ export function solveTowerOfAdversity(ownedCharacterIds) {
       },
       {
         id: 'echoing',
-        name: 'Echoing Tower (Tháp Vang Vọng - Phải)',
+        name: 'Echoing Tower',
         recommendedElement: 'Spectro / Resonance Skill',
         buff: TOA_DATA_SEASON_37.echoingTower.towerBuff,
         bossTeam: echoingTeam,

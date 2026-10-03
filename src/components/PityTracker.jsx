@@ -607,10 +607,10 @@ export default function PityTracker({ conveneRecords: propRecords, onImportSucce
       <div className="glass-panel" style={{ padding: '24px' }}>
         <h3 style={{ fontSize: '1.15rem', fontWeight: 800, marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px', color: '#fff' }}>
           <Terminal size={22} color="var(--accent-cyan)" />
-          Đồng Bộ Lịch Sử Quay Tự Động (Auto Convene Import)
+          Đồng Bộ Lịch Sử Quay Tự Động
         </h3>
         <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '18px', lineHeight: 1.5 }}>
-          Lấy link trực tiếp từ log client của Kuro Games hoặc dán dữ liệu JSON xuất từ WuWa Tracker. An toàn 100% (chỉ đọc file <code>Client.log</code> tạm thời để trích xuất URL token xem lịch sử, không can thiệp bộ nhớ game).
+          Lấy link trực tiếp từ log client của Kuro Games hoặc dán dữ liệu JSON xuất từ WuWa Tracker. An toàn 100%: chỉ đọc file <code>Client.log</code> tạm thời để trích xuất URL token xem lịch sử, không can thiệp bộ nhớ game.
         </p>
 
         {/* Step Guide */}
@@ -622,7 +622,7 @@ export default function PityTracker({ conveneRecords: propRecords, onImportSucce
         }}>
           <div style={{ padding: '14px', background: 'rgba(255, 255, 255, 0.03)', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
             <div style={{ fontSize: '0.75rem', color: 'var(--accent-gold)', fontWeight: 800, marginBottom: '6px' }}>BƯỚC 1</div>
-            <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)' }}>Mở Wuthering Waves ➔ Vào màn hình <strong>Convene (Quay)</strong> ➔ Bấm vào <strong>History (Lịch sử)</strong>.</div>
+            <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)' }}>Mở Wuthering Waves ➔ Vào màn hình <strong>Triệu Hồi Convene</strong> ➔ Bấm vào <strong>Lịch Sử History</strong>.</div>
           </div>
 
           <div style={{ padding: '14px', background: 'rgba(255, 255, 255, 0.03)', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.05)' }}>
@@ -678,7 +678,7 @@ export default function PityTracker({ conveneRecords: propRecords, onImportSucce
         <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
           <input
             type="text"
-            placeholder="Dán URL lịch sử quay hoặc chuỗi JSON vào đây (hoặc để trống để nạp mẫu)..."
+            placeholder="Dán URL lịch sử quay hoặc chuỗi JSON vào đây, hoặc để trống để nạp mẫu..."
             value={importUrl}
             onChange={(e) => setImportUrl(e.target.value)}
             style={{
