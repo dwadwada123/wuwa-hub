@@ -180,10 +180,42 @@ export default function App() {
     });
   }, [elementFilter, searchQuery]);
 
+  const [selectedDpsFilter, setSelectedDpsFilter] = useState('all');
+
   // Sinh đội hình tối ưu chỉ từ các đề xuất Meta chuẩn
   const optimalTeams = useMemo(() => {
     return generateOptimalTeams(ownedIds);
   }, [ownedIds]);
+
+  // Gom nhóm các đội hình dựa trên nhân vật Chủ Lực (Main DPS Slot 1)
+  const teamsByDps = useMemo(() => {
+    const groups = new Map();
+    for (const team of optimalTeams) {
+      const dpsChar = team.characters?.[0] || RESONATORS.find(r => r.id === team.core) || { id: team.core, name: 'Chủ Lực' };
+      const dpsId = dpsChar.id || team.core;
+      if (!groups.has(dpsId)) {
+        groups.set(dpsId, {
+          dpsId,
+          dps: dpsChar,
+          teams: []
+        });
+      }
+      groups.get(dpsId).teams.push(team);
+    }
+    return Array.from(groups.values());
+  }, [optimalTeams]);
+
+  // Lọc nhóm theo DPS được chọn nếu có
+  const displayedDpsGroups = useMemo(() => {
+    if (selectedDpsFilter === 'all') return teamsByDps;
+    return teamsByDps.filter(g => g.dpsId === selectedDpsFilter);
+  }, [teamsByDps, selectedDpsFilter]);
+
+  useEffect(() => {
+    if (selectedDpsFilter !== 'all' && !teamsByDps.some(g => g.dpsId === selectedDpsFilter)) {
+      setSelectedDpsFilter('all');
+    }
+  }, [teamsByDps, selectedDpsFilter]);
 
   // Phân bổ ToA 3 tháp (Tháp giữa 2 team riêng biệt cho Tầng 1-2 & Tầng 3-4, tuyệt đối không trùng nhân vật)
   const toaSolution = useMemo(() => {
@@ -657,7 +689,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* Section: Đội Hình Đề Xuất Tối Ưu */}
+          {/* Section: Đội Hình Đề Xuất Tối Ưu • Gom Nhóm Theo Nhân Vật Chủ Lực */}
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '10px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -667,7 +699,7 @@ export default function App() {
                 </h2>
               </div>
               <span style={{ fontSize: '0.82rem', color: 'var(--text-secondary)' }}>
-                Tất cả đội hình tuân thủ cấu trúc chuẩn <strong>Slot 1 Main DPS + Slot 2 Buffer + Slot 3 Sustain</strong>
+                Gom nhóm theo nhân vật Chủ Lực • Cấu trúc chuẩn <strong>Slot 1 Main DPS + Slot 2 Buffer + Slot 3 Sustain</strong>
               </span>
             </div>
 
@@ -682,150 +714,324 @@ export default function App() {
                 </p>
               </div>
             ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                {optimalTeams.map((team, tIdx) => (
-                  <div
-                    key={team.id || tIdx}
-                    className="glass-panel tactical-box"
-                    style={{
-                      padding: '22px 24px',
-                      background: 'linear-gradient(145deg, rgba(14, 20, 31, 0.85) 0%, rgba(8, 12, 20, 0.95) 100%)'
-                    }}
-                  >
-                    {/* Team Header */}
-                    <div style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'flex-start',
-                      marginBottom: '16px',
-                      flexWrap: 'wrap',
-                      gap: '12px'
-                    }}>
-                      <div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                          <span style={{
-                            fontSize: '0.72rem',
-                            fontWeight: 900,
-                            padding: '3px 8px',
-                            borderRadius: '4px',
-                            background: 'rgba(250, 204, 21, 0.15)',
-                            color: 'var(--accent-gold)',
-                            fontFamily: 'var(--font-tactical)',
-                            letterSpacing: '0.5px'
-                          }}>
-                            META #{tIdx + 1}
-                          </span>
-                          <h3 style={{ fontSize: '1.25rem', fontWeight: 900, color: '#fff' }}>
-                            {team.name}
-                          </h3>
-                          <span style={{
-                            fontSize: '0.72rem',
-                            fontWeight: 800,
-                            padding: '2px 8px',
-                            borderRadius: '4px',
-                            background: team.tier === 'T0' ? 'rgba(250, 204, 21, 0.15)' : 'rgba(56, 189, 248, 0.15)',
-                            color: team.tier === 'T0' ? 'var(--accent-gold)' : 'var(--accent-cyan)',
-                            border: `1px solid ${team.tier === 'T0' ? 'rgba(250, 204, 21, 0.35)' : 'rgba(56, 189, 248, 0.35)'}`
-                          }}>
-                            {team.type}
-                          </span>
-                        </div>
-                        <p style={{ fontSize: '0.84rem', color: 'var(--text-secondary)', marginTop: '4px' }}>
-                          {team.description}
-                        </p>
-                      </div>
-
-                      {/* Nút Xem Rotation */}
-                      <button
-                        onClick={() => setSelectedTeamForRotation(team)}
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '8px',
-                          padding: '10px 18px',
-                          borderRadius: '8px',
-                          background: 'linear-gradient(135deg, rgba(250, 204, 21, 0.15) 0%, rgba(245, 158, 11, 0.25) 100%)',
-                          border: '1px solid rgba(250, 204, 21, 0.4)',
-                          color: 'var(--accent-gold)',
-                          fontWeight: 800,
-                          fontSize: '0.86rem',
-                          transition: 'all 0.2s ease'
-                        }}
-                      >
-                        <Swords size={16} />
-                        <span>Xem Chuỗi Combo</span>
-                        <ChevronRight size={16} />
-                      </button>
-                    </div>
-
-                    {/* 3 Thành Viên Trong Đội • Roster Display */}
-                    <div style={{
-                      display: 'grid',
-                      gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-                      gap: '12px'
-                    }}>
-                      {team.characters.map((char, cIdx) => (
-                        <div
-                          key={cIdx}
-                          onClick={() => setSelectedTeamForRotation(team)}
-                          style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '12px',
-                            padding: '12px 14px',
-                            background: 'rgba(255, 255, 255, 0.025)',
-                            borderRadius: '10px',
-                            border: '1px solid rgba(255, 255, 255, 0.06)',
-                            cursor: 'pointer',
-                            transition: 'all 0.2s ease'
-                          }}
-                          onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255, 255, 255, 0.06)'; }}
-                          onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255, 255, 255, 0.025)'; }}
+              <div>
+                {/* Thanh Lọc Nhanh Theo Từng Nhân Vật Chủ Lực (Quick DPS Filter Chips) */}
+                {teamsByDps.length > 1 && (
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    overflowX: 'auto',
+                    paddingBottom: '12px',
+                    marginBottom: '20px'
+                  }}>
+                    <button
+                      className={`dps-filter-chip ${selectedDpsFilter === 'all' ? 'active' : ''}`}
+                      onClick={() => setSelectedDpsFilter('all')}
+                    >
+                      <Sparkles size={14} color={selectedDpsFilter === 'all' ? 'var(--accent-gold)' : 'currentColor'} />
+                      <span>Tất Cả ({optimalTeams.length})</span>
+                    </button>
+                    {teamsByDps.map((group) => {
+                      const isAct = selectedDpsFilter === group.dpsId;
+                      return (
+                        <button
+                          key={group.dpsId}
+                          className={`dps-filter-chip ${isAct ? 'active' : ''}`}
+                          onClick={() => setSelectedDpsFilter(isAct ? 'all' : group.dpsId)}
                         >
-                          {/* Character Avatar */}
-                          <div style={{
-                            width: '48px',
-                            height: '48px',
+                          {group.dps?.avatar && (
+                            <img
+                              src={group.dps.avatar}
+                              alt={group.dps.name}
+                              style={{ width: '18px', height: '18px', borderRadius: '50%', objectFit: 'cover' }}
+                              onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                            />
+                          )}
+                          <span>{group.dps?.name}</span>
+                          <span style={{
+                            fontSize: '0.72rem',
+                            padding: '1px 6px',
                             borderRadius: '10px',
-                            overflow: 'hidden',
-                            background: char?.iconColor || '#38bdf8',
-                            flexShrink: 0,
-                            position: 'relative',
-                            border: `2px solid ${cIdx === 0 ? 'var(--accent-gold)' : cIdx === 1 ? 'var(--accent-cyan)' : 'var(--accent-green)'}`
+                            background: isAct ? 'rgba(250, 204, 21, 0.3)' : 'rgba(255, 255, 255, 0.1)',
+                            color: isAct ? 'var(--accent-gold)' : 'var(--text-secondary)'
                           }}>
-                            {char?.avatar ? (
-                              <img
-                                src={char.avatar}
-                                alt={char.name}
-                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                                onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                              />
-                            ) : (
-                              <span style={{ fontWeight: 'bold', color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
-                                {char?.name?.[0]}
-                              </span>
-                            )}
+                            {group.teams.length}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+
+                {/* Danh Sách Các Nhóm Đội Hình Theo Main DPS */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
+                  {displayedDpsGroups.map((group) => {
+                    const dps = group.dps;
+                    return (
+                      <div key={group.dpsId} className="dps-group-section">
+                        {/* Header của từng Nhóm Chủ Lực */}
+                        <div className="dps-group-header">
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                            <div style={{
+                              width: '44px',
+                              height: '44px',
+                              borderRadius: '10px',
+                              overflow: 'hidden',
+                              position: 'relative',
+                              background: dps?.iconColor || '#38bdf8',
+                              border: '2px solid var(--accent-gold)',
+                              boxShadow: '0 0 14px rgba(250, 204, 21, 0.3)',
+                              flexShrink: 0
+                            }}>
+                              {dps?.avatar ? (
+                                <img
+                                  src={dps.avatar}
+                                  alt={dps.name}
+                                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                                />
+                              ) : (
+                                <span style={{ fontWeight: 'bold', color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}>
+                                  {dps?.name?.[0]}
+                                </span>
+                              )}
+                            </div>
+
+                            <div>
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+                                <h3 style={{ fontSize: '1.2rem', fontWeight: 900, color: '#fff', margin: 0 }}>
+                                  {dps?.name}
+                                </h3>
+                                {dps?.element && ELEMENT_ICONS[dps.element] && (
+                                  <span style={{
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    gap: '4px',
+                                    fontSize: '0.74rem',
+                                    fontWeight: 800,
+                                    padding: '2px 8px',
+                                    borderRadius: '20px',
+                                    background: 'rgba(255, 255, 255, 0.06)',
+                                    color: '#fff',
+                                    border: '1px solid rgba(255, 255, 255, 0.12)'
+                                  }}>
+                                    <img src={ELEMENT_ICONS[dps.element]} alt={dps.element} style={{ width: '14px', height: '14px' }} />
+                                    {dps.element}
+                                  </span>
+                                )}
+                                {dps?.weapon && (
+                                  <span style={{
+                                    fontSize: '0.72rem',
+                                    fontWeight: 700,
+                                    padding: '2px 8px',
+                                    borderRadius: '4px',
+                                    background: 'rgba(56, 189, 248, 0.12)',
+                                    color: 'var(--accent-cyan)',
+                                    border: '1px solid rgba(56, 189, 248, 0.25)'
+                                  }}>
+                                    {dps.weapon}
+                                  </span>
+                                )}
+                                <span style={{
+                                  fontSize: '0.72rem',
+                                  fontWeight: 800,
+                                  padding: '2px 8px',
+                                  borderRadius: '4px',
+                                  background: 'rgba(250, 204, 21, 0.15)',
+                                  color: 'var(--accent-gold)',
+                                  border: '1px solid rgba(250, 204, 21, 0.3)'
+                                }}>
+                                  Chủ Lực • Main DPS
+                                </span>
+                              </div>
+                              <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', margin: '4px 0 0 0' }}>
+                                {dps?.overview || `Tập hợp các đội hình tối ưu nhất xoay quanh ${dps?.name}.`}
+                              </p>
+                            </div>
                           </div>
 
-                          {/* Role & Name */}
-                          <div style={{ flex: 1, minWidth: 0 }}>
-                            <div style={{ fontSize: '0.9rem', fontWeight: 800, color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                              {char?.name}
-                            </div>
-                            <div style={{
-                              fontSize: '0.74rem',
-                              fontWeight: 700,
-                              color: cIdx === 0 ? 'var(--accent-gold)' : cIdx === 1 ? 'var(--accent-cyan)' : 'var(--accent-green)',
-                              marginTop: '2px'
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            <span style={{
+                              fontSize: '0.8rem',
+                              fontWeight: 800,
+                              padding: '4px 12px',
+                              borderRadius: '20px',
+                              background: 'rgba(255, 255, 255, 0.08)',
+                              color: '#fff',
+                              border: '1px solid rgba(255, 255, 255, 0.15)'
                             }}>
-                              {cIdx === 0 ? 'Main DPS' : cIdx === 1 ? 'Sub-DPS / Buffer' : 'Sustain / Healer'} • {char?.element}
-                            </div>
+                              {group.teams.length} Đội Hình Khuyến Nghị
+                            </span>
                           </div>
                         </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
+
+                        {/* Lưới Thẻ Đội Hình Thu Nhỏ (Compact Cards Grid) */}
+                        <div style={{
+                          display: 'grid',
+                          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+                          gap: '14px'
+                        }}>
+                          {group.teams.map((team, tIdx) => (
+                            <div
+                              key={team.id || tIdx}
+                              className="compact-team-card"
+                              onClick={() => setSelectedTeamForRotation(team)}
+                            >
+                              {/* Dòng Tiêu Đề Thẻ: Tên Đội + Tier & Kiểu */}
+                              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px' }}>
+                                <div style={{ minWidth: 0, flex: 1 }}>
+                                  <div style={{
+                                    fontSize: '0.94rem',
+                                    fontWeight: 800,
+                                    color: '#fff',
+                                    whiteSpace: 'nowrap',
+                                    overflow: 'hidden',
+                                    textOverflow: 'ellipsis'
+                                  }} title={team.name}>
+                                    {team.name}
+                                  </div>
+                                  <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)', marginTop: '2px' }}>
+                                    {team.type}
+                                  </div>
+                                </div>
+                                <span style={{
+                                  fontSize: '0.7rem',
+                                  fontWeight: 900,
+                                  padding: '2px 7px',
+                                  borderRadius: '4px',
+                                  background: team.tier === 'T0' ? 'rgba(250, 204, 21, 0.2)' : 'rgba(56, 189, 248, 0.2)',
+                                  color: team.tier === 'T0' ? 'var(--accent-gold)' : 'var(--accent-cyan)',
+                                  border: `1px solid ${team.tier === 'T0' ? 'rgba(250, 204, 21, 0.4)' : 'rgba(56, 189, 248, 0.4)'}`,
+                                  flexShrink: 0
+                                }}>
+                                  {team.tier}
+                                </span>
+                              </div>
+
+                              {/* 3 Thành Viên Trong Đội (Roster Thu Nhỏ) */}
+                              <div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'space-between',
+                                padding: '8px 10px',
+                                background: 'rgba(0, 0, 0, 0.25)',
+                                borderRadius: '8px',
+                                border: '1px solid rgba(255, 255, 255, 0.05)',
+                                gap: '6px'
+                              }}>
+                                {team.characters.map((char, cIdx) => (
+                                  <React.Fragment key={cIdx}>
+                                    <div style={{
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      gap: '8px',
+                                      minWidth: 0,
+                                      flex: 1
+                                    }}>
+                                      <div style={{
+                                        width: '36px',
+                                        height: '36px',
+                                        borderRadius: '8px',
+                                        overflow: 'hidden',
+                                        position: 'relative',
+                                        flexShrink: 0,
+                                        background: char?.iconColor || '#38bdf8',
+                                        border: `1.5px solid ${cIdx === 0 ? 'var(--accent-gold)' : cIdx === 1 ? 'var(--accent-cyan)' : 'var(--accent-green)'}`
+                                      }}>
+                                        {char?.avatar ? (
+                                          <img
+                                            src={char.avatar}
+                                            alt={char.name}
+                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                            onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                                          />
+                                        ) : (
+                                          <span style={{ fontWeight: 'bold', color: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', fontSize: '0.8rem' }}>
+                                            {char?.name?.[0]}
+                                          </span>
+                                        )}
+                                      </div>
+                                      <div style={{ minWidth: 0, flex: 1 }}>
+                                        <div style={{
+                                          fontSize: '0.82rem',
+                                          fontWeight: 800,
+                                          color: '#fff',
+                                          whiteSpace: 'nowrap',
+                                          overflow: 'hidden',
+                                          textOverflow: 'ellipsis'
+                                        }}>
+                                          {char?.name}
+                                        </div>
+                                        <div style={{
+                                          fontSize: '0.68rem',
+                                          fontWeight: 700,
+                                          color: cIdx === 0 ? 'var(--accent-gold)' : cIdx === 1 ? 'var(--accent-cyan)' : 'var(--accent-green)',
+                                          whiteSpace: 'nowrap'
+                                        }}>
+                                          {cIdx === 0 ? 'Slot 1' : cIdx === 1 ? 'Slot 2' : 'Slot 3'}
+                                        </div>
+                                      </div>
+                                    </div>
+                                    {cIdx < 2 && (
+                                      <span style={{ color: 'rgba(255, 255, 255, 0.25)', fontSize: '0.75rem', flexShrink: 0 }}>➔</span>
+                                    )}
+                                  </React.Fragment>
+                                ))}
+                              </div>
+
+                              {/* Footer Thẻ: Mô tả rút gọn & Nút xem Combo */}
+                              <div style={{
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                                marginTop: '2px',
+                                gap: '8px'
+                              }}>
+                                <span style={{
+                                  fontSize: '0.75rem',
+                                  color: 'var(--text-muted)',
+                                  whiteSpace: 'nowrap',
+                                  overflow: 'hidden',
+                                  textOverflow: 'ellipsis',
+                                  flex: 1
+                                }}>
+                                  {team.description}
+                                </span>
+
+                                <button
+                                  type="button"
+                                  style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '5px',
+                                    padding: '5px 10px',
+                                    borderRadius: '6px',
+                                    background: 'rgba(250, 204, 21, 0.12)',
+                                    border: '1px solid rgba(250, 204, 21, 0.35)',
+                                    color: 'var(--accent-gold)',
+                                    fontWeight: 800,
+                                    fontSize: '0.76rem',
+                                    flexShrink: 0,
+                                    cursor: 'pointer'
+                                  }}
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setSelectedTeamForRotation(team);
+                                  }}
+                                >
+                                  <Swords size={13} />
+                                  <span>Combo</span>
+                                  <ChevronRight size={13} />
+                                </button>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             )}
           </div>
