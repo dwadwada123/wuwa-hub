@@ -4,369 +4,179 @@
 // Đầy đủ thông tin: Vũ khí, Hệ, Sonata Echo, Chỉ số chính, Outro Skill & Rotation Game8 chi tiết
 // =========================================================================================
 
-export const RESONATORS = [ 
+export const RESONATORS = [
+
   {
-    "id": "hsin",
-    "name": "Hsin",
-    "title": "The Moon Fox / Mengzhou Sentinel",
-    "element": "Electro",
-    "rarity": 5,
-    "weaponType": "Rectifier",
-    "role": "Main DPS / Sát Thương Lôi Định",
-    "avatar": "https://wutheringlab.com/wp-content/uploads/Hsin.webp",
-    "iconColor": "#a855f7",
-    "tags": [
-      "Electro",
-      "Main DPS",
-      "Unison",
-      "Rectifier",
-      "Sentinel"
-    ],
-    "bestWeapon": "Blooming Jadehaven",
-    "bestEchoSet": "5-pc Heart of Sworn Vigil",
-    "echoMainStats": "4-Cost: Tỉ Lệ Bạo Kích hoặc Sát Thương Bạo Kích (Thundering Mephis) | 3-Cost: Sát Thương Lôi | 1-Cost: Tấn Công%",
-    "outroDescription": "Kích hoạt Phản Hồi Đồng Điệu (Unison Response): Tiêu hao trạng thái Unison để kích hoạt Outro cá nhân và kéo đồng minh vào sân bằng Intro Skill mà không cần tiêu tốn thanh Concerto truyền thống.",
-    "rotations": {
-      "standard": [
-        {
-          "step": 1,
-          "char": "Shorekeeper / Verina",
-          "action": "Bật Resonance Liberation (R) tạo Stella Field / buff ATK ➔ Dùng E và chuỗi đánh thường tích đầy Concerto ➔ Outro kích hoạt buff All-Type DMG."
-        },
-        {
-          "step": 2,
-          "char": "Sub-DPS (Xiangli Yao / Yinlin)",
-          "action": "Vào sân bằng Intro nhận buff ➔ E ➔ R xả nộ ➔ Outro truyền 20% Electro DMG và 25% Liberation DMG Deepen."
-        },
-        {
-          "step": 3,
-          "char": "Hsin",
-          "action": "Intro vào sân ➔ Kích hoạt Skill E ở thể Electro Flare ➔ Xả Resonance Liberation R kết liễu ➔ Tấn công thường cường hóa tiêu diệt phần còn lại."
-        }
-      ],
-      "quickswap": [
-        {
-          "step": 1,
-          "char": "Hsin",
-          "action": "Bắt đầu ở trạng thái Unison ➔ Bấm E gây sát thương đợt 1."
-        },
-        {
-          "step": 2,
-          "char": "Ally (Changli / Xiangli Yao)",
-          "action": "Chuyển sang đồng minh ngay lập tức (Hsin kích hoạt Outro tức thì nhờ Unison) ➔ Đồng minh ra sân tung Intro Skill và 1 đòn E nhanh."
-        },
-        {
-          "step": 3,
-          "char": "Hsin",
-          "action": "Đổi ngược về Hsin lập tức nhận Unison Boon (cộng dồn buff toàn đội) mà không mất thời gian chờ Concerto."
-        }
-      ]
-    }
-  },
-  {
-    "id": "suoming",
-    "name": "Suoming",
-    "title": "Sword of Azure Flash",
-    "element": "Electro",
+    "id": "rover_spectro",
+    "name": "Rover (Spectro)",
+    "title": "Arbiter of Radiance",
+    "element": "Spectro",
     "rarity": 5,
     "weaponType": "Sword",
-    "role": "Sub-DPS / Khuếch Đại Unison",
-    "avatar": "https://wutheringlab.com/wp-content/uploads/Suoming.webp",
-    "iconColor": "#8b5cf6",
+    "role": "Sub-DPS / Ngưng Đọng Thời Gian & Khống Chế",
+    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Rover-Spectro.png",
+    "iconColor": "#eab308",
     "tags": [
-      "Electro",
+      "Spectro",
       "Sub-DPS",
       "Buffer",
       "Sword",
-      "Unison"
+      "Time Stop",
+      "Free 5-Star S6"
     ],
-    "bestWeapon": "Thunder's Horizon",
-    "bestEchoSet": "5-pc Void Thunder",
-    "echoMainStats": "4-Cost: Tỉ Lệ Bạo Kích hoặc Sát Thương Bạo Kích (Tempest Mephis) | 3-Cost: Sát Thương Lôi | 1-Cost: Tấn Công%",
-    "outroDescription": "Tạo Lôi Vũ Đồng Điệu: 3 đòn đánh kế tiếp của đồng minh vào sân sẽ phát nổ sát thương Lôi diện rộng và nạp 25% thanh Concerto tức thì.",
+    "bestWeapon": "Emerald of Genesis",
+    "bestEchoSet": "5-pc Moonlit Clouds",
+    "echoMainStats": "4-Cost: Crit Rate/DMG (Jué) | 3-Cost: Spectro DMG | 1-Cost: ATK%",
+    "outroDescription": "Tạo vùng quang trường ngưng đọng thời gian (Time-Stop) làm bất động mọi kẻ địch trong 3 giây.",
     "rotations": {
       "standard": [
         {
           "step": 1,
-          "char": "Shorekeeper / Verina",
-          "action": "Kích hoạt buff toàn đội và hồi máu qua R ➔ Outro chuyển giao sang Sub-DPS."
-        },
-        {
-          "step": 2,
-          "char": "Suoming",
-          "action": "Intro vào sân ➔ Kích hoạt Resonance Skill chuyển đổi thế kiếm Azure Surge ➔ Tích nạp Concerto nhanh ➔ Bật Impermanence Heron ➔ Outro truyền Lôi Vũ Đồng Điệu cho Hsin."
-        },
-        {
-          "step": 3,
-          "char": "Hsin",
-          "action": "Intro vào sân nhận trọn vẹn buff Unison ➔ Kích hoạt Skill E cường hóa ➔ Xả Resonance Liberation R nổ sét màn hình tiêu diệt mục tiêu."
-        }
-      ],
-      "quickswap": [
-        {
-          "step": 1,
-          "char": "Suoming",
-          "action": "Tung đòn kiếm thế 1 ➔ Nhấn E giải phóng lôi kiếm xoay vòng."
-        },
-        {
-          "step": 2,
-          "char": "Hsin",
-          "action": "Animation cancel sang Hsin nhận Unison ➔ Tung E lôi nộ ➔ Outro chuyển về."
-        },
-        {
-          "step": 3,
-          "char": "Suoming",
-          "action": "Quay lại sân kích hoạt ngay nộ R kết liễu quái."
+          "char": "Rover (Spectro)",
+          "action": "Intro vào sân ➔ E ➔ R tung vòng thời gian ngưng đọng đối thủ ➔ Chuỗi đánh thường tích đầy Diminuendo ➔ Jué Echo ➔ Outro khống chế toàn sân."
         }
       ]
-    }
+    },
+    "releaseVersion": "1.0",
+    "releaseOrder": 1
   },
   {
-    "id": "camellya",
-    "name": "Camellya",
-    "title": "Bloom of Bloom",
+    "id": "rover_aero",
+    "name": "Rover (Aero)",
+    "title": "Arbiter of Gales",
+    "element": "Aero",
+    "rarity": 5,
+    "weaponType": "Sword",
+    "role": "Sub-DPS / Lốc Xoáy Hút Quái & Chém Gió",
+    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Rover-Spectro.png",
+    "iconColor": "#10b981",
+    "tags": [
+      "Aero",
+      "Sub-DPS",
+      "Buffer",
+      "Sword",
+      "Vortex",
+      "Wind Slashing"
+    ],
+    "bestWeapon": "Emerald of Genesis",
+    "bestEchoSet": "5-pc Moonlit Clouds",
+    "echoMainStats": "4-Cost: Crit Rate/DMG (Feilian) | 3-Cost: Aero DMG | 1-Cost: ATK%",
+    "outroDescription": "Tạo lốc xoáy Aero hút chặt kẻ địch nhỏ vào tâm điểm và gây sát thương kéo dài.",
+    "rotations": {
+      "standard": [
+        {
+          "step": 1,
+          "char": "Rover (Aero)",
+          "action": "Intro ➔ Tung đòn lướt kiếm gió ➔ R xoáy phong lốc ➔ Gom quái tạo tiền đề cho Main DPS."
+        }
+      ]
+    },
+    "releaseVersion": "1.0",
+    "releaseOrder": 2
+  },
+  {
+    "id": "rover_havoc",
+    "name": "Rover (Havoc)",
+    "title": "Arbiter of Darkness",
     "element": "Havoc",
     "rarity": 5,
     "weaponType": "Sword",
-    "role": "Main DPS / Sát Thương Đánh Thường Havoc",
-    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Camellya.webp",
-    "iconColor": "#ec4899",
+    "role": "Main DPS / Bộc Phá Hắc Ám Dark Surge",
+    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Rover-Havoc.png",
+    "iconColor": "#be123c",
     "tags": [
       "Havoc",
       "Main DPS",
-      "Basic ATK",
       "Sword",
-      "Black Shores"
+      "Dark Surge",
+      "Free 5-Star S6"
     ],
-    "bestWeapon": "Red Spring",
+    "bestWeapon": "Emerald of Genesis",
     "bestEchoSet": "5-pc Sun-sinking Eclipse",
-    "echoMainStats": "4-Cost: Crit Rate/DMG (Dreamless / Crownless) | 3-Cost: Havoc DMG | 1-Cost: ATK%",
-    "outroDescription": "Tạo vụ nổ Cánh Hoa Hỗn Loạn gây sát thương Havoc diện rộng bằng 459% ATK cho kẻ địch xung quanh.",
+    "echoMainStats": "4-Cost: Crit Rate/DMG (Dreamless) | 3-Cost: Havoc DMG | 1-Cost: ATK%",
+    "outroDescription": "Tung đòn chém bóng tối hình chữ X gây 143% sát thương Havoc và kích hoạt nổ Dark Burst.",
     "rotations": {
       "standard": [
         {
           "step": 1,
           "char": "Verina / Shorekeeper",
-          "action": "Intro ➔ E ➔ R ➔ Mid-air combo tích Concerto ➔ Bell-Borne Echo ➔ Outro buff All-Type DMG."
+          "action": "Buff ATK và All-Type DMG."
         },
         {
           "step": 2,
-          "char": "Sanhua",
-          "action": "Intro nhận buff ➔ E ➔ R ➔ Căn thanh Forte nổ băng (Detonate) ➔ Outro truyền 38% Basic ATK DMG Deepen."
+          "char": "Danjin",
+          "action": "Intro ➔ Combo rút máu tăng thanh Forte ➔ E liên hoàn ➔ Outro truyền 23% Havoc DMG Deepen."
         },
         {
           "step": 3,
-          "char": "Camellya",
-          "action": "Intro vào sân nhận 38% buff Basic ATK ➔ Kích hoạt Ephemeral Stance ➔ Giữ chuột đánh thường xả chuỗi roi gai Havoc điên cuồng ➔ Resonance Liberation R nổ kết liễu."
+          "char": "Rover (Havoc)",
+          "action": "Intro nhận buff Havoc ➔ Heavy Attack vào trạng thái Dark Surge ➔ Combo kiếm đen cường hóa ➔ R tung lưỡi hái bóng tối nộ khổng lồ ➔ Bấm Dreamless Echo nổ sạch màn hình."
         }
       ],
       "quickswap": [
         {
           "step": 1,
-          "char": "Camellya",
-          "action": "Kích hoạt Ephemeral Stance ➔ Dùng E trói mục tiêu."
+          "char": "Rover (Havoc)",
+          "action": "Bật R tung nộ lưỡi hái ➔ Lập tức bấm Dreamless Echo."
         },
         {
           "step": 2,
-          "char": "Sanhua",
-          "action": "Animation cancel lúc Camellya bay lên ➔ Sanhua vào sân tung E + R nổ băng trong 2 giây."
+          "char": "Danjin",
+          "action": "Animation cancel: Ngay lúc Dreamless đang gầm, đổi sang Danjin tung E."
         },
         {
           "step": 3,
-          "char": "Camellya",
-          "action": "Đổi ngược về Camellya để tiếp tục chuỗi quạt roi gai trọn vẹn buff."
+          "char": "Rover (Havoc)",
+          "action": "Đổi lại Rover tiếp tục đánh thường Dark Surge."
         }
       ]
-    }
+    },
+    "releaseVersion": "1.0",
+    "releaseOrder": 3
   },
   {
-    "id": "shorekeeper",
-    "name": "The Shorekeeper",
-    "title": "Guardian of the Black Shores",
-    "element": "Spectro",
-    "rarity": 5,
-    "weaponType": "Rectifier",
-    "role": "Sustain / Hồi Máu & Siêu Buff Toàn Năng",
-    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Shorekeeper.png",
-    "iconColor": "#38bdf8",
-    "tags": [
-      "Spectro",
-      "Sustain",
-      "Healer",
-      "Crit Buffer",
-      "Rectifier",
-      "Tier 0 Support"
-    ],
-    "bestWeapon": "Stellar Symphony",
-    "bestEchoSet": "5-pc Rejuvenating Glow",
-    "echoMainStats": "4-Cost: Tăng Lượng Trị Liệu hoặc HP% (Fallacy of No Return) | 3-Cost: Hiệu Quả Nạp Năng Lượng% | 1-Cost: HP%",
-    "outroDescription": "Nâng cấp Stella Field lên Giai Đoạn 3: Tăng 12.5% Tỷ Lệ Bạo Kích và 25% Sát Thương Bạo Kích cho toàn đội trong 30 giây.",
-    "rotations": {
-      "standard": [
-        {
-          "step": 1,
-          "char": "Shorekeeper",
-          "action": "Ra sân đầu trận ➔ Dùng E triệu hồi bướm tích Forte ➔ Kích hoạt Resonance Liberation R mở Stella Field ➔ Bấm Fallacy Echo ➔ Đầy Concerto ➔ Outro buff Crit cho đồng đội."
-        }
-      ]
-    }
-  },
-  {
-    "id": "jinhsi",
-    "name": "Jinhsi",
-    "title": "Magistrate of Jinzhou",
-    "element": "Spectro",
+    "id": "jiyan",
+    "name": "Jiyan",
+    "title": "General of the Midnight Rangers",
+    "element": "Aero",
     "rarity": 5,
     "weaponType": "Broadblade",
-    "role": "Main DPS / Bộc Phá Kỹ Năng Cộng Hưởng",
-    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Jinhsi.png",
-    "iconColor": "#facc15",
+    "role": "Main DPS / Thanh Long Thương Trọng Kích AOE",
+    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Jiyan.png",
+    "iconColor": "#10b981",
     "tags": [
-      "Spectro",
+      "Aero",
       "Main DPS",
-      "Resonance Skill DMG",
+      "Heavy ATK",
       "Broadblade",
-      "Tier 0 DPS"
+      "Midnight Rangers",
+      "Tier 0 AOE"
     ],
-    "bestWeapon": "Ages of Harvest",
-    "bestEchoSet": "5-pc Celestial Light",
-    "echoMainStats": "4-Cost: Tỉ Lệ Bạo Kích hoặc Sát Thương Bạo Kích (Jué) | 3-Cost: Sát Thương Spectro | 1-Cost: Tấn Công%",
-    "outroDescription": "Giảm thời gian hồi chiêu của các đòn Coordinated Attack (Đòn tấn công phối hợp) từ đồng đội đi 1 giây.",
+    "bestWeapon": "Verdant Summit",
+    "bestEchoSet": "5-pc Sierra Gale",
+    "echoMainStats": "4-Cost: Crit Rate/DMG (Feilian Beringal) | 3-Cost: Aero DMG | 1-Cost: ATK%",
+    "outroDescription": "Triệu hồi gió xoáy Qingloong lướt qua kẻ thù gây sát thương Aero liên tục.",
     "rotations": {
       "standard": [
         {
           "step": 1,
           "char": "Verina / Shorekeeper",
-          "action": "Intro ➔ E ➔ R ➔ Mid-air combo ➔ Outro buff All-Type DMG."
+          "action": "E ➔ R ➔ Mid-air combo ➔ Outro buff All-Type DMG."
         },
         {
           "step": 2,
-          "char": "Zhezhi / Yuanwu / Yinlin",
-          "action": "Intro ➔ Bật đòn phối hợp Coordinated Attack (Zhezhi R hoặc Yuanwu cắm cột E) ➔ Outro chuyển giao."
+          "char": "Mortefi / Ciaccona",
+          "action": "Intro nhận buff ➔ E ➔ R triệu hồi rồng bắn tỉa ➔ Outro kích hoạt 38% Heavy ATK DMG Deepen."
         },
         {
           "step": 3,
-          "char": "Jinhsi",
-          "action": "Intro vào sân (Incarnation) ➔ Hấp thụ tối đa 50 tầng Incandescence từ đòn đánh phối hợp ➔ Đánh thường 4 nhịp ➔ Skill E đợt 1 ➔ Liberation R xả long nộ ➔ Bấm E cường hóa (Illuminous Epiphany) thả rồng nổ hàng triệu sát thương."
+          "char": "Jiyan",
+          "action": "Intro nhận trọn buff của Mortefi ➔ Bật Resonance Liberation R hóa Thanh Long ➔ Giữ chuột quạt thương sát thương Heavy ATK cuốn phăng toàn bộ quái vật trên sàn đấu."
         }
       ]
-    }
-  },
-  {
-    "id": "changli",
-    "name": "Changli",
-    "title": "Counselor to the Magistrate",
-    "element": "Fusion",
-    "rarity": 5,
-    "weaponType": "Sword",
-    "role": "Main DPS / Hỏa Kiếm Bộc Phá & Quickswap",
-    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Changli.png",
-    "iconColor": "#f97316",
-    "tags": [
-      "Fusion",
-      "Main DPS",
-      "Quickswap",
-      "Resonance Liberation",
-      "Sword"
-    ],
-    "bestWeapon": "Blazing Brilliance",
-    "bestEchoSet": "5-pc Molten Rift",
-    "echoMainStats": "4-Cost: Crit Rate/DMG (Inferno Rider) | 3-Cost: Fusion DMG | 1-Cost: ATK%",
-    "outroDescription": "Buff 20% Fusion DMG và 25% Resonance Liberation DMG Deepen trong 10 giây cho nhân vật tiếp theo.",
-    "rotations": {
-      "standard": [
-        {
-          "step": 1,
-          "char": "Verina / Shorekeeper",
-          "action": "Chuỗi combo chuẩn bị buff ATK & All-Type DMG."
-        },
-        {
-          "step": 2,
-          "char": "Changli",
-          "action": "Tích 4 tầng Enflamement ➔ E ➔ Đòn trọng kích Flaming Sacrifice ➔ R xả nộ phượng hoàng ➔ Outro kích hoạt."
-        },
-        {
-          "step": 3,
-          "char": "Encore / Chixia",
-          "action": "Nhận trọn vẹn 20% Fusion DMG và 25% Liberation DMG ➔ Bật R hóa hình dồn sát thương."
-        }
-      ],
-      "quickswap": [
-        {
-          "step": 1,
-          "char": "Changli",
-          "action": "Tung True Sight: Charge hoặc bấm R nộ phượng hoàng."
-        },
-        {
-          "step": 2,
-          "char": "Encore",
-          "action": "Animation cancel: Ngay lúc kiếm của Changli vung ra, đổi sang Encore bấm trọng kích Cosmos Rave."
-        },
-        {
-          "step": 3,
-          "char": "Changli",
-          "action": "Đổi ngược về Changli tiếp tục chuỗi chém kiếm lửa mà không lãng phí 1 giây hoạt ảnh."
-        }
-      ]
-    }
-  },
-  {
-    "id": "xiangli_yao",
-    "name": "Xiangli Yao",
-    "title": "Principal Investigator of Huaxu Academy",
-    "element": "Electro",
-    "rarity": 5,
-    "weaponType": "Gauntlets",
-    "role": "Main DPS / Quyền Vương Công Nghệ Lôi",
-    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/XiangliYao.png",
-    "iconColor": "#8b5cf6",
-    "tags": [
-      "Electro",
-      "Main DPS",
-      "Resonance Liberation",
-      "Gauntlets",
-      "Huaxu"
-    ],
-    "bestWeapon": "Verity's Handle",
-    "bestEchoSet": "5-pc Void Thunder",
-    "echoMainStats": "4-Cost: Crit Rate/DMG (Tempest Mephis) | 3-Cost: Electro DMG | 1-Cost: ATK%",
-    "outroDescription": "Gây sát thương Electro bằng 237% ATK và đóng băng/làm chậm kẻ địch xung quanh trong 3 giây.",
-    "rotations": {
-      "standard": [
-        {
-          "step": 1,
-          "char": "Shorekeeper / Verina",
-          "action": "Kích hoạt buff sát thương và Crit toàn đội."
-        },
-        {
-          "step": 2,
-          "char": "Yinlin",
-          "action": "Đặt hình nộm ➔ R xả nộ ➔ Outro buff 20% Electro DMG & 25% Resonance Liberation DMG Deepen."
-        },
-        {
-          "step": 3,
-          "char": "Xiangli Yao",
-          "action": "Intro nhận buff khổng lồ ➔ Bật R kích hoạt trạng thái Trực Giác (Intuition) ➔ Bấm liên tiếp Skill E cường hóa (Decaying Cube) ➔ Kết liễu bằng Law of Reduction."
-        }
-      ],
-      "quickswap": [
-        {
-          "step": 1,
-          "char": "Xiangli Yao",
-          "action": "Bấm E giải phóng khối lập phương năng lượng."
-        },
-        {
-          "step": 2,
-          "char": "Changli / Yinlin",
-          "action": "Hoán đổi ngay khi đòn đấm đang thi triển ➔ Đồng đội ra sân dùng Skill E ngắn."
-        },
-        {
-          "step": 3,
-          "char": "Xiangli Yao",
-          "action": "Quay lại kích hoạt nộ R với đầy đủ thanh buff."
-        }
-      ]
-    }
+    },
+    "releaseVersion": "1.0",
+    "releaseOrder": 4
   },
   {
     "id": "yinlin",
@@ -409,326 +219,43 @@ export const RESONATORS = [
           "action": "Animation cancel lập tức đổi sang Main DPS lao vào đấm khi lưới điện vẫn đang giật liên tục."
         }
       ]
-    }
+    },
+    "releaseVersion": "1.0",
+    "releaseOrder": 5
   },
   {
-    "id": "zhezhi",
-    "name": "Zhezhi",
-    "title": "Commission Painter",
-    "element": "Glacio",
-    "rarity": 5,
-    "weaponType": "Rectifier",
-    "role": "Sub-DPS / Bút Họa Phối Hợp & Buff Băng",
-    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Zhezhi.png",
-    "iconColor": "#06b6d4",
-    "tags": [
-      "Glacio",
-      "Sub-DPS",
-      "Buffer",
-      "Coordinated ATK",
-      "Skill DMG Buffer",
-      "Rectifier"
-    ],
-    "bestWeapon": "Rime-Draped Sprouts",
-    "bestEchoSet": "5-pc Moonlit Clouds",
-    "echoMainStats": "4-Cost: Crit Rate/DMG (Heron) | 3-Cost: Glacio DMG / Energy Regen | 1-Cost: ATK%",
-    "outroDescription": "Buff 20% Glacio DMG và 25% Resonance Skill DMG Deepen trong 14 giây cho nhân vật tiếp theo.",
-    "rotations": {
-      "standard": [
-        {
-          "step": 1,
-          "char": "Zhezhi",
-          "action": "Intro ➔ E triệu hồi hạc mực ➔ R xả nộ kích hoạt đòn phối hợp liên kích ngoài sân ➔ Heavy Attack tích đầy Concerto ➔ Heron Echo ➔ Outro truyền 25% Skill DMG Deepen cho Jinhsi hoặc Carlotta."
-        }
-      ]
-    }
-  },
-  {
-    "id": "carlotta",
-    "name": "Carlotta",
-    "title": "Second Daughter of Montelli Family",
-    "element": "Glacio",
-    "rarity": 5,
-    "weaponType": "Pistols",
-    "role": "Main DPS / Xạ Thủ Shotgun Băng",
-    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Carlotta.webp",
-    "iconColor": "#0ea5e9",
-    "tags": [
-      "Glacio",
-      "Main DPS",
-      "Pistols",
-      "Skill DMG",
-      "Rinascita",
-      "Parry"
-    ],
-    "bestWeapon": "Cold Whisper / Static Mist",
-    "bestEchoSet": "5-pc Frosty Resolve",
-    "echoMainStats": "4-Cost: Tỉ Lệ Bạo Kích hoặc Sát Thương Bạo Kích (Lampylumen Myriad) | 3-Cost: Sát Thương Băng | 1-Cost: Tấn Công%",
-    "outroDescription": "Gây sát thương Glacio bằng 480% ATK và tăng 25% Resonance Skill DMG Deepen cho nhân vật vào sân kế tiếp trong 14 giây.",
-    "rotations": {
-      "standard": [
-        {
-          "step": 1,
-          "char": "Shorekeeper / Verina",
-          "action": "Tạo vùng buff ATK và Crit Rate toàn đội."
-        },
-        {
-          "step": 2,
-          "char": "Zhezhi / Sanhua",
-          "action": "Intro ➔ Bật đòn phối hợp R ➔ Outro buff 25% Skill DMG (Zhezhi) hoặc 38% Basic ATK (Sanhua)."
-        },
-        {
-          "step": 3,
-          "char": "Carlotta",
-          "action": "Intro vào sân ➔ Biến đổi súng ngắn thành Shotgun hạng nặng ➔ E liên hoàn bắn diện rộng ➔ Đỡ đòn Parry phản kích ➔ R nổ băng xóa sổ kẻ địch."
-        }
-      ],
-      "quickswap": [
-        {
-          "step": 1,
-          "char": "Carlotta",
-          "action": "Tung đòn bắn Shotgun nổ băng đợt 1."
-        },
-        {
-          "step": 2,
-          "char": "Zhezhi",
-          "action": "Cancel hoạt ảnh giật súng ➔ Chuyển Zhezhi tung E vẽ hạc."
-        },
-        {
-          "step": 3,
-          "char": "Carlotta",
-          "action": "Đổi lại Carlotta kích nổ Resonance Liberation ngay tầm gần."
-        }
-      ]
-    }
-  },
-  {
-    "id": "phoebe",
-    "name": "Phoebe",
-    "title": "Blessed Maiden of Rinascita",
+    "id": "verina",
+    "name": "Verina",
+    "title": "Botanist of Huaxu Academy",
     "element": "Spectro",
     "rarity": 5,
     "weaponType": "Rectifier",
-    "role": "Main DPS / Biến Chuyển Hình Thái Spectro",
-    "avatar": "https://wutheringlab.com/wp-content/uploads/Phoebe.webp",
-    "iconColor": "#facc15",
+    "role": "Sustain / Hồi Phục Sinh Mệnh & Buff Công",
+    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Verina.png",
+    "iconColor": "#eab308",
     "tags": [
       "Spectro",
-      "Main DPS",
+      "Sustain",
+      "Healer",
+      "Universal Buffer",
       "Rectifier",
-      "Spectro Frazzle",
-      "Dual Form"
+      "Tier 0 Support"
     ],
-    "bestWeapon": "Luminous Reverie",
-    "bestEchoSet": "5-pc Eternal Radiance",
-    "echoMainStats": "4-Cost: Crit Rate/DMG (Jué) | 3-Cost: Spectro DMG | 1-Cost: ATK%",
-    "outroDescription": "Áp đặt trạng thái Spectro Frazzle lên mục tiêu: Kẻ địch chịu thêm 20% sát thương Spectro và khuếch đại sát thương dứt điểm trong 14 giây.",
+    "bestWeapon": "Variation",
+    "bestEchoSet": "5-pc Rejuvenating Glow",
+    "echoMainStats": "4-Cost: Healing Bonus (Bell-Borne) | 3-Cost: Energy Regen | 1-Cost: ATK%",
+    "outroDescription": "Hồi phục HP liên tục cho nhân vật đang xuất trận và buff 15% All-Type DMG Deepen cho toàn đội trong 30 giây.",
     "rotations": {
       "standard": [
         {
           "step": 1,
-          "char": "Verina / Shorekeeper",
-          "action": "Tạo Stella Field hoặc buff All-Type DMG."
-        },
-        {
-          "step": 2,
-          "char": "Rover (Spectro) / Yangyang",
-          "action": "Hỗ trợ nạp năng lượng và gom quái."
-        },
-        {
-          "step": 3,
-          "char": "Phoebe",
-          "action": "Intro vào sân ➔ Chuyển thể Xá Tội (Absolution Form) ➔ E phóng chùm tia quang năng ➔ R xả toàn bộ ánh sáng thiêng trừng phạt kẻ địch."
+          "char": "Verina",
+          "action": "Vào sân ➔ E ➔ R ➔ Nhảy đánh thường trên không Mid-air 3 lần tiêu hao Photosynthesis ➔ Bật Bell-Borne Echo ➔ Kích hoạt Outro buff 15% All-Type DMG cho đồng đội."
         }
       ]
-    }
-  },
-  {
-    "id": "brant",
-    "name": "Brant",
-    "title": "Captain of the Fleet",
-    "element": "Fusion",
-    "rarity": 5,
-    "weaponType": "Broadblade",
-    "role": "Main DPS / Đại Kiếm Hỏa Bộc Phá Không Trung",
-    "avatar": "https://wutheringlab.com/wp-content/uploads/Brant.webp",
-    "iconColor": "#ea580c",
-    "tags": [
-      "Fusion",
-      "Main DPS",
-      "Broadblade",
-      "Plunge DMG",
-      "Rinascita"
-    ],
-    "bestWeapon": "Blazing Sun Anchor",
-    "bestEchoSet": "5-pc Tidebreaking Courage",
-    "echoMainStats": "4-Cost: Crit Rate/DMG (Inferno Rider) | 3-Cost: Fusion DMG | 1-Cost: ATK%",
-    "outroDescription": "Thực hiện cú bổ nhào rực lửa: Tăng 20% Fusion DMG và 25% Resonance Skill DMG Deepen cho đồng minh tiếp theo.",
-    "rotations": {
-      "standard": [
-        {
-          "step": 1,
-          "char": "Shorekeeper / Verina",
-          "action": "Mở buff ATK và hồi phục toàn đội."
-        },
-        {
-          "step": 2,
-          "char": "Changli",
-          "action": "Thi triển đòn phượng hoàng tích Concerto ➔ Outro truyền 20% Fusion DMG và 25% Liberation Deepen."
-        },
-        {
-          "step": 3,
-          "char": "Brant",
-          "action": "Intro vào sân nhận trọn buff Fusion ➔ Kích hoạt Skill E lướt trên không ➔ Nện đòn Plunging lửa long trời lở đất ➔ R kích nổ đại bác mạn thuyền."
-        }
-      ]
-    }
-  },
-  {
-    "id": "roccia",
-    "name": "Roccia",
-    "title": "First Mate of the Fleet",
-    "element": "Havoc",
-    "rarity": 5,
-    "weaponType": "Gauntlets",
-    "role": "Sub-DPS / Đấu Sĩ Havoc & Trọng Kích Buffer",
-    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Roccia.webp",
-    "iconColor": "#be185d",
-    "tags": [
-      "Havoc",
-      "Sub-DPS",
-      "Buffer",
-      "Gauntlets",
-      "Brawler",
-      "Rinascita"
-    ],
-    "bestWeapon": "Obsidian Claws",
-    "bestEchoSet": "5-pc Midnight Veil",
-    "echoMainStats": "4-Cost: Crit Rate/DMG (Heron) | 3-Cost: Havoc DMG / Energy Regen | 1-Cost: ATK%",
-    "outroDescription": "Đập mạnh xuống mặt đất gây sát thương Havoc diện rộng và buff 20% Havoc DMG Deepen & 20% Heavy ATK DMG Deepen cho đồng minh vào sân.",
-    "rotations": {
-      "standard": [
-        {
-          "step": 1,
-          "char": "Roccia",
-          "action": "Intro ➔ Chuỗi đấm bốc cận chiến tích thanh Forte ➔ E kích nổ quyền lực Havoc ➔ R xả sóng xung kích ➔ Heron Echo ➔ Outro chuyển giao cho Cantarella / Camellya."
-        }
-      ]
-    }
-  },
-  {
-    "id": "cantarella",
-    "name": "Cantarella",
-    "title": "Matriarch of Fisalia",
-    "element": "Havoc",
-    "rarity": 5,
-    "weaponType": "Rectifier",
-    "role": "Main DPS / Nữ Vương Cộng Hưởng Bóng Tối",
-    "avatar": "https://wutheringlab.com/wp-content/uploads/Cantarella.webp",
-    "iconColor": "#9d174d",
-    "tags": [
-      "Havoc",
-      "Main DPS",
-      "Rectifier",
-      "Fisalia",
-      "Dark Resonance"
-    ],
-    "bestWeapon": "Echo of the Abyss",
-    "bestEchoSet": "5-pc Midnight Veil",
-    "echoMainStats": "4-Cost: Crit Rate/DMG (Crownless) | 3-Cost: Havoc DMG | 1-Cost: ATK%",
-    "outroDescription": "Gắn Dấu Ấn Hư Vô lên mục tiêu: Khi đồng minh tấn công mục tiêu sẽ giảm 15% Kháng Havoc của đối thủ trong 15 giây.",
-    "rotations": {
-      "standard": [
-        {
-          "step": 1,
-          "char": "Shorekeeper / Verina",
-          "action": "Buff toàn diện Crit & ATK."
-        },
-        {
-          "step": 2,
-          "char": "Roccia / Danjin",
-          "action": "Ra sân tích Concerto nhanh ➔ Outro buff Havoc DMG Deepen."
-        },
-        {
-          "step": 3,
-          "char": "Cantarella",
-          "action": "Intro vào sân ➔ Khởi động ma trận Fisalia (E) ➔ Đánh thường tầm xa áp đảo ➔ R giải phóng thực thể bóng tối nuốt trọn chiến trường."
-        }
-      ]
-    }
-  },
-  {
-    "id": "ciaccona",
-    "name": "Ciaccona",
-    "title": "Melody of the Tempest",
-    "element": "Aero",
-    "rarity": 5,
-    "weaponType": "Pistols",
-    "role": "Sub-DPS / Xạ Thủ Bào Mòn Gió & Buffer",
-    "avatar": "https://wutheringlab.com/wp-content/uploads/Ciaccona_Icon.webp",
-    "iconColor": "#059669",
-    "tags": [
-      "Aero",
-      "Sub-DPS",
-      "Buffer",
-      "Pistols",
-      "Aero Erosion"
-    ],
-    "bestWeapon": "Whirlwind Serenade",
-    "bestEchoSet": "5-pc Empyrean Anthem",
-    "echoMainStats": "4-Cost: Crit Rate/DMG (Heron) | 3-Cost: Aero DMG / Energy Regen | 1-Cost: ATK%",
-    "outroDescription": "Gây hiệu ứng Xói Mòn Phong (Aero Erosion): Khiến kẻ địch chịu thêm 23% sát thương Aero Deepen trong 14 giây.",
-    "rotations": {
-      "standard": [
-        {
-          "step": 1,
-          "char": "Ciaccona",
-          "action": "Intro vào sân ➔ Xả băng đạn phong lôi (E) ➔ Bật R gieo rắc giai điệu bão tố ngoài sân ➔ Heron Echo ➔ Outro kích nổ 23% Aero Deepen cho Jiyan."
-        }
-      ]
-    }
-  },
-  {
-    "id": "jiyan",
-    "name": "Jiyan",
-    "title": "General of the Midnight Rangers",
-    "element": "Aero",
-    "rarity": 5,
-    "weaponType": "Broadblade",
-    "role": "Main DPS / Thanh Long Thương Trọng Kích AOE",
-    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Jiyan.png",
-    "iconColor": "#10b981",
-    "tags": [
-      "Aero",
-      "Main DPS",
-      "Heavy ATK",
-      "Broadblade",
-      "Midnight Rangers",
-      "Tier 0 AOE"
-    ],
-    "bestWeapon": "Verdant Summit",
-    "bestEchoSet": "5-pc Sierra Gale",
-    "echoMainStats": "4-Cost: Crit Rate/DMG (Feilian Beringal) | 3-Cost: Aero DMG | 1-Cost: ATK%",
-    "outroDescription": "Triệu hồi gió xoáy Qingloong lướt qua kẻ thù gây sát thương Aero liên tục.",
-    "rotations": {
-      "standard": [
-        {
-          "step": 1,
-          "char": "Verina / Shorekeeper",
-          "action": "E ➔ R ➔ Mid-air combo ➔ Outro buff All-Type DMG."
-        },
-        {
-          "step": 2,
-          "char": "Mortefi / Ciaccona",
-          "action": "Intro nhận buff ➔ E ➔ R triệu hồi rồng bắn tỉa ➔ Outro kích hoạt 38% Heavy ATK DMG Deepen."
-        },
-        {
-          "step": 3,
-          "char": "Jiyan",
-          "action": "Intro nhận trọn buff của Mortefi ➔ Bật Resonance Liberation R hóa Thanh Long ➔ Giữ chuột quạt thương sát thương Heavy ATK cuốn phăng toàn bộ quái vật trên sàn đấu."
-        }
-      ]
-    }
+    },
+    "releaseVersion": "1.0",
+    "releaseOrder": 6
   },
   {
     "id": "calcharo",
@@ -786,7 +313,9 @@ export const RESONATORS = [
           "action": "Đổi về Calcharo dùng E đợt 2 ngay tắp lự mà không bị đứt chuỗi combo."
         }
       ]
-    }
+    },
+    "releaseVersion": "1.0",
+    "releaseOrder": 7
   },
   {
     "id": "encore",
@@ -845,39 +374,9 @@ export const RESONATORS = [
           "action": "Đổi lại Encore sau khi Changli hoàn tất đòn chém."
         }
       ]
-    }
-  },
-  {
-    "id": "verina",
-    "name": "Verina",
-    "title": "Botanist of Huaxu Academy",
-    "element": "Spectro",
-    "rarity": 5,
-    "weaponType": "Rectifier",
-    "role": "Sustain / Hồi Phục Sinh Mệnh & Buff Công",
-    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Verina.png",
-    "iconColor": "#eab308",
-    "tags": [
-      "Spectro",
-      "Sustain",
-      "Healer",
-      "Universal Buffer",
-      "Rectifier",
-      "Tier 0 Support"
-    ],
-    "bestWeapon": "Variation",
-    "bestEchoSet": "5-pc Rejuvenating Glow",
-    "echoMainStats": "4-Cost: Healing Bonus (Bell-Borne) | 3-Cost: Energy Regen | 1-Cost: ATK%",
-    "outroDescription": "Hồi phục HP liên tục cho nhân vật đang xuất trận và buff 15% All-Type DMG Deepen cho toàn đội trong 30 giây.",
-    "rotations": {
-      "standard": [
-        {
-          "step": 1,
-          "char": "Verina",
-          "action": "Vào sân ➔ E ➔ R ➔ Nhảy đánh thường trên không Mid-air 3 lần tiêu hao Photosynthesis ➔ Bật Bell-Borne Echo ➔ Kích hoạt Outro buff 15% All-Type DMG cho đồng đội."
-        }
-      ]
-    }
+    },
+    "releaseVersion": "1.0",
+    "releaseOrder": 8
   },
   {
     "id": "jianxin",
@@ -910,7 +409,9 @@ export const RESONATORS = [
           "action": "Vào sân ➔ E phản đòn đỡ chiêu (Parry) ➔ R gom toàn bộ quái vật vào tâm xoáy thái cực ➔ Giữ chuột tụ khí Chi Spiral tạo khiên siêu dày ➔ Outro truyền 38% Liberation Deepen cho Calcharo / Xiangli Yao / Rover."
         }
       ]
-    }
+    },
+    "releaseVersion": "1.0",
+    "releaseOrder": 9
   },
   {
     "id": "lingyang",
@@ -951,171 +452,9 @@ export const RESONATORS = [
           "action": "Intro vào sân ➔ Bật R kích hoạt trạng thái Suan'ni múa lân ➔ Nhảy lên không trung liên hoàn cào vuốt băng xé toạc mục tiêu."
         }
       ]
-    }
-  },
-  {
-    "id": "rover_havoc",
-    "name": "Rover (Havoc)",
-    "title": "Arbiter of Darkness",
-    "element": "Havoc",
-    "rarity": 5,
-    "weaponType": "Sword",
-    "role": "Main DPS / Bộc Phá Hắc Ám Dark Surge",
-    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Rover-Havoc.png",
-    "iconColor": "#be123c",
-    "tags": [
-      "Havoc",
-      "Main DPS",
-      "Sword",
-      "Dark Surge",
-      "Free 5-Star S6"
-    ],
-    "bestWeapon": "Emerald of Genesis",
-    "bestEchoSet": "5-pc Sun-sinking Eclipse",
-    "echoMainStats": "4-Cost: Crit Rate/DMG (Dreamless) | 3-Cost: Havoc DMG | 1-Cost: ATK%",
-    "outroDescription": "Tung đòn chém bóng tối hình chữ X gây 143% sát thương Havoc và kích hoạt nổ Dark Burst.",
-    "rotations": {
-      "standard": [
-        {
-          "step": 1,
-          "char": "Verina / Shorekeeper",
-          "action": "Buff ATK và All-Type DMG."
-        },
-        {
-          "step": 2,
-          "char": "Danjin",
-          "action": "Intro ➔ Combo rút máu tăng thanh Forte ➔ E liên hoàn ➔ Outro truyền 23% Havoc DMG Deepen."
-        },
-        {
-          "step": 3,
-          "char": "Rover (Havoc)",
-          "action": "Intro nhận buff Havoc ➔ Heavy Attack vào trạng thái Dark Surge ➔ Combo kiếm đen cường hóa ➔ R tung lưỡi hái bóng tối nộ khổng lồ ➔ Bấm Dreamless Echo nổ sạch màn hình."
-        }
-      ],
-      "quickswap": [
-        {
-          "step": 1,
-          "char": "Rover (Havoc)",
-          "action": "Bật R tung nộ lưỡi hái ➔ Lập tức bấm Dreamless Echo."
-        },
-        {
-          "step": 2,
-          "char": "Danjin",
-          "action": "Animation cancel: Ngay lúc Dreamless đang gầm, đổi sang Danjin tung E."
-        },
-        {
-          "step": 3,
-          "char": "Rover (Havoc)",
-          "action": "Đổi lại Rover tiếp tục đánh thường Dark Surge."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rover_spectro",
-    "name": "Rover (Spectro)",
-    "title": "Arbiter of Radiance",
-    "element": "Spectro",
-    "rarity": 5,
-    "weaponType": "Sword",
-    "role": "Sub-DPS / Ngưng Đọng Thời Gian & Khống Chế",
-    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Rover-Spectro.png",
-    "iconColor": "#eab308",
-    "tags": [
-      "Spectro",
-      "Sub-DPS",
-      "Buffer",
-      "Sword",
-      "Time Stop",
-      "Free 5-Star S6"
-    ],
-    "bestWeapon": "Emerald of Genesis",
-    "bestEchoSet": "5-pc Moonlit Clouds",
-    "echoMainStats": "4-Cost: Crit Rate/DMG (Jué) | 3-Cost: Spectro DMG | 1-Cost: ATK%",
-    "outroDescription": "Tạo vùng quang trường ngưng đọng thời gian (Time-Stop) làm bất động mọi kẻ địch trong 3 giây.",
-    "rotations": {
-      "standard": [
-        {
-          "step": 1,
-          "char": "Rover (Spectro)",
-          "action": "Intro vào sân ➔ E ➔ R tung vòng thời gian ngưng đọng đối thủ ➔ Chuỗi đánh thường tích đầy Diminuendo ➔ Jué Echo ➔ Outro khống chế toàn sân."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rover_aero",
-    "name": "Rover (Aero)",
-    "title": "Arbiter of Gales",
-    "element": "Aero",
-    "rarity": 5,
-    "weaponType": "Sword",
-    "role": "Sub-DPS / Lốc Xoáy Hút Quái & Chém Gió",
-    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Rover-Spectro.png",
-    "iconColor": "#10b981",
-    "tags": [
-      "Aero",
-      "Sub-DPS",
-      "Buffer",
-      "Sword",
-      "Vortex",
-      "Wind Slashing"
-    ],
-    "bestWeapon": "Emerald of Genesis",
-    "bestEchoSet": "5-pc Moonlit Clouds",
-    "echoMainStats": "4-Cost: Crit Rate/DMG (Feilian) | 3-Cost: Aero DMG | 1-Cost: ATK%",
-    "outroDescription": "Tạo lốc xoáy Aero hút chặt kẻ địch nhỏ vào tâm điểm và gây sát thương kéo dài.",
-    "rotations": {
-      "standard": [
-        {
-          "step": 1,
-          "char": "Rover (Aero)",
-          "action": "Intro ➔ Tung đòn lướt kiếm gió ➔ R xoáy phong lốc ➔ Gom quái tạo tiền đề cho Main DPS."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rover_electro",
-    "name": "Rover (Electro)",
-    "title": "Arbiter of Thunder",
-    "element": "Electro",
-    "rarity": 5,
-    "weaponType": "Sword",
-    "role": "Main DPS / Lôi Kiếm Liên Hoàn Bão Sét",
-    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Rover-Havoc.png",
-    "iconColor": "#a855f7",
-    "tags": [
-      "Electro",
-      "Main DPS",
-      "Sword",
-      "Burst DPS",
-      "Rover",
-      "Free 5-Star S6"
-    ],
-    "bestWeapon": "Emerald of Genesis / Blazing Brilliance / Commando Surge",
-    "bestEchoSet": "5-pc Void Thunder",
-    "echoMainStats": "4-Cost: Crit Rate/DMG (Thundering Mephis) | 3-Cost: Electro DMG | 1-Cost: ATK%",
-    "outroDescription": "Lôi Minh Trảm: Tung đòn chém sấm sét giáng 380% sát thương Electro và hồi 15 điểm Concerto cho đồng minh kế tiếp.",
-    "rotations": {
-      "standard": [
-        {
-          "step": 1,
-          "char": "Sustain (Verina / Shorekeeper / Baizhi)",
-          "action": "Vào sân trước ➔ Dùng E và R tạo buff All-Type DMG và hồi máu ➔ Bell-Borne Echo ➔ Outro."
-        },
-        {
-          "step": 2,
-          "char": "Buffer (Yinlin / Sanhua / Jianxin)",
-          "action": "Nhận buff ➔ Xả E và R ➔ Kích hoạt Heron Echo ➔ Outro buff Electro DMG & Resonance Liberation DMG."
-        },
-        {
-          "step": 3,
-          "char": "Rover (Electro)",
-          "action": "Intro vào sân nhận toàn bộ buff ➔ Kích hoạt Skill E lôi kiếm ➔ Xả Resonance Liberation R nộ sấm sét quét sạch sàn đấu ➔ Trọng kích hoàn tất chuỗi."
-        }
-      ]
-    }
+    },
+    "releaseVersion": "1.0",
+    "releaseOrder": 10
   },
   {
     "id": "sanhua",
@@ -1148,7 +487,9 @@ export const RESONATORS = [
           "action": "Intro vào sân ➔ Skill E tạo khối băng ➔ Nộ R tạo gai tuyết ➔ Nhả chuột đúng vạch xanh thanh Forte (Detonate nổ sạch băng) ➔ Heron Echo ➔ Đầy 100% Concerto chỉ trong 3 giây ➔ Outro ngay cho Camellya / Encore / Lingyang."
         }
       ]
-    }
+    },
+    "releaseVersion": "1.0",
+    "releaseOrder": 11
   },
   {
     "id": "mortefi",
@@ -1181,7 +522,9 @@ export const RESONATORS = [
           "action": "Intro vào sân ➔ E đợt 1 ➔ Đánh thường tích nộ ➔ E đợt 2 ➔ R kích hoạt Rồng Lửa bắn tỉa cùng đòn đánh của đồng minh ➔ Heron Echo ➔ Outro truyền 38% Heavy ATK cho Jiyan."
         }
       ]
-    }
+    },
+    "releaseVersion": "1.0",
+    "releaseOrder": 12
   },
   {
     "id": "danjin",
@@ -1213,7 +556,9 @@ export const RESONATORS = [
           "action": "Intro ➔ Nhấn liên tục Skill E để chém rút máu bản thân nạp Forte Ruby Blossom ➔ Heavy Attack giải phóng máu hồi lại HP ➔ R xả nộ ➔ Outro truyền 23% Havoc Deepen cho Rover Havoc / Camellya."
         }
       ]
-    }
+    },
+    "releaseVersion": "1.0",
+    "releaseOrder": 13
   },
   {
     "id": "chixia",
@@ -1254,7 +599,9 @@ export const RESONATORS = [
           "action": "Intro vào sân ➔ Giữ E xả toàn bộ 30 viên đạn Boom Boom sấy nát mục tiêu ➔ R nổ pháo hoa kết thúc chuỗi sát thương."
         }
       ]
-    }
+    },
+    "releaseVersion": "1.0",
+    "releaseOrder": 14
   },
   {
     "id": "baizhi",
@@ -1285,7 +632,9 @@ export const RESONATORS = [
           "action": "Vào sân ➔ E triệu hồi You'tan ➔ Đánh thường tích 4 tầng Concentration ➔ Heavy Attack tiêu hao tầng hồi máu toàn đội ➔ R nộ ➔ Bell-Borne Echo ➔ Outro rơi lông vũ cho Main DPS nhặt."
         }
       ]
-    }
+    },
+    "releaseVersion": "1.0",
+    "releaseOrder": 15
   },
   {
     "id": "yangyang",
@@ -1317,7 +666,9 @@ export const RESONATORS = [
           "action": "Intro vào sân ➔ E ➔ R tạo cơn lốc gom quái cực rộng ➔ Đánh trên không Mid-air ➔ Heron Echo ➔ Outro nạp ngay 20 Năng Lượng R cho nhân vật phụ thuộc nộ."
         }
       ]
-    }
+    },
+    "releaseVersion": "1.0",
+    "releaseOrder": 16
   },
   {
     "id": "taoqi",
@@ -1350,7 +701,9 @@ export const RESONATORS = [
           "action": "Intro ➔ Nhấn giữ E kích hoạt thế phòng ngự Rocksteady Shield (DEF cao) ➔ Phản đòn khi bị tấn công ➔ R xả nộ ➔ Outro truyền 38% Skill DMG Deepen cho Jinhsi / Changli."
         }
       ]
-    }
+    },
+    "releaseVersion": "1.0",
+    "releaseOrder": 17
   },
   {
     "id": "yuanwu",
@@ -1383,7 +736,9 @@ export const RESONATORS = [
           "action": "Ra sân vỏn vẹn 1 giây ➔ Cắm cột Lôi Trụ (E) ➔ Bấm Bell-Borne Echo ➔ Đổi ngay sang Jinhsi (Cột tự động nổ đòn phối hợp Coordinated ATK mỗi khi Jinhsi tấn công, sạc 50 tầng Incandescence miễn phí)."
         }
       ]
-    }
+    },
+    "releaseVersion": "1.0",
+    "releaseOrder": 18
   },
   {
     "id": "aalto",
@@ -1415,7 +770,240 @@ export const RESONATORS = [
           "action": "Intro ➔ Bật E để lại ảo ảnh sương mù khiêu khích quái ➔ R tạo cánh cổng gió khổng lồ ➔ Bắn xuyên cổng gia tăng tốc độ đạn ➔ Outro buff 23% Aero cho Jiyan."
         }
       ]
-    }
+    },
+    "releaseVersion": "1.0",
+    "releaseOrder": 19
+  },
+  {
+    "id": "jinhsi",
+    "name": "Jinhsi",
+    "title": "Magistrate of Jinzhou",
+    "element": "Spectro",
+    "rarity": 5,
+    "weaponType": "Broadblade",
+    "role": "Main DPS / Bộc Phá Kỹ Năng Cộng Hưởng",
+    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Jinhsi.png",
+    "iconColor": "#facc15",
+    "tags": [
+      "Spectro",
+      "Main DPS",
+      "Resonance Skill DMG",
+      "Broadblade",
+      "Tier 0 DPS"
+    ],
+    "bestWeapon": "Ages of Harvest",
+    "bestEchoSet": "5-pc Celestial Light",
+    "echoMainStats": "4-Cost: Tỉ Lệ Bạo Kích hoặc Sát Thương Bạo Kích (Jué) | 3-Cost: Sát Thương Spectro | 1-Cost: Tấn Công%",
+    "outroDescription": "Giảm thời gian hồi chiêu của các đòn Coordinated Attack (Đòn tấn công phối hợp) từ đồng đội đi 1 giây.",
+    "rotations": {
+      "standard": [
+        {
+          "step": 1,
+          "char": "Verina / Shorekeeper",
+          "action": "Intro ➔ E ➔ R ➔ Mid-air combo ➔ Outro buff All-Type DMG."
+        },
+        {
+          "step": 2,
+          "char": "Zhezhi / Yuanwu / Yinlin",
+          "action": "Intro ➔ Bật đòn phối hợp Coordinated Attack (Zhezhi R hoặc Yuanwu cắm cột E) ➔ Outro chuyển giao."
+        },
+        {
+          "step": 3,
+          "char": "Jinhsi",
+          "action": "Intro vào sân (Incarnation) ➔ Hấp thụ tối đa 50 tầng Incandescence từ đòn đánh phối hợp ➔ Đánh thường 4 nhịp ➔ Skill E đợt 1 ➔ Liberation R xả long nộ ➔ Bấm E cường hóa (Illuminous Epiphany) thả rồng nổ hàng triệu sát thương."
+        }
+      ]
+    },
+    "releaseVersion": "1.1",
+    "releaseOrder": 20
+  },
+  {
+    "id": "changli",
+    "name": "Changli",
+    "title": "Counselor to the Magistrate",
+    "element": "Fusion",
+    "rarity": 5,
+    "weaponType": "Sword",
+    "role": "Main DPS / Hỏa Kiếm Bộc Phá & Quickswap",
+    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Changli.png",
+    "iconColor": "#f97316",
+    "tags": [
+      "Fusion",
+      "Main DPS",
+      "Quickswap",
+      "Resonance Liberation",
+      "Sword"
+    ],
+    "bestWeapon": "Blazing Brilliance",
+    "bestEchoSet": "5-pc Molten Rift",
+    "echoMainStats": "4-Cost: Crit Rate/DMG (Inferno Rider) | 3-Cost: Fusion DMG | 1-Cost: ATK%",
+    "outroDescription": "Buff 20% Fusion DMG và 25% Resonance Liberation DMG Deepen trong 10 giây cho nhân vật tiếp theo.",
+    "rotations": {
+      "standard": [
+        {
+          "step": 1,
+          "char": "Verina / Shorekeeper",
+          "action": "Chuỗi combo chuẩn bị buff ATK & All-Type DMG."
+        },
+        {
+          "step": 2,
+          "char": "Changli",
+          "action": "Tích 4 tầng Enflamement ➔ E ➔ Đòn trọng kích Flaming Sacrifice ➔ R xả nộ phượng hoàng ➔ Outro kích hoạt."
+        },
+        {
+          "step": 3,
+          "char": "Encore / Chixia",
+          "action": "Nhận trọn vẹn 20% Fusion DMG và 25% Liberation DMG ➔ Bật R hóa hình dồn sát thương."
+        }
+      ],
+      "quickswap": [
+        {
+          "step": 1,
+          "char": "Changli",
+          "action": "Tung True Sight: Charge hoặc bấm R nộ phượng hoàng."
+        },
+        {
+          "step": 2,
+          "char": "Encore",
+          "action": "Animation cancel: Ngay lúc kiếm của Changli vung ra, đổi sang Encore bấm trọng kích Cosmos Rave."
+        },
+        {
+          "step": 3,
+          "char": "Changli",
+          "action": "Đổi ngược về Changli tiếp tục chuỗi chém kiếm lửa mà không lãng phí 1 giây hoạt ảnh."
+        }
+      ]
+    },
+    "releaseVersion": "1.1",
+    "releaseOrder": 21
+  },
+  {
+    "id": "zhezhi",
+    "name": "Zhezhi",
+    "title": "Commission Painter",
+    "element": "Glacio",
+    "rarity": 5,
+    "weaponType": "Rectifier",
+    "role": "Sub-DPS / Bút Họa Phối Hợp & Buff Băng",
+    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Zhezhi.png",
+    "iconColor": "#06b6d4",
+    "tags": [
+      "Glacio",
+      "Sub-DPS",
+      "Buffer",
+      "Coordinated ATK",
+      "Skill DMG Buffer",
+      "Rectifier"
+    ],
+    "bestWeapon": "Rime-Draped Sprouts",
+    "bestEchoSet": "5-pc Moonlit Clouds",
+    "echoMainStats": "4-Cost: Crit Rate/DMG (Heron) | 3-Cost: Glacio DMG / Energy Regen | 1-Cost: ATK%",
+    "outroDescription": "Buff 20% Glacio DMG và 25% Resonance Skill DMG Deepen trong 14 giây cho nhân vật tiếp theo.",
+    "rotations": {
+      "standard": [
+        {
+          "step": 1,
+          "char": "Zhezhi",
+          "action": "Intro ➔ E triệu hồi hạc mực ➔ R xả nộ kích hoạt đòn phối hợp liên kích ngoài sân ➔ Heavy Attack tích đầy Concerto ➔ Heron Echo ➔ Outro truyền 25% Skill DMG Deepen cho Jinhsi hoặc Carlotta."
+        }
+      ]
+    },
+    "releaseVersion": "1.2",
+    "releaseOrder": 22
+  },
+  {
+    "id": "xiangli_yao",
+    "name": "Xiangli Yao",
+    "title": "Principal Investigator of Huaxu Academy",
+    "element": "Electro",
+    "rarity": 5,
+    "weaponType": "Gauntlets",
+    "role": "Main DPS / Quyền Vương Công Nghệ Lôi",
+    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/XiangliYao.png",
+    "iconColor": "#8b5cf6",
+    "tags": [
+      "Electro",
+      "Main DPS",
+      "Resonance Liberation",
+      "Gauntlets",
+      "Huaxu"
+    ],
+    "bestWeapon": "Verity's Handle",
+    "bestEchoSet": "5-pc Void Thunder",
+    "echoMainStats": "4-Cost: Crit Rate/DMG (Tempest Mephis) | 3-Cost: Electro DMG | 1-Cost: ATK%",
+    "outroDescription": "Gây sát thương Electro bằng 237% ATK và đóng băng/làm chậm kẻ địch xung quanh trong 3 giây.",
+    "rotations": {
+      "standard": [
+        {
+          "step": 1,
+          "char": "Shorekeeper / Verina",
+          "action": "Kích hoạt buff sát thương và Crit toàn đội."
+        },
+        {
+          "step": 2,
+          "char": "Yinlin",
+          "action": "Đặt hình nộm ➔ R xả nộ ➔ Outro buff 20% Electro DMG & 25% Resonance Liberation DMG Deepen."
+        },
+        {
+          "step": 3,
+          "char": "Xiangli Yao",
+          "action": "Intro nhận buff khổng lồ ➔ Bật R kích hoạt trạng thái Trực Giác (Intuition) ➔ Bấm liên tiếp Skill E cường hóa (Decaying Cube) ➔ Kết liễu bằng Law of Reduction."
+        }
+      ],
+      "quickswap": [
+        {
+          "step": 1,
+          "char": "Xiangli Yao",
+          "action": "Bấm E giải phóng khối lập phương năng lượng."
+        },
+        {
+          "step": 2,
+          "char": "Changli / Yinlin",
+          "action": "Hoán đổi ngay khi đòn đấm đang thi triển ➔ Đồng đội ra sân dùng Skill E ngắn."
+        },
+        {
+          "step": 3,
+          "char": "Xiangli Yao",
+          "action": "Quay lại kích hoạt nộ R với đầy đủ thanh buff."
+        }
+      ]
+    },
+    "releaseVersion": "1.2",
+    "releaseOrder": 23
+  },
+  {
+    "id": "shorekeeper",
+    "name": "The Shorekeeper",
+    "title": "Guardian of the Black Shores",
+    "element": "Spectro",
+    "rarity": 5,
+    "weaponType": "Rectifier",
+    "role": "Sustain / Hồi Máu & Siêu Buff Toàn Năng",
+    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Shorekeeper.png",
+    "iconColor": "#38bdf8",
+    "tags": [
+      "Spectro",
+      "Sustain",
+      "Healer",
+      "Crit Buffer",
+      "Rectifier",
+      "Tier 0 Support"
+    ],
+    "bestWeapon": "Stellar Symphony",
+    "bestEchoSet": "5-pc Rejuvenating Glow",
+    "echoMainStats": "4-Cost: Tăng Lượng Trị Liệu hoặc HP% (Fallacy of No Return) | 3-Cost: Hiệu Quả Nạp Năng Lượng% | 1-Cost: HP%",
+    "outroDescription": "Nâng cấp Stella Field lên Giai Đoạn 3: Tăng 12.5% Tỷ Lệ Bạo Kích và 25% Sát Thương Bạo Kích cho toàn đội trong 30 giây.",
+    "rotations": {
+      "standard": [
+        {
+          "step": 1,
+          "char": "Shorekeeper",
+          "action": "Ra sân đầu trận ➔ Dùng E triệu hồi bướm tích Forte ➔ Kích hoạt Resonance Liberation R mở Stella Field ➔ Bấm Fallacy Echo ➔ Đầy Concerto ➔ Outro buff Crit cho đồng đội."
+        }
+      ]
+    },
+    "releaseVersion": "1.3",
+    "releaseOrder": 24
   },
   {
     "id": "youhu",
@@ -1447,7 +1035,69 @@ export const RESONATORS = [
           "action": "Intro vào sân ➔ E giám định cổ vật (Rút bùa Thỏi Vàng/Bình Gốm) ➔ Heavy Attack ném rương hồi máu toàn đội ➔ R nổ cổ vật ➔ Outro buff 100% Coordinated Attack cho Zhezhi / Yinlin / Mortefi."
         }
       ]
-    }
+    },
+    "releaseVersion": "1.3",
+    "releaseOrder": 25
+  },
+  {
+    "id": "camellya",
+    "name": "Camellya",
+    "title": "Bloom of Bloom",
+    "element": "Havoc",
+    "rarity": 5,
+    "weaponType": "Sword",
+    "role": "Main DPS / Sát Thương Đánh Thường Havoc",
+    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Camellya.webp",
+    "iconColor": "#ec4899",
+    "tags": [
+      "Havoc",
+      "Main DPS",
+      "Basic ATK",
+      "Sword",
+      "Black Shores"
+    ],
+    "bestWeapon": "Red Spring",
+    "bestEchoSet": "5-pc Sun-sinking Eclipse",
+    "echoMainStats": "4-Cost: Crit Rate/DMG (Dreamless / Crownless) | 3-Cost: Havoc DMG | 1-Cost: ATK%",
+    "outroDescription": "Tạo vụ nổ Cánh Hoa Hỗn Loạn gây sát thương Havoc diện rộng bằng 459% ATK cho kẻ địch xung quanh.",
+    "rotations": {
+      "standard": [
+        {
+          "step": 1,
+          "char": "Verina / Shorekeeper",
+          "action": "Intro ➔ E ➔ R ➔ Mid-air combo tích Concerto ➔ Bell-Borne Echo ➔ Outro buff All-Type DMG."
+        },
+        {
+          "step": 2,
+          "char": "Sanhua",
+          "action": "Intro nhận buff ➔ E ➔ R ➔ Căn thanh Forte nổ băng (Detonate) ➔ Outro truyền 38% Basic ATK DMG Deepen."
+        },
+        {
+          "step": 3,
+          "char": "Camellya",
+          "action": "Intro vào sân nhận 38% buff Basic ATK ➔ Kích hoạt Ephemeral Stance ➔ Giữ chuột đánh thường xả chuỗi roi gai Havoc điên cuồng ➔ Resonance Liberation R nổ kết liễu."
+        }
+      ],
+      "quickswap": [
+        {
+          "step": 1,
+          "char": "Camellya",
+          "action": "Kích hoạt Ephemeral Stance ➔ Dùng E trói mục tiêu."
+        },
+        {
+          "step": 2,
+          "char": "Sanhua",
+          "action": "Animation cancel lúc Camellya bay lên ➔ Sanhua vào sân tung E + R nổ băng trong 2 giây."
+        },
+        {
+          "step": 3,
+          "char": "Camellya",
+          "action": "Đổi ngược về Camellya để tiếp tục chuỗi quạt roi gai trọn vẹn buff."
+        }
+      ]
+    },
+    "releaseVersion": "1.4",
+    "releaseOrder": 26
   },
   {
     "id": "lumi",
@@ -1478,38 +1128,266 @@ export const RESONATORS = [
           "action": "Intro vào sân ➔ Nhấn Skill E vận chuyển năng lượng Lollo ➔ Tích đầy thanh Lollo Delivery ➔ Bật Liberation R nổ thùng hàng lôi điện ➔ Outro chuyển giao."
         }
       ]
-    }
+    },
+    "releaseVersion": "1.4",
+    "releaseOrder": 27
   },
   {
-    "id": "buling",
-    "name": "Buling",
-    "title": "Electro Frequency Specialist",
-    "element": "Electro",
-    "rarity": 4,
-    "weaponType": "Rectifier",
-    "role": "Sustain / Trị Liệu Trợ Lực & Buff Lôi",
-    "avatar": "https://wutheringlab.com/wp-content/uploads/Buling.webp",
-    "iconColor": "#9333ea",
+    "id": "carlotta",
+    "name": "Carlotta",
+    "title": "Second Daughter of Montelli Family",
+    "element": "Glacio",
+    "rarity": 5,
+    "weaponType": "Pistols",
+    "role": "Main DPS / Xạ Thủ Shotgun Băng",
+    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Carlotta.webp",
+    "iconColor": "#0ea5e9",
     "tags": [
-      "Electro",
-      "Sustain",
-      "Healer",
-      "Rectifier",
-      "Electro Buffer"
+      "Glacio",
+      "Main DPS",
+      "Pistols",
+      "Skill DMG",
+      "Rinascita",
+      "Parry"
     ],
-    "bestWeapon": "Variation",
-    "bestEchoSet": "5-pc Rejuvenating Glow",
-    "echoMainStats": "4-Cost: Healing Bonus | 3-Cost: Energy Regen | 1-Cost: HP%",
-    "outroDescription": "Hồi phục tức thời 19% Max HP cho đồng minh vào sân và tăng 15% Electro DMG Deepen trong 20 giây.",
+    "bestWeapon": "Cold Whisper / Static Mist",
+    "bestEchoSet": "5-pc Frosty Resolve",
+    "echoMainStats": "4-Cost: Tỉ Lệ Bạo Kích hoặc Sát Thương Bạo Kích (Lampylumen Myriad) | 3-Cost: Sát Thương Băng | 1-Cost: Tấn Công%",
+    "outroDescription": "Gây sát thương Glacio bằng 480% ATK và tăng 25% Resonance Skill DMG Deepen cho nhân vật vào sân kế tiếp trong 14 giây.",
     "rotations": {
       "standard": [
         {
           "step": 1,
-          "char": "Buling",
-          "action": "Intro ➔ E phát sóng từ trường lôi hồi máu ➔ R mở màn chắn tần số Electro ➔ Đầy Concerto ➔ Outro buff 15% Electro DMG cho Xiangli Yao / Hsin / Calcharo."
+          "char": "Shorekeeper / Verina",
+          "action": "Tạo vùng buff ATK và Crit Rate toàn đội."
+        },
+        {
+          "step": 2,
+          "char": "Zhezhi / Sanhua",
+          "action": "Intro ➔ Bật đòn phối hợp R ➔ Outro buff 25% Skill DMG (Zhezhi) hoặc 38% Basic ATK (Sanhua)."
+        },
+        {
+          "step": 3,
+          "char": "Carlotta",
+          "action": "Intro vào sân ➔ Biến đổi súng ngắn thành Shotgun hạng nặng ➔ E liên hoàn bắn diện rộng ➔ Đỡ đòn Parry phản kích ➔ R nổ băng xóa sổ kẻ địch."
+        }
+      ],
+      "quickswap": [
+        {
+          "step": 1,
+          "char": "Carlotta",
+          "action": "Tung đòn bắn Shotgun nổ băng đợt 1."
+        },
+        {
+          "step": 2,
+          "char": "Zhezhi",
+          "action": "Cancel hoạt ảnh giật súng ➔ Chuyển Zhezhi tung E vẽ hạc."
+        },
+        {
+          "step": 3,
+          "char": "Carlotta",
+          "action": "Đổi lại Carlotta kích nổ Resonance Liberation ngay tầm gần."
         }
       ]
-    }
+    },
+    "releaseVersion": "2.0",
+    "releaseOrder": 28
+  },
+  {
+    "id": "phoebe",
+    "name": "Phoebe",
+    "title": "Blessed Maiden of Rinascita",
+    "element": "Spectro",
+    "rarity": 5,
+    "weaponType": "Rectifier",
+    "role": "Main DPS / Biến Chuyển Hình Thái Spectro",
+    "avatar": "https://wutheringlab.com/wp-content/uploads/Phoebe.webp",
+    "iconColor": "#facc15",
+    "tags": [
+      "Spectro",
+      "Main DPS",
+      "Rectifier",
+      "Spectro Frazzle",
+      "Dual Form"
+    ],
+    "bestWeapon": "Luminous Reverie",
+    "bestEchoSet": "5-pc Eternal Radiance",
+    "echoMainStats": "4-Cost: Crit Rate/DMG (Jué) | 3-Cost: Spectro DMG | 1-Cost: ATK%",
+    "outroDescription": "Áp đặt trạng thái Spectro Frazzle lên mục tiêu: Kẻ địch chịu thêm 20% sát thương Spectro và khuếch đại sát thương dứt điểm trong 14 giây.",
+    "rotations": {
+      "standard": [
+        {
+          "step": 1,
+          "char": "Verina / Shorekeeper",
+          "action": "Tạo Stella Field hoặc buff All-Type DMG."
+        },
+        {
+          "step": 2,
+          "char": "Rover (Spectro) / Yangyang",
+          "action": "Hỗ trợ nạp năng lượng và gom quái."
+        },
+        {
+          "step": 3,
+          "char": "Phoebe",
+          "action": "Intro vào sân ➔ Chuyển thể Xá Tội (Absolution Form) ➔ E phóng chùm tia quang năng ➔ R xả toàn bộ ánh sáng thiêng trừng phạt kẻ địch."
+        }
+      ]
+    },
+    "releaseVersion": "2.0",
+    "releaseOrder": 29
+  },
+  {
+    "id": "brant",
+    "name": "Brant",
+    "title": "Captain of the Fleet",
+    "element": "Fusion",
+    "rarity": 5,
+    "weaponType": "Broadblade",
+    "role": "Main DPS / Đại Kiếm Hỏa Bộc Phá Không Trung",
+    "avatar": "https://wutheringlab.com/wp-content/uploads/Brant.webp",
+    "iconColor": "#ea580c",
+    "tags": [
+      "Fusion",
+      "Main DPS",
+      "Broadblade",
+      "Plunge DMG",
+      "Rinascita"
+    ],
+    "bestWeapon": "Blazing Sun Anchor",
+    "bestEchoSet": "5-pc Tidebreaking Courage",
+    "echoMainStats": "4-Cost: Crit Rate/DMG (Inferno Rider) | 3-Cost: Fusion DMG | 1-Cost: ATK%",
+    "outroDescription": "Thực hiện cú bổ nhào rực lửa: Tăng 20% Fusion DMG và 25% Resonance Skill DMG Deepen cho đồng minh tiếp theo.",
+    "rotations": {
+      "standard": [
+        {
+          "step": 1,
+          "char": "Shorekeeper / Verina",
+          "action": "Mở buff ATK và hồi phục toàn đội."
+        },
+        {
+          "step": 2,
+          "char": "Changli",
+          "action": "Thi triển đòn phượng hoàng tích Concerto ➔ Outro truyền 20% Fusion DMG và 25% Liberation Deepen."
+        },
+        {
+          "step": 3,
+          "char": "Brant",
+          "action": "Intro vào sân nhận trọn buff Fusion ➔ Kích hoạt Skill E lướt trên không ➔ Nện đòn Plunging lửa long trời lở đất ➔ R kích nổ đại bác mạn thuyền."
+        }
+      ]
+    },
+    "releaseVersion": "2.0",
+    "releaseOrder": 30
+  },
+  {
+    "id": "roccia",
+    "name": "Roccia",
+    "title": "First Mate of the Fleet",
+    "element": "Havoc",
+    "rarity": 5,
+    "weaponType": "Gauntlets",
+    "role": "Sub-DPS / Đấu Sĩ Havoc & Trọng Kích Buffer",
+    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Roccia.webp",
+    "iconColor": "#be185d",
+    "tags": [
+      "Havoc",
+      "Sub-DPS",
+      "Buffer",
+      "Gauntlets",
+      "Brawler",
+      "Rinascita"
+    ],
+    "bestWeapon": "Obsidian Claws",
+    "bestEchoSet": "5-pc Midnight Veil",
+    "echoMainStats": "4-Cost: Crit Rate/DMG (Heron) | 3-Cost: Havoc DMG / Energy Regen | 1-Cost: ATK%",
+    "outroDescription": "Đập mạnh xuống mặt đất gây sát thương Havoc diện rộng và buff 20% Havoc DMG Deepen & 20% Heavy ATK DMG Deepen cho đồng minh vào sân.",
+    "rotations": {
+      "standard": [
+        {
+          "step": 1,
+          "char": "Roccia",
+          "action": "Intro ➔ Chuỗi đấm bốc cận chiến tích thanh Forte ➔ E kích nổ quyền lực Havoc ➔ R xả sóng xung kích ➔ Heron Echo ➔ Outro chuyển giao cho Cantarella / Camellya."
+        }
+      ]
+    },
+    "releaseVersion": "2.0",
+    "releaseOrder": 31
+  },
+  {
+    "id": "cantarella",
+    "name": "Cantarella",
+    "title": "Matriarch of Fisalia",
+    "element": "Havoc",
+    "rarity": 5,
+    "weaponType": "Rectifier",
+    "role": "Main DPS / Nữ Vương Cộng Hưởng Bóng Tối",
+    "avatar": "https://wutheringlab.com/wp-content/uploads/Cantarella.webp",
+    "iconColor": "#9d174d",
+    "tags": [
+      "Havoc",
+      "Main DPS",
+      "Rectifier",
+      "Fisalia",
+      "Dark Resonance"
+    ],
+    "bestWeapon": "Echo of the Abyss",
+    "bestEchoSet": "5-pc Midnight Veil",
+    "echoMainStats": "4-Cost: Crit Rate/DMG (Crownless) | 3-Cost: Havoc DMG | 1-Cost: ATK%",
+    "outroDescription": "Gắn Dấu Ấn Hư Vô lên mục tiêu: Khi đồng minh tấn công mục tiêu sẽ giảm 15% Kháng Havoc của đối thủ trong 15 giây.",
+    "rotations": {
+      "standard": [
+        {
+          "step": 1,
+          "char": "Shorekeeper / Verina",
+          "action": "Buff toàn diện Crit & ATK."
+        },
+        {
+          "step": 2,
+          "char": "Roccia / Danjin",
+          "action": "Ra sân tích Concerto nhanh ➔ Outro buff Havoc DMG Deepen."
+        },
+        {
+          "step": 3,
+          "char": "Cantarella",
+          "action": "Intro vào sân ➔ Khởi động ma trận Fisalia (E) ➔ Đánh thường tầm xa áp đảo ➔ R giải phóng thực thể bóng tối nuốt trọn chiến trường."
+        }
+      ]
+    },
+    "releaseVersion": "2.1",
+    "releaseOrder": 32
+  },
+  {
+    "id": "ciaccona",
+    "name": "Ciaccona",
+    "title": "Melody of the Tempest",
+    "element": "Aero",
+    "rarity": 5,
+    "weaponType": "Pistols",
+    "role": "Sub-DPS / Xạ Thủ Bào Mòn Gió & Buffer",
+    "avatar": "https://wutheringlab.com/wp-content/uploads/Ciaccona_Icon.webp",
+    "iconColor": "#059669",
+    "tags": [
+      "Aero",
+      "Sub-DPS",
+      "Buffer",
+      "Pistols",
+      "Aero Erosion"
+    ],
+    "bestWeapon": "Whirlwind Serenade",
+    "bestEchoSet": "5-pc Empyrean Anthem",
+    "echoMainStats": "4-Cost: Crit Rate/DMG (Heron) | 3-Cost: Aero DMG / Energy Regen | 1-Cost: ATK%",
+    "outroDescription": "Gây hiệu ứng Xói Mòn Phong (Aero Erosion): Khiến kẻ địch chịu thêm 23% sát thương Aero Deepen trong 14 giây.",
+    "rotations": {
+      "standard": [
+        {
+          "step": 1,
+          "char": "Ciaccona",
+          "action": "Intro vào sân ➔ Xả băng đạn phong lôi (E) ➔ Bật R gieo rắc giai điệu bão tố ngoài sân ➔ Heron Echo ➔ Outro kích nổ 23% Aero Deepen cho Jiyan."
+        }
+      ]
+    },
+    "releaseVersion": "2.1",
+    "releaseOrder": 33
   },
   {
     "id": "cartethyia",
@@ -1550,7 +1428,9 @@ export const RESONATORS = [
           "action": "Intro vào sân ➔ Skill E lướt gió chém liên kích ➔ Bật Liberation R bão xoáy quét sạch quái vật."
         }
       ]
-    }
+    },
+    "releaseVersion": "2.2",
+    "releaseOrder": 34
   },
   {
     "id": "phrolova",
@@ -1592,7 +1472,9 @@ export const RESONATORS = [
           "action": "Intro vào sân nhận buff ➔ E kích hoạt ma trận âm thanh hắc ám ➔ R giải phóng thực thể Hủy Diệt."
         }
       ]
-    }
+    },
+    "releaseVersion": "2.2",
+    "releaseOrder": 35
   },
   {
     "id": "augusta",
@@ -1632,7 +1514,9 @@ export const RESONATORS = [
           "action": "Intro chém sấm sét ➔ Skill E cường hóa đòn nặng ➔ R xả đại nộ diện rộng."
         }
       ]
-    }
+    },
+    "releaseVersion": "2.3",
+    "releaseOrder": 36
   },
   {
     "id": "iuno",
@@ -1673,7 +1557,9 @@ export const RESONATORS = [
           "action": "Intro vào nhận buff ➔ Bật nộ dọn sạch quái."
         }
       ]
-    }
+    },
+    "releaseVersion": "2.3",
+    "releaseOrder": 37
   },
   {
     "id": "chisa",
@@ -1713,7 +1599,9 @@ export const RESONATORS = [
           "action": "Intro vung đại đao chém bóng tối ➔ E nạp Forte ➔ R xả trảm."
         }
       ]
-    }
+    },
+    "releaseVersion": "2.4",
+    "releaseOrder": 38
   },
   {
     "id": "lynae",
@@ -1754,7 +1642,9 @@ export const RESONATORS = [
           "action": "Vào sân với trọn vẹn buff ánh sáng."
         }
       ]
-    }
+    },
+    "releaseVersion": "2.4",
+    "releaseOrder": 39
   },
   {
     "id": "mornye",
@@ -1795,7 +1685,9 @@ export const RESONATORS = [
           "action": "Intro vào sân nhận trọn vẹn buff ➔ Kích hoạt đạn Spectro dồn dập ➔ Xả Resonance Liberation dứt điểm toàn bộ quái vật."
         }
       ]
-    }
+    },
+    "releaseVersion": "2.5",
+    "releaseOrder": 40
   },
   {
     "id": "aemeath",
@@ -1836,7 +1728,9 @@ export const RESONATORS = [
           "action": "Khai hỏa chiêu thức kết liễu."
         }
       ]
-    }
+    },
+    "releaseVersion": "2.5",
+    "releaseOrder": 41
   },
   {
     "id": "luuk_herssen",
@@ -1876,7 +1770,9 @@ export const RESONATORS = [
           "action": "Intro vào sân nhận toàn bộ buff ➔ Kích hoạt Skill E trảm kích băng giá ➔ Xả Resonance Liberation R quét sạch sàn đấu."
         }
       ]
-    }
+    },
+    "releaseVersion": "2.6",
+    "releaseOrder": 42
   },
   {
     "id": "sigrika",
@@ -1917,7 +1813,9 @@ export const RESONATORS = [
           "action": "Quét sạch toàn bộ kẻ địch đang bị gom lại bằng Thanh Long."
         }
       ]
-    }
+    },
+    "releaseVersion": "2.6",
+    "releaseOrder": 43
   },
   {
     "id": "hiyuki",
@@ -1957,7 +1855,9 @@ export const RESONATORS = [
           "action": "Intro rút kiếm băng ➔ E chém hoa tuyết ➔ R đóng băng dứt điểm."
         }
       ]
-    }
+    },
+    "releaseVersion": "2.7",
+    "releaseOrder": 44
   },
   {
     "id": "denia",
@@ -1998,7 +1898,9 @@ export const RESONATORS = [
           "action": "Xả hỏa lực hủy diệt kẻ địch."
         }
       ]
-    }
+    },
+    "releaseVersion": "2.7",
+    "releaseOrder": 45
   },
   {
     "id": "yangyang_xuanling",
@@ -2039,7 +1941,9 @@ export const RESONATORS = [
           "action": "Xòe lông vũ bóng tối E ➔ R quét sạch đấu trường."
         }
       ]
-    }
+    },
+    "releaseVersion": "2.8",
+    "releaseOrder": 46
   },
   {
     "id": "suisui",
@@ -2080,7 +1984,86 @@ export const RESONATORS = [
           "action": "Xả sát thương băng cực đại."
         }
       ]
-    }
+    },
+    "releaseVersion": "2.8",
+    "releaseOrder": 47
+  },
+  {
+    "id": "buling",
+    "name": "Buling",
+    "title": "Electro Frequency Specialist",
+    "element": "Electro",
+    "rarity": 4,
+    "weaponType": "Rectifier",
+    "role": "Sustain / Trị Liệu Trợ Lực & Buff Lôi",
+    "avatar": "https://wutheringlab.com/wp-content/uploads/Buling.webp",
+    "iconColor": "#9333ea",
+    "tags": [
+      "Electro",
+      "Sustain",
+      "Healer",
+      "Rectifier",
+      "Electro Buffer"
+    ],
+    "bestWeapon": "Variation",
+    "bestEchoSet": "5-pc Rejuvenating Glow",
+    "echoMainStats": "4-Cost: Healing Bonus | 3-Cost: Energy Regen | 1-Cost: HP%",
+    "outroDescription": "Hồi phục tức thời 19% Max HP cho đồng minh vào sân và tăng 15% Electro DMG Deepen trong 20 giây.",
+    "rotations": {
+      "standard": [
+        {
+          "step": 1,
+          "char": "Buling",
+          "action": "Intro ➔ E phát sóng từ trường lôi hồi máu ➔ R mở màn chắn tần số Electro ➔ Đầy Concerto ➔ Outro buff 15% Electro DMG cho Xiangli Yao / Hsin / Calcharo."
+        }
+      ]
+    },
+    "releaseVersion": "2.8",
+    "releaseOrder": 48
+  },
+  {
+    "id": "rover_electro",
+    "name": "Rover (Electro)",
+    "title": "Arbiter of Thunder",
+    "element": "Electro",
+    "rarity": 5,
+    "weaponType": "Sword",
+    "role": "Main DPS / Lôi Kiếm Liên Hoàn Bão Sét",
+    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Rover-Havoc.png",
+    "iconColor": "#a855f7",
+    "tags": [
+      "Electro",
+      "Main DPS",
+      "Sword",
+      "Burst DPS",
+      "Rover",
+      "Free 5-Star S6"
+    ],
+    "bestWeapon": "Emerald of Genesis / Blazing Brilliance / Commando Surge",
+    "bestEchoSet": "5-pc Void Thunder",
+    "echoMainStats": "4-Cost: Crit Rate/DMG (Thundering Mephis) | 3-Cost: Electro DMG | 1-Cost: ATK%",
+    "outroDescription": "Lôi Minh Trảm: Tung đòn chém sấm sét giáng 380% sát thương Electro và hồi 15 điểm Concerto cho đồng minh kế tiếp.",
+    "rotations": {
+      "standard": [
+        {
+          "step": 1,
+          "char": "Sustain (Verina / Shorekeeper / Baizhi)",
+          "action": "Vào sân trước ➔ Dùng E và R tạo buff All-Type DMG và hồi máu ➔ Bell-Borne Echo ➔ Outro."
+        },
+        {
+          "step": 2,
+          "char": "Buffer (Yinlin / Sanhua / Jianxin)",
+          "action": "Nhận buff ➔ Xả E và R ➔ Kích hoạt Heron Echo ➔ Outro buff Electro DMG & Resonance Liberation DMG."
+        },
+        {
+          "step": 3,
+          "char": "Rover (Electro)",
+          "action": "Intro vào sân nhận toàn bộ buff ➔ Kích hoạt Skill E lôi kiếm ➔ Xả Resonance Liberation R nộ sấm sét quét sạch sàn đấu ➔ Trọng kích hoàn tất chuỗi."
+        }
+      ]
+    },
+    "releaseVersion": "3.0",
+    "releaseOrder": 49
   },
   {
     "id": "qingxiao",
@@ -2121,7 +2104,9 @@ export const RESONATORS = [
           "action": "Lĩnh hội kiếm ý quét sạch chiến trường."
         }
       ]
-    }
+    },
+    "releaseVersion": "3.1",
+    "releaseOrder": 50
   },
   {
     "id": "jingran",
@@ -2161,7 +2146,9 @@ export const RESONATORS = [
           "action": "Đại kiếm lửa giáng đòn kết liễu nổ tung chiến trường."
         }
       ]
-    }
+    },
+    "releaseVersion": "3.1",
+    "releaseOrder": 51
   },
   {
     "id": "galbrena",
@@ -2202,7 +2189,9 @@ export const RESONATORS = [
           "action": "Tung đòn trảm rực lửa."
         }
       ]
-    }
+    },
+    "releaseVersion": "3.2",
+    "releaseOrder": 52
   },
   {
     "id": "zani",
@@ -2242,7 +2231,9 @@ export const RESONATORS = [
           "action": "Quyền trượng ánh sáng liên hoàn đấm bùng nổ."
         }
       ]
-    }
+    },
+    "releaseVersion": "3.3",
+    "releaseOrder": 53
   },
   {
     "id": "lupa",
@@ -2282,7 +2273,9 @@ export const RESONATORS = [
           "action": "Hóa cuồng nộ đại đao sói lửa càn quét đối thủ."
         }
       ]
-    }
+    },
+    "releaseVersion": "3.4",
+    "releaseOrder": 54
   },
   {
     "id": "qiuyuan",
@@ -2323,7 +2316,9 @@ export const RESONATORS = [
           "action": "Vào sân với đầy đủ buff nguyên tố."
         }
       ]
-    }
+    },
+    "releaseVersion": "3.5",
+    "releaseOrder": 55
   },
   {
     "id": "lucy",
@@ -2363,7 +2358,9 @@ export const RESONATORS = [
           "action": "Intro vào sân kích hoạt Starlight Hack ➔ Bắn súng đôi dồn dập đạn năng lượng Spectro ➔ Xả Resonance Liberation pháo sáng quét sạch chiến trường."
         }
       ]
-    }
+    },
+    "releaseVersion": "3.5",
+    "releaseOrder": 56
   },
   {
     "id": "rebecca",
@@ -2405,7 +2402,9 @@ export const RESONATORS = [
           "action": "Dứt điểm mục tiêu với sát thương sét nhân đôi."
         }
       ]
-    }
+    },
+    "releaseVersion": "3.6",
+    "releaseOrder": 57
   },
   {
     "id": "lucilla",
@@ -2447,8 +2446,131 @@ export const RESONATORS = [
           "action": "Bắn phá tầm xa trong vòng bảo vệ tuyệt đối."
         }
       ]
-    }
+    },
+    "releaseVersion": "3.6",
+    "releaseOrder": 58
+  },
+  {
+    "id": "suoming",
+    "name": "Suoming",
+    "title": "Sword of Azure Flash",
+    "element": "Electro",
+    "rarity": 5,
+    "weaponType": "Sword",
+    "role": "Sub-DPS / Khuếch Đại Unison",
+    "avatar": "https://wutheringlab.com/wp-content/uploads/Suoming.webp",
+    "iconColor": "#8b5cf6",
+    "tags": [
+      "Electro",
+      "Sub-DPS",
+      "Buffer",
+      "Sword",
+      "Unison"
+    ],
+    "bestWeapon": "Thunder's Horizon",
+    "bestEchoSet": "5-pc Void Thunder",
+    "echoMainStats": "4-Cost: Tỉ Lệ Bạo Kích hoặc Sát Thương Bạo Kích (Tempest Mephis) | 3-Cost: Sát Thương Lôi | 1-Cost: Tấn Công%",
+    "outroDescription": "Tạo Lôi Vũ Đồng Điệu: 3 đòn đánh kế tiếp của đồng minh vào sân sẽ phát nổ sát thương Lôi diện rộng và nạp 25% thanh Concerto tức thì.",
+    "rotations": {
+      "standard": [
+        {
+          "step": 1,
+          "char": "Shorekeeper / Verina",
+          "action": "Kích hoạt buff toàn đội và hồi máu qua R ➔ Outro chuyển giao sang Sub-DPS."
+        },
+        {
+          "step": 2,
+          "char": "Suoming",
+          "action": "Intro vào sân ➔ Kích hoạt Resonance Skill chuyển đổi thế kiếm Azure Surge ➔ Tích nạp Concerto nhanh ➔ Bật Impermanence Heron ➔ Outro truyền Lôi Vũ Đồng Điệu cho Hsin."
+        },
+        {
+          "step": 3,
+          "char": "Hsin",
+          "action": "Intro vào sân nhận trọn vẹn buff Unison ➔ Kích hoạt Skill E cường hóa ➔ Xả Resonance Liberation R nổ sét màn hình tiêu diệt mục tiêu."
+        }
+      ],
+      "quickswap": [
+        {
+          "step": 1,
+          "char": "Suoming",
+          "action": "Tung đòn kiếm thế 1 ➔ Nhấn E giải phóng lôi kiếm xoay vòng."
+        },
+        {
+          "step": 2,
+          "char": "Hsin",
+          "action": "Animation cancel sang Hsin nhận Unison ➔ Tung E lôi nộ ➔ Outro chuyển về."
+        },
+        {
+          "step": 3,
+          "char": "Suoming",
+          "action": "Quay lại sân kích hoạt ngay nộ R kết liễu quái."
+        }
+      ]
+    },
+    "releaseVersion": "3.7",
+    "releaseOrder": 59
+  },
+  {
+    "id": "hsin",
+    "name": "Hsin",
+    "title": "The Moon Fox / Mengzhou Sentinel",
+    "element": "Electro",
+    "rarity": 5,
+    "weaponType": "Rectifier",
+    "role": "Main DPS / Sát Thương Lôi Định",
+    "avatar": "https://wutheringlab.com/wp-content/uploads/Hsin.webp",
+    "iconColor": "#a855f7",
+    "tags": [
+      "Electro",
+      "Main DPS",
+      "Unison",
+      "Rectifier",
+      "Sentinel"
+    ],
+    "bestWeapon": "Blooming Jadehaven",
+    "bestEchoSet": "5-pc Heart of Sworn Vigil",
+    "echoMainStats": "4-Cost: Tỉ Lệ Bạo Kích hoặc Sát Thương Bạo Kích (Thundering Mephis) | 3-Cost: Sát Thương Lôi | 1-Cost: Tấn Công%",
+    "outroDescription": "Kích hoạt Phản Hồi Đồng Điệu (Unison Response): Tiêu hao trạng thái Unison để kích hoạt Outro cá nhân và kéo đồng minh vào sân bằng Intro Skill mà không cần tiêu tốn thanh Concerto truyền thống.",
+    "rotations": {
+      "standard": [
+        {
+          "step": 1,
+          "char": "Shorekeeper / Verina",
+          "action": "Bật Resonance Liberation (R) tạo Stella Field / buff ATK ➔ Dùng E và chuỗi đánh thường tích đầy Concerto ➔ Outro kích hoạt buff All-Type DMG."
+        },
+        {
+          "step": 2,
+          "char": "Sub-DPS (Xiangli Yao / Yinlin)",
+          "action": "Vào sân bằng Intro nhận buff ➔ E ➔ R xả nộ ➔ Outro truyền 20% Electro DMG và 25% Liberation DMG Deepen."
+        },
+        {
+          "step": 3,
+          "char": "Hsin",
+          "action": "Intro vào sân ➔ Kích hoạt Skill E ở thể Electro Flare ➔ Xả Resonance Liberation R kết liễu ➔ Tấn công thường cường hóa tiêu diệt phần còn lại."
+        }
+      ],
+      "quickswap": [
+        {
+          "step": 1,
+          "char": "Hsin",
+          "action": "Bắt đầu ở trạng thái Unison ➔ Bấm E gây sát thương đợt 1."
+        },
+        {
+          "step": 2,
+          "char": "Ally (Changli / Xiangli Yao)",
+          "action": "Chuyển sang đồng minh ngay lập tức (Hsin kích hoạt Outro tức thì nhờ Unison) ➔ Đồng minh ra sân tung Intro Skill và 1 đòn E nhanh."
+        },
+        {
+          "step": 3,
+          "char": "Hsin",
+          "action": "Đổi ngược về Hsin lập tức nhận Unison Boon (cộng dồn buff toàn đội) mà không mất thời gian chờ Concerto."
+        }
+      ]
+    },
+    "releaseVersion": "3.7",
+    "releaseOrder": 60
   }
+
 ];
 
 export const TEAM_TEMPLATES = [

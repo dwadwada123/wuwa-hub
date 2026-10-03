@@ -616,9 +616,25 @@ export default function App() {
                         fontSize: '0.68rem',
                         color: is5Star ? 'var(--accent-gold)' : 'var(--accent-purple)',
                         marginTop: '2px',
-                        fontWeight: 700
+                        fontWeight: 700,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '4px'
                       }}>
-                        {r.weaponType}
+                        <span>{r.weaponType}</span>
+                        {r.releaseVersion && (
+                          <span style={{
+                            fontSize: '0.62rem',
+                            padding: '1px 5px',
+                            borderRadius: '4px',
+                            background: 'rgba(255, 255, 255, 0.08)',
+                            color: '#94a3b8',
+                            fontWeight: 600
+                          }}>
+                            v{r.releaseVersion}
+                          </span>
+                        )}
                       </div>
                     </div>
                   </div>

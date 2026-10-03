@@ -633,8 +633,15 @@ export function generateOptimalTeams(ownedCharacterIds) {
   const matchedTemplates = [];
   const seenTeamKeys = new Set();
 
-  // 1. Thu thập tất cả các Template Meta định nghĩa sẵn mà người dùng sở hữu đủ
+  // 1. Thu thập tất cả các Template Meta định nghĩa sẵn mà người dùng sở hữu đủ (LOẠI BỎ TOÀN BỘ QUICKSWAP)
   for (const template of TEAM_TEMPLATES) {
+    const isQuickswap = 
+      template.type?.toLowerCase().includes('quickswap') ||
+      template.id?.toLowerCase().includes('quickswap') ||
+      template.name?.toLowerCase().includes('quickswap') ||
+      template.tags?.some(t => t.toLowerCase().includes('quickswap'));
+    if (isQuickswap) continue;
+
     const isFullTeam = template.members.every(m => ownedSet.has(m));
     if (isFullTeam) {
       const key = [...template.members].sort().join('-');
@@ -777,7 +784,15 @@ export function generateOptimalTeams(ownedCharacterIds) {
     }
   }
 
-  return nonOverlappingTeams;
+  return nonOverlappingTeams.filter(team => {
+    const isQuickswap = 
+      team.type?.toLowerCase().includes('quickswap') ||
+      team.id?.toLowerCase().includes('quickswap') ||
+      team.name?.toLowerCase().includes('quickswap') ||
+      team.tags?.some(t => t?.toLowerCase().includes('quickswap')) ||
+      team.hasQuickswap;
+    return !isQuickswap;
+  });
 }
 
 /**
