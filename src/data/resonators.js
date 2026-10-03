@@ -1048,6 +1048,47 @@ export const RESONATORS = [
     }
   },
   {
+    "id": "rover_electro",
+    "name": "Rover (Electro)",
+    "title": "Arbiter of Thunder",
+    "element": "Electro",
+    "rarity": 5,
+    "weaponType": "Sword",
+    "role": "Main DPS / Electro Chain Burst",
+    "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Rover-Havoc.png",
+    "iconColor": "#a855f7",
+    "tags": [
+      "Electro",
+      "Sword",
+      "Burst DPS",
+      "Rover",
+      "Free 5-Star S6"
+    ],
+    "bestWeapon": "Emerald of Genesis / Blazing Brilliance / Commando Surge",
+    "bestEchoSet": "5-pc Void Thunder",
+    "echoMainStats": "4-Cost: Crit Rate/DMG (Thundering Mephis) | 3-Cost: Electro DMG | 1-Cost: ATK%",
+    "outroDescription": "Lôi Minh Trảm: Tung đòn chém sấm sét giáng 380% sát thương Electro và hồi 15 điểm Concerto cho đồng minh kế tiếp.",
+    "rotations": {
+      "standard": [
+        {
+          "step": 1,
+          "char": "Sustain (Verina / Shorekeeper / Baizhi)",
+          "action": "Vào sân trước ➔ Dùng E và R tạo buff All-Type DMG và hồi máu ➔ Bell-Borne Echo ➔ Outro."
+        },
+        {
+          "step": 2,
+          "char": "Buffer (Yinlin / Sanhua / Jianxin)",
+          "action": "Nhận buff ➔ Xả E và R ➔ Kích hoạt Heron Echo ➔ Outro buff Electro DMG & Resonance Liberation DMG."
+        },
+        {
+          "step": 3,
+          "char": "Rover (Electro)",
+          "action": "Intro vào sân nhận toàn bộ buff ➔ Kích hoạt Skill E lôi kiếm ➔ Xả Resonance Liberation R nộ sấm sét quét sạch sàn đấu ➔ Trọng kích hoàn tất chuỗi."
+        }
+      ]
+    }
+  },
+  {
     "id": "sanhua",
     "name": "Sanhua",
     "title": "Guard of Jinzhou",
@@ -2843,6 +2884,23 @@ export const TEAM_TEMPLATES = [
       "Fusion",
       "Broadblade",
       "Tier 0"
+    ]
+  },
+  {
+    "id": "rover-electro-hyper",
+    "name": "Rover (Electro) Thunder Storm",
+    "core": "rover_electro",
+    "members": [
+      "rover_electro",
+      "yinlin",
+      "verina"
+    ],
+    "type": "Hypercarry Electro",
+    "description": "Yinlin buff 20% Electro DMG và 25% Liberation Deepen biến các nhát kiếm sấm sét của Rover thành đòn nộ kết liễu uy lực.",
+    "tags": [
+      "Electro",
+      "Sword",
+      "Hypercarry"
     ]
   },
   {

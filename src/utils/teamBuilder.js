@@ -32,6 +32,7 @@ export const RESONATOR_POWER_TIER = {
   'sanhua': 90,
   'mortefi': 88,
   'rover_havoc': 88,
+  'rover_electro': 88,
   'encore': 88,
   'danjin': 84,
   'calcharo': 82,
@@ -48,7 +49,7 @@ export const RESONATOR_POWER_TIER = {
   'taoqi': 72,
   'lingyang': 72,
   'rover_aero': 70,
-  // 23 Resonators Mới Được Bổ Sung
+  // Resonators Bổ Sung
   'cartethyia': 96,
   'phrolova': 96,
   'augusta': 95,
@@ -75,222 +76,283 @@ export const RESONATOR_POWER_TIER = {
 };
 
 // Danh sách các nhân vật đảm nhiệm vai trò hồi phục / tạo lá chắn chân chính (Sustain / Healer / Shielder)
-const TRUE_SUSTAIN_IDS = new Set([
+export const TRUE_SUSTAIN_IDS = new Set([
   'shorekeeper', 'verina', 'baizhi', 'youhu', 'jianxin', 'taoqi', 'buling', 'suisui', 'denia', 'lucilla'
 ]);
 
-// Danh sách nhân vật có cơ chế Quickswap hợp lệ trong meta WuWa
-const QUICKSWAP_CORE_IDS = new Set([
-  'changli', 'encore', 'chixia', 'hsin', 'suoming', 'xiangli_yao', 'yinlin', 'rover_havoc', 'danjin', 'brant'
-]);
+/**
+ * Trả về thông số chỉ số chuẩn khuyến nghị (Target Benchmark Stats) và hướng dẫn build Echo/Vũ khí
+ * dựa trên cơ chế scalers thực tế của từng nhân vật
+ */
+export function getResonatorBuildGuide(resonator) {
+  if (!resonator) return null;
 
-// Danh sách các cặp Quickswap chuẩn xác có hủy hoạt ảnh (Animation Cancel)
-const VALID_QUICKSWAP_PAIRS = new Set([
-  'changli-encore', 'encore-changli',
-  'changli-chixia', 'chixia-changli',
-  'changli-brant', 'brant-changli',
-  'hsin-xiangli_yao', 'xiangli_yao-hsin',
-  'suoming-hsin', 'hsin-suoming',
-  'xiangli_yao-yinlin', 'yinlin-xiangli_yao',
-  'rover_havoc-danjin', 'danjin-rover_havoc'
-]);
+  const id = resonator.id;
+  const isHealer = TRUE_SUSTAIN_IDS.has(id);
+  const element = resonator.element || 'Spectro';
+
+  // 1. Shorekeeper (HP Scaler & Universal Crit Buffer)
+  if (id === 'shorekeeper') {
+    return {
+      statType: 'HP Scaler',
+      targetStats: {
+        primaryLabel: 'HP Tối Đa',
+        primaryValue: '35,000 - 38,000+',
+        critRate: 'Không yêu cầu (Nội tại tự buff)',
+        critDmg: 'Không yêu cầu',
+        energyRegen: '170% - 190% (Bắt buộc tối thiểu 160%)'
+      },
+      bestEchoSet: '5-pc Rejuvenating Glow',
+      mainEcho4Cost: 'Fallacy of No Return (Hoặc Bell-Borne)',
+      costStructure: '4 - 3 - 3 - 1 - 1',
+      mainStats: {
+        cost4: 'Tăng Lượng Trị Liệu (Healing Bonus) hoặc HP%',
+        cost3: 'Hiệu Quả Nạp Năng Lượng% + Hiệu Quả Nạp Năng Lượng% (hoặc HP%)',
+        cost1: 'HP% + HP%'
+      },
+      subStatsPriority: ['Hiệu Quả Nạp Năng Lượng (Đạt mốc 170%)', 'HP%', 'HP Cố Định', 'Kháng Sát Thương'],
+      recommendedWeapons: [
+        'Stellar Symphony (Trấn 5★)',
+        'Variation (4★ Nạp Concerto Tối Ưu)',
+        'Rectifier of Voyager (3★ Nạp F2P)'
+      ]
+    };
+  }
+
+  // 2. Verina (ATK Scaler Healer & Universal Buffer)
+  if (id === 'verina') {
+    return {
+      statType: 'ATK Scaler',
+      targetStats: {
+        primaryLabel: 'Tấn Công (ATK)',
+        primaryValue: '2,000 - 2,200+',
+        critRate: 'Cơ bản (Không bắt buộc)',
+        critDmg: 'Cơ bản',
+        energyRegen: '160% - 175% (Để xoay vòng Nộ mượt)'
+      },
+      bestEchoSet: '5-pc Rejuvenating Glow',
+      mainEcho4Cost: 'Bell-Borne Geochelone (Khiên giảm 50% DMG & buff 12% ATK)',
+      costStructure: '4 - 3 - 3 - 1 - 1',
+      mainStats: {
+        cost4: 'Tăng Lượng Trị Liệu (Healing Bonus)',
+        cost3: 'Hiệu Quả Nạp Năng Lượng% + Hiệu Quả Nạp Năng Lượng% (hoặc ATK%)',
+        cost1: 'Tấn Công% (ATK%) + Tấn Công% (ATK%)'
+      },
+      subStatsPriority: ['Hiệu Quả Nạp Năng Lượng (Tối ưu nhất)', 'Tấn Công%', 'Tấn Công Cố Định'],
+      recommendedWeapons: [
+        'Variation (4★ Nạp Concerto Thần Tốc)',
+        'Cosmic Ripples (5★ Chuẩn)',
+        'Rectifier of Voyager (3★ F2P)'
+      ]
+    };
+  }
+
+  // 3. Baizhi (HP Scaler Healer)
+  if (id === 'baizhi') {
+    return {
+      statType: 'HP Scaler',
+      targetStats: {
+        primaryLabel: 'HP Tối Đa',
+        primaryValue: '32,000 - 36,000+',
+        critRate: 'Cơ bản',
+        critDmg: 'Cơ bản',
+        energyRegen: '160% - 180%+'
+      },
+      bestEchoSet: '5-pc Rejuvenating Glow',
+      mainEcho4Cost: 'Bell-Borne Geochelone',
+      costStructure: '4 - 3 - 3 - 1 - 1',
+      mainStats: {
+        cost4: 'Tăng Lượng Trị Liệu (Healing Bonus)',
+        cost3: 'Hiệu Quả Nạp Năng Lượng% + HP%',
+        cost1: 'HP% + HP%'
+      },
+      subStatsPriority: ['Hiệu Quả Nạp Năng Lượng', 'HP%', 'HP Cố Định'],
+      recommendedWeapons: ['Variation (4★)', 'Rectifier of Voyager (3★)']
+    };
+  }
+
+  // 4. Taoqi / Yuanwu (DEF Scaler Shielder)
+  if (id === 'taoqi' || id === 'yuanwu') {
+    return {
+      statType: 'DEF Scaler',
+      targetStats: {
+        primaryLabel: 'Phòng Ngự (DEF)',
+        primaryValue: '2,500 - 2,900+',
+        critRate: id === 'yuanwu' ? '60%+' : 'Cơ bản',
+        critDmg: '200%+',
+        energyRegen: '135% - 150%'
+      },
+      bestEchoSet: id === 'taoqi' ? '5-pc Moonlit Clouds (hoặc Rejuvenating)' : '5-pc Rejuvenating Glow',
+      mainEcho4Cost: 'Bell-Borne Geochelone',
+      costStructure: '4 - 3 - 3 - 1 - 1',
+      mainStats: {
+        cost4: 'Phòng Ngự% (DEF%) hoặc Crit Rate',
+        cost3: 'Hiệu Quả Nạp% + Phòng Ngự%',
+        cost1: 'Phòng Ngự% (DEF%) + Phòng Ngự% (DEF%)'
+      },
+      subStatsPriority: ['Phòng Ngự%', 'Hiệu Quả Nạp', 'Phòng Ngự Cố Định', 'Tỉ Lệ Bạo Kích'],
+      recommendedWeapons: [
+        id === 'taoqi' ? 'Discord (4★ Hồi Concerto)' : 'Originite: Type IV (3★ Hồi Máu Toàn Đội)'
+      ]
+    };
+  }
+
+  // 5. Buffer / Sub-DPS (Sanhua, Zhezhi, Yinlin, Mortefi, Danjin, Ciaccona, Roccia)
+  const isBufferSubDPS = resonator.role.includes('Sub-DPS') || resonator.role.includes('Buffer') || resonator.tags.includes('Buffer');
+  if (isBufferSubDPS) {
+    return {
+      statType: 'Sub-DPS / Buffer',
+      targetStats: {
+        primaryLabel: 'Tấn Công (ATK)',
+        primaryValue: '1,900 - 2,150+',
+        critRate: '68% - 75%+',
+        critDmg: '230% - 260%+',
+        energyRegen: '130% - 145%+ (Đảm bảo vòng lặp 14s)'
+      },
+      bestEchoSet: '5-pc Moonlit Clouds (Bộ Khinh Vân khuếch đại 22.5% ATK đồng minh)',
+      mainEcho4Cost: 'Impermanence Heron (Bắt buộc để Outro buff 12% DMG)',
+      costStructure: '4 - 3 - 3 - 1 - 1',
+      mainStats: {
+        cost4: 'Tỉ Lệ Bạo Kích (Crit Rate) hoặc Sát Thương Bạo Kích (Crit DMG)',
+        cost3: `Sát Thương ${element}% + Sát Thương ${element}% (hoặc 1 Nạp Năng Lượng%)`,
+        cost1: 'Tấn Công% (ATK%) + Tấn Công% (ATK%)'
+      },
+      subStatsPriority: ['Tỉ Lệ Bạo Kích = Sát Thương Bạo Kích', 'Hiệu Quả Nạp Năng Lượng', 'Tấn Công%', 'Tấn Công Cố Định'],
+      recommendedWeapons: [
+        resonator.bestWeapon || 'Vũ khí 5★ Chuẩn / Signature',
+        'Vũ khí 4★ có dòng Nạp Concerto hoặc Tỉ lệ Bạo kích'
+      ]
+    };
+  }
+
+  // 6. Main DPS Chuẩn (Camellya, Jinhsi, Changli, Carlotta, Jiyan, Xiangli Yao, Rover Havoc, Rover Electro, Luuk Herssen, etc.)
+  let mainEchoName = 'Echo Trùm 4-Cost Tương Ứng';
+  if (element === 'Havoc') mainEchoName = 'Dreamless (hoặc Crownless)';
+  else if (element === 'Spectro') mainEchoName = 'Jué (hoặc Mourning Aix)';
+  else if (element === 'Glacio') mainEchoName = 'Lampylumen Myriad';
+  else if (element === 'Fusion') mainEchoName = 'Inferno Rider';
+  else if (element === 'Aero') mainEchoName = 'Feilian Beringal';
+  else if (element === 'Electro') mainEchoName = 'Thundering Mephis / Tempest Mephis';
+
+  return {
+    statType: 'Main Carry DPS',
+    targetStats: {
+      primaryLabel: 'Tấn Công (ATK)',
+      primaryValue: '2,100 - 2,350+ (Endgame)',
+      critRate: '70% - 78%+ (Tỉ Lệ Vàng)',
+      critDmg: '250% - 280%+ (Ngưỡng Sát Thương Chuẩn)',
+      energyRegen: '120% - 130% (Đủ nạp Nộ mỗi vòng)'
+    },
+    bestEchoSet: resonator.bestEchoSet || `5-pc Nguyên Tố ${element}`,
+    mainEcho4Cost: mainEchoName,
+    costStructure: '4 - 3 - 3 - 1 - 1',
+    mainStats: {
+      cost4: 'Tỉ Lệ Bạo Kích (Crit Rate) hoặc Sát Thương Bạo Kích (Crit DMG)',
+      cost3: `Sát Thương ${element}% + Sát Thương ${element}%`,
+      cost1: 'Tấn Công% (ATK%) + Tấn Công% (ATK%)'
+    },
+    subStatsPriority: [
+      'Tỉ Lệ Bạo Kích (Crit Rate)',
+      'Sát Thương Bạo Kích (Crit DMG)',
+      'Tấn Công% (ATK%)',
+      'Hiệu Quả Nạp Năng Lượng (120%+)',
+      'Sát Thương Kỹ Năng / Giải Phóng Cộng Hưởng'
+    ],
+    recommendedWeapons: [
+      resonator.bestWeapon || 'Vũ khí Trấn 5★',
+      'Vũ khí 5★ Chuẩn (Emerald of Genesis / Ages of Harvest / Cosmic Ripples)',
+      'Vũ khí 4★ Battlepass (Autumntrace / Novaburst / Lumingloss)'
+    ]
+  };
+}
 
 /**
- * Tạo rotation Quickswap chi tiết từng đòn đánh và nhịp swap cho các đội hình hợp lệ
+ * Xây dựng chuỗi Rotation Tiêu Chuẩn đầy đủ, chi tiết và chính xác từng bước xuất chiêu cho đội hình
  */
-function createDetailedQuickswapRotation(char1, char2, sustain) {
-  const c1 = char1.name;
-  const c2 = char2.name;
-  const sus = sustain ? sustain.name : 'Sustain / Buffer';
+function buildDetailedStandardRotation(mainDps, buffer, sustain) {
+  const mName = mainDps?.name || 'Main DPS';
+  const bName = buffer?.name || 'Sub-DPS / Buffer';
+  const sName = sustain?.name || 'Sustain / Healer';
+  const mId = mainDps?.id || '';
 
-  if ((char1.id === 'changli' && char2.id === 'encore') || (char1.id === 'encore' && char2.id === 'changli')) {
-    return [
-      {
-        step: 1,
-        char: 'Changli',
-        actionTokens: ['BA1-BA4', 'E (Charge)', 'SWAP ⇄'],
-        actionText: 'Tung đòn đánh thường BA1-BA4 tích lũy Enflamement ➔ Nhấn E (True Sight: Charge) lướt kiếm',
-        swapCue: 'SWAP NGAY trong lúc Changli đang trong hoạt ảnh lướt kiếm E'
-      },
-      {
-        step: 2,
-        char: 'Encore',
-        actionTokens: ['E1 (Cosmos Rave)', 'Echo', 'SWAP ⇄'],
-        actionText: 'Ra sân lập tức tung E1 (Cosmos Rave) ➔ Bật Echo Inferno Rider kích hoạt buff Fusion',
-        swapCue: 'SWAP NGAY khi hoạt ảnh thú bông vừa nổ'
-      },
-      {
-        step: 3,
-        char: 'Changli',
-        actionTokens: ['BA (Conquest)', 'HA (Sacrifice)', 'R (Liberation)', 'SWAP ⇄'],
-        actionText: 'Vào sân tiếp nối đòn BA (True Sight: Conquest) ➔ Giữ Trọng Kích (Flaming Sacrifice) xả 4 tầng ➔ Bấm R nộ nuke sát thương diện rộng',
-        swapCue: 'SWAP NGAY trong lúc hoạt ảnh kiếm lửa bay lên của chiêu R'
-      },
-      {
-        step: 4,
-        char: 'Encore',
-        actionTokens: ['HA (Cloudy Cosmos)', 'R (Rampage)', 'BA4 Combo'],
-        actionText: 'Vào sân giữ Trọng kích (Cloudy: Cosmos) ném thú bông ➔ Bấm R (Cosmos Rampage) hóa cuồng nộ ➔ Xả chuỗi BA4',
-        swapCue: 'Khi thanh Dissonance của Encore cạn hoặc hết thời gian nộ'
-      },
-      {
-        step: 5,
-        char: sus,
-        actionTokens: ['Intro', 'R', 'E', 'Echo', 'Outro'],
-        actionText: `Vào sân bằng Intro ➔ Bật Resonance Liberation (R) mở buff ➔ E ➔ Bell-Borne / Fallacy Echo ➔ Outro chuyển giao`,
-        swapCue: 'Tích 100% Concerto để Outro buff cho Changli bắt đầu vòng mới'
-      }
-    ];
+  // 1. Bước 1: Sustain / Healer
+  let sEcho = 'Bell-Borne Geochelone (Tạo khiên chắn giảm 50% sát thương và tăng 12% ATK)';
+  if (sustain?.id === 'shorekeeper') {
+    sEcho = 'Fallacy of No Return (Kích hoạt Stella Field buff 10% ATK & tăng 10% Energy Regen)';
   }
 
-  if ((char1.id === 'changli' && char2.id === 'chixia') || (char1.id === 'chixia' && char2.id === 'changli')) {
-    return [
-      {
-        step: 1,
-        char: 'Changli',
-        actionTokens: ['BA1-BA4', 'E', 'SWAP ⇄'],
-        actionText: 'BA1-BA4 tích điểm ➔ Nhấn E lướt kiếm ➔ Outro buff 20% Fusion DMG và 25% Liberation DMG',
-        swapCue: 'SWAP NGAY khi Changli tung đòn lướt kiếm'
-      },
-      {
-        step: 2,
-        char: 'Chixia',
-        actionTokens: ['Intro', 'Hold E (Daka-Daka)', 'SWAP ⇄'],
-        actionText: 'Intro vào sân nhận buff ➔ Giữ phím E xả toàn bộ 30 viên đạn Boom Boom thiêu đốt mục tiêu',
-        swapCue: 'SWAP NGAY trong đòn bắn viên cuối cùng của Chixia'
-      },
-      {
-        step: 3,
-        char: 'Changli',
-        actionTokens: ['BA', 'HA', 'R', 'SWAP ⇄'],
-        actionText: 'Trở lại sân tung BA cường hóa ➔ Trọng kích Flaming Sacrifice ➔ Bấm R nộ',
-        swapCue: 'SWAP trong lúc hoạt ảnh nộ đang thi triển'
-      },
-      {
-        step: 4,
-        char: 'Chixia',
-        actionTokens: ['R (Blazing Flames)', 'Echo'],
-        actionText: 'Vào sân tung chiêu Nộ R (Blazing Flames) dứt điểm ➔ Bật Echo Inferno Rider',
-        swapCue: 'Chuyển sang Healer tích Concerto'
-      },
-      {
-        step: 5,
-        char: sus,
-        actionTokens: ['R', 'E', 'Outro'],
-        actionText: `Hồi phục máu và buff ATK toàn đội để lặp lại chuỗi luân chuyển`,
-        swapCue: 'Outro kích hoạt'
-      }
-    ];
+  const step1 = {
+    step: 1,
+    char: sName,
+    roleTitle: 'Sustain / Healer • Khởi Động Sàn Đấu',
+    tokens: ['E', 'R (Liberation)', 'Echo', 'Outro'],
+    actionText: `Ra sân đầu tiên ➔ Tung Resonance Skill (E) và bật Resonance Liberation (R) mở vùng hồi phục & buff công toàn đội ➔ Kích hoạt ${sEcho} ➔ Thực hiện đòn đánh thường/trọng kích tích đầy 100% thanh Concerto ➔ Kích hoạt Outro Skill buff 15% All-Type DMG Deepen cho đồng minh tiếp theo.`
+  };
+
+  // 2. Bước 2: Sub-DPS / Buffer
+  let bufferDetail = `Intro nhận buff từ Sustain ➔ Dùng Skill E và Resonance Liberation (R) ➔ Bật Echo Sonata Moonlit Clouds (Impermanence Heron) khuếch đại 12% ATK ➔ Kích hoạt cơ chế Forte tích thần tốc 100% thanh Concerto ➔ Outro truyền buff chuyên biệt cho ${mName}.`;
+  
+  if (buffer?.id === 'sanhua') {
+    bufferDetail = `Intro vào sân ➔ Skill (E) giáng băng ➔ Liberation (R) tạo vết nứt băng ➔ Giữ Trọng Kích Detonate căn đúng thanh chuẩn nổ toàn bộ sông băng ➔ Bật Heron Echo ➔ Outro truyền trọn vẹn 38% Basic ATK DMG Deepen cho ${mName}.`;
+  } else if (buffer?.id === 'zhezhi') {
+    bufferDetail = `Intro vào sân nhận buff ➔ E ➔ R triệu hồi linh hồn mực vẽ bắn đòn phối hợp ➔ Chuỗi đánh thường lướt bút nạp đầy thanh Concerto ➔ Bật Heron Echo ➔ Outro buff 20% Glacio DMG và 25% Resonance Skill DMG Deepen cho ${mName}.`;
+  } else if (buffer?.id === 'yinlin') {
+    bufferDetail = `Intro nhận buff ➔ E ➔ R triệu hồi sấm sét trừng phạt ➔ Bật Heron Echo ➔ Đánh thường tích đầy Judgment Point giáng sét diện rộng ➔ Outro truyền 20% Electro DMG và 25% Resonance Liberation DMG Deepen cho ${mName}.`;
+  } else if (buffer?.id === 'mortefi') {
+    bufferDetail = `Intro vào sân ➔ E ➔ Bấm R kích hoạt rồng lửa Burning Rhapsody bắn theo mỗi đòn đánh của đồng minh ➔ Bật Heron Echo ➔ Outro truyền 38% Heavy Attack DMG Deepen cho ${mName}.`;
+  } else if (buffer?.id === 'danjin') {
+    bufferDetail = `Intro nhận buff ➔ Tung chuỗi Skill E rút máu tích đầy thanh Ruby Blossom ➔ Trọng kích xoay kiếm tiêu hao máu nạp đầy Concerto ➔ Outro buff 23% Havoc DMG Deepen cho ${mName}.`;
   }
 
-  if (char1.id === 'hsin' || char2.id === 'hsin') {
-    const ally = char1.id === 'hsin' ? c2 : c1;
-    return [
-      {
-        step: 1,
-        char: 'Hsin',
-        actionTokens: ['E (Electro Flare)', 'Unison Outro', 'SWAP ⇄'],
-        actionText: 'Kích hoạt E gây sát thương Electro đợt 1 ➔ Tiêu hao Unison kích hoạt Outro tức thì mà không cần đầy Concerto',
-        swapCue: 'SWAP NGAY lập tức sang đồng minh'
-      },
-      {
-        step: 2,
-        char: ally,
-        actionTokens: ['Intro', 'E', 'Echo', 'SWAP ⇄'],
-        actionText: `Vào sân tức thời bằng Intro Skill nhờ cơ chế Unison ➔ Tung E nhanh ➔ Bật Echo`,
-        swapCue: `SWAP ngược lại Hsin ngay khi đòn E kết thúc`
-      },
-      {
-        step: 3,
-        char: 'Hsin',
-        actionTokens: ['R (Moonfall)', 'Enhanced BA', 'SWAP ⇄'],
-        actionText: 'Trở lại sân xả chiêu nộ Resonance Liberation R ➔ Đánh thường cường hóa',
-        swapCue: 'Khi hết buff'
-      },
-      {
-        step: 4,
-        char: sus,
-        actionTokens: ['Intro', 'R', 'Outro'],
-        actionText: `Tạo vòng hồi máu Stella Field / buff ATK ➔ Outro tiếp năng lượng`,
-        swapCue: 'Concerto 100%'
-      }
-    ];
+  const step2 = {
+    step: 2,
+    char: bName,
+    roleTitle: 'Sub-DPS / Buffer • Nạp Concerto & Truyền Trao Deepen',
+    tokens: ['Intro', 'E', 'R', 'Forte Burst', 'Heron Echo', 'Outro'],
+    actionText: bufferDetail
+  };
+
+  // 3. Bước 3: Main DPS Burst Window
+  let dpsDetail = `Intro vào sân thừa hưởng toàn bộ hiệu ứng Deepen trong 14 giây ➔ Kích hoạt thế đánh cường hóa Forte đặc trưng ➔ Tung Skill E nạp đầy thanh năng lượng ➔ Bật Echo chủ lực (4-Cost) ➔ Xả Resonance Liberation (R) nộ dứt điểm toàn bộ kẻ địch ➔ Hoàn tất chuỗi và chuẩn bị lặp lại vòng xoay.`;
+
+  if (mId === 'camellya') {
+    dpsDetail = `Đột kích bằng Intro nhận 38% Basic ATK Deepen từ Sanhua ➔ Giữ Trọng Kích vào trạng thái Ephemeral nhào lộn trên không ➔ Xả chuỗi đánh thường BA4 roi gai xoay tròn liên hoàn ➔ Nhấn E kích hoạt nổ hạt giống gai ➔ Bấm R tung nộ bão hoa bóng tối xóa sổ toàn bộ sàn đấu.`;
+  } else if (mId === 'jinhsi') {
+    dpsDetail = `Intro vào sân nhận đòn Coordinated Attack từ Buffer ➔ Lướt Skill E vào trạng thái Incarnation ➔ Tung chuỗi kiếm rồng tích đầy 50 tầng Incandescence ➔ Bấm R xả nộ sấm sét Thanh Long ➔ Giữ phím E kích hoạt đòn Illuminous Dragon nuke hàng triệu sát thương diện rộng.`;
+  } else if (mId === 'changli') {
+    dpsDetail = `Intro vào sân ➔ Tung đòn đánh thường BA4 nạp 2 tầng Enflamement ➔ Bấm E (True Sight: Charge) lướt kiếm ➔ Nối tiếp BA (True Sight: Conquest) tích đủ 4 tầng ➔ Giữ Trọng Kích Flaming Sacrifice giáng bão kiếm lửa cực đại ➔ Bấm R xả nộ Radiance of Feathers thiêu rụi đối thủ.`;
+  } else if (mId === 'jiyan') {
+    dpsDetail = `Intro vào sân nhận 38% Heavy Attack Deepen từ Mortefi ➔ Bấm R kích hoạt trạng thái Thanh Long hóa thần ➔ Giữ Trọng Kích tung thương rồng lốc xoáy liên tục hất tung và quét sạch quái vật trong 10 giây hiệu lực.`;
+  } else if (mId === 'carlotta') {
+    dpsDetail = `Intro nhận buff Băng ➔ Nhấn Skill E nạp đạn Shotgun ➔ Xả 3 phát đạn băng tỏa rộng nát giáp đối thủ ➔ Bấm R nộ bắn pháo đại bác đóng băng và tiêu diệt hoàn toàn kẻ địch.`;
+  } else if (mId === 'xiangli_yao') {
+    dpsDetail = `Intro nhận 20% Electro và 25% Liberation Deepen từ Yinlin ➔ Bấm R mở không gian Cogitation Horizon ➔ Liên tục bấm E cường hóa tung nắm đấm công nghệ ➔ Kết liễu bằng cú đấm nổ hạt nhân cuối cùng.`;
+  } else if (mId === 'rover_havoc') {
+    dpsDetail = `Intro nhận 23% Havoc Deepen từ Danjin ➔ Giữ Trọng kích vào trạng thái Dark Surge ➔ Xả chuỗi kiếm bóng tối cường hóa ➔ Bấm R tung nộ lưỡi hái Dead Realm ➔ Triệu hồi Dreamless Echo bổ xuống nổ 50% sát thương gia tăng.`;
+  } else if (mId === 'rover_electro') {
+    dpsDetail = `Intro nhận buff Electro & Liberation từ Buffer ➔ Bật Skill E lôi kiếm chém quét tích đầy Forte ➔ Bấm R nộ giáng bão sét Lôi Minh Trảm ➔ Bật Echo Thundering Mephis càn quét toàn sàn đấu.`;
+  } else if (mId === 'luuk_herssen') {
+    dpsDetail = `Intro nhận buff Glacio & Basic ATK từ Sanhua ➔ Tung Skill E trảm kích băng giá tích lũy Forte ➔ Giữ Trọng Kích chém kiếm ánh sáng hàn băng ➔ Bấm R tung nộ đại kiếm băng phá hủy boss.`;
   }
 
-  if ((char1.id === 'rover_havoc' && char2.id === 'danjin') || (char1.id === 'danjin' && char2.id === 'rover_havoc')) {
-    return [
-      {
-        step: 1,
-        char: 'Danjin',
-        actionTokens: ['E1-E2-E3', 'HA', 'Outro', 'SWAP ⇄'],
-        actionText: 'Tung chuỗi Skill E tích đầy thanh Ruby Blossom ➔ Trọng kích rút máu kích hoạt Outro buff 23% Havoc Deepen',
-        swapCue: 'SWAP NGAY khi Trọng Kích vừa chém trúng'
-      },
-      {
-        step: 2,
-        char: 'Rover (Havoc)',
-        actionTokens: ['Intro', 'R (Dead Realm)', 'Echo (Dreamless)', 'SWAP ⇄'],
-        actionText: 'Intro nhận buff 23% Havoc ➔ Bấm R nộ giáng lưỡi hái ➔ Bật Echo Dreamless gây sát thương tức thì được tăng 50%',
-        swapCue: 'SWAP NGAY trong hoạt ảnh Dreamless bổ xuống'
-      },
-      {
-        step: 3,
-        char: 'Danjin',
-        actionTokens: ['E', 'R (Crimson Bloom)'],
-        actionText: 'Vào sân xả chiêu nộ R Crimson Bloom bùng nổ máu đỏ',
-        swapCue: 'Hoàn tất vòng xả'
-      },
-      {
-        step: 4,
-        char: sus,
-        actionTokens: ['R', 'E', 'Outro'],
-        actionText: `Hồi phục lại lượng máu đã tiêu hao của Danjin và buff công`,
-        swapCue: 'Concerto 100%'
-      }
-    ];
-  }
+  const step3 = {
+    step: 3,
+    char: mName,
+    roleTitle: `Main DPS (${mName}) • Cửa Sổ Dồn Sát Thương Cực Đại`,
+    tokens: ['Intro', 'Forte Stance', 'E', 'Echo Trùm', 'R (Liberation Nuke)'],
+    actionText: dpsDetail
+  };
 
-  // Mẫu Quickswap chung cho các cặp quickswap khác
-  return [
-    {
-      step: 1,
-      char: c1,
-      actionTokens: ['BA1-BA2', 'E', 'SWAP ⇄'],
-      actionText: `Tung BA1-BA2 ➔ Nhấn Skill E ➔ Hủy hoạt ảnh thừa bằng thao tác đổi nhân vật`,
-      swapCue: `SWAP NGAY trong hoạt ảnh ra đòn của ${c1}`
-    },
-    {
-      step: 2,
-      char: c2,
-      actionTokens: ['E', 'Echo', 'SWAP ⇄'],
-      actionText: `Ra sân lập tức tung Skill E ➔ Bật Echo dứt điểm`,
-      swapCue: `SWAP ngược lại ${c1}`
-    },
-    {
-      step: 3,
-      char: c1,
-      actionTokens: ['HA', 'R', 'SWAP ⇄'],
-      actionText: `Trở lại sân tung Trọng Kích hoặc xả Nộ R dứt điểm đợt burst`,
-      swapCue: `SWAP sang Healer`
-    },
-    {
-      step: 4,
-      char: sus,
-      actionTokens: ['Intro', 'R', 'E', 'Outro'],
-      actionText: `Hồi phục và gia tăng sát thương toàn đội trước khi lặp lại vòng xoay`,
-      swapCue: 'Concerto 100%'
-    }
-  ];
+  return [step1, step2, step3];
 }
 
 /**
  * Tự động tìm kiếm và đề xuất các đội hình tối ưu dựa trên kho nhân vật người dùng đang có.
  * ĐẢM BẢO QUY TẮC KHÔNG TRÙNG NHÂN VẬT:
- * 1. Đội hình Meta Templates được ưu tiên hàng đầu (T0, T0.5).
- * 2. Đội hình luôn tuân thủ cấu trúc chuẩn: 1 Main DPS + 1 Sub-DPS/Buffer + 1 Sustain/Healer.
- * 3. Tuyệt đối KHÔNG ghép 2 Healer hàng đầu trong cùng 1 đội (Shorekeeper và Verina không bao giờ đi chung).
+ * 1. Đội hình Meta Templates được ưu tiên hàng đầu.
+ * 2. Đội hình luôn tuân thủ cấu trúc chuẩn: 1 Main DPS + 1 Buffer + 1 Sustain/Healer.
+ * 3. Tuyệt đối KHÔNG ghép 2 Healer trong cùng 1 đội (Shorekeeper và Verina không bao giờ đi chung).
  * 4. Luuk Herssen là Main DPS (Glacio Broadblade), không bao giờ bị xếp vào vị trí Sustain.
- * 5. Tab Quickswap chỉ xuất hiện khi đội hình có cơ chế Quickswap thực thụ.
  *
  * @param {Array<string>} ownedCharacterIds - Danh sách ID nhân vật người dùng tick chọn
  * @returns {Array} - Danh sách đội hình không trùng lặp nhân vật
@@ -309,15 +371,8 @@ export function generateOptimalTeams(ownedCharacterIds) {
       const key = [...template.members].sort().join('-');
       seenTeamKeys.add(key);
       const chars = template.members.map(id => getResonator(id)).filter(Boolean);
-      
-      // Kiểm tra tính hợp lệ của Quickswap
-      const isQuickswapTeam = Boolean(
-        template.type?.includes('Quickswap') ||
-        (chars.length >= 2 && VALID_QUICKSWAP_PAIRS.has(`${chars[0]?.id}-${chars[1]?.id}`)) ||
-        (chars.length >= 2 && VALID_QUICKSWAP_PAIRS.has(`${chars[1]?.id}-${chars[0]?.id}`))
-      );
 
-      // Điểm ưu tiên cao cho Template chính thức (120 - 150 điểm để luôn ăn đứt custom team)
+      // Điểm ưu tiên cao cho Template chính thức (130 - 150 điểm để luôn ăn đứt custom team)
       let baseScore = template.tier === 'T0' ? 140 : template.tags?.includes('Tier 0') ? 135 : 125;
       const avgPower = chars.reduce((sum, c) => sum + (RESONATOR_POWER_TIER[c.id] || 75), 0) / (chars.length || 1);
       const compositeScore = Math.round(baseScore * 0.6 + avgPower * 0.4);
@@ -331,26 +386,8 @@ export function generateOptimalTeams(ownedCharacterIds) {
         isCustom: false,
         matchScore: compositeScore,
         characters: chars,
-        hasQuickswap: isQuickswapTeam,
         customRotations: {
-          standard: [
-            {
-              step: 1,
-              char: sustainChar?.name || 'Sustain / Healer',
-              action: `Ra sân đầu tiên ➔ Dùng Skill E và Liberation (R) ➔ Bật Bell-Borne / Fallacy Echo tạo khiên & hồi máu ➔ Outro chuyển giao.`
-            },
-            {
-              step: 2,
-              char: buffChar?.name || 'Sub-DPS / Buffer',
-              action: `Intro nhận buff từ Sustain ➔ Kích hoạt Skill E và Liberation (R) ➔ Tích đầy 100% Concerto ➔ Outro truyền buff cho Main DPS.`
-            },
-            {
-              step: 3,
-              char: mainChar?.name || 'Main DPS',
-              action: `Intro vào sân nhận toàn bộ hiệu ứng Deepen ➔ Kích hoạt trạng thái Forte cường hóa ➔ Xả Resonance Liberation (R) dứt điểm.`
-            }
-          ],
-          quickswap: isQuickswapTeam ? createDetailedQuickswapRotation(mainChar, buffChar, sustainChar) : null
+          standard: buildDetailedStandardRotation(mainChar, buffChar, sustainChar)
         }
       });
     }
@@ -420,6 +457,9 @@ export function generateOptimalTeams(ownedCharacterIds) {
         } else if (dps.id === 'rover_havoc' && buff.id === 'danjin') {
           synergyScore += 28;
           notes = 'Danjin Outro buff 23% Havoc DMG Deepen cho thanh kiếm Dark Surge của Rover Havoc';
+        } else if (dps.id === 'rover_electro' && (buff.id === 'yinlin' || buff.id === 'sanhua')) {
+          synergyScore += 28;
+          notes = `${buff.name} khuếch đại đòn chém sấm sét Lôi Minh Trảm của Rover Electro`;
         }
 
         // Điểm cộng nếu có Sustain xịn
@@ -430,40 +470,20 @@ export function generateOptimalTeams(ownedCharacterIds) {
         const avgPower = ((RESONATOR_POWER_TIER[dps.id] || 75) + (RESONATOR_POWER_TIER[buff.id] || 75) + (RESONATOR_POWER_TIER[flex.id] || 75)) / 3;
         const totalScore = Math.min(100, Math.round(synergyScore * 0.55 + avgPower * 0.45));
 
-        const isQuickswap = VALID_QUICKSWAP_PAIRS.has(`${dps.id}-${buff.id}`) || VALID_QUICKSWAP_PAIRS.has(`${buff.id}-${dps.id}`);
-
         seenTeamKeys.add(teamKey);
         customTeams.push({
           id: `custom-${teamKey}`,
           name: `${dps.name} + ${buff.name} Synergy`,
           core: dps.id,
           members: [dps.id, buff.id, flex.id],
-          type: isQuickswap ? 'Quickswap' : 'Hypercarry',
+          type: 'Hypercarry',
           description: notes,
-          tags: [dps.element, isQuickswap ? 'Quickswap' : 'Hypercarry'],
+          tags: [dps.element, 'Synergy Match'],
           isCustom: true,
           matchScore: totalScore,
           characters: [dps, buff, flex],
-          hasQuickswap: isQuickswap,
           customRotations: {
-            standard: [
-              {
-                step: 1,
-                char: flex.name,
-                action: `Ra sân đầu tiên ➔ Dùng Resonance Skill (E) và Liberation (R) ➔ Bật Echo tạo khiên & hồi máu ➔ Tích đầy Concerto ➔ Outro chuyển giao.`
-              },
-              {
-                step: 2,
-                char: buff.name,
-                action: `Intro nhận buff từ Sustain ➔ Kích hoạt Skill (E) và Liberation (R) ➔ Tích 100% Concerto ➔ Outro truyền buff chủ lực.`
-              },
-              {
-                step: 3,
-                char: dps.name,
-                action: `Intro vào sân nhận trọn vẹn hiệu ứng Deepen từ ${buff.name} ➔ Kích hoạt trạng thái Forte ➔ Xả Resonance Liberation (R) dứt điểm.`
-              }
-            ],
-            quickswap: isQuickswap ? createDetailedQuickswapRotation(dps, buff, flex) : null
+            standard: buildDetailedStandardRotation(dps, buff, flex)
           }
         });
       }
@@ -583,13 +603,6 @@ export const TOA_DATA_SEASON_37 = {
 
 /**
  * Thuật toán Tower of Adversity (ToA) Solver Season 3.7
- * Phân chia chuẩn xác:
- * 1. Tháp Giữa: BẮT BUỘC 2 đội hình riêng biệt (Tầng 1-2 & Tầng 3-4, mỗi tầng tốn 5 thể lực).
- *    - Tầng 3-4: Ưu tiên đội hình hưởng lợi lớn nhất từ Buff Mùa (+30% Liberation DMG, Unison, Electro).
- *    - Tầng 1-2: Đội hình thứ hai hưởng ưu thế hệ.
- * 2. Hai Tháp Bên (Trái & Phải):
- *    - Tầng 4 (Boss): Đội mạnh đánh tầng 4 (tốn 4 Vigor).
- *    - Tầng 1-3: Đội dọn tầng (tốn 1+2+3 = 6 Vigor).
  */
 export function solveTowerOfAdversity(ownedCharacterIds) {
   if (!ownedCharacterIds || ownedCharacterIds.length < 6) {
@@ -601,23 +614,18 @@ export function solveTowerOfAdversity(ownedCharacterIds) {
     return null;
   }
 
-  // 1. Chấm điểm độ tương thích với Buff Mùa Tháp Giữa (Tầng 3-4)
-  // Hazard Buff: +30% Electro & Liberation DMG, +15% ATK khi kích hoạt Unison
+  // Chấm điểm độ tương thích với Buff Mùa Tháp Giữa (Tầng 3-4)
   const scoreForHazardBossBuff = (team) => {
     let score = team.matchScore || 70;
     const members = team.members || [];
-    const chars = team.characters || [];
-    const elements = chars.map(c => c?.element);
+    const elements = (team.characters || []).map(c => c?.element);
 
-    // Buff Liberation DMG cực lớn
-    if (members.includes('xiangli_yao') || members.includes('calcharo') || members.includes('changli') || members.includes('augusta')) {
+    if (members.includes('xiangli_yao') || members.includes('calcharo') || members.includes('changli') || members.includes('augusta') || members.includes('rover_electro')) {
       score += 45;
     }
-    // Buff Unison độc bản (3.7)
     if (members.includes('hsin') || members.includes('suoming')) {
       score += 50;
     }
-    // Hệ Electro
     if (elements.includes('Electro')) {
       score += 35;
     }
@@ -628,7 +636,6 @@ export function solveTowerOfAdversity(ownedCharacterIds) {
     return score;
   };
 
-  // 2. Chấm điểm cho Tháp Trái (Havoc & Basic ATK)
   const scoreForResonant = (team) => {
     let score = team.matchScore || 70;
     const members = team.members || [];
@@ -640,7 +647,6 @@ export function solveTowerOfAdversity(ownedCharacterIds) {
     return score;
   };
 
-  // 3. Chấm điểm cho Tháp Phải (Spectro & Skill DMG)
   const scoreForEchoing = (team) => {
     let score = team.matchScore || 70;
     const members = team.members || [];
@@ -652,28 +658,22 @@ export function solveTowerOfAdversity(ownedCharacterIds) {
     return score;
   };
 
-  // Sắp xếp các đội hình theo độ tương thích với Buff Tháp Giữa Tầng 3-4
   const sortedByHazardBuff = [...optimalTeams].sort((a, b) => scoreForHazardBossBuff(b) - scoreForHazardBossBuff(a));
   
-  // Đội 1: Hazard Tầng 3-4 (Đội tận dụng tốt nhất Buff Tháp)
   const hazardBossTeam = sortedByHazardBuff[0];
   const remainingForOther = optimalTeams.filter(t => t.id !== hazardBossTeam.id);
 
-  // Đội 2: Tháp Trái Tầng 4 hoặc Tháp Phải Tầng 4
   const sortedForResonant = [...remainingForOther].sort((a, b) => scoreForResonant(b) - scoreForResonant(a));
   const resonantTeam = sortedForResonant[0] || optimalTeams[0];
   const remainingAfterResonant = remainingForOther.filter(t => t.id !== resonantTeam.id);
 
-  // Đội 3: Tháp Phải Tầng 4
   const sortedForEchoing = [...remainingAfterResonant].sort((a, b) => scoreForEchoing(b) - scoreForEchoing(a));
   const echoingTeam = sortedForEchoing[0] || remainingForOther[0] || optimalTeams[0];
   const remainingAfterEchoing = remainingAfterResonant.filter(t => t.id !== echoingTeam.id);
 
-  // Đội 4: Hazard Tầng 1-2 (Nếu có đủ đội thứ 4)
   const hazardEarlyTeam = remainingAfterEchoing[0] || remainingAfterResonant[0] || remainingForOther[0] || optimalTeams[1] || hazardBossTeam;
 
-  // Xây dựng kết quả chuẩn 3 tháp cho giao diện
-  const result = {
+  return {
     seasonName: TOA_DATA_SEASON_37.seasonName,
     seasonPeriod: TOA_DATA_SEASON_37.seasonPeriod,
     hazardTower: {
@@ -715,7 +715,6 @@ export function solveTowerOfAdversity(ownedCharacterIds) {
         vigorUsed: '1 + 2 + 3 = 6 / 10 Thể Lực'
       }
     },
-    // Backward compatibility array cho các render cũ nếu cần
     towers: [
       {
         id: 'hazard',
@@ -746,6 +745,4 @@ export function solveTowerOfAdversity(ownedCharacterIds) {
       }
     ]
   };
-
-  return result;
 }

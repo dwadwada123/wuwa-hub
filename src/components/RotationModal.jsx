@@ -1,26 +1,24 @@
 import React, { useState } from 'react';
-import { X, Swords, RefreshCw, Zap, Shield, Sparkles, ArrowRight, CornerDownRight } from 'lucide-react';
+import { X, Swords, RefreshCw, BarChart3, ShieldCheck, Sparkles, ChevronRight, Zap, Award, Target, Flame } from 'lucide-react';
+import { getResonatorBuildGuide } from '../utils/teamBuilder';
 
 export default function RotationModal({ team, onClose }) {
   const characters = team?.characters || [];
-  const coreResonator = characters.find(c => c?.id === team?.core) || characters[0];
-  
-  // Chỉ hiển thị tab Quickswap nếu đội hình THỰC SỰ có cơ chế Quickswap hợp lệ
-  const hasQuickswap = Boolean(team?.hasQuickswap && team?.customRotations?.quickswap);
-
-  const [activeTab, setActiveTab] = useState('standard');
+  const [selectedCharIndex, setSelectedCharIndex] = useState(0);
+  const [viewMode, setViewMode] = useState('rotation'); // 'rotation' | 'build'
 
   if (!team) return null;
 
-  // Lấy các bước rotation tương ứng với tab được chọn
-  let rotationSteps = [];
-  if (activeTab === 'quickswap' && hasQuickswap) {
-    rotationSteps = team.customRotations.quickswap;
-  } else {
-    rotationSteps = team.customRotations?.standard || coreResonator?.rotations?.standard || [];
-  }
+  const activeChar = characters[selectedCharIndex] || characters[0];
+  const buildGuide = getResonatorBuildGuide(activeChar);
+  const rotationSteps = team.customRotations?.standard || [];
 
-  // Hàm render badge hành động đẹp mắt chuẩn phong cách game
+  const handleSelectChar = (idx) => {
+    setSelectedCharIndex(idx);
+    setViewMode('build'); // Tự động mở bảng chỉ số chuẩn khi bấm vào nhân vật
+  };
+
+  // Render Action Badges (Intro, E, R, Echo, Outro, Forte)
   const renderActionBadge = (token, idx) => {
     let bg = 'rgba(56, 189, 248, 0.15)';
     let color = '#38bdf8';
@@ -38,7 +36,7 @@ export default function RotationModal({ team, onClose }) {
       bg = 'rgba(251, 146, 60, 0.18)';
       color = '#fb923c';
       border = 'rgba(251, 146, 60, 0.45)';
-    } else if (token.includes('R') || token.includes('Nộ')) {
+    } else if (token.includes('R') || token.includes('Liberation') || token.includes('Nuke')) {
       bg = 'rgba(192, 132, 252, 0.22)';
       color = '#c084fc';
       border = 'rgba(192, 132, 252, 0.5)';
@@ -50,10 +48,10 @@ export default function RotationModal({ team, onClose }) {
       bg = 'rgba(243, 186, 47, 0.2)';
       color = '#f3ba2f';
       border = 'rgba(243, 186, 47, 0.5)';
-    } else if (token.includes('SWAP')) {
-      bg = 'linear-gradient(135deg, rgba(244, 63, 94, 0.25) 0%, rgba(243, 186, 47, 0.25) 100%)';
-      color = '#fde047';
-      border = 'rgba(250, 204, 21, 0.6)';
+    } else if (token.includes('Forte')) {
+      bg = 'rgba(244, 63, 94, 0.2)';
+      color = '#fb7185';
+      border = 'rgba(244, 63, 94, 0.45)';
     }
 
     return (
@@ -70,8 +68,7 @@ export default function RotationModal({ team, onClose }) {
           background: bg,
           color: color,
           border: `1px solid ${border}`,
-          letterSpacing: '0.5px',
-          boxShadow: token.includes('SWAP') ? '0 0 10px rgba(250, 204, 21, 0.2)' : 'none'
+          letterSpacing: '0.5px'
         }}
       >
         {token}
@@ -95,7 +92,7 @@ export default function RotationModal({ team, onClose }) {
       padding: '16px'
     }}>
       <div className="glass-panel" style={{
-        maxWidth: '820px',
+        maxWidth: '850px',
         width: '100%',
         maxHeight: '92vh',
         overflowY: 'auto',
@@ -107,14 +104,14 @@ export default function RotationModal({ team, onClose }) {
         flexDirection: 'column',
         borderRadius: '16px'
       }}>
-        {/* Tactical Scanline Accent Top */}
+        {/* Top Gold Accent Line */}
         <div style={{
           height: '3px',
           background: 'linear-gradient(90deg, transparent 0%, #f3ba2f 30%, #00e5ff 70%, transparent 100%)',
           width: '100%'
         }} />
 
-        {/* Header */}
+        {/* Modal Header */}
         <div style={{
           padding: '20px 24px',
           borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
@@ -144,9 +141,9 @@ export default function RotationModal({ team, onClose }) {
                 fontSize: '0.74rem',
                 padding: '3px 10px',
                 borderRadius: '4px',
-                background: hasQuickswap ? 'rgba(192, 132, 252, 0.15)' : 'rgba(250, 204, 21, 0.15)',
-                color: hasQuickswap ? 'var(--accent-purple)' : 'var(--accent-gold)',
-                border: `1px solid ${hasQuickswap ? 'rgba(192, 132, 252, 0.35)' : 'rgba(250, 204, 21, 0.35)'}`,
+                background: 'rgba(250, 204, 21, 0.15)',
+                color: 'var(--accent-gold)',
+                border: '1px solid rgba(250, 204, 21, 0.35)',
                 fontWeight: 800
               }}>
                 {team.type}
@@ -169,239 +166,415 @@ export default function RotationModal({ team, onClose }) {
           </button>
         </div>
 
-        {/* Members Roster View with Real Avatars & Accurate Roles */}
+        {/* Interactive Character Selector Header (Clickable!) */}
         <div style={{
           padding: '16px 24px',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))',
-          gap: '12px',
           background: 'rgba(0, 0, 0, 0.35)',
           borderBottom: '1px solid rgba(255, 255, 255, 0.06)'
         }}>
-          {characters.map((char, idx) => (
-            <div key={idx} style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '12px',
-              padding: '10px 14px',
-              background: 'rgba(255, 255, 255, 0.03)',
-              borderRadius: '10px',
-              border: `1px solid ${idx === 0 ? 'rgba(243, 186, 47, 0.3)' : 'rgba(255, 255, 255, 0.07)'}`
-            }}>
-              <div style={{
-                width: '46px',
-                height: '46px',
-                borderRadius: '8px',
-                overflow: 'hidden',
-                background: char?.iconColor || '#38bdf8',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexShrink: 0,
-                border: '1px solid rgba(255, 255, 255, 0.2)'
-              }}>
-                {char?.avatar ? (
-                  <img
-                    src={char.avatar}
-                    alt={char.name}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                    onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                  />
-                ) : (
-                  <span style={{ fontWeight: 'bold', color: '#000' }}>{char?.name?.[0]}</span>
-                )}
-              </div>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: '0.9rem', fontWeight: 800, color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                  {char?.name}
-                </div>
-                <div style={{ fontSize: '0.74rem', color: idx === 0 ? 'var(--accent-gold)' : idx === 1 ? 'var(--accent-cyan)' : 'var(--accent-green)', fontWeight: 700 }}>
-                  {idx === 0 ? 'Main DPS' : idx === 1 ? 'Sub-DPS / Buffer' : 'Sustain / Healer'}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Tab Selection: Standard vs Quickswap (Chỉ hiện Quickswap khi đội hình có Quickswap thật) */}
-        <div style={{
-          padding: '16px 24px 0 24px',
-          display: 'flex',
-          gap: '10px',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.06)'
-        }}>
-          <button
-            onClick={() => setActiveTab('standard')}
-            style={{
-              padding: '10px 18px',
-              borderRadius: '8px 8px 0 0',
-              fontWeight: 800,
-              fontSize: '0.88rem',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              background: activeTab === 'standard' ? 'rgba(250, 204, 21, 0.12)' : 'transparent',
-              color: activeTab === 'standard' ? 'var(--accent-gold)' : 'var(--text-muted)',
-              borderBottom: activeTab === 'standard' ? '3px solid var(--accent-gold)' : '3px solid transparent',
-              transition: 'all 0.2s ease'
-            }}
-          >
-            <RefreshCw size={16} /> Chuỗi Tiêu Chuẩn (Concerto Rotation)
-          </button>
-
-          {hasQuickswap && (
-            <button
-              onClick={() => setActiveTab('quickswap')}
-              style={{
-                padding: '10px 18px',
-                borderRadius: '8px 8px 0 0',
-                fontWeight: 800,
-                fontSize: '0.88rem',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
-                background: activeTab === 'quickswap' ? 'rgba(192, 132, 252, 0.15)' : 'transparent',
-                color: activeTab === 'quickswap' ? 'var(--accent-purple)' : 'var(--text-muted)',
-                borderBottom: activeTab === 'quickswap' ? '3px solid var(--accent-purple)' : '3px solid transparent',
-                transition: 'all 0.2s ease'
-              }}
-            >
-              <Zap size={16} /> Chuỗi Quickswap (Hủy Hoạt Ảnh Đỉnh Cao)
-            </button>
-          )}
-        </div>
-
-        {/* Step-by-Step Rotation Display */}
-        <div style={{ padding: '22px 24px', flex: 1 }}>
           <div style={{
+            fontSize: '0.75rem',
+            color: 'var(--accent-gold)',
+            marginBottom: '10px',
+            fontWeight: 800,
             display: 'flex',
-            justifyContent: 'space-between',
             alignItems: 'center',
-            marginBottom: '16px'
+            gap: '6px'
           }}>
-            <div style={{
-              fontSize: '0.78rem',
-              color: 'var(--text-muted)',
-              textTransform: 'uppercase',
-              letterSpacing: '1px',
-              fontWeight: 800
-            }}>
-              {activeTab === 'quickswap' 
-                ? '⚡ Thứ tự luân chuyển Quickswap từng chiêu thức & thời điểm hủy hoạt ảnh'
-                : '🔄 Vòng lặp xuất chiêu tiêu chuẩn (Outro Buffer ➔ Main Carry)'}
-            </div>
+            <Sparkles size={14} />
+            <span>NHẤN VÀO NHÂN VẬT ĐỂ XEM CHỈ SỐ CHUẨN (ATK, CRIT, NẠP) & BỘ ECHO KHUYÊN DÙNG:</span>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-            {rotationSteps.map((s, idx) => (
-              <div
-                key={idx}
-                style={{
-                  display: 'flex',
-                  gap: '16px',
-                  padding: '16px 18px',
-                  background: 'rgba(255, 255, 255, 0.025)',
-                  borderRadius: '12px',
-                  border: '1px solid rgba(255, 255, 255, 0.06)',
-                  position: 'relative'
-                }}
-              >
-                {/* Step Number Badge */}
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  minWidth: '80px',
-                  flexShrink: 0
-                }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))',
+            gap: '12px'
+          }}>
+            {characters.map((char, idx) => {
+              const isSelected = selectedCharIndex === idx;
+              return (
+                <button
+                  key={idx}
+                  id={`modal-char-tab-${idx}`}
+                  onClick={() => handleSelectChar(idx)}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '12px',
+                    padding: '10px 14px',
+                    background: isSelected ? 'rgba(243, 186, 47, 0.12)' : 'rgba(255, 255, 255, 0.03)',
+                    borderRadius: '10px',
+                    border: `2px solid ${isSelected ? 'var(--accent-gold)' : 'rgba(255, 255, 255, 0.07)'}`,
+                    cursor: 'pointer',
+                    transition: 'all 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                    boxShadow: isSelected ? '0 0 16px rgba(243, 186, 47, 0.25)' : 'none',
+                    textAlign: 'left',
+                    width: '100%'
+                  }}
+                >
                   <div style={{
-                    width: '34px',
-                    height: '34px',
+                    width: '46px',
+                    height: '46px',
                     borderRadius: '8px',
-                    background: activeTab === 'quickswap' ? 'rgba(192, 132, 252, 0.2)' : 'rgba(250, 204, 21, 0.2)',
-                    color: activeTab === 'quickswap' ? 'var(--accent-purple)' : 'var(--accent-gold)',
+                    overflow: 'hidden',
+                    background: char?.iconColor || '#38bdf8',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontWeight: 900,
-                    fontSize: '0.9rem',
-                    marginBottom: '6px',
-                    border: `1px solid ${activeTab === 'quickswap' ? 'rgba(192, 132, 252, 0.4)' : 'rgba(250, 204, 21, 0.4)'}`
+                    flexShrink: 0,
+                    border: `1px solid ${isSelected ? 'var(--accent-gold)' : 'rgba(255, 255, 255, 0.2)'}`
                   }}>
-                    {s.step || idx + 1}
+                    {char?.avatar ? (
+                      <img
+                        src={char.avatar}
+                        alt={char.name}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                      />
+                    ) : (
+                      <span style={{ fontWeight: 'bold', color: '#000' }}>{char?.name?.[0]}</span>
+                    )}
                   </div>
-                  <span style={{ fontSize: '0.78rem', fontWeight: 800, color: '#fff', textAlign: 'center' }}>
-                    {s.char}
-                  </span>
-                </div>
-
-                {/* Step Action Content */}
-                <div style={{ flex: 1 }}>
-                  {/* Action Badges if available */}
-                  {s.actionTokens && s.actionTokens.length > 0 && (
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '8px' }}>
-                      {s.actionTokens.map((token, tIdx) => renderActionBadge(token, tIdx))}
-                    </div>
-                  )}
-
-                  {/* Main Action Text */}
-                  <div style={{
-                    fontSize: '0.88rem',
-                    lineHeight: 1.6,
-                    color: 'var(--text-primary)',
-                    fontWeight: 500
-                  }}>
-                    {s.actionText || s.action}
-                  </div>
-
-                  {/* Quickswap Timing Cue */}
-                  {s.swapCue && (
+                  <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{
-                      marginTop: '8px',
-                      padding: '6px 12px',
-                      borderRadius: '6px',
-                      background: 'rgba(243, 186, 47, 0.08)',
-                      border: '1px solid rgba(243, 186, 47, 0.25)',
-                      fontSize: '0.78rem',
+                      fontSize: '0.9rem',
+                      fontWeight: 800,
+                      color: isSelected ? 'var(--accent-gold)' : '#fff',
+                      whiteSpace: 'nowrap',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis'
+                    }}>
+                      {char?.name}
+                    </div>
+                    <div style={{
+                      fontSize: '0.74rem',
+                      color: idx === 0 ? 'var(--accent-gold)' : idx === 1 ? 'var(--accent-cyan)' : 'var(--accent-green)',
+                      fontWeight: 700
+                    }}>
+                      {idx === 0 ? 'Main DPS' : idx === 1 ? 'Sub-DPS / Buffer' : 'Sustain / Healer'}
+                    </div>
+                  </div>
+                  {isSelected && (
+                    <span style={{ fontSize: '0.7rem', color: 'var(--accent-gold)', fontWeight: 800, flexShrink: 0 }}>
+                      ✓ Đang xem
+                    </span>
+                  )}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* View Mode Tabs: Chuỗi Xuất Chiêu Tiêu Chuẩn vs Chỉ Số Chuẩn & Build */}
+        <div style={{
+          padding: '16px 24px 0 24px',
+          display: 'flex',
+          gap: '12px',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.06)'
+        }}>
+          <button
+            onClick={() => setViewMode('rotation')}
+            style={{
+              padding: '10px 20px',
+              borderRadius: '8px 8px 0 0',
+              fontWeight: 800,
+              fontSize: '0.9rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              background: viewMode === 'rotation' ? 'rgba(250, 204, 21, 0.12)' : 'transparent',
+              color: viewMode === 'rotation' ? 'var(--accent-gold)' : 'var(--text-muted)',
+              borderBottom: viewMode === 'rotation' ? '3px solid var(--accent-gold)' : '3px solid transparent',
+              transition: 'all 0.2s ease'
+            }}
+          >
+            <RefreshCw size={16} /> Chuỗi Tiêu Chuẩn (Concerto Outro Rotation)
+          </button>
+
+          <button
+            onClick={() => setViewMode('build')}
+            style={{
+              padding: '10px 20px',
+              borderRadius: '8px 8px 0 0',
+              fontWeight: 800,
+              fontSize: '0.9rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              background: viewMode === 'build' ? 'rgba(0, 229, 255, 0.12)' : 'transparent',
+              color: viewMode === 'build' ? 'var(--accent-cyan)' : 'var(--text-muted)',
+              borderBottom: viewMode === 'build' ? '3px solid var(--accent-cyan)' : '3px solid transparent',
+              transition: 'all 0.2s ease'
+            }}
+          >
+            <BarChart3 size={16} /> Chỉ Số Chuẩn & Bộ Echo ({activeChar.name})
+          </button>
+        </div>
+
+        {/* VIEW 1: CHUỖI XUẤT CHIÊU TIÊU CHUẨN ĐẦY ĐỦ VÀ CHÍNH XÁC */}
+        {viewMode === 'rotation' && (
+          <div style={{ padding: '22px 24px', flex: 1 }}>
+            <div style={{
+              fontSize: '0.8rem',
+              color: 'var(--text-muted)',
+              textTransform: 'uppercase',
+              letterSpacing: '1px',
+              fontWeight: 800,
+              marginBottom: '16px'
+            }}>
+              🔄 VÒNG LẶP COMBO CHUẨN XÁC THEO THỨ TỰ (SUSTAIN ➔ BUFFER ➔ MAIN CARRY)
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              {rotationSteps.map((s, idx) => (
+                <div
+                  key={idx}
+                  style={{
+                    display: 'flex',
+                    gap: '16px',
+                    padding: '16px 18px',
+                    background: 'rgba(255, 255, 255, 0.025)',
+                    borderRadius: '12px',
+                    border: '1px solid rgba(255, 255, 255, 0.06)'
+                  }}
+                >
+                  {/* Step Index Badge */}
+                  <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    minWidth: '85px',
+                    flexShrink: 0
+                  }}>
+                    <div style={{
+                      width: '36px',
+                      height: '36px',
+                      borderRadius: '8px',
+                      background: 'rgba(250, 204, 21, 0.2)',
                       color: 'var(--accent-gold)',
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '6px',
-                      fontWeight: 700
+                      justifyContent: 'center',
+                      fontWeight: 900,
+                      fontSize: '0.95rem',
+                      marginBottom: '6px',
+                      border: '1px solid rgba(250, 204, 21, 0.4)'
                     }}>
-                      <CornerDownRight size={14} />
-                      <span>{s.swapCue}</span>
+                      {s.step || idx + 1}
                     </div>
-                  )}
+                    <span style={{ fontSize: '0.8rem', fontWeight: 800, color: '#fff', textAlign: 'center' }}>
+                      {s.char}
+                    </span>
+                  </div>
+
+                  {/* Step Action Content */}
+                  <div style={{ flex: 1 }}>
+                    <div style={{
+                      fontSize: '0.82rem',
+                      color: 'var(--accent-gold)',
+                      fontWeight: 800,
+                      marginBottom: '6px'
+                    }}>
+                      {s.roleTitle || `Bước ${s.step}: ${s.char}`}
+                    </div>
+
+                    {/* Action Chips */}
+                    {s.tokens && s.tokens.length > 0 && (
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '10px' }}>
+                        {s.tokens.map((token, tIdx) => renderActionBadge(token, tIdx))}
+                      </div>
+                    )}
+
+                    <div style={{
+                      fontSize: '0.88rem',
+                      lineHeight: 1.65,
+                      color: 'var(--text-primary)',
+                      fontWeight: 500
+                    }}>
+                      {s.actionText || s.action}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* VIEW 2: CHỈ SỐ CHUẨN & HƯỚNG DẪN BUILD ECHO (CHO NHÂN VẬT ĐƯỢC CHỌN) */}
+        {viewMode === 'build' && buildGuide && (
+          <div style={{ padding: '22px 24px', flex: 1 }}>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: '18px',
+              flexWrap: 'wrap',
+              gap: '10px'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <Target size={20} color="var(--accent-cyan)" />
+                <h3 style={{ fontSize: '1.2rem', fontWeight: 900, color: '#fff' }}>
+                  Thông Số Chuẩn & Khuyến Nghị Build • {activeChar.name}
+                </h3>
+              </div>
+              <span style={{
+                fontSize: '0.76rem',
+                padding: '3px 10px',
+                borderRadius: '4px',
+                background: 'rgba(0, 229, 255, 0.15)',
+                color: 'var(--accent-cyan)',
+                border: '1px solid rgba(0, 229, 255, 0.35)',
+                fontWeight: 800
+              }}>
+                {buildGuide.statType}
+              </span>
+            </div>
+
+            {/* 4 Chỉ Số Chuẩn Khuyến Nghị (Target Benchmark Stats) */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+              gap: '12px',
+              marginBottom: '22px'
+            }}>
+              {/* Primary Stat (ATK / HP / DEF) */}
+              <div style={{
+                background: 'rgba(255, 255, 255, 0.03)',
+                padding: '14px',
+                borderRadius: '10px',
+                border: '1px solid rgba(255, 255, 255, 0.08)'
+              }}>
+                <div style={{ fontSize: '0.74rem', color: 'var(--text-muted)', fontWeight: 800, textTransform: 'uppercase' }}>
+                  {buildGuide.targetStats.primaryLabel}
+                </div>
+                <div style={{ fontSize: '1.2rem', fontWeight: 900, color: '#fff', marginTop: '4px' }}>
+                  {buildGuide.targetStats.primaryValue}
                 </div>
               </div>
-            ))}
-          </div>
 
-          {/* Quickswap Pro-Tip Box */}
-          {activeTab === 'quickswap' && (
-            <div style={{
-              marginTop: '20px',
-              padding: '14px 18px',
-              borderRadius: '10px',
-              background: 'rgba(192, 132, 252, 0.06)',
-              border: '1px solid rgba(192, 132, 252, 0.25)',
-              display: 'flex',
-              alignItems: 'flex-start',
-              gap: '12px'
-            }}>
-              <Zap size={20} color="var(--accent-purple)" style={{ flexShrink: 0, marginTop: '2px' }} />
-              <div>
-                <div style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--accent-purple)', marginBottom: '4px' }}>
-                  Bí kíp thực chiến Quickswap:
+              {/* Crit Rate */}
+              <div style={{
+                background: 'rgba(255, 255, 255, 0.03)',
+                padding: '14px',
+                borderRadius: '10px',
+                border: '1px solid rgba(250, 204, 21, 0.2)'
+              }}>
+                <div style={{ fontSize: '0.74rem', color: 'var(--accent-gold)', fontWeight: 800, textTransform: 'uppercase' }}>
+                  Tỉ Lệ Bạo Kích (Crit Rate)
                 </div>
-                <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-                  Đổi nhân vật ngay trong khung hình xuất chiêu (Animation Frame). Nhân vật vừa rời sân sẽ tiếp tục hoàn thành chiêu thức trong lúc nhân vật mới vào sân gây sát thương đồng thời, giúp nhân đôi DPS toàn đội.
+                <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--accent-gold)', marginTop: '4px' }}>
+                  {buildGuide.targetStats.critRate}
+                </div>
+              </div>
+
+              {/* Crit DMG */}
+              <div style={{
+                background: 'rgba(255, 255, 255, 0.03)',
+                padding: '14px',
+                borderRadius: '10px',
+                border: '1px solid rgba(192, 132, 252, 0.2)'
+              }}>
+                <div style={{ fontSize: '0.74rem', color: 'var(--accent-purple)', fontWeight: 800, textTransform: 'uppercase' }}>
+                  Sát Thương Bạo Kích (Crit DMG)
+                </div>
+                <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--accent-purple)', marginTop: '4px' }}>
+                  {buildGuide.targetStats.critDmg}
+                </div>
+              </div>
+
+              {/* Energy Regen */}
+              <div style={{
+                background: 'rgba(255, 255, 255, 0.03)',
+                padding: '14px',
+                borderRadius: '10px',
+                border: '1px solid rgba(0, 229, 255, 0.2)'
+              }}>
+                <div style={{ fontSize: '0.74rem', color: 'var(--accent-cyan)', fontWeight: 800, textTransform: 'uppercase' }}>
+                  Hiệu Quả Nạp Năng Lượng
+                </div>
+                <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--accent-cyan)', marginTop: '4px' }}>
+                  {buildGuide.targetStats.energyRegen}
                 </div>
               </div>
             </div>
-          )}
-        </div>
+
+            {/* Bộ Echo Khuyên Dùng & Phân Bổ Chỉ Số */}
+            <div style={{
+              background: 'rgba(0, 0, 0, 0.45)',
+              padding: '18px 20px',
+              borderRadius: '12px',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+              marginBottom: '20px'
+            }}>
+              <div style={{ fontSize: '0.9rem', fontWeight: 900, color: '#fff', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <Award size={18} color="var(--accent-gold)" />
+                <span>Bộ Echo Khuyên Dùng (Sonata Set): <strong style={{ color: 'var(--accent-gold)' }}>{buildGuide.bestEchoSet}</strong></span>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '12px', marginBottom: '14px' }}>
+                <div style={{ background: 'rgba(255, 255, 255, 0.03)', padding: '10px 14px', borderRadius: '8px' }}>
+                  <div style={{ fontSize: '0.74rem', color: 'var(--accent-gold)', fontWeight: 800 }}>Echo Chủ Lực (Cost 4):</div>
+                  <div style={{ fontSize: '0.86rem', fontWeight: 700, color: '#fff', marginTop: '2px' }}>{buildGuide.mainEcho4Cost}</div>
+                  <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)', marginTop: '2px' }}>Dòng chính: {buildGuide.mainStats.cost4}</div>
+                </div>
+
+                <div style={{ background: 'rgba(255, 255, 255, 0.03)', padding: '10px 14px', borderRadius: '8px' }}>
+                  <div style={{ fontSize: '0.74rem', color: 'var(--accent-cyan)', fontWeight: 800 }}>Echo Tầm Trung (Cost 3 x2):</div>
+                  <div style={{ fontSize: '0.86rem', fontWeight: 700, color: '#fff', marginTop: '2px' }}>{buildGuide.mainStats.cost3}</div>
+                </div>
+
+                <div style={{ background: 'rgba(255, 255, 255, 0.03)', padding: '10px 14px', borderRadius: '8px' }}>
+                  <div style={{ fontSize: '0.74rem', color: 'var(--accent-green)', fontWeight: 800 }}>Echo Cơ Bản (Cost 1 x2):</div>
+                  <div style={{ fontSize: '0.86rem', fontWeight: 700, color: '#fff', marginTop: '2px' }}>{buildGuide.mainStats.cost1}</div>
+                </div>
+              </div>
+
+              {/* Sub-stats Priority */}
+              <div>
+                <span style={{ fontSize: '0.76rem', color: 'var(--text-muted)', fontWeight: 800, textTransform: 'uppercase' }}>
+                  Thứ Tự Ưu Tiên Dòng Phụ (Sub-stats):
+                </span>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '6px' }}>
+                  {buildGuide.subStatsPriority.map((sub, sIdx) => (
+                    <span
+                      key={sIdx}
+                      style={{
+                        padding: '4px 10px',
+                        borderRadius: '6px',
+                        background: 'rgba(255, 255, 255, 0.05)',
+                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                        fontSize: '0.78rem',
+                        fontWeight: 700,
+                        color: sIdx === 0 ? 'var(--accent-gold)' : 'var(--text-primary)'
+                      }}
+                    >
+                      {sIdx + 1}. {sub}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Vũ Khí Khuyên Dùng */}
+            <div style={{
+              background: 'rgba(255, 255, 255, 0.02)',
+              padding: '16px 20px',
+              borderRadius: '12px',
+              border: '1px solid rgba(255, 255, 255, 0.06)'
+            }}>
+              <div style={{ fontSize: '0.88rem', fontWeight: 800, color: '#fff', marginBottom: '8px' }}>
+                ⚔️ Lựa Chọn Vũ Khí Tối Ưu:
+              </div>
+              <ul style={{ paddingLeft: '18px', display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.84rem', color: 'var(--text-secondary)' }}>
+                {buildGuide.recommendedWeapons.map((w, wIdx) => (
+                  <li key={wIdx}>
+                    <strong style={{ color: wIdx === 0 ? 'var(--accent-gold)' : '#fff' }}>{w}</strong>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
