@@ -78,7 +78,7 @@ export const RESONATOR_POWER_TIER = {
 // Danh sách các nhân vật đảm nhiệm vai trò hồi phục / tạo lá chắn chân chính (Sustain / Healer / Shielder)
 // Danh sách các nhân vật đảm nhiệm vai trò hồi phục / tạo lá chắn chân chính (Sustain / Healer / Shielder)
 export const TRUE_SUSTAIN_IDS = new Set([
-  'shorekeeper', 'verina', 'chisa', 'baizhi', 'youhu', 'jianxin', 'taoqi', 'buling', 'suisui', 'denia'
+  'shorekeeper', 'verina', 'chisa', 'mornye', 'brant', 'baizhi', 'youhu', 'jianxin', 'taoqi', 'buling', 'suisui'
 ]);
 
 // Bảng ánh xạ icon chính thức của toàn bộ 36 bộ Echo Sonata (từ 1.0 đến phiên bản 3.7)
@@ -542,6 +542,8 @@ function buildDetailedStandardRotation(mainDps, buffer, sustain) {
     sEcho = 'Bell-Borne Geochelone kích hoạt lá chắn dung nham giảm 50% sát thương';
   } else if (sustain?.id === 'chisa') {
     sEcho = 'Nightmare Crownless kích hoạt đòn đánh phối hợp Havoc và hồi phục sinh mệnh cho đồng minh';
+  } else if (sustain?.id === 'brant') {
+    sEcho = 'Bell-Borne Geochelone tạo khiên hỏa diệm và hồi phục sinh lực toàn đội';
   }
 
   const step1 = {
@@ -557,6 +559,14 @@ function buildDetailedStandardRotation(mainDps, buffer, sustain) {
   
   if (buffer?.id === 'suoming') {
     bufferDetail = `Intro vào sân nhận buff từ Sustain ➔ Tung Kỹ năng E chuyển đổi thế kiếm Azure Surge ➔ Tích nạp Concerto nhanh ➔ Bật Impermanence Heron ➔ Outro truyền Lôi Vũ Đồng Điệu nạp 25% Concerto và tăng cường sát thương Lôi cho ${mName}.`;
+  } else if (buffer?.id === 'lucilla') {
+    bufferDetail = `Intro vào sân ➔ Kích hoạt trạng thái Glacio Chafe và Echo Mode ➔ Tung Kỹ năng E xả hàn khí ➔ Bật Heron Echo nạp đầy Concerto ➔ Outro khuếch đại sát thương Băng và kỹ năng Echo cho ${mName}.`;
+  } else if (buffer?.id === 'lupa') {
+    bufferDetail = `Intro vào sân ➔ Kích hoạt đòn đánh phối hợp Lang Tộc ➔ Tung Kỹ năng E và Chiêu R bão lửa ➔ Bật Heron Echo ➔ Outro buff sát thương Hỏa và đòn đánh thường cho ${mName}.`;
+  } else if (buffer?.id === 'iuno') {
+    bufferDetail = `Intro vào sân ➔ Tung quyền cước và bắn cung nguyệt hoa ➔ Kích hoạt hồi phục thể lực ➔ Bật Heron Echo ➔ Outro truyền trọn vẹn buff Heavy Attack cực đại cho ${mName}.`;
+  } else if (buffer?.id === 'qiuyuan') {
+    bufferDetail = `Intro vào sân ➔ Vung kiếm phong lôi tích lũy kiếm ý ➔ Bật Heron Echo ➔ Outro khuếch đại sát thương kỹ năng Echo cực mạnh cho ${mName}.`;
   } else if (buffer?.id === 'rebecca') {
     bufferDetail = `Intro vào sân ➔ Tung đòn súng điện Overdrive E ➔ Bấm R kích hoạt điện thế nạp đầy Concerto ➔ Bật Heron Echo ➔ Outro buff sát thương cho ${mName}.`;
   } else if (buffer?.id === 'sanhua') {
@@ -603,9 +613,13 @@ function buildDetailedStandardRotation(mainDps, buffer, sustain) {
   } else if (mId === 'rover_electro') {
     dpsDetail = `Intro nhận buff Electro & Liberation từ Buffer ➔ Bật Kỹ năng E lôi kiếm chém quét tích đầy Forte ➔ Bấm R nộ giáng bão sét Lôi Minh Trảm ➔ Bật Echo Thundering Mephis càn quét toàn sàn đấu.`;
   } else if (mId === 'luuk_herssen') {
-    dpsDetail = `Intro nhận buff Glacio & Basic ATK từ Sanhua ➔ Tung Kỹ năng E trảm kích băng giá tích lũy Forte ➔ Giữ Trọng Kích chém kiếm ánh sáng hàn băng ➔ Bấm R tung nộ đại kiếm băng phá hủy boss.`;
-  } else if (mId === 'lucilla') {
-    dpsDetail = `Intro nhận buff Băng và Concerto từ Sanhua ➔ Tung Kỹ năng E đại kiếm băng quét sàn ➔ Giữ Trọng Kích xả chuỗi trảm sương giá cực đại ➔ Xả Chiêu R kết liễu toàn bộ quái vật.`;
+    dpsDetail = `Intro nhận buff Basic ATK từ Sanhua ➔ Lao vào không chiến tung chuỗi đòn Bao Tay Spectro liên hoàn ➔ Kích hoạt Kỹ năng E Aureate Judge lướt trảm không trung ➔ Bấm R nộ giáng búa quang học Spectro nuke sát thương bùng nổ.`;
+  } else if (mId === 'augusta') {
+    dpsDetail = `Intro nhận buff Heavy Attack từ Iuno ➔ Tung đại kiếm điện lướt chém tích lũy Majesty ➔ Xả chuỗi Heavy Attack sấm sét cực đại ➔ Bấm R xả nộ lôi thần kết liễu toàn bộ quái vật.`;
+  } else if (mId === 'denia') {
+    dpsDetail = `Intro vào sân tích lũy tài nguyên ở Stagecraft Form ➔ Chuyển đổi sang Breakdown Form bộc phát hỏa diễm ➔ Bấm R nộ xả toàn bộ năng lượng thiêu rụi sàn đấu.`;
+  } else if (mId === 'galbrena') {
+    dpsDetail = `Intro nhận buff Echo từ Qiuyuan ➔ Bật Kỹ năng E vào thể Demon Hypostasis ➔ Xả mưa đạn bạo kích và kích hoạt Echo chủ lực dứt điểm mục tiêu.`;
   }
 
   const step3 = {
@@ -625,7 +639,7 @@ function buildDetailedStandardRotation(mainDps, buffer, sustain) {
  * 1. Đội hình Meta Templates được ưu tiên hàng đầu.
  * 2. Đội hình luôn tuân thủ cấu trúc chuẩn: 1 Main DPS + 1 Buffer + 1 Sustain/Healer.
  * 3. Tuyệt đối KHÔNG ghép 2 Healer trong cùng 1 đội (Shorekeeper và Verina không bao giờ đi chung).
- * 4. Luuk Herssen là Main DPS (Glacio Broadblade), không bao giờ bị xếp vào vị trí Sustain.
+ * 4. Luuk Herssen là Main DPS Spectro Gauntlets, không bao giờ bị xếp vào vị trí Sustain.
  *
  * @param {Array<string>} ownedCharacterIds - Danh sách ID nhân vật người dùng tick chọn
  * @returns {Array} - Danh sách đội hình không trùng lặp nhân vật

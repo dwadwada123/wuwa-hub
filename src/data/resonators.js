@@ -9,14 +9,14 @@ export const RESONATORS = [
     "element": "Electro",
     "rarity": 5,
     "weaponType": "Rectifier",
-    "role": "Main DPS / Sát Thương Lôi Định",
+    "role": "Main DPS / Sentinel Lôi Quang Unison",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Hsin.webp",
     "iconColor": "#a855f7",
     "tags": [
       "Electro",
+      "Rectifier",
       "Main DPS",
       "Unison",
-      "Rectifier",
       "Sentinel"
     ],
     "bestWeapon": "Blooming Jadehaven",
@@ -60,7 +60,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "3.7",
-    "releaseOrder": 1
+    "releaseOrder": 1,
+    "weapon": "Rectifier",
+    "overview": "Chủ lực Lôi hệ sử dụng Pháp Cụ, dẫn đầu cơ chế Unison hoán đổi đồng minh tức thì không tốn thời gian hồi chiêu."
   },
   {
     "id": "suoming",
@@ -69,14 +71,14 @@ export const RESONATORS = [
     "element": "Electro",
     "rarity": 5,
     "weaponType": "Sword",
-    "role": "Sub-DPS / Khuếch Đại Unison",
+    "role": "Sub-DPS / Lôi Kiếm Khuếch Đại Unison",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Suoming.webp",
     "iconColor": "#8b5cf6",
     "tags": [
       "Electro",
+      "Sword",
       "Sub-DPS",
       "Buffer",
-      "Sword",
       "Unison"
     ],
     "bestWeapon": "Thunder's Horizon",
@@ -120,7 +122,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "3.7",
-    "releaseOrder": 2
+    "releaseOrder": 2,
+    "weapon": "Sword",
+    "overview": "Đơn vị Sub-DPS khuếch đại Unison và gia tăng sát thương Lôi toàn đội, cộng sự tối thượng của Hsin."
   },
   {
     "id": "qingxiao",
@@ -129,15 +133,14 @@ export const RESONATORS = [
     "element": "Aero",
     "rarity": 5,
     "weaponType": "Sword",
-    "role": "Main DPS / Phi Kiếm Phong Lực",
+    "role": "Main DPS / Phi Kiếm Phong Lực Song Thế",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Qingxiao-1.webp",
     "iconColor": "#10b981",
     "tags": [
       "Aero",
-      "Sub-DPS",
       "Sword",
-      "Quickswap",
-      "Hermit"
+      "Main DPS",
+      "Sword Stance"
     ],
     "bestWeapon": "Emerald of Genesis / Blazing Gale",
     "bestEchoSet": "5-pc Moonlit Clouds",
@@ -163,7 +166,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "3.6",
-    "releaseOrder": 3
+    "releaseOrder": 3,
+    "weapon": "Sword",
+    "overview": "Kiếm tu Phong hệ ẩn cư với cơ chế kiếm đao xuất thế và thu kiếm, dồn sát thương Aero bùng nổ."
   },
   {
     "id": "jingran",
@@ -172,14 +177,14 @@ export const RESONATORS = [
     "element": "Fusion",
     "rarity": 5,
     "weaponType": "Broadblade",
-    "role": "Main DPS / Hỏa Tiên Phong Vệ Thần",
+    "role": "Main DPS / Nethermancer Âm Dương Đại Kiếm",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Jingran-icon-2.webp",
     "iconColor": "#f97316",
     "tags": [
       "Fusion",
-      "Main DPS",
       "Broadblade",
-      "Sentinel"
+      "Main DPS",
+      "HP Scaler"
     ],
     "bestWeapon": "Verdant Summit / Helios Cleaver",
     "bestEchoSet": "5-pc Molten Rift",
@@ -205,7 +210,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "3.6",
-    "releaseOrder": 4
+    "releaseOrder": 4,
+    "weapon": "Broadblade",
+    "overview": "Chủ lực Hỏa hệ mang phong cách Nethermancer chuyển hóa HP thành khiên và dồn sát thương bạo liệt."
   },
   {
     "id": "yangyang_xuanling",
@@ -219,10 +226,9 @@ export const RESONATORS = [
     "iconColor": "#f43f5e",
     "tags": [
       "Havoc",
-      "Main DPS",
       "Sword",
-      "Awakened",
-      "Xuanling"
+      "Main DPS",
+      "Awakened"
     ],
     "bestWeapon": "Emerald of Genesis / Dark Gale",
     "bestEchoSet": "5-pc Sun-sinking Eclipse",
@@ -248,7 +254,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "3.5",
-    "releaseOrder": 5
+    "releaseOrder": 5,
+    "weapon": "Sword",
+    "overview": "Dạng thức tỉnh Havoc mang thanh đoản kiếm bóng đêm, tung những đòn trảm kích áp đảo diện rộng."
   },
   {
     "id": "suisui",
@@ -257,15 +265,15 @@ export const RESONATORS = [
     "element": "Glacio",
     "rarity": 5,
     "weaponType": "Rectifier",
-    "role": "Sustain / Trị Liệu Hàn Băng",
+    "role": "Sustain / Trị Liệu Hàn Băng Nạp Năng Lượng",
     "avatar": "https://wutheringlab.com/wp-content/uploads/SuiSui.webp",
     "iconColor": "#38bdf8",
     "tags": [
       "Glacio",
-      "Sustain",
-      "Healer",
       "Rectifier",
-      "Freeze"
+      "Support",
+      "Sustain",
+      "Healer"
     ],
     "bestWeapon": "Variation / Cosmic Ripples",
     "bestEchoSet": "5-pc Rejuvenating Glow",
@@ -291,348 +299,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "3.5",
-    "releaseOrder": 6
-  },
-  {
-    "id": "lucy",
-    "name": "Lucy",
-    "title": "Luminous Starlight Archer",
-    "element": "Spectro",
-    "rarity": 5,
-    "weaponType": "Pistols",
-    "role": "Main DPS / Xạ Thủ Spectro Hack",
-    "avatar": "https://wutheringlab.com/wp-content/uploads/Lucy.webp",
-    "iconColor": "#facc15",
-    "tags": [
-      "Spectro",
-      "Main DPS",
-      "Pistols",
-      "Starlight"
-    ],
-    "bestWeapon": "Static Mist",
-    "bestEchoSet": "5-pc Celestial Light",
-    "echoMainStats": "4-Cost: Tỉ Lệ Bạo Kích hoặc Sát Thương Bạo Kích | 3-Cost: Sát Thương Spectro | 1-Cost: Tấn Công%",
-    "outroDescription": "Đạn Định Hướng Tinh Tú: Đánh dấu điểm yếu kẻ địch, tăng 20% Sát Thương Bạo Kích cho đòn đánh kế tiếp của đồng minh.",
-    "rotations": {
-      "standard": [
-        {
-          "step": 1,
-          "char": "Mornye / Shorekeeper / Baizhi",
-          "action": "Tung Skill E và R mở vùng hồi máu và buff công toàn đội ➔ Kích hoạt Bell-Borne / Fallacy ➔ Outro."
-        },
-        {
-          "step": 2,
-          "char": "Rebecca / Sanhua / Zhezhi",
-          "action": "Intro nhận buff ➔ E ➔ R tích nhanh 100% Concerto ➔ Kích hoạt Impermanence Heron ➔ Outro truyền buff sát thương."
-        },
-        {
-          "step": 3,
-          "char": "Lucy",
-          "action": "Intro vào sân kích hoạt Starlight Hack ➔ Bắn súng đôi dồn dập đạn năng lượng Spectro ➔ Xả Resonance Liberation pháo sáng quét sạch chiến trường."
-        }
-      ]
-    },
-    "releaseVersion": "3.4",
-    "releaseOrder": 7
-  },
-  {
-    "id": "rebecca",
-    "name": "Rebecca",
-    "title": "Voltaic Overdrive Specialist",
-    "element": "Electro",
-    "rarity": 5,
-    "weaponType": "Pistols",
-    "role": "Sub-DPS / Xạ Thủ Lôi Quá Tải",
-    "avatar": "https://wutheringlab.com/wp-content/uploads/Rebecca.webp",
-    "iconColor": "#a855f7",
-    "tags": [
-      "Electro",
-      "Sub-DPS",
-      "Buffer",
-      "Pistols",
-      "Quickswap",
-      "Overdrive"
-    ],
-    "bestWeapon": "Static Mist",
-    "bestEchoSet": "5-pc Moonlit Clouds",
-    "echoMainStats": "4-Cost: Crit Rate/DMG | 3-Cost: Electro DMG | 1-Cost: ATK%",
-    "outroDescription": "Quá Tải Điện Trường: Gây hiệu ứng Tê Liệt Electro và tăng 25% Electro DMG Deepen trong 14 giây.",
-    "rotations": {
-      "standard": [
-        {
-          "step": 1,
-          "char": "Shorekeeper",
-          "action": "Buff toàn diện ➔ Outro."
-        },
-        {
-          "step": 2,
-          "char": "Rebecca",
-          "action": "Xả băng đạn điện E ➔ R quá tải ➔ Outro."
-        },
-        {
-          "step": 3,
-          "char": "Xiangli Yao / Hsin",
-          "action": "Dứt điểm mục tiêu với sát thương sét nhân đôi."
-        }
-      ]
-    },
-    "releaseVersion": "3.4",
-    "releaseOrder": 8
-  },
-  {
-    "id": "lucilla",
-    "name": "Lucilla",
-    "title": "Frost Maiden of Court",
-    "element": "Glacio",
-    "rarity": 5,
-    "weaponType": "Rectifier",
-    "role": "Main DPS / Đại Kiếm Băng Trảm Sương",
-    "avatar": "https://wutheringlab.com/wp-content/uploads/Lucilla.webp",
-    "iconColor": "#38bdf8",
-    "tags": [
-      "Glacio",
-      "Broadblade",
-      "Main DPS",
-      "Burst Carry"
-    ],
-    "bestWeapon": "Variation / Rectifier#25",
-    "bestEchoSet": "5-pc Rejuvenating Glow",
-    "echoMainStats": "4-Cost: Healing Bonus | 3-Cost: Energy Regen | 1-Cost: DEF% / HP%",
-    "outroDescription": "Màn Băng Hộ Mệnh: Cung cấp khiên chắn bằng 25% Max HP và tăng 20% Glacio DMG cho đồng minh.",
-    "rotations": {
-      "standard": [
-        {
-          "step": 1,
-          "char": "Lucilla",
-          "action": "Tạo khiên băng bảo vệ E ➔ R ➔ Outro."
-        },
-        {
-          "step": 2,
-          "char": "Zhezhi / Sanhua",
-          "action": "Buff sát thương băng ➔ Outro."
-        },
-        {
-          "step": 3,
-          "char": "Carlotta / Hiyuki",
-          "action": "Bắn phá tầm xa trong vòng bảo vệ tuyệt đối."
-        }
-      ]
-    },
-    "releaseVersion": "3.4",
-    "releaseOrder": 9
-  },
-  {
-    "id": "hiyuki",
-    "name": "Hiyuki",
-    "title": "Frostbloom Swordswoman",
-    "element": "Glacio",
-    "rarity": 5,
-    "weaponType": "Sword",
-    "role": "Main DPS / Kiếm Sĩ Hàn Băng Sương Giá",
-    "avatar": "https://wutheringlab.com/wp-content/uploads/Hiyuki.webp",
-    "iconColor": "#38bdf8",
-    "tags": [
-      "Glacio",
-      "Main DPS",
-      "Sword",
-      "Frostbite"
-    ],
-    "bestWeapon": "Emerald of Genesis / Winter Needle",
-    "bestEchoSet": "5-pc Freezing Frost",
-    "echoMainStats": "4-Cost: Crit Rate/DMG | 3-Cost: Glacio DMG | 1-Cost: ATK%",
-    "outroDescription": "Băng Vũ Vĩnh Cửu: Đóng băng kẻ địch trong 3 giây và tăng 20% Glacio DMG Deepen cho nhân vật tiếp theo.",
-    "rotations": {
-      "standard": [
-        {
-          "step": 1,
-          "char": "Verina",
-          "action": "Heal và buff toàn đội ➔ Outro."
-        },
-        {
-          "step": 2,
-          "char": "Zhezhi / Sanhua",
-          "action": "Buff Glacio DMG và Basic ATK ➔ Outro."
-        },
-        {
-          "step": 3,
-          "char": "Hiyuki",
-          "action": "Intro rút kiếm băng ➔ E chém hoa tuyết ➔ R đóng băng dứt điểm."
-        }
-      ]
-    },
-    "releaseVersion": "3.3",
-    "releaseOrder": 10
-  },
-  {
-    "id": "denia",
-    "name": "Denia",
-    "title": "Solaris Firework Artificer",
-    "element": "Fusion",
-    "rarity": 5,
-    "weaponType": "Rectifier",
-    "role": "Sustain / Hỏa Ngục Hồi Sinh",
-    "avatar": "https://wutheringlab.com/wp-content/uploads/Denia.webp",
-    "iconColor": "#f97316",
-    "tags": [
-      "Fusion",
-      "Sustain",
-      "Healer",
-      "Buffer",
-      "Rectifier"
-    ],
-    "bestWeapon": "Variation / Rectifier#25",
-    "bestEchoSet": "5-pc Rejuvenating Glow",
-    "echoMainStats": "4-Cost: Healing Bonus | 3-Cost: Energy Regen | 1-Cost: ATK%",
-    "outroDescription": "Pháo Hoa Trùng Phùng: Hồi máu toàn đội 22% Max HP và tăng 25% Fusion DMG trong 20 giây.",
-    "rotations": {
-      "standard": [
-        {
-          "step": 1,
-          "char": "Denia",
-          "action": "Intro ➔ Bắn pháo hoa E hồi máu ➔ R mở tiệc ánh lửa ➔ Outro buff 25% Fusion."
-        },
-        {
-          "step": 2,
-          "char": "Changli",
-          "action": "Nhận buff tung kiếm lửa ➔ Outro."
-        },
-        {
-          "step": 3,
-          "char": "Encore / Brant",
-          "action": "Xả hỏa lực hủy diệt kẻ địch."
-        }
-      ]
-    },
-    "releaseVersion": "3.3",
-    "releaseOrder": 11
-  },
-  {
-    "id": "sigrika",
-    "name": "Sigrika",
-    "title": "Gale Valkyrie of the Highlands",
-    "element": "Aero",
-    "rarity": 5,
-    "weaponType": "Gauntlets",
-    "role": "Main DPS / Hút Chân Không Bão Tố",
-    "avatar": "https://wutheringlab.com/wp-content/uploads/Sigrika.webp",
-    "iconColor": "#10b981",
-    "tags": [
-      "Aero",
-      "Sub-DPS",
-      "Buffer",
-      "Gauntlets",
-      "Crowd Control"
-    ],
-    "bestWeapon": "Abyss Surges / Stonedge",
-    "bestEchoSet": "5-pc Moonlit Clouds",
-    "echoMainStats": "4-Cost: Crit Rate/DMG | 3-Cost: Aero DMG / Energy Regen | 1-Cost: ATK%",
-    "outroDescription": "Hút Gió Gom Quái: Gom toàn bộ quái trong phạm vi 15m vào tâm điểm và tăng 25% Aero DMG Deepen.",
-    "rotations": {
-      "standard": [
-        {
-          "step": 1,
-          "char": "Shorekeeper",
-          "action": "Bật Stella Field ➔ Outro."
-        },
-        {
-          "step": 2,
-          "char": "Sigrika",
-          "action": "E hút gom toàn bộ quái ➔ R lốc xoáy ➔ Heron Echo ➔ Outro."
-        },
-        {
-          "step": 3,
-          "char": "Jiyan",
-          "action": "Quét sạch toàn bộ kẻ địch đang bị gom lại bằng Thanh Long."
-        }
-      ]
-    },
-    "releaseVersion": "3.2",
-    "releaseOrder": 12
-  },
-  {
-    "id": "aemeath",
-    "name": "Aemeath",
-    "title": "Crimson Rose Duelist",
-    "element": "Fusion",
-    "rarity": 5,
-    "weaponType": "Sword",
-    "role": "Main DPS / Hỏa Kiếm Thiêu Rụi",
-    "avatar": "https://wutheringlab.com/wp-content/uploads/Aemeath.webp",
-    "iconColor": "#f97316",
-    "tags": [
-      "Fusion",
-      "Sub-DPS",
-      "Sword",
-      "Quickswap",
-      "Burn"
-    ],
-    "bestWeapon": "Blazing Brilliance / Emerald of Genesis",
-    "bestEchoSet": "5-pc Moonlit Clouds",
-    "echoMainStats": "4-Cost: Crit Rate/DMG | 3-Cost: Fusion DMG | 1-Cost: ATK%",
-    "outroDescription": "Vũ Điệu Hoa Hồng Lửa: Tăng 20% Fusion DMG và 20% Basic ATK Deepen cho đồng minh.",
-    "rotations": {
-      "standard": [
-        {
-          "step": 1,
-          "char": "Verina",
-          "action": "Buff ATK ➔ Outro."
-        },
-        {
-          "step": 2,
-          "char": "Aemeath",
-          "action": "Kiếm vũ hoa hồng E ➔ R xả nộ ➔ Outro."
-        },
-        {
-          "step": 3,
-          "char": "Brant / Changli",
-          "action": "Khai hỏa chiêu thức kết liễu."
-        }
-      ]
-    },
-    "releaseVersion": "3.1",
-    "releaseOrder": 13
-  },
-  {
-    "id": "luuk_herssen",
-    "name": "Luuk Herssen",
-    "title": "The Vanguard Knight of Rinascita",
-    "element": "Glacio",
-    "rarity": 5,
-    "weaponType": "Broadblade",
-    "role": "Main DPS / Đại Kiếm Hàn Băng Tiên Phong",
-    "avatar": "https://wutheringlab.com/wp-content/uploads/Luuk-Herssen.png",
-    "iconColor": "#38bdf8",
-    "tags": [
-      "Glacio",
-      "Main DPS",
-      "Broadblade",
-      "Burst Carry"
-    ],
-    "bestWeapon": "Ages of Harvest / Verdant Summit / Autumntrace",
-    "bestEchoSet": "5-pc Freezing Frost",
-    "echoMainStats": "4-Cost: Crit Rate/DMG | 3-Cost: Glacio DMG | 1-Cost: ATK%",
-    "outroDescription": "Băng Kiếm Trảm: Gây 520% Sát thương Glacio và gia tăng 25% Resonance Liberation DMG cho đồng minh kế tiếp.",
-    "rotations": {
-      "standard": [
-        {
-          "step": 1,
-          "char": "Sustain: Shorekeeper, Verina, Baizhi",
-          "action": "Vào sân đầu tiên ➔ Dùng Skill E và Liberation R tạo buff All-Type DMG và hồi máu ➔ Outro."
-        },
-        {
-          "step": 2,
-          "char": "Buffer: Sanhua, Zhezhi",
-          "action": "Tiếp nhận buff ➔ Dùng E và R xả nộ nạp Concerto ➔ Outro buff 38% Basic ATK hoặc 20% Glacio DMG."
-        },
-        {
-          "step": 3,
-          "char": "Luuk Herssen",
-          "action": "Intro vào sân nhận toàn bộ buff ➔ Kích hoạt Skill E trảm kích băng giá ➔ Xả Resonance Liberation R quét sạch sàn đấu."
-        }
-      ]
-    },
-    "releaseVersion": "3.1",
-    "releaseOrder": 14
+    "releaseOrder": 6,
+    "weapon": "Rectifier",
+    "overview": "Trị liệu viên Glacio 5 sao tăng cường khả năng hồi máu và buff sát thương toàn đội tỷ lệ theo Hiệu Quả Nạp."
   },
   {
     "id": "rover_electro",
@@ -641,14 +310,13 @@ export const RESONATORS = [
     "element": "Electro",
     "rarity": 5,
     "weaponType": "Sword",
-    "role": "Main DPS / Lôi Kiếm Liên Hoàn Bão Sét",
+    "role": "Main DPS / Lôi Kiếm Bộc Phá",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Rover-Havoc.png",
     "iconColor": "#a855f7",
     "tags": [
       "Electro",
-      "Main DPS",
       "Sword",
-      "Burst DPS",
+      "Main DPS",
       "Rover",
       "Free 5-Star S6"
     ],
@@ -675,8 +343,365 @@ export const RESONATORS = [
         }
       ]
     },
-    "releaseVersion": "3.0",
-    "releaseOrder": 15
+    "releaseVersion": "3.5",
+    "releaseOrder": 7,
+    "weapon": "Sword",
+    "overview": "Nhà Thám Hiểm thức tỉnh sức mạnh Lôi hệ, tung chuỗi lôi kiếm cuồng phong bộc phá sát thương cực nhanh."
+  },
+  {
+    "id": "lucy",
+    "name": "Lucy",
+    "title": "Luminous Starlight Archer",
+    "element": "Spectro",
+    "rarity": 5,
+    "weaponType": "Pistols",
+    "role": "Main DPS / Xạ Thủ Spectro Quick-Hack",
+    "avatar": "https://wutheringlab.com/wp-content/uploads/Lucy.webp",
+    "iconColor": "#facc15",
+    "tags": [
+      "Spectro",
+      "Pistols",
+      "Main DPS",
+      "Quick-Hack"
+    ],
+    "bestWeapon": "Static Mist",
+    "bestEchoSet": "5-pc Celestial Light",
+    "echoMainStats": "4-Cost: Tỉ Lệ Bạo Kích hoặc Sát Thương Bạo Kích | 3-Cost: Sát Thương Spectro | 1-Cost: Tấn Công%",
+    "outroDescription": "Đạn Định Hướng Tinh Tú: Đánh dấu điểm yếu kẻ địch, tăng 20% Sát Thương Bạo Kích cho đòn đánh kế tiếp của đồng minh.",
+    "rotations": {
+      "standard": [
+        {
+          "step": 1,
+          "char": "Mornye / Shorekeeper / Baizhi",
+          "action": "Tung Skill E và R mở vùng hồi máu và buff công toàn đội ➔ Kích hoạt Bell-Borne / Fallacy ➔ Outro."
+        },
+        {
+          "step": 2,
+          "char": "Rebecca / Sanhua / Zhezhi",
+          "action": "Intro nhận buff ➔ E ➔ R tích nhanh 100% Concerto ➔ Kích hoạt Impermanence Heron ➔ Outro truyền buff sát thương."
+        },
+        {
+          "step": 3,
+          "char": "Lucy",
+          "action": "Intro vào sân kích hoạt Starlight Hack ➔ Bắn súng đôi dồn dập đạn năng lượng Spectro ➔ Xả Resonance Liberation pháo sáng quét sạch chiến trường."
+        }
+      ]
+    },
+    "releaseVersion": "3.4",
+    "releaseOrder": 8,
+    "weapon": "Pistols",
+    "overview": "Xạ thủ súng đôi hệ Spectro sở hữu cơ chế Quick-Hack, giải phóng sát thương bạo kích tầm xa với nhịp độ thần tốc."
+  },
+  {
+    "id": "rebecca",
+    "name": "Rebecca",
+    "title": "Voltaic Overdrive Specialist",
+    "element": "Electro",
+    "rarity": 5,
+    "weaponType": "Pistols",
+    "role": "Sub-DPS / Xạ Thủ Lôi Trợ Lực Quick-Hack",
+    "avatar": "https://wutheringlab.com/wp-content/uploads/Rebecca.webp",
+    "iconColor": "#a855f7",
+    "tags": [
+      "Electro",
+      "Pistols",
+      "Sub-DPS",
+      "Buffer",
+      "Quickswap"
+    ],
+    "bestWeapon": "Static Mist",
+    "bestEchoSet": "5-pc Moonlit Clouds",
+    "echoMainStats": "4-Cost: Crit Rate/DMG | 3-Cost: Electro DMG | 1-Cost: ATK%",
+    "outroDescription": "Quá Tải Điện Trường: Gây hiệu ứng Tê Liệt Electro và tăng 25% Electro DMG Deepen trong 14 giây.",
+    "rotations": {
+      "standard": [
+        {
+          "step": 1,
+          "char": "Shorekeeper",
+          "action": "Buff toàn diện ➔ Outro."
+        },
+        {
+          "step": 2,
+          "char": "Rebecca",
+          "action": "Xả băng đạn điện E ➔ R quá tải ➔ Outro."
+        },
+        {
+          "step": 3,
+          "char": "Xiangli Yao / Hsin",
+          "action": "Dứt điểm mục tiêu với sát thương sét nhân đôi."
+        }
+      ]
+    },
+    "releaseVersion": "3.4",
+    "releaseOrder": 9,
+    "weapon": "Pistols",
+    "overview": "Đơn vị Sub-DPS Lôi súng đôi thiết lập trạng thái Hack và xả mưa đạn phụ trợ uy lực cùng Lucy."
+  },
+  {
+    "id": "lucilla",
+    "name": "Lucilla",
+    "title": "Frost Maiden of Court",
+    "element": "Glacio",
+    "rarity": 5,
+    "weaponType": "Rectifier",
+    "role": "Sub-DPS / Khuếch Đại Glacio & Echo",
+    "avatar": "https://wutheringlab.com/wp-content/uploads/Lucilla.webp",
+    "iconColor": "#38bdf8",
+    "tags": [
+      "Glacio",
+      "Rectifier",
+      "Sub-DPS",
+      "Buffer",
+      "Echo DMG"
+    ],
+    "bestWeapon": "Variation / Rectifier#25",
+    "bestEchoSet": "5-pc Rejuvenating Glow",
+    "echoMainStats": "4-Cost: Healing Bonus | 3-Cost: Energy Regen | 1-Cost: DEF% / HP%",
+    "outroDescription": "Màn Băng Hộ Mệnh: Cung cấp khiên chắn bằng 25% Max HP và tăng 20% Glacio DMG cho đồng minh.",
+    "rotations": {
+      "standard": [
+        {
+          "step": 1,
+          "char": "Lucilla",
+          "action": "Tạo khiên băng bảo vệ E ➔ R ➔ Outro."
+        },
+        {
+          "step": 2,
+          "char": "Zhezhi / Sanhua",
+          "action": "Buff sát thương băng ➔ Outro."
+        },
+        {
+          "step": 3,
+          "char": "Carlotta / Hiyuki",
+          "action": "Bắn phá tầm xa trong vòng bảo vệ tuyệt đối."
+        }
+      ]
+    },
+    "releaseVersion": "3.4",
+    "releaseOrder": 10,
+    "weapon": "Rectifier",
+    "overview": "Hỗ trợ Sub-DPS Glacio sử dụng Pháp Cụ, khuếch đại sát thương Glacio Chafe và Echo Skill cho đồng đội như Hiyuki."
+  },
+  {
+    "id": "hiyuki",
+    "name": "Hiyuki",
+    "title": "Frostbloom Swordswoman",
+    "element": "Glacio",
+    "rarity": 5,
+    "weaponType": "Sword",
+    "role": "Main DPS / Kiếm Sĩ Hàn Băng Glacio Chafe",
+    "avatar": "https://wutheringlab.com/wp-content/uploads/Hiyuki.webp",
+    "iconColor": "#38bdf8",
+    "tags": [
+      "Glacio",
+      "Sword",
+      "Main DPS",
+      "Glacio Chafe"
+    ],
+    "bestWeapon": "Emerald of Genesis / Winter Needle",
+    "bestEchoSet": "5-pc Freezing Frost",
+    "echoMainStats": "4-Cost: Crit Rate/DMG | 3-Cost: Glacio DMG | 1-Cost: ATK%",
+    "outroDescription": "Băng Vũ Vĩnh Cửu: Đóng băng kẻ địch trong 3 giây và tăng 20% Glacio DMG Deepen cho nhân vật tiếp theo.",
+    "rotations": {
+      "standard": [
+        {
+          "step": 1,
+          "char": "Verina",
+          "action": "Heal và buff toàn đội ➔ Outro."
+        },
+        {
+          "step": 2,
+          "char": "Zhezhi / Sanhua",
+          "action": "Buff Glacio DMG và Basic ATK ➔ Outro."
+        },
+        {
+          "step": 3,
+          "char": "Hiyuki",
+          "action": "Intro rút kiếm băng ➔ E chém hoa tuyết ➔ R đóng băng dứt điểm."
+        }
+      ]
+    },
+    "releaseVersion": "3.3",
+    "releaseOrder": 11,
+    "weapon": "Sword",
+    "overview": "Kiếm sĩ Glacio chuyển đổi linh hoạt các thế kiếm trảm sương, kích hoạt hiệu ứng Glacio Chafe cực mạnh."
+  },
+  {
+    "id": "denia",
+    "name": "Denia",
+    "title": "Solaris Firework Artificer",
+    "element": "Fusion",
+    "rarity": 5,
+    "weaponType": "Rectifier",
+    "role": "Main DPS / Bộc Phá Hỏa Biến Hình",
+    "avatar": "https://wutheringlab.com/wp-content/uploads/Denia.webp",
+    "iconColor": "#f97316",
+    "tags": [
+      "Fusion",
+      "Rectifier",
+      "Main DPS",
+      "Burst DPS"
+    ],
+    "bestWeapon": "Variation / Rectifier#25",
+    "bestEchoSet": "5-pc Rejuvenating Glow",
+    "echoMainStats": "4-Cost: Healing Bonus | 3-Cost: Energy Regen | 1-Cost: ATK%",
+    "outroDescription": "Pháo Hoa Trùng Phùng: Hồi máu toàn đội 22% Max HP và tăng 25% Fusion DMG trong 20 giây.",
+    "rotations": {
+      "standard": [
+        {
+          "step": 1,
+          "char": "Denia",
+          "action": "Intro ➔ Bắn pháo hoa E hồi máu ➔ R mở tiệc ánh lửa ➔ Outro buff 25% Fusion."
+        },
+        {
+          "step": 2,
+          "char": "Changli",
+          "action": "Nhận buff tung kiếm lửa ➔ Outro."
+        },
+        {
+          "step": 3,
+          "char": "Encore / Brant",
+          "action": "Xả hỏa lực hủy diệt kẻ địch."
+        }
+      ]
+    },
+    "releaseVersion": "3.3",
+    "releaseOrder": 12,
+    "weapon": "Rectifier",
+    "overview": "Chủ lực Hỏa hệ mang cơ chế song trạng thái Stagecraft và Breakdown, dồn sát thương bộc phát uy lực."
+  },
+  {
+    "id": "sigrika",
+    "name": "Sigrika",
+    "title": "Gale Valkyrie of the Highlands",
+    "element": "Aero",
+    "rarity": 5,
+    "weaponType": "Gauntlets",
+    "role": "Main DPS / Quyền Pháp Triệu Hồi Nổ Echo",
+    "avatar": "https://wutheringlab.com/wp-content/uploads/Sigrika.webp",
+    "iconColor": "#10b981",
+    "tags": [
+      "Aero",
+      "Gauntlets",
+      "Main DPS",
+      "Echo DMG"
+    ],
+    "bestWeapon": "Abyss Surges / Stonedge",
+    "bestEchoSet": "5-pc Moonlit Clouds",
+    "echoMainStats": "4-Cost: Crit Rate/DMG | 3-Cost: Aero DMG / Energy Regen | 1-Cost: ATK%",
+    "outroDescription": "Hút Gió Gom Quái: Gom toàn bộ quái trong phạm vi 15m vào tâm điểm và tăng 25% Aero DMG Deepen.",
+    "rotations": {
+      "standard": [
+        {
+          "step": 1,
+          "char": "Shorekeeper",
+          "action": "Bật Stella Field ➔ Outro."
+        },
+        {
+          "step": 2,
+          "char": "Sigrika",
+          "action": "E hút gom toàn bộ quái ➔ R lốc xoáy ➔ Heron Echo ➔ Outro."
+        },
+        {
+          "step": 3,
+          "char": "Jiyan",
+          "action": "Quét sạch toàn bộ kẻ địch đang bị gom lại bằng Thanh Long."
+        }
+      ]
+    },
+    "releaseVersion": "3.2",
+    "releaseOrder": 13,
+    "weapon": "Gauntlets",
+    "overview": "Đấu sĩ Bao Tay Aero dồn sát thương vào kỹ năng Echo và các bùa chú cổ đại càn quét đối thủ."
+  },
+  {
+    "id": "aemeath",
+    "name": "Aemeath",
+    "title": "Crimson Rose Duelist",
+    "element": "Fusion",
+    "rarity": 5,
+    "weaponType": "Sword",
+    "role": "Main DPS / Kiếm Sĩ Cơ Giáp Bộc Phá Nộ",
+    "avatar": "https://wutheringlab.com/wp-content/uploads/Aemeath.webp",
+    "iconColor": "#f97316",
+    "tags": [
+      "Fusion",
+      "Sword",
+      "Main DPS",
+      "Resonance Liberation"
+    ],
+    "bestWeapon": "Blazing Brilliance / Emerald of Genesis",
+    "bestEchoSet": "5-pc Moonlit Clouds",
+    "echoMainStats": "4-Cost: Crit Rate/DMG | 3-Cost: Fusion DMG | 1-Cost: ATK%",
+    "outroDescription": "Vũ Điệu Hoa Hồng Lửa: Tăng 20% Fusion DMG và 20% Basic ATK Deepen cho đồng minh.",
+    "rotations": {
+      "standard": [
+        {
+          "step": 1,
+          "char": "Verina",
+          "action": "Buff ATK ➔ Outro."
+        },
+        {
+          "step": 2,
+          "char": "Aemeath",
+          "action": "Kiếm vũ hoa hồng E ➔ R xả nộ ➔ Outro."
+        },
+        {
+          "step": 3,
+          "char": "Brant / Changli",
+          "action": "Khai hỏa chiêu thức kết liễu."
+        }
+      ]
+    },
+    "releaseVersion": "3.1",
+    "releaseOrder": 14,
+    "weapon": "Sword",
+    "overview": "Kiếm sĩ cơ giáp Fusion tối ưu hóa sát thương chiêu cuối Giải Phóng Cộng Hưởng san phẳng mọi mục tiêu."
+  },
+  {
+    "id": "luuk_herssen",
+    "name": "Luuk Herssen",
+    "title": "The Vanguard Knight of Rinascita",
+    "element": "Spectro",
+    "rarity": 5,
+    "weaponType": "Broadblade",
+    "role": "Main DPS / Quyền Vương Quang Học Không Chiến",
+    "avatar": "https://wutheringlab.com/wp-content/uploads/Luuk-Herssen.png",
+    "iconColor": "#38bdf8",
+    "tags": [
+      "Spectro",
+      "Gauntlets",
+      "Main DPS",
+      "Aerial Combat",
+      "Basic ATK"
+    ],
+    "bestWeapon": "Ages of Harvest / Verdant Summit / Autumntrace",
+    "bestEchoSet": "5-pc Freezing Frost",
+    "echoMainStats": "4-Cost: Crit Rate/DMG | 3-Cost: Glacio DMG | 1-Cost: ATK%",
+    "outroDescription": "Băng Kiếm Trảm: Gây 520% Sát thương Glacio và gia tăng 25% Resonance Liberation DMG cho đồng minh kế tiếp.",
+    "rotations": {
+      "standard": [
+        {
+          "step": 1,
+          "char": "Sustain: Shorekeeper, Verina, Baizhi",
+          "action": "Vào sân đầu tiên ➔ Dùng Skill E và Liberation R tạo buff All-Type DMG và hồi máu ➔ Outro."
+        },
+        {
+          "step": 2,
+          "char": "Buffer: Sanhua, Zhezhi",
+          "action": "Tiếp nhận buff ➔ Dùng E và R xả nộ nạp Concerto ➔ Outro buff 38% Basic ATK hoặc 20% Glacio DMG."
+        },
+        {
+          "step": 3,
+          "char": "Luuk Herssen",
+          "action": "Intro vào sân nhận toàn bộ buff ➔ Kích hoạt Skill E trảm kích băng giá ➔ Xả Resonance Liberation R quét sạch sàn đấu."
+        }
+      ]
+    },
+    "releaseVersion": "3.1",
+    "releaseOrder": 15,
+    "weapon": "Gauntlets",
+    "overview": "Chủ lực Spectro mang Bao Tay chuyên không chiến tầm cao, cường hóa chuỗi đánh thường uy mãnh xé toạc phòng tuyến."
   },
   {
     "id": "lynae",
@@ -685,14 +710,14 @@ export const RESONATORS = [
     "element": "Spectro",
     "rarity": 5,
     "weaponType": "Pistols",
-    "role": "Sub-DPS / Xạ Thủ Tinh Tú Quang Minh",
+    "role": "Sub-DPS / Xạ Thủ Tinh Tú Spectro Frazzle",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Lynae.webp",
     "iconColor": "#facc15",
     "tags": [
       "Spectro",
+      "Pistols",
       "Sub-DPS",
       "Buffer",
-      "Pistols",
       "Frazzle"
     ],
     "bestWeapon": "Static Mist",
@@ -719,7 +744,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "3.0",
-    "releaseOrder": 16
+    "releaseOrder": 16,
+    "weapon": "Pistols",
+    "overview": "Xạ thủ Spectro súng đôi bồi đắp trạng thái Frazzle và gia tăng sát thương toàn diện cho đội hình."
   },
   {
     "id": "mornye",
@@ -728,15 +755,15 @@ export const RESONATORS = [
     "element": "Fusion",
     "rarity": 5,
     "weaponType": "Broadblade",
-    "role": "Sub-DPS / Hỏa Nham Hỗ Trợ Đội",
+    "role": "Sustain / Drone Trị Liệu & Hộ Mệnh",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Mornye.webp",
     "iconColor": "#f97316",
     "tags": [
       "Fusion",
       "Broadblade",
+      "Support",
       "Sustain",
-      "Healer",
-      "Flameforged"
+      "Healer"
     ],
     "bestWeapon": "Broadblade#41",
     "bestEchoSet": "5-pc Rejuvenating Glow",
@@ -762,7 +789,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "3.0",
-    "releaseOrder": 17
+    "releaseOrder": 17,
+    "weapon": "Broadblade",
+    "overview": "Hỗ trợ Sustain Fusion sử dụng Đại Kiếm kết hợp Drone công nghệ, hồi máu toàn đội và giới hạn sát thương tối đa gánh chịu."
   },
   {
     "id": "chisa",
@@ -771,15 +800,15 @@ export const RESONATORS = [
     "element": "Havoc",
     "rarity": 5,
     "weaponType": "Broadblade",
-    "role": "Sustain / Hộ Vệ Trị Liệu & Buff Havoc",
+    "role": "Sustain / Hộ Vệ Trị Liệu & Cường Hóa Trạng Thái",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Chisa.webp",
     "iconColor": "#f43f5e",
     "tags": [
       "Havoc",
-      "Rectifier",
+      "Broadblade",
       "Support",
       "Sustain",
-      "Buffer"
+      "Healer"
     ],
     "bestWeapon": "Verdant Summit / Helios Cleaver",
     "bestEchoSet": "5-pc Sun-sinking Eclipse",
@@ -805,7 +834,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "2.8",
-    "releaseOrder": 18
+    "releaseOrder": 18,
+    "weapon": "Broadblade",
+    "overview": "Hộ vệ Havoc Đại Kiếm cung cấp hồi máu, xuyên kháng và tăng tối đa số tầng hiệu ứng bất lợi Negative Status cho phe địch."
   },
   {
     "id": "buling",
@@ -814,15 +845,15 @@ export const RESONATORS = [
     "element": "Electro",
     "rarity": 4,
     "weaponType": "Rectifier",
-    "role": "Sustain / Trị Liệu Trợ Lực Lôi",
+    "role": "Sustain / Y Sĩ Lôi & Hỗ Trợ Kỹ Năng",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Buling.webp",
     "iconColor": "#9333ea",
     "tags": [
       "Electro",
-      "Sustain",
-      "Healer",
       "Rectifier",
-      "Electro Buffer"
+      "Support",
+      "Sustain",
+      "Healer"
     ],
     "bestWeapon": "Variation",
     "bestEchoSet": "5-pc Rejuvenating Glow",
@@ -838,7 +869,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "2.8",
-    "releaseOrder": 19
+    "releaseOrder": 19,
+    "weapon": "Rectifier",
+    "overview": "Y sĩ 4 sao Lôi hệ mang Pháp Cụ hồi máu liên tục và buff sát thương Kỹ Năng Cộng Hưởng cho đồng đội."
   },
   {
     "id": "galbrena",
@@ -847,15 +880,14 @@ export const RESONATORS = [
     "element": "Fusion",
     "rarity": 5,
     "weaponType": "Pistols",
-    "role": "Main DPS / Hỏa Quyền Xạ Kích",
+    "role": "Main DPS / Xạ Thủ Ma Quỷ Demon Hypostasis",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Galbrena.webp",
     "iconColor": "#f97316",
     "tags": [
       "Fusion",
-      "Sub-DPS",
-      "Buffer",
       "Pistols",
-      "Burst"
+      "Main DPS",
+      "Echo DMG"
     ],
     "bestWeapon": "Static Mist",
     "bestEchoSet": "5-pc Moonlit Clouds",
@@ -881,7 +913,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "2.7",
-    "releaseOrder": 20
+    "releaseOrder": 20,
+    "weapon": "Pistols",
+    "overview": "Xạ thủ súng đôi Fusion giải phóng dạng hình Ma Quỷ tàn phá chiến trường với sát thương Trọng Kích và Echo cực đại."
   },
   {
     "id": "qiuyuan",
@@ -890,15 +924,14 @@ export const RESONATORS = [
     "element": "Aero",
     "rarity": 5,
     "weaponType": "Sword",
-    "role": "Sub-DPS / Kiếm Sư Cường Hóa Phong Lực",
+    "role": "Sub-DPS / Kiếm Sư Cường Hóa Kỹ Năng Echo",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Qiuyuan.webp",
     "iconColor": "#10b981",
     "tags": [
       "Aero",
-      "Sub-DPS",
-      "Buffer",
       "Sword",
-      "Bladesmith"
+      "Sub-DPS",
+      "Buffer"
     ],
     "bestWeapon": "Emerald of Genesis",
     "bestEchoSet": "5-pc Moonlit Clouds",
@@ -924,7 +957,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "2.7",
-    "releaseOrder": 21
+    "releaseOrder": 21,
+    "weapon": "Sword",
+    "overview": "Kiếm sư Phong hệ buff bạt ngàn sát thương kỹ năng Echo cho đồng minh, đối tác hoàn mỹ của Galbrena."
   },
   {
     "id": "augusta",
@@ -938,9 +973,9 @@ export const RESONATORS = [
     "iconColor": "#a855f7",
     "tags": [
       "Electro",
-      "Main DPS",
       "Broadblade",
-      "Vanguard"
+      "Main DPS",
+      "Heavy ATK"
     ],
     "bestWeapon": "Verdant Summit / Lustrous Razor",
     "bestEchoSet": "5-pc Void Thunder",
@@ -966,7 +1001,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "2.6",
-    "releaseOrder": 22
+    "releaseOrder": 22,
+    "weapon": "Broadblade",
+    "overview": "Tiên phong Lôi hệ sử dụng Đại Kiếm, kiến tạo những đòn chém Heavy Attack sấm sét uy lực kết hợp lớp khiên kiên cố."
   },
   {
     "id": "iuno",
@@ -975,15 +1012,15 @@ export const RESONATORS = [
     "element": "Aero",
     "rarity": 5,
     "weaponType": "Gauntlets",
-    "role": "Sub-DPS / Quyền Sĩ Bão Tố",
+    "role": "Sub-DPS / Quyền Sĩ Bão Tố Trợ Lực Trọng Kích",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Iuno.webp",
     "iconColor": "#10b981",
     "tags": [
       "Aero",
+      "Gauntlets",
       "Sub-DPS",
       "Buffer",
-      "Gauntlets",
-      "Brawler"
+      "Healer"
     ],
     "bestWeapon": "Abyss Surges / Marcato",
     "bestEchoSet": "5-pc Moonlit Clouds",
@@ -1009,7 +1046,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "2.6",
-    "releaseOrder": 23
+    "releaseOrder": 23,
+    "weapon": "Gauntlets",
+    "overview": "Đấu sĩ Bao Tay Aero linh hoạt giữa cận chiến và tầm xa, khuếch đại Heavy Attack cực đỉnh và hồi phục thể lực, sinh lực cho Augusta."
   },
   {
     "id": "phrolova",
@@ -1018,16 +1057,14 @@ export const RESONATORS = [
     "element": "Havoc",
     "rarity": 5,
     "weaponType": "Rectifier",
-    "role": "Main DPS / Khúc Ca Tang Lễ Havoc",
+    "role": "Main DPS / Khúc Ca Tang Lễ Hắc Ám",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Phrolova-icon.webp",
     "iconColor": "#e11d48",
     "tags": [
       "Havoc",
-      "Main DPS",
       "Rectifier",
-      "Burst DPS",
-      "Decay",
-      "Fractsidus"
+      "Main DPS",
+      "Tier 0"
     ],
     "bestWeapon": "Cosmic Ripples / Stringmaster",
     "bestEchoSet": "5-pc Sun-sinking Eclipse",
@@ -1053,7 +1090,53 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "2.5",
-    "releaseOrder": 24
+    "releaseOrder": 24,
+    "weapon": "Rectifier",
+    "overview": "Pháp sư Havoc thao túng nốt nhạc tử thần, gom quái và trừng phạt mục tiêu bằng chuỗi nộ hủy diệt diện rộng."
+  },
+  {
+    "id": "cartethyia",
+    "name": "Cartethyia",
+    "title": "The Silent Wind / Black Shores Operative",
+    "element": "Aero",
+    "rarity": 5,
+    "weaponType": "Sword",
+    "role": "Main DPS / Trảm Phong Bão Tố Fleurdelys",
+    "avatar": "https://wutheringlab.com/wp-content/uploads/Cartethyia-icon.webp",
+    "iconColor": "#10b981",
+    "tags": [
+      "Aero",
+      "Sword",
+      "Main DPS",
+      "HP Scaler"
+    ],
+    "bestWeapon": "Emerald of Genesis / Blazing Gale",
+    "bestEchoSet": "5-pc Sierra Gale",
+    "echoMainStats": "4-Cost: Crit Rate/DMG | 3-Cost: Aero DMG | 1-Cost: ATK%",
+    "outroDescription": "Phát động Gió Lốc Cắt Xé: Gây 480% sát thương Aero và tăng 25% Aero DMG Deepen cho nhân vật ra sân tiếp theo trong 14 giây.",
+    "rotations": {
+      "standard": [
+        {
+          "step": 1,
+          "char": "Shorekeeper / Verina",
+          "action": "Bật Liberation R buff sát thương toàn đội ➔ Tích 100% Concerto ➔ Outro."
+        },
+        {
+          "step": 2,
+          "char": "Ciaccona / Sanhua",
+          "action": "Intro vào sân ➔ Dùng E và R kích hoạt buff Aero/Basic Deepen ➔ Outro truyền sang Cartethyia."
+        },
+        {
+          "step": 3,
+          "char": "Cartethyia",
+          "action": "Intro vào sân ➔ Skill E lướt gió chém liên kích ➔ Bật Liberation R bão xoáy quét sạch quái vật."
+        }
+      ]
+    },
+    "releaseVersion": "2.4",
+    "releaseOrder": 25,
+    "weapon": "Sword",
+    "overview": "Kiếm sĩ Aero với thể thức Fleurdelys tráng lệ, tích tụ bóng kiếm tiêu hao để xả kiếm khí bào mòn toàn diện."
   },
   {
     "id": "lupa",
@@ -1062,14 +1145,14 @@ export const RESONATORS = [
     "element": "Fusion",
     "rarity": 5,
     "weaponType": "Broadblade",
-    "role": "Main DPS / Lang Vương Đại Kiếm Hỏa Diệm",
+    "role": "Sub-DPS / Khúc Ca Lang Tộc Buff Fusion",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Lupa-icon.webp",
     "iconColor": "#f97316",
     "tags": [
       "Fusion",
-      "Main DPS",
       "Broadblade",
-      "Wolf"
+      "Sub-DPS",
+      "Buffer"
     ],
     "bestWeapon": "Verdant Summit / Helios Cleaver",
     "bestEchoSet": "5-pc Molten Rift",
@@ -1095,50 +1178,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "2.4",
-    "releaseOrder": 25
-  },
-  {
-    "id": "cartethyia",
-    "name": "Cartethyia",
-    "title": "The Silent Wind / Black Shores Operative",
-    "element": "Aero",
-    "rarity": 5,
-    "weaponType": "Sword",
-    "role": "Main DPS / Trảm Phong Bão Tố",
-    "avatar": "https://wutheringlab.com/wp-content/uploads/Cartethyia-icon.webp",
-    "iconColor": "#10b981",
-    "tags": [
-      "Aero",
-      "Main DPS",
-      "Sword",
-      "Aero Shred",
-      "Tier 0"
-    ],
-    "bestWeapon": "Emerald of Genesis / Blazing Gale",
-    "bestEchoSet": "5-pc Sierra Gale",
-    "echoMainStats": "4-Cost: Crit Rate/DMG | 3-Cost: Aero DMG | 1-Cost: ATK%",
-    "outroDescription": "Phát động Gió Lốc Cắt Xé: Gây 480% sát thương Aero và tăng 25% Aero DMG Deepen cho nhân vật ra sân tiếp theo trong 14 giây.",
-    "rotations": {
-      "standard": [
-        {
-          "step": 1,
-          "char": "Shorekeeper / Verina",
-          "action": "Bật Liberation R buff sát thương toàn đội ➔ Tích 100% Concerto ➔ Outro."
-        },
-        {
-          "step": 2,
-          "char": "Ciaccona / Sanhua",
-          "action": "Intro vào sân ➔ Dùng E và R kích hoạt buff Aero/Basic Deepen ➔ Outro truyền sang Cartethyia."
-        },
-        {
-          "step": 3,
-          "char": "Cartethyia",
-          "action": "Intro vào sân ➔ Skill E lướt gió chém liên kích ➔ Bật Liberation R bão xoáy quét sạch quái vật."
-        }
-      ]
-    },
-    "releaseVersion": "2.3",
-    "releaseOrder": 26
+    "releaseOrder": 26,
+    "weapon": "Broadblade",
+    "overview": "Hỗ trợ Sub-DPS Đại Kiếm Fusion kích hoạt đòn đánh phối hợp ngoài sân, buff sát thương Hỏa và đòn đánh thường cho Changli."
   },
   {
     "id": "zani",
@@ -1147,14 +1189,14 @@ export const RESONATORS = [
     "element": "Spectro",
     "rarity": 5,
     "weaponType": "Gauntlets",
-    "role": "Main DPS / Kim Cang Quyền Quang Minh",
+    "role": "Main DPS / Kim Cang Quyền Inferno",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Zani_Icon.webp",
     "iconColor": "#facc15",
     "tags": [
       "Spectro",
-      "Main DPS",
       "Gauntlets",
-      "Monk"
+      "Main DPS",
+      "Spectro Frazzle"
     ],
     "bestWeapon": "Abyss Surges / Marcato",
     "bestEchoSet": "5-pc Celestial Light",
@@ -1180,7 +1222,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "2.3",
-    "releaseOrder": 27
+    "releaseOrder": 27,
+    "weapon": "Gauntlets",
+    "overview": "Quyền vương Spectro chuyển sang trạng thái Inferno hừng hực, phản đòn chuẩn xác và xả sát thương Frazzle thần tốc."
   },
   {
     "id": "ciaccona",
@@ -1194,10 +1238,9 @@ export const RESONATORS = [
     "iconColor": "#059669",
     "tags": [
       "Aero",
-      "Sub-DPS",
-      "Buffer",
       "Pistols",
-      "Aero Erosion"
+      "Sub-DPS",
+      "Buffer"
     ],
     "bestWeapon": "Whirlwind Serenade",
     "bestEchoSet": "5-pc Empyrean Anthem",
@@ -1213,7 +1256,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "2.3",
-    "releaseOrder": 28
+    "releaseOrder": 28,
+    "weapon": "Pistols",
+    "overview": "Xạ thủ Aero triệu hồi các bản sao Ensemble Sylphs hỗ trợ ngoài sân, gieo rắc hiệu ứng Aero Erosion liên tục."
   },
   {
     "id": "cantarella",
@@ -1222,15 +1267,15 @@ export const RESONATORS = [
     "element": "Havoc",
     "rarity": 5,
     "weaponType": "Rectifier",
-    "role": "Sub-DPS / Khúc Ca Biển Đen Havoc",
+    "role": "Sub-DPS / Khúc Ca Biển Đen Hồi Máu & Buff",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Cantarella.webp",
     "iconColor": "#9d174d",
     "tags": [
       "Havoc",
-      "Main DPS",
       "Rectifier",
-      "Fisalia",
-      "Dark Resonance"
+      "Sub-DPS",
+      "Support",
+      "Healer"
     ],
     "bestWeapon": "Echo of the Abyss",
     "bestEchoSet": "5-pc Midnight Veil",
@@ -1256,7 +1301,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "2.2",
-    "releaseOrder": 29
+    "releaseOrder": 29,
+    "weapon": "Rectifier",
+    "overview": "Pháp sư Havoc trong trạng thái Mirage debuff quái vật, hồi phục sinh lực và buff bùng nổ sát thương Havoc cho Phrolova."
   },
   {
     "id": "rover_aero",
@@ -1265,16 +1312,15 @@ export const RESONATORS = [
     "element": "Aero",
     "rarity": 5,
     "weaponType": "Sword",
-    "role": "Sub-DPS / Lốc Xoáy Chém Gió",
+    "role": "Sub-DPS / Lốc Xoáy Phong Lực",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Rover-Spectro.png",
     "iconColor": "#10b981",
     "tags": [
       "Aero",
+      "Sword",
       "Sub-DPS",
       "Buffer",
-      "Sword",
-      "Vortex",
-      "Wind Slashing"
+      "Rover"
     ],
     "bestWeapon": "Emerald of Genesis",
     "bestEchoSet": "5-pc Moonlit Clouds",
@@ -1290,7 +1336,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "2.2",
-    "releaseOrder": 30
+    "releaseOrder": 30,
+    "weapon": "Sword",
+    "overview": "Nhà Thám Hiểm hệ Phong tạo lốc xoáy hút quái vật và hỗ trợ sát thương diện rộng."
   },
   {
     "id": "phoebe",
@@ -1299,15 +1347,15 @@ export const RESONATORS = [
     "element": "Spectro",
     "rarity": 5,
     "weaponType": "Rectifier",
-    "role": "Sub-DPS / Biến Chuyển Hình Thái Spectro",
+    "role": "Main DPS / Biến Chuyển Hình Thái Absolution",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Phoebe.webp",
     "iconColor": "#facc15",
     "tags": [
       "Spectro",
-      "Main DPS",
       "Rectifier",
-      "Spectro Frazzle",
-      "Dual Form"
+      "Main DPS",
+      "Sub-DPS",
+      "Frazzle"
     ],
     "bestWeapon": "Luminous Reverie",
     "bestEchoSet": "5-pc Eternal Radiance",
@@ -1333,7 +1381,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "2.1",
-    "releaseOrder": 31
+    "releaseOrder": 31,
+    "weapon": "Rectifier",
+    "overview": "Pháp sư Spectro linh hoạt với thể Xá Tội làm Main DPS hoặc thể Thú Tội buff bồi đắp Frazzle cho đồng minh."
   },
   {
     "id": "brant",
@@ -1342,15 +1392,15 @@ export const RESONATORS = [
     "element": "Fusion",
     "rarity": 5,
     "weaponType": "Broadblade",
-    "role": "Sub-DPS / Đại Kiếm Hỏa Bộc Phá",
+    "role": "Sustain / Kiếm Sĩ Hồi Phục & Hộ Thuẫn",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Brant.webp",
     "iconColor": "#ea580c",
     "tags": [
       "Fusion",
-      "Main DPS",
-      "Broadblade",
-      "Plunge DMG",
-      "Rinascita"
+      "Sword",
+      "Support",
+      "Sustain",
+      "Healer"
     ],
     "bestWeapon": "Blazing Sun Anchor",
     "bestEchoSet": "5-pc Tidebreaking Courage",
@@ -1376,7 +1426,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "2.1",
-    "releaseOrder": 32
+    "releaseOrder": 32,
+    "weapon": "Sword",
+    "overview": "Kiếm sĩ Fusion đa năng hồi máu, tạo khiên và nạp năng lượng cực nhanh, bảo hộ đồng minh như Changli."
   },
   {
     "id": "carlotta",
@@ -1385,16 +1437,14 @@ export const RESONATORS = [
     "element": "Glacio",
     "rarity": 5,
     "weaponType": "Pistols",
-    "role": "Main DPS / Xạ Thủ Shotgun Băng",
+    "role": "Main DPS / Xạ Thủ Tinh Thể Băng Trọng Kích",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Carlotta.webp",
     "iconColor": "#0ea5e9",
     "tags": [
       "Glacio",
-      "Main DPS",
       "Pistols",
-      "Skill DMG",
-      "Rinascita",
-      "Parry"
+      "Main DPS",
+      "Heavy ATK"
     ],
     "bestWeapon": "Cold Whisper / Static Mist",
     "bestEchoSet": "5-pc Frosty Resolve",
@@ -1437,7 +1487,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "2.0",
-    "releaseOrder": 33
+    "releaseOrder": 33,
+    "weapon": "Pistols",
+    "overview": "Xạ thủ súng đôi Glacio tích tụ Moldable Crystals tạo nên những phát bắn Heavy Attack băng giá đóng băng đối thủ."
   },
   {
     "id": "roccia",
@@ -1446,16 +1498,14 @@ export const RESONATORS = [
     "element": "Havoc",
     "rarity": 5,
     "weaponType": "Gauntlets",
-    "role": "Sub-DPS / Đấu Sĩ Rối Bóng Havoc",
+    "role": "Sub-DPS / Đấu Sĩ Rối Bóng Gom Quái",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Roccia.webp",
     "iconColor": "#be185d",
     "tags": [
       "Havoc",
-      "Sub-DPS",
-      "Buffer",
       "Gauntlets",
-      "Brawler",
-      "Rinascita"
+      "Sub-DPS",
+      "Buffer"
     ],
     "bestWeapon": "Obsidian Claws",
     "bestEchoSet": "5-pc Midnight Veil",
@@ -1471,7 +1521,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "2.0",
-    "releaseOrder": 34
+    "releaseOrder": 34,
+    "weapon": "Gauntlets",
+    "overview": "Đấu sĩ Bao Tay Havoc có khả năng gom quái vật thần tốc và buff mạnh mẽ sát thương đòn đánh thường cho Camellya."
   },
   {
     "id": "camellya",
@@ -1485,10 +1537,9 @@ export const RESONATORS = [
     "iconColor": "#ec4899",
     "tags": [
       "Havoc",
-      "Main DPS",
-      "Basic ATK",
       "Sword",
-      "Black Shores"
+      "Main DPS",
+      "Basic ATK"
     ],
     "bestWeapon": "Red Spring",
     "bestEchoSet": "5-pc Sun-sinking Eclipse",
@@ -1531,7 +1582,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "1.4",
-    "releaseOrder": 35
+    "releaseOrder": 35,
+    "weapon": "Sword",
+    "overview": "Chủ lực Havoc sử dụng đoản kiếm với vũ điệu gai hoa chém thường trên không và quét sạch mục tiêu."
   },
   {
     "id": "lumi",
@@ -1545,10 +1598,9 @@ export const RESONATORS = [
     "iconColor": "#7c3aed",
     "tags": [
       "Electro",
-      "Sub-DPS",
       "Broadblade",
-      "Lollo Logistics",
-      "Electro Burst"
+      "Sub-DPS",
+      "Buffer"
     ],
     "bestWeapon": "Autumntrace / Broadblade#41",
     "bestEchoSet": "5-pc Moonlit Clouds",
@@ -1564,7 +1616,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "1.4",
-    "releaseOrder": 36
+    "releaseOrder": 36,
+    "weapon": "Broadblade",
+    "overview": "Đại kiếm Lôi hệ 4 sao hỗ trợ tích concerto siêu tốc và gia tăng sát thương kỹ năng cho đồng đội."
   },
   {
     "id": "shorekeeper",
@@ -1578,11 +1632,11 @@ export const RESONATORS = [
     "iconColor": "#38bdf8",
     "tags": [
       "Spectro",
+      "Rectifier",
+      "Support",
       "Sustain",
       "Healer",
-      "Crit Buffer",
-      "Rectifier",
-      "Tier 0 Support"
+      "Crit Buffer"
     ],
     "bestWeapon": "Stellar Symphony",
     "bestEchoSet": "5-pc Rejuvenating Glow",
@@ -1598,7 +1652,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "1.3",
-    "releaseOrder": 37
+    "releaseOrder": 37,
+    "weapon": "Rectifier",
+    "overview": "Hỗ trợ Sustain đỉnh cấp Spectro mở rộng Stella Field buff Crit Rate, Crit DMG và All-Type DMG toàn đội."
   },
   {
     "id": "youhu",
@@ -1612,11 +1668,10 @@ export const RESONATORS = [
     "iconColor": "#0284c7",
     "tags": [
       "Glacio",
-      "Sustain",
-      "Healer",
       "Gauntlets",
-      "Coordinated Buffer",
-      "Rinascita"
+      "Support",
+      "Sustain",
+      "Healer"
     ],
     "bestWeapon": "Abyss Surges / Marcato",
     "bestEchoSet": "5-pc Rejuvenating Glow",
@@ -1632,7 +1687,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "1.3",
-    "releaseOrder": 38
+    "releaseOrder": 38,
+    "weapon": "Gauntlets",
+    "overview": "Đấu sĩ Glacio 4 sao tung bảo vật hồi máu toàn đội và kích hoạt các hiệu ứng cường hóa độc đáo."
   },
   {
     "id": "zhezhi",
@@ -1641,16 +1698,15 @@ export const RESONATORS = [
     "element": "Glacio",
     "rarity": 5,
     "weaponType": "Rectifier",
-    "role": "Sub-DPS / Bút Họa Phối Hợp Buff Băng",
+    "role": "Sub-DPS / Bút Họa Phối Hợp Buff Băng & Kỹ Năng",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Zhezhi.png",
     "iconColor": "#06b6d4",
     "tags": [
       "Glacio",
+      "Rectifier",
       "Sub-DPS",
       "Buffer",
-      "Coordinated ATK",
-      "Skill DMG Buffer",
-      "Rectifier"
+      "Coordinated ATK"
     ],
     "bestWeapon": "Rime-Draped Sprouts",
     "bestEchoSet": "5-pc Moonlit Clouds",
@@ -1666,7 +1722,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "1.2",
-    "releaseOrder": 39
+    "releaseOrder": 39,
+    "weapon": "Rectifier",
+    "overview": "Họa sĩ Glacio triệu hồi đòn đánh phối hợp ngoài sân, buff 25% Resonance Skill DMG và 20% Glacio DMG."
   },
   {
     "id": "xiangli_yao",
@@ -1680,10 +1738,9 @@ export const RESONATORS = [
     "iconColor": "#8b5cf6",
     "tags": [
       "Electro",
-      "Main DPS",
-      "Resonance Liberation",
       "Gauntlets",
-      "Huaxu"
+      "Main DPS",
+      "Resonance Liberation"
     ],
     "bestWeapon": "Verity's Handle",
     "bestEchoSet": "5-pc Void Thunder",
@@ -1726,7 +1783,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "1.2",
-    "releaseOrder": 40
+    "releaseOrder": 40,
+    "weapon": "Gauntlets",
+    "overview": "Chủ lực Lôi hệ sử dụng Bao Tay công nghệ dồn sát thương bùng nổ trong trạng thái Trực Giác Intuition."
   },
   {
     "id": "jinhsi",
@@ -1740,10 +1799,9 @@ export const RESONATORS = [
     "iconColor": "#facc15",
     "tags": [
       "Spectro",
-      "Main DPS",
-      "Resonance Skill DMG",
       "Broadblade",
-      "Tier 0 DPS"
+      "Main DPS",
+      "Resonance Skill"
     ],
     "bestWeapon": "Ages of Harvest",
     "bestEchoSet": "5-pc Celestial Light",
@@ -1769,7 +1827,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "1.1",
-    "releaseOrder": 41
+    "releaseOrder": 41,
+    "weapon": "Broadblade",
+    "overview": "Chủ lực Spectro Đại Kiếm hấp thụ tầng Incandescence từ đòn đánh phối hợp phóng rồng thiêng nổ hàng triệu sát thương."
   },
   {
     "id": "changli",
@@ -1778,15 +1838,14 @@ export const RESONATORS = [
     "element": "Fusion",
     "rarity": 5,
     "weaponType": "Sword",
-    "role": "Main DPS / Hỏa Kiếm Phượng Hoàng",
+    "role": "Main DPS / Hỏa Kiếm Phượng Hoàng Quickswap",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Changli.png",
     "iconColor": "#f97316",
     "tags": [
       "Fusion",
+      "Sword",
       "Main DPS",
-      "Quickswap",
-      "Resonance Liberation",
-      "Sword"
+      "Quickswap"
     ],
     "bestWeapon": "Blazing Brilliance",
     "bestEchoSet": "5-pc Molten Rift",
@@ -1829,7 +1888,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "1.1",
-    "releaseOrder": 42
+    "releaseOrder": 42,
+    "weapon": "Sword",
+    "overview": "Kiếm sĩ Hỏa hệ linh hoạt né tránh và xuất chiêu thức chém lửa cuồng bạo với khả năng quickswap xuất sắc."
   },
   {
     "id": "rover_havoc",
@@ -1843,9 +1904,9 @@ export const RESONATORS = [
     "iconColor": "#be123c",
     "tags": [
       "Havoc",
-      "Main DPS",
       "Sword",
-      "Dark Surge",
+      "Main DPS",
+      "Rover",
       "Free 5-Star S6"
     ],
     "bestWeapon": "Emerald of Genesis",
@@ -1888,8 +1949,10 @@ export const RESONATORS = [
         }
       ]
     },
-    "releaseVersion": "1.1",
-    "releaseOrder": 43
+    "releaseVersion": "1.0",
+    "releaseOrder": 43,
+    "weapon": "Sword",
+    "overview": "Nhà Thám Hiểm thức tỉnh lưỡi hái bóng tối Dark Surge, trảm kích diện rộng với sát thương bạo kích khủng khiếp."
   },
   {
     "id": "jiyan",
@@ -1903,11 +1966,9 @@ export const RESONATORS = [
     "iconColor": "#10b981",
     "tags": [
       "Aero",
-      "Main DPS",
-      "Heavy ATK",
       "Broadblade",
-      "Midnight Rangers",
-      "Tier 0 AOE"
+      "Main DPS",
+      "Heavy ATK"
     ],
     "bestWeapon": "Verdant Summit",
     "bestEchoSet": "5-pc Sierra Gale",
@@ -1933,7 +1994,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "1.0",
-    "releaseOrder": 44
+    "releaseOrder": 44,
+    "weapon": "Broadblade",
+    "overview": "Tướng quân Midnight Rangers phóng thương rồng gió càn quét gom toàn bộ quái vật bằng chuỗi Heavy Attack liên hoàn."
   },
   {
     "id": "yinlin",
@@ -1947,10 +2010,10 @@ export const RESONATORS = [
     "iconColor": "#9333ea",
     "tags": [
       "Electro",
+      "Rectifier",
       "Sub-DPS",
       "Buffer",
-      "Coordinated ATK",
-      "Rectifier"
+      "Coordinated ATK"
     ],
     "bestWeapon": "Stringmaster",
     "bestEchoSet": "5-pc Moonlit Clouds",
@@ -1978,7 +2041,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "1.0",
-    "releaseOrder": 45
+    "releaseOrder": 45,
+    "weapon": "Rectifier",
+    "overview": "Pháp sư Lôi giăng bẫy lôi điệp đánh phối hợp ngoài sân, buff 20% Electro DMG và 25% Resonance Liberation DMG."
   },
   {
     "id": "verina",
@@ -1992,11 +2057,10 @@ export const RESONATORS = [
     "iconColor": "#eab308",
     "tags": [
       "Spectro",
-      "Sustain",
-      "Healer",
-      "Universal Buffer",
       "Rectifier",
-      "Tier 0 Support"
+      "Support",
+      "Sustain",
+      "Healer"
     ],
     "bestWeapon": "Variation",
     "bestEchoSet": "5-pc Rejuvenating Glow",
@@ -2012,7 +2076,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "1.0",
-    "releaseOrder": 46
+    "releaseOrder": 46,
+    "weapon": "Rectifier",
+    "overview": "Hỗ trợ thực vật học Spectro hồi sinh đồng đội, hồi máu diện rộng và buff 20% All-Type DMG phổ quát."
   },
   {
     "id": "calcharo",
@@ -2026,10 +2092,9 @@ export const RESONATORS = [
     "iconColor": "#9333ea",
     "tags": [
       "Electro",
-      "Main DPS",
       "Broadblade",
-      "Resonance Liberation",
-      "Ghost Hounds"
+      "Main DPS",
+      "Resonance Liberation"
     ],
     "bestWeapon": "Verity's Handle / Lustrous Razor",
     "bestEchoSet": "5-pc Void Thunder",
@@ -2072,7 +2137,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "1.0",
-    "releaseOrder": 47
+    "releaseOrder": 47,
+    "weapon": "Broadblade",
+    "overview": "Thủ lĩnh Ghost Hounds thức tỉnh hình thái Lôi Thần chém kiếm điện bão táp dồn dập trong kỳ nộ."
   },
   {
     "id": "encore",
@@ -2086,11 +2153,9 @@ export const RESONATORS = [
     "iconColor": "#fb923c",
     "tags": [
       "Fusion",
-      "Main DPS",
-      "Basic ATK",
-      "Quickswap",
       "Rectifier",
-      "Black Shores"
+      "Main DPS",
+      "Basic ATK"
     ],
     "bestWeapon": "Stringmaster / Augment",
     "bestEchoSet": "5-pc Molten Rift",
@@ -2133,7 +2198,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "1.0",
-    "releaseOrder": 48
+    "releaseOrder": 48,
+    "weapon": "Rectifier",
+    "overview": "Pháp sư nhí Fusion triệu hồi thú bông Cosmos xả tia lửa ma pháp và chuyển sang dạng cận chiến bùng nổ."
   },
   {
     "id": "jianxin",
@@ -2147,12 +2214,10 @@ export const RESONATORS = [
     "iconColor": "#14b8a6",
     "tags": [
       "Aero",
+      "Gauntlets",
+      "Support",
       "Sustain",
-      "Shielder",
-      "Shield",
-      "Parry",
-      "Liberation Buffer",
-      "Gauntlets"
+      "Shielder"
     ],
     "bestWeapon": "Abyss Surges / Marcato",
     "bestEchoSet": "5-pc Rejuvenating Glow",
@@ -2168,7 +2233,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "1.0",
-    "releaseOrder": 49
+    "releaseOrder": 49,
+    "weapon": "Gauntlets",
+    "overview": "Đạo sĩ Bao Tay Aero sở hữu khả năng đỡ đòn Parry hóa giải sát thương, gom quái và tạo khiên khí công siêu dày."
   },
   {
     "id": "lingyang",
@@ -2182,9 +2249,8 @@ export const RESONATORS = [
     "iconColor": "#38bdf8",
     "tags": [
       "Glacio",
-      "Main DPS",
       "Gauntlets",
-      "Aerial Combat",
+      "Main DPS",
       "Basic ATK"
     ],
     "bestWeapon": "Abyss Surges",
@@ -2211,7 +2277,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "1.0",
-    "releaseOrder": 50
+    "releaseOrder": 50,
+    "weapon": "Gauntlets",
+    "overview": "Võ sĩ múa lân Glacio phi thân trên không trung tung các đòn quyền cước sư tử băng linh hoạt."
   },
   {
     "id": "rover_spectro",
@@ -2225,10 +2293,10 @@ export const RESONATORS = [
     "iconColor": "#eab308",
     "tags": [
       "Spectro",
+      "Sword",
       "Sub-DPS",
       "Buffer",
-      "Sword",
-      "Time Stop",
+      "Rover",
       "Free 5-Star S6"
     ],
     "bestWeapon": "Emerald of Genesis",
@@ -2245,7 +2313,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "1.0",
-    "releaseOrder": 60
+    "releaseOrder": 51,
+    "weapon": "Sword",
+    "overview": "Nhà Thám Hiểm khởi đầu kiểm soát không thời gian với khả năng ngưng đọng đối thủ và hồi phục máu đồng đội."
   },
   {
     "id": "sanhua",
@@ -2259,12 +2329,10 @@ export const RESONATORS = [
     "iconColor": "#38bdf8",
     "tags": [
       "Glacio",
+      "Sword",
       "Sub-DPS",
       "Buffer",
-      "Basic ATK Buffer",
-      "Fast Concerto",
-      "Sword",
-      "Top Tier 4-Star"
+      "Fast Concerto"
     ],
     "bestWeapon": "Emerald of Genesis",
     "bestEchoSet": "5-pc Moonlit Clouds",
@@ -2280,7 +2348,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "1.0",
-    "releaseOrder": 51
+    "releaseOrder": 52,
+    "weapon": "Sword",
+    "overview": "Nữ kiếm sĩ Glacio tích 100% thanh Concerto chỉ trong 2-3 giây, buff ngay 38% Basic ATK DMG cho carry chính."
   },
   {
     "id": "mortefi",
@@ -2294,12 +2364,10 @@ export const RESONATORS = [
     "iconColor": "#ef4444",
     "tags": [
       "Fusion",
+      "Pistols",
       "Sub-DPS",
       "Buffer",
-      "Heavy ATK Buffer",
-      "Coordinated ATK",
-      "Pistols",
-      "Top Tier 4-Star"
+      "Coordinated ATK"
     ],
     "bestWeapon": "Static Mist",
     "bestEchoSet": "5-pc Moonlit Clouds",
@@ -2315,7 +2383,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "1.0",
-    "releaseOrder": 52
+    "releaseOrder": 53,
+    "weapon": "Pistols",
+    "overview": "Xạ thủ Fusion phóng hỏa long phối hợp ngoài sân, buff 38% Heavy Attack DMG đỉnh cấp cho Jiyan và Augusta."
   },
   {
     "id": "danjin",
@@ -2329,11 +2399,9 @@ export const RESONATORS = [
     "iconColor": "#e11d48",
     "tags": [
       "Havoc",
+      "Sword",
       "Sub-DPS",
-      "Buffer",
-      "Havoc Buffer",
-      "HP Consume",
-      "Sword"
+      "Buffer"
     ],
     "bestWeapon": "Emerald of Genesis",
     "bestEchoSet": "5-pc Moonlit Clouds",
@@ -2349,7 +2417,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "1.0",
-    "releaseOrder": 53
+    "releaseOrder": 54,
+    "weapon": "Sword",
+    "overview": "Kiếm sĩ Havoc tiêu hao máu bản thân để dồn sát thương bạo kích và buff 23% Havoc DMG Deepen cho carry."
   },
   {
     "id": "chixia",
@@ -2363,10 +2433,9 @@ export const RESONATORS = [
     "iconColor": "#f97316",
     "tags": [
       "Fusion",
-      "Main DPS",
       "Pistols",
-      "Rapid Fire",
-      "Patroller"
+      "Main DPS",
+      "Rapid Fire"
     ],
     "bestWeapon": "Static Mist",
     "bestEchoSet": "5-pc Molten Rift",
@@ -2392,7 +2461,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "1.0",
-    "releaseOrder": 54
+    "releaseOrder": 55,
+    "weapon": "Pistols",
+    "overview": "Cảnh sát tuần tra Jinzhou với cặp súng liên thanh xả bão đạn hỏa lực thiêu đốt mọi kẻ thù."
   },
   {
     "id": "baizhi",
@@ -2406,10 +2477,10 @@ export const RESONATORS = [
     "iconColor": "#0ea5e9",
     "tags": [
       "Glacio",
-      "Sustain",
-      "Healer",
       "Rectifier",
-      "F2P Friendly"
+      "Support",
+      "Sustain",
+      "Healer"
     ],
     "bestWeapon": "Variation",
     "bestEchoSet": "5-pc Rejuvenating Glow",
@@ -2425,7 +2496,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "1.0",
-    "releaseOrder": 55
+    "releaseOrder": 56,
+    "weapon": "Rectifier",
+    "overview": "Nghiên cứu sinh Huaxu mang linh thú You'tan hồi máu toàn đội và gia tăng sát thương khi xuất hiện bùa hộ mệnh."
   },
   {
     "id": "yangyang",
@@ -2439,11 +2512,10 @@ export const RESONATORS = [
     "iconColor": "#10b981",
     "tags": [
       "Aero",
+      "Sword",
       "Sub-DPS",
       "Buffer",
-      "Energy Battery",
-      "Sword",
-      "Fast Concerto"
+      "Energy Battery"
     ],
     "bestWeapon": "Emerald of Genesis",
     "bestEchoSet": "5-pc Moonlit Clouds",
@@ -2459,7 +2531,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "1.0",
-    "releaseOrder": 56
+    "releaseOrder": 57,
+    "weapon": "Sword",
+    "overview": "Kiếm sĩ Aero tạo gió xoáy gom quái và sạc trực tiếp 20 năng lượng Liberation cho nhân vật tiếp theo."
   },
   {
     "id": "taoqi",
@@ -2473,12 +2547,10 @@ export const RESONATORS = [
     "iconColor": "#ec4899",
     "tags": [
       "Havoc",
-      "Sustain",
-      "Shielder",
       "Broadblade",
-      "Shield",
-      "Skill DMG Buffer",
-      "DEF Scaler"
+      "Support",
+      "Sustain",
+      "Shielder"
     ],
     "bestWeapon": "Dauntless Evernight / Discord",
     "bestEchoSet": "5-pc Rejuvenating Glow",
@@ -2494,7 +2566,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "1.0",
-    "releaseOrder": 57
+    "releaseOrder": 58,
+    "weapon": "Broadblade",
+    "overview": "Đại kiếm Havoc dựa trên chỉ số Phòng Ngự DEF tạo khiên kiên cố và buff 38% Resonance Skill DMG cho Jinhsi."
   },
   {
     "id": "yuanwu",
@@ -2508,12 +2582,10 @@ export const RESONATORS = [
     "iconColor": "#a855f7",
     "tags": [
       "Electro",
+      "Gauntlets",
       "Sub-DPS",
       "Buffer",
-      "Coordinated ATK",
-      "Gauntlets",
-      "Vibration Break",
-      "Jinhsi Best Friend"
+      "Coordinated ATK"
     ],
     "bestWeapon": "Originite: Type IV",
     "bestEchoSet": "5-pc Moonlit Clouds",
@@ -2529,7 +2601,9 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "1.0",
-    "releaseOrder": 58
+    "releaseOrder": 59,
+    "weapon": "Gauntlets",
+    "overview": "Võ sư Lôi cắm cột Lôi Trụ gây đòn đánh phối hợp liên tục phá vỡ thanh Rung Chấn và sạc tầng Incandescence cho Jinhsi."
   },
   {
     "id": "aalto",
@@ -2543,11 +2617,9 @@ export const RESONATORS = [
     "iconColor": "#059669",
     "tags": [
       "Aero",
-      "Sub-DPS",
-      "Buffer",
       "Pistols",
-      "Aero Buffer",
-      "Taunt Gate"
+      "Sub-DPS",
+      "Buffer"
     ],
     "bestWeapon": "Static Mist",
     "bestEchoSet": "5-pc Moonlit Clouds",
@@ -2563,29 +2635,13 @@ export const RESONATORS = [
       ]
     },
     "releaseVersion": "1.0",
-    "releaseOrder": 59
+    "releaseOrder": 60,
+    "weapon": "Pistols",
+    "overview": "Xạ thủ Aero dựng cổng khói sương mù khiêu khích quái vật và truyền hiệu ứng gia tăng 23% Aero DMG."
   }
 ];
 
 export const TEAM_TEMPLATES = [
-  {
-    "id": "hsin-suoming-shorekeeper",
-    "name": "Hsin & Suoming Lôi Định Song Sát",
-    "core": "hsin",
-    "members": [
-      "hsin",
-      "suoming",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Electro",
-    "description": "Đội hình Unison đỉnh cao phiên bản 3.7. Suoming buff Unison Boon kết hợp cùng vùng siêu buff của Shorekeeper giúp Hsin xả sát thương Lôi cực đại.",
-    "tags": [
-      "Electro",
-      "T0",
-      "Hypercarry"
-    ]
-  },
   {
     "id": "hsin-suoming-chisa",
     "name": "Hsin & Suoming Khúc Ca Hắc Lôi",
@@ -2596,45 +2652,44 @@ export const TEAM_TEMPLATES = [
       "chisa"
     ],
     "tier": "T0",
-    "type": "Dual Resonance Electro Havoc",
-    "description": "Chisa đảm nhiệm vị trí Sustain hỗ trợ hồi phục và đòn đánh phối hợp Havoc, tối ưu hóa nhịp hồi Unison cho Hsin và Suoming.",
-    "tags": [
-      "Electro",
-      "Havoc",
-      "T0",
-      "Sustain Chisa"
-    ]
-  },
-  {
-    "id": "hsin-yinlin-shorekeeper",
-    "name": "Hsin & Yinlin Lôi Điện Trùng Điệp",
-    "core": "hsin",
-    "members": [
-      "hsin",
-      "yinlin",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Electro",
-    "description": "Yinlin khuếch đại sát thương Electro và Resonance Liberation biến toàn bộ chuỗi chiêu thức của Hsin thành bão sét.",
+    "type": "Unison Hypercarry",
+    "description": "Đội hình Unison đỉnh cao phiên bản 3.7. Suoming khuếch đại sát thương Lôi trong khi Chisa duy trì hồi phục và gia tăng số tầng hiệu ứng bất lợi lên quái vật.",
     "tags": [
       "Electro",
       "T0",
-      "Hypercarry"
+      "Unison"
     ]
   },
   {
-    "id": "hsin-suoming-verina",
-    "name": "Hsin & Suoming Tiên Phong Lôi Giới",
+    "id": "hsin-suoming-shorekeeper",
+    "name": "Hsin & Suoming Lôi Quang Vĩnh Cửu",
     "core": "hsin",
     "members": [
       "hsin",
       "suoming",
-      "verina"
+      "shorekeeper"
+    ],
+    "tier": "T0",
+    "type": "Unison Hypercarry",
+    "description": "Shorekeeper mở rộng Stella Field đẩy tỉ lệ bạo kích và sát thương toàn hệ lên mức tối đa cho bộ đôi Lôi.",
+    "tags": [
+      "Electro",
+      "T0",
+      "Unison"
+    ]
+  },
+  {
+    "id": "hsin-yinlin-chisa",
+    "name": "Hsin & Yinlin Lôi Điệp Cuồng Nộ",
+    "core": "hsin",
+    "members": [
+      "hsin",
+      "yinlin",
+      "chisa"
     ],
     "tier": "T0.5",
-    "type": "Hypercarry Electro",
-    "description": "Lựa chọn kinh điển với Verina hồi máu và khuếch đại toàn bộ sát thương nguyên tố cho cặp đôi Hsin và Suoming.",
+    "type": "Electro Hypercarry",
+    "description": "Yinlin liên tục kích hoạt đòn đánh phối hợp ngoài sân giúp Hsin tối ưu hóa chuỗi sát thương bão sét.",
     "tags": [
       "Electro",
       "T0.5",
@@ -2642,17 +2697,17 @@ export const TEAM_TEMPLATES = [
     ]
   },
   {
-    "id": "qingxiao-ciaccona-shorekeeper",
-    "name": "Qingxiao Phong Kiếm Bào Mòn",
+    "id": "qingxiao-ciaccona-verina",
+    "name": "Qingxiao Kiếm Khí Phong Lôi",
     "core": "qingxiao",
     "members": [
       "qingxiao",
       "ciaccona",
-      "shorekeeper"
+      "verina"
     ],
     "tier": "T0",
     "type": "Hypercarry Aero",
-    "description": "Ciaccona tạo hiệu ứng Aero Erosion và khuếch đại sát thương gió, dọn đường cho Qingxiao phóng phi kiếm trảm kích.",
+    "description": "Ciaccona gieo rắc hiệu ứng bào mòn gió Aero Erosion liên tục tạo điều kiện cho kiếm khí của Qingxiao chém gục đối thủ.",
     "tags": [
       "Aero",
       "T0",
@@ -2660,17 +2715,17 @@ export const TEAM_TEMPLATES = [
     ]
   },
   {
-    "id": "qingxiao-sanhua-verina",
-    "name": "Qingxiao & Sanhua Phong Hàn Song Trảm",
+    "id": "qingxiao-yangyang-shorekeeper",
+    "name": "Qingxiao Phong Vũ Thần Tốc",
     "core": "qingxiao",
     "members": [
       "qingxiao",
-      "sanhua",
-      "verina"
+      "yangyang",
+      "shorekeeper"
     ],
     "tier": "T0.5",
     "type": "Hypercarry Aero",
-    "description": "Sanhua nạp Concerto siêu tốc và buff đòn đánh thường giúp Qingxiao duy trì tần suất kiếm khí dày đặc.",
+    "description": "Yangyang nạp năng lượng cực nhanh giúp Qingxiao liên tục tung chiêu cuối trảm phong diện rộng.",
     "tags": [
       "Aero",
       "T0.5",
@@ -2678,26 +2733,26 @@ export const TEAM_TEMPLATES = [
     ]
   },
   {
-    "id": "jingran-changli-shorekeeper",
-    "name": "Jingran & Changli Hỏa Phượng Bộc Phá",
+    "id": "jingran-lupa-mornye",
+    "name": "Jingran & Lupa Hỏa Diệm Nethermancer",
     "core": "jingran",
     "members": [
       "jingran",
-      "changli",
-      "shorekeeper"
+      "lupa",
+      "mornye"
     ],
     "tier": "T0",
-    "type": "Dual DPS Fusion",
-    "description": "Changli buff Fusion DMG Deepen cực mạnh hỗ trợ các đòn vung trọng kiếm rực lửa của Jingran.",
+    "type": "Hypercarry Fusion",
+    "description": "Lupa buff sát thương Hỏa và đòn đánh phối hợp, Mornye hồi máu và giới hạn sát thương tối đa cho Jingran tích lũy HP cực đại.",
     "tags": [
       "Fusion",
       "T0",
-      "Dual DPS"
+      "Hypercarry"
     ]
   },
   {
     "id": "jingran-mortefi-verina",
-    "name": "Jingran & Mortefi Liệt Diễm Long Hỏa",
+    "name": "Jingran Bão Lửa Trọng Kích",
     "core": "jingran",
     "members": [
       "jingran",
@@ -2706,28 +2761,10 @@ export const TEAM_TEMPLATES = [
     ],
     "tier": "T0.5",
     "type": "Hypercarry Fusion",
-    "description": "Mortefi phối hợp đòn đánh rồng lửa và gia tăng sát thương Trọng Kích cho đại kiếm của Jingran.",
+    "description": "Mortefi truyền 38% sát thương Trọng Kích giúp đại kiếm của Jingran giáng những đòn búa tạ thiêu đốt đối thủ.",
     "tags": [
       "Fusion",
       "T0.5",
-      "Hypercarry"
-    ]
-  },
-  {
-    "id": "yangyang-xuanling-danjin-shorekeeper",
-    "name": "Yangyang Xuanling Hắc Bão Trảm",
-    "core": "yangyang_xuanling",
-    "members": [
-      "yangyang_xuanling",
-      "danjin",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Havoc",
-    "description": "Danjin Outro buff 23% Havoc DMG Deepen khuếch đại vũ điệu lông vũ hắc ám thức tỉnh của Yangyang Xuanling.",
-    "tags": [
-      "Havoc",
-      "T0",
       "Hypercarry"
     ]
   },
@@ -2742,80 +2779,205 @@ export const TEAM_TEMPLATES = [
     ],
     "tier": "T0",
     "type": "Hypercarry Havoc",
-    "description": "Chisa ở slot 3 giữ nhịp hồi phục và buff Havoc đồng thời Sanhua đẩy nhanh xoay vòng kỹ năng.",
+    "description": "Sanhua nạp Concerto thần tốc buff đòn đánh thường, Chisa gia tăng số tầng hiệu ứng bất lợi giúp thức tỉnh của Yangyang bộc phá sát thương tối đa.",
     "tags": [
       "Havoc",
       "T0",
-      "Sustain Chisa"
+      "Hypercarry"
     ]
   },
   {
-    "id": "lucilla-sanhua-shorekeeper",
-    "name": "Lucilla Băng Tuyết Đại Kiếm Trảm",
-    "core": "lucilla",
+    "id": "yangyang-xuanling-danjin-shorekeeper",
+    "name": "Yangyang Xuanling Huyết Hắc Ám",
+    "core": "yangyang_xuanling",
     "members": [
+      "yangyang_xuanling",
+      "danjin",
+      "shorekeeper"
+    ],
+    "tier": "T0",
+    "type": "Hypercarry Havoc",
+    "description": "Danjin khuếch đại 23% sát thương Havoc đưa thanh kiếm của Yangyang Xuanling lên đỉnh cao sức mạnh.",
+    "tags": [
+      "Havoc",
+      "T0",
+      "Hypercarry"
+    ]
+  },
+  {
+    "id": "lucy-rebecca-mornye",
+    "name": "Lucy & Rebecca Tân Thế Giới Cyberpunk",
+    "core": "lucy",
+    "members": [
+      "lucy",
+      "rebecca",
+      "mornye"
+    ],
+    "tier": "T0",
+    "type": "Quick-Hack Hypercarry",
+    "description": "Bộ ba đồng điệu chính thức. Rebecca liên tục đặt trạng thái Hack và xả mưa đạn phụ trợ, Mornye bảo hộ bằng Drone giảm sát thương để Lucy xả pháo Spectro dứt điểm.",
+    "tags": [
+      "Spectro",
+      "T0",
+      "Quick-Hack"
+    ]
+  },
+  {
+    "id": "lucy-rebecca-shorekeeper",
+    "name": "Lucy & Rebecca Pháo Quang Điện Tử",
+    "core": "lucy",
+    "members": [
+      "lucy",
+      "rebecca",
+      "shorekeeper"
+    ],
+    "tier": "T0",
+    "type": "Quick-Hack Hypercarry",
+    "description": "Shorekeeper mở rộng Stella Field đẩy tỉ lệ bạo kích và sát thương toàn hệ lên mức tối đa cho cặp xạ thủ súng đôi.",
+    "tags": [
+      "Spectro",
+      "T0",
+      "Quick-Hack"
+    ]
+  },
+  {
+    "id": "hiyuki-lucilla-suisui",
+    "name": "Hiyuki & Lucilla Hàn Băng Chafe",
+    "core": "hiyuki",
+    "members": [
+      "hiyuki",
       "lucilla",
+      "suisui"
+    ],
+    "tier": "T0",
+    "type": "Hypercarry Glacio",
+    "description": "Đội hình Glacio Chafe chuẩn mực. Lucilla khuếch đại sát thương Glacio và kỹ năng Echo, Suisui hồi máu và nạp năng lượng giúp Hiyuki trảm sương liên tục.",
+    "tags": [
+      "Glacio",
+      "T0",
+      "Glacio Chafe"
+    ]
+  },
+  {
+    "id": "hiyuki-lucilla-shorekeeper",
+    "name": "Hiyuki & Lucilla Băng Tuyết Tinh Vân",
+    "core": "hiyuki",
+    "members": [
+      "hiyuki",
+      "lucilla",
+      "shorekeeper"
+    ],
+    "tier": "T0",
+    "type": "Hypercarry Glacio",
+    "description": "Lucilla khuếch đại sát thương Băng kết hợp vùng sao hồi máu của Shorekeeper đưa Hiyuki lên đỉnh cao sức mạnh.",
+    "tags": [
+      "Glacio",
+      "T0",
+      "Hypercarry"
+    ]
+  },
+  {
+    "id": "carlotta-lucilla-verina",
+    "name": "Carlotta & Lucilla Băng Tuyết Bộc Phá",
+    "core": "carlotta",
+    "members": [
+      "carlotta",
+      "lucilla",
+      "verina"
+    ],
+    "tier": "T0",
+    "type": "Hypercarry Glacio",
+    "description": "Lucilla buff sát thương Băng và hỗ trợ ngoài sân giúp những phát bắn tinh thể của Carlotta đạt sát thương bạo kích khổng lồ.",
+    "tags": [
+      "Glacio",
+      "T0",
+      "Hypercarry"
+    ]
+  },
+  {
+    "id": "denia-lupa-mornye",
+    "name": "Denia Hỏa Ngục Bộc Phá",
+    "core": "denia",
+    "members": [
+      "denia",
+      "lupa",
+      "mornye"
+    ],
+    "tier": "T0",
+    "type": "Burst DPS Fusion",
+    "description": "Lupa buff sát thương Hỏa diện rộng, Mornye hồi máu và tạo lá chắn công nghệ giúp Denia tích lũy tài nguyên và xả nộ hủy diệt.",
+    "tags": [
+      "Fusion",
+      "T0",
+      "Burst DPS"
+    ]
+  },
+  {
+    "id": "denia-changli-brant",
+    "name": "Denia & Changli Song Hỏa Lưu Ly",
+    "core": "denia",
+    "members": [
+      "denia",
+      "changli",
+      "brant"
+    ],
+    "tier": "T0.5",
+    "type": "Dual DPS Fusion",
+    "description": "Changli và Denia thay nhau tung chuỗi chiêu thức biến hình hỏa diễm, Brant cung cấp khiên chắn và hồi phục vững chắc.",
+    "tags": [
+      "Fusion",
+      "T0.5",
+      "Dual DPS"
+    ]
+  },
+  {
+    "id": "sigrika-qiuyuan-verina",
+    "name": "Sigrika Quyền Năng Echo Bão Tố",
+    "core": "sigrika",
+    "members": [
+      "sigrika",
+      "qiuyuan",
+      "verina"
+    ],
+    "tier": "T0",
+    "type": "Hypercarry Aero",
+    "description": "Qiuyuan tối ưu hóa toàn diện sát thương kỹ năng Echo cho Sigrika kích nổ các bùa chú cổ đại quét sạch kẻ thù.",
+    "tags": [
+      "Aero",
+      "T0",
+      "Echo DMG"
+    ]
+  },
+  {
+    "id": "aemeath-lupa-brant",
+    "name": "Aemeath Cơ Giáp Hỏa Thần",
+    "core": "aemeath",
+    "members": [
+      "aemeath",
+      "lupa",
+      "brant"
+    ],
+    "tier": "T0",
+    "type": "Hypercarry Fusion",
+    "description": "Lupa buff sát thương Hỏa và đòn đánh thường, Brant hồi máu nạp năng lượng giúp Aemeath liên tục kích hoạt chiêu cuối Giải Phóng Cộng Hưởng.",
+    "tags": [
+      "Fusion",
+      "T0",
+      "Hypercarry"
+    ]
+  },
+  {
+    "id": "luuk-sanhua-shorekeeper",
+    "name": "Luuk Herssen Quyền Vương Không Chiến",
+    "core": "luuk_herssen",
+    "members": [
+      "luuk_herssen",
       "sanhua",
       "shorekeeper"
     ],
     "tier": "T0",
-    "type": "Hypercarry Glacio",
-    "description": "Lucilla đóng vai trò Main DPS dồn sát thương băng giá cực đại với nhịp nạp Concerto thần tốc của Sanhua.",
-    "tags": [
-      "Glacio",
-      "T0",
-      "Hypercarry"
-    ]
-  },
-  {
-    "id": "lucilla-zhezhi-verina",
-    "name": "Lucilla & Zhezhi Bút Họa Hàn Khí",
-    "core": "lucilla",
-    "members": [
-      "lucilla",
-      "zhezhi",
-      "verina"
-    ],
-    "tier": "T0.5",
-    "type": "Hypercarry Glacio",
-    "description": "Zhezhi cung cấp đòn đánh phối hợp và hồi năng lượng Resonance Liberation cho đại kiếm băng giá Lucilla.",
-    "tags": [
-      "Glacio",
-      "T0.5",
-      "Hypercarry"
-    ]
-  },
-  {
-    "id": "lucilla-mornye-chisa",
-    "name": "Lucilla & Chisa Băng Ma Giao Hưởng",
-    "core": "lucilla",
-    "members": [
-      "lucilla",
-      "mornye",
-      "chisa"
-    ],
-    "tier": "T0.5",
-    "type": "Dual Resonance",
-    "description": "Mornye hỗ trợ đòn đánh thiêu đốt và Chisa ở slot 3 bảo vệ hồi máu cho những đòn trảm kiếm dũng mãnh của Lucilla.",
-    "tags": [
-      "Glacio",
-      "Havoc",
-      "T0.5",
-      "Sustain Chisa"
-    ]
-  },
-  {
-    "id": "lucy-phoebe-shorekeeper",
-    "name": "Lucy Hack Quang Học Tinh Tú",
-    "core": "lucy",
-    "members": [
-      "lucy",
-      "phoebe",
-      "shorekeeper"
-    ],
-    "tier": "T0",
     "type": "Hypercarry Spectro",
-    "description": "Phoebe khuếch đại hiệu ứng Frazzle giúp các phát bắn công nghệ cao của Lucy bộc phát sát thương khủng.",
+    "description": "Sanhua Outro truyền 38% sát thương Đánh Thường, Shorekeeper buff bạo kích giúp những chuỗi đòn không chiến của Luuk Herssen chém tan nát boss.",
     "tags": [
       "Spectro",
       "T0",
@@ -2823,188 +2985,98 @@ export const TEAM_TEMPLATES = [
     ]
   },
   {
-    "id": "rebecca-augusta-shorekeeper",
-    "name": "Rebecca & Augusta Lôi Điện Quá Tải",
-    "core": "rebecca",
-    "members": [
-      "rebecca",
-      "augusta",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Dual DPS Electro",
-    "description": "Cặp đôi xạ thủ và chiến binh lôi điện càn quét toàn bộ quái vật và boss với hỏa lực dày đặc.",
-    "tags": [
-      "Electro",
-      "T0",
-      "Dual DPS"
-    ]
-  },
-  {
-    "id": "hiyuki-sanhua-shorekeeper",
-    "name": "Hiyuki Tuyết Vũ Kiếm",
-    "core": "hiyuki",
-    "members": [
-      "hiyuki",
-      "sanhua",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Glacio",
-    "description": "Hiyuki vung kiếm băng giá xé tan hàng phòng ngự kẻ địch dưới sự hỗ trợ của Sanhua và Shorekeeper.",
-    "tags": [
-      "Glacio",
-      "T0",
-      "Hypercarry"
-    ]
-  },
-  {
-    "id": "sigrika-ciaccona-shorekeeper",
-    "name": "Sigrika Bão Cuốn Không Gian",
-    "core": "sigrika",
-    "members": [
-      "sigrika",
-      "ciaccona",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Aero",
-    "description": "Sigrika gom quái và bắn nổ chân không kết hợp hiệu ứng ăn mòn gió từ Ciaccona.",
-    "tags": [
-      "Aero",
-      "T0",
-      "Hypercarry"
-    ]
-  },
-  {
-    "id": "luuk-herssen-sanhua-shorekeeper",
-    "name": "Luuk Herssen Tiên Phong Đại Kiếm Băng",
+    "id": "luuk-lynae-verina",
+    "name": "Luuk Herssen & Lynae Quang Minh Đỉnh",
     "core": "luuk_herssen",
     "members": [
       "luuk_herssen",
-      "sanhua",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Glacio",
-    "description": "Luuk Herssen đảm nhiệm vai trò Main DPS dồn toàn bộ sức mạnh vào cú bổ kiếm băng giá kết liễu boss.",
-    "tags": [
-      "Glacio",
-      "T0",
-      "Hypercarry"
-    ]
-  },
-  {
-    "id": "luuk-herssen-zhezhi-verina",
-    "name": "Luuk Herssen & Zhezhi Băng Tuyết Trường Thành",
-    "core": "luuk_herssen",
-    "members": [
-      "luuk_herssen",
-      "zhezhi",
+      "lynae",
       "verina"
     ],
     "tier": "T0.5",
-    "type": "Hypercarry Glacio",
-    "description": "Đội hình Glacio chuẩn mực giúp Luuk Herssen duy trì sát thương kỹ năng liên tục.",
+    "type": "Hypercarry Spectro",
+    "description": "Lynae gieo rắc trạng thái Spectro Frazzle giúp Luuk Herssen gia tăng sát thương trên không áp đảo đối thủ.",
     "tags": [
-      "Glacio",
+      "Spectro",
       "T0.5",
       "Hypercarry"
     ]
   },
   {
-    "id": "aemeath-changli-shorekeeper",
-    "name": "Aemeath & Changli Hỏa Long Trảm",
-    "core": "aemeath",
+    "id": "augusta-iuno-shorekeeper",
+    "name": "Augusta & Iuno Lôi Đình Thiết Giáp",
+    "core": "augusta",
     "members": [
-      "aemeath",
-      "changli",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Dual DPS Fusion",
-    "description": "Changli và Aemeath tạo nên vòng lặp sát thương lửa thiêu đốt toàn bộ đấu trường.",
-    "tags": [
-      "Fusion",
-      "T0",
-      "Dual DPS"
-    ]
-  },
-  {
-    "id": "rover-electro-yinlin-shorekeeper",
-    "name": "Rover Electro Lôi Kiếm Trảm",
-    "core": "rover_electro",
-    "members": [
-      "rover_electro",
-      "yinlin",
+      "augusta",
+      "iuno",
       "shorekeeper"
     ],
     "tier": "T0",
     "type": "Hypercarry Electro",
-    "description": "Rover hệ Lôi thức tỉnh sức mạnh bão sét kết hợp cùng búp bê lôi điện của Yinlin.",
+    "description": "Cặp đôi hoàn mỹ. Iuno khuếch đại cực đại sát thương Heavy Attack và hồi phục thể lực, giúp đại kiếm của Augusta tung những nhát chém sấm sét hủy diệt.",
     "tags": [
       "Electro",
+      "T0",
+      "Heavy ATK"
+    ]
+  },
+  {
+    "id": "augusta-iuno-buling",
+    "name": "Augusta & Iuno Lôi Quang Thần Tốc",
+    "core": "augusta",
+    "members": [
+      "augusta",
+      "iuno",
+      "buling"
+    ],
+    "tier": "T0.5",
+    "type": "Hypercarry Electro",
+    "description": "Buling hồi máu liên tục và buff sát thương kỹ năng cho Augusta càn quét chiến trường.",
+    "tags": [
+      "Electro",
+      "T0.5",
+      "Hypercarry"
+    ]
+  },
+  {
+    "id": "galbrena-qiuyuan-mornye",
+    "name": "Galbrena Xạ Thủ Ma Quỷ Hỏa Lực",
+    "core": "galbrena",
+    "members": [
+      "galbrena",
+      "qiuyuan",
+      "mornye"
+    ],
+    "tier": "T0",
+    "type": "Hypercarry Fusion",
+    "description": "Qiuyuan khuếch đại sát thương kỹ năng Echo, Mornye tạo lá chắn giảm tải sát thương để Galbrena bước vào trạng thái Demon Hypostasis xả đạn.",
+    "tags": [
+      "Fusion",
+      "T0",
+      "Echo DMG"
+    ]
+  },
+  {
+    "id": "galbrena-qiuyuan-verina",
+    "name": "Galbrena & Qiuyuan Phong Hỏa Hợp Thể",
+    "core": "galbrena",
+    "members": [
+      "galbrena",
+      "qiuyuan",
+      "verina"
+    ],
+    "tier": "T0",
+    "type": "Hypercarry Fusion",
+    "description": "Đội hình sát thương Echo cực đại giúp Galbrena dễ dàng dứt điểm boss trong chớp mắt.",
+    "tags": [
+      "Fusion",
       "T0",
       "Hypercarry"
     ]
   },
   {
-    "id": "rover-electro-suoming-shorekeeper",
-    "name": "Rover Electro & Suoming Lôi Minh Song Hiệp",
-    "core": "rover_electro",
-    "members": [
-      "rover_electro",
-      "suoming",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Dual Resonance Electro",
-    "description": "Suoming nạp đầy Unison kích hoạt đòn chém Lôi Minh Trảm cực đại của Rover Electro.",
-    "tags": [
-      "Electro",
-      "T0",
-      "Dual DPS"
-    ]
-  },
-  {
-    "id": "camellya-sanhua-chisa",
-    "name": "Camellya & Chisa Cuồng Hoan Havoc",
-    "core": "camellya",
-    "members": [
-      "camellya",
-      "sanhua",
-      "chisa"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Havoc",
-    "description": "Đội hình Havoc khuyến nghị hàng đầu. Chisa đảm nhiệm vị trí Sustain hồi phục máu và cung cấp đòn đánh phối hợp Havoc hỗ trợ thế roi gai của Camellya.",
-    "tags": [
-      "Havoc",
-      "T0",
-      "Sustain Chisa"
-    ]
-  },
-  {
-    "id": "rover-havoc-danjin-chisa",
-    "name": "Rover Havoc & Chisa Hắc Ám Bộc Phá",
-    "core": "rover_havoc",
-    "members": [
-      "rover_havoc",
-      "danjin",
-      "chisa"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Havoc",
-    "description": "Bộ ba Havoc thuần túy. Danjin buff sát thương Havoc trong khi Chisa ở slot 3 duy trì máu an toàn cho Danjin xả kỹ năng.",
-    "tags": [
-      "Havoc",
-      "T0",
-      "Sustain Chisa"
-    ]
-  },
-  {
     "id": "phrolova-cantarella-chisa",
-    "name": "Phrolova & Chisa Khúc Ca U Tối",
+    "name": "Phrolova & Cantarella Khúc Ca Tang Lễ",
     "core": "phrolova",
     "members": [
       "phrolova",
@@ -3013,52 +3085,16 @@ export const TEAM_TEMPLATES = [
     ],
     "tier": "T0",
     "type": "Hypercarry Havoc",
-    "description": "Chisa giữ vững đội hình ở vị trí Sustain bảo kê cho giọng ca tang lễ Havoc Decay của Phrolova.",
+    "description": "Cantarella khuếch đại sát thương Havoc và đòn đánh phối hợp, Chisa tăng tối đa số tầng trạng thái tiêu cực để nốt nhạc tử thần của Phrolova kết liễu toàn bộ đối thủ.",
     "tags": [
       "Havoc",
-      "T0",
-      "Sustain Chisa"
-    ]
-  },
-  {
-    "id": "galbrena-changli-shorekeeper",
-    "name": "Galbrena & Changli Liệt Hỏa Song Hành",
-    "core": "galbrena",
-    "members": [
-      "galbrena",
-      "changli",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Dual DPS Fusion",
-    "description": "Hỏa quyền bộc phá của Galbrena kết hợp hoàn hảo cùng buff Fusion Deepen từ Changli.",
-    "tags": [
-      "Fusion",
-      "T0",
-      "Dual DPS"
-    ]
-  },
-  {
-    "id": "augusta-yinlin-shorekeeper",
-    "name": "Augusta Lôi Phá Thiên Binh",
-    "core": "augusta",
-    "members": [
-      "augusta",
-      "yinlin",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Electro",
-    "description": "Augusta bổ thanh đại kiếm sét xuống mặt đất kết liễu kẻ thù dưới sự hỗ trợ của Yinlin.",
-    "tags": [
-      "Electro",
       "T0",
       "Hypercarry"
     ]
   },
   {
     "id": "phrolova-cantarella-shorekeeper",
-    "name": "Phrolova Khúc Ca Tang Lễ Havoc",
+    "name": "Phrolova Hắc Ám Huyền Bí",
     "core": "phrolova",
     "members": [
       "phrolova",
@@ -3067,7 +3103,7 @@ export const TEAM_TEMPLATES = [
     ],
     "tier": "T0",
     "type": "Hypercarry Havoc",
-    "description": "Sự kết hợp hoàn hảo giữa Phrolova và Cantarella tạo ra lượng sát thương bóng tối áp đảo.",
+    "description": "Shorekeeper mở rộng Stella Field đẩy cao bạo kích đưa chuỗi nộ của Phrolova đạt ngưỡng sát thương tuyệt đối.",
     "tags": [
       "Havoc",
       "T0",
@@ -3075,26 +3111,8 @@ export const TEAM_TEMPLATES = [
     ]
   },
   {
-    "id": "lupa-changli-shorekeeper",
-    "name": "Lupa Lang Vương Hỏa Diệm",
-    "core": "lupa",
-    "members": [
-      "lupa",
-      "changli",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Fusion",
-    "description": "Lupa xé toạc phòng tuyến kẻ địch với tốc độ chớp nhoáng và hỏa lực cuồng bạo.",
-    "tags": [
-      "Fusion",
-      "T0",
-      "Hypercarry"
-    ]
-  },
-  {
     "id": "cartethyia-ciaccona-shorekeeper",
-    "name": "Cartethyia Trảm Phong Vô Ảnh",
+    "name": "Cartethyia Trảm Phong Bão Tố",
     "core": "cartethyia",
     "members": [
       "cartethyia",
@@ -3103,7 +3121,7 @@ export const TEAM_TEMPLATES = [
     ],
     "tier": "T0",
     "type": "Hypercarry Aero",
-    "description": "Giai điệu bào mòn gió của Ciaccona tạo tiền đề cho những đường kiếm xé gió của Cartethyia.",
+    "description": "Ciaccona gieo rắc hiệu ứng bào mòn gió liên tục để Cartethyia chuyển thể Fleurdelys xả kiếm khí bão táp.",
     "tags": [
       "Aero",
       "T0",
@@ -3111,8 +3129,26 @@ export const TEAM_TEMPLATES = [
     ]
   },
   {
+    "id": "cartethyia-yangyang-verina",
+    "name": "Cartethyia Kiếm Vũ Nạp Năng Lượng",
+    "core": "cartethyia",
+    "members": [
+      "cartethyia",
+      "yangyang",
+      "verina"
+    ],
+    "tier": "T0.5",
+    "type": "Hypercarry Aero",
+    "description": "Yangyang hút quái và hồi phục năng lượng cho Cartethyia xoay chuyển chiêu thức không ngừng.",
+    "tags": [
+      "Aero",
+      "T0.5",
+      "Hypercarry"
+    ]
+  },
+  {
     "id": "zani-phoebe-shorekeeper",
-    "name": "Zani Kim Cang Quyền Quang Minh",
+    "name": "Zani & Phoebe Kim Cang Phục Ma",
     "core": "zani",
     "members": [
       "zani",
@@ -3121,70 +3157,34 @@ export const TEAM_TEMPLATES = [
     ],
     "tier": "T0",
     "type": "Hypercarry Spectro",
-    "description": "Phoebe đặt trạng thái Frazzle dọn đường cho những cú đấm liên hoàn chói lòa của Zani.",
+    "description": "Phoebe thiết lập trạng thái Spectro Frazzle giúp quyền pháp Inferno của Zani bộc phát sát thương dồn dập.",
     "tags": [
       "Spectro",
       "T0",
+      "Spectro Frazzle"
+    ]
+  },
+  {
+    "id": "zani-lynae-verina",
+    "name": "Zani Kim Cang Thần Quyền",
+    "core": "zani",
+    "members": [
+      "zani",
+      "lynae",
+      "verina"
+    ],
+    "tier": "T0.5",
+    "type": "Hypercarry Spectro",
+    "description": "Lynae hỗ trợ từ xa bồi đắp sát thương giúp Zani chiếm trọn thế trận cận chiến.",
+    "tags": [
+      "Spectro",
+      "T0.5",
       "Hypercarry"
     ]
   },
   {
-    "id": "cantarella-camellya-shorekeeper",
-    "name": "Cantarella Khúc Ca Biển Đen",
-    "core": "cantarella",
-    "members": [
-      "cantarella",
-      "camellya",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Dual DPS Havoc",
-    "description": "Cặp đôi bóng tối quyền lực càn quét mọi tầng Tháp Hiểm Họa với lượng sát thương Havoc dồi dào.",
-    "tags": [
-      "Havoc",
-      "T0",
-      "Dual DPS"
-    ]
-  },
-  {
-    "id": "phoebe-zani-shorekeeper",
-    "name": "Phoebe Quang Minh Thần Giáo",
-    "core": "phoebe",
-    "members": [
-      "phoebe",
-      "zani",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Dual DPS Spectro",
-    "description": "Phoebe chuyển đổi hình thái xả đạn Spectro kết hợp đòn đánh quyền pháp dũng mãnh của Zani.",
-    "tags": [
-      "Spectro",
-      "T0",
-      "Dual DPS"
-    ]
-  },
-  {
-    "id": "brant-changli-shorekeeper",
-    "name": "Brant Hỏa Luân Đao Bộc Phá",
-    "core": "brant",
-    "members": [
-      "brant",
-      "changli",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Dual DPS Fusion",
-    "description": "Đại kiếm lửa của Brant kết hợp nhịp nhàng với phi kiếm hỏa diệm của Changli.",
-    "tags": [
-      "Fusion",
-      "T0",
-      "Dual DPS"
-    ]
-  },
-  {
     "id": "carlotta-zhezhi-shorekeeper",
-    "name": "Carlotta Trọng Pháo Shotgun Băng",
+    "name": "Carlotta & Zhezhi Băng Giá Tuyệt Đỉnh",
     "core": "carlotta",
     "members": [
       "carlotta",
@@ -3237,17 +3237,17 @@ export const TEAM_TEMPLATES = [
     ]
   },
   {
-    "id": "roccia-danjin-shorekeeper",
-    "name": "Roccia Đấu Sĩ Rối Bóng Havoc",
-    "core": "roccia",
+    "id": "rover-havoc-roccia-shorekeeper",
+    "name": "Rover Havoc & Roccia Rối Bóng Cuồng Nộ",
+    "core": "rover_havoc",
     "members": [
+      "rover_havoc",
       "roccia",
-      "danjin",
       "shorekeeper"
     ],
     "tier": "T0.5",
     "type": "Hypercarry Havoc",
-    "description": "Danjin gia tăng sát thương Havoc cho những cú đấm rối bộc phá của Roccia.",
+    "description": "Roccia gom quái và buff trực tiếp sát thương đòn đánh thường giúp lưỡi hái Dark Surge của Rover Havoc càn quét toàn sàn đấu.",
     "tags": [
       "Havoc",
       "T0.5",
@@ -3273,6 +3273,24 @@ export const TEAM_TEMPLATES = [
     ]
   },
   {
+    "id": "camellya-sanhua-chisa",
+    "name": "Camellya & Chisa Cuồng Hoan Havoc",
+    "core": "camellya",
+    "members": [
+      "camellya",
+      "sanhua",
+      "chisa"
+    ],
+    "tier": "T0",
+    "type": "Hypercarry Havoc",
+    "description": "Chisa hỗ trợ trị liệu, tăng tối đa số tầng hiệu ứng bất lợi và xuyên kháng, đẩy sát thương roi gai của Camellya lên đỉnh điểm.",
+    "tags": [
+      "Havoc",
+      "T0",
+      "Hypercarry"
+    ]
+  },
+  {
     "id": "camellya-danjin-shorekeeper",
     "name": "Camellya & Danjin Huyết Vũ",
     "core": "camellya",
@@ -3287,6 +3305,24 @@ export const TEAM_TEMPLATES = [
     "tags": [
       "Havoc",
       "T0",
+      "Hypercarry"
+    ]
+  },
+  {
+    "id": "camellya-roccia-chisa",
+    "name": "Camellya & Roccia Bão Tố Havoc",
+    "core": "camellya",
+    "members": [
+      "camellya",
+      "roccia",
+      "chisa"
+    ],
+    "tier": "T0.5",
+    "type": "Hypercarry Havoc",
+    "description": "Roccia gom quái và buff đòn đánh thường, Chisa hồi máu và giảm kháng giúp Camellya càn quét mọi chiến trường.",
+    "tags": [
+      "Havoc",
+      "T0.5",
       "Hypercarry"
     ]
   },
@@ -3345,71 +3381,143 @@ export const TEAM_TEMPLATES = [
     ]
   },
   {
-    "id": "changli-brant-shorekeeper",
-    "name": "Changli Phượng Hoàng Niết Bàn",
-    "core": "changli",
+    "id": "jinhsi-taoqi-verina",
+    "name": "Jinhsi Hộ Vệ Khiên Vàng",
+    "core": "jinhsi",
     "members": [
-      "changli",
-      "brant",
-      "shorekeeper"
+      "jinhsi",
+      "taoqi",
+      "verina"
     ],
-    "tier": "T0",
-    "type": "Dual DPS Fusion",
-    "description": "Cặp đôi kiếm hỏa bộc phát sát thương dày đặc liên tục thiêu rụi mục tiêu.",
+    "tier": "T1",
+    "type": "Hypercarry Spectro",
+    "description": "Taoqi truyền 38% sát thương Kỹ năng Cộng hưởng gia tăng uy lực cú thả rồng của Jinhsi.",
     "tags": [
-      "Fusion",
-      "T0",
-      "Dual DPS"
+      "Spectro",
+      "T1",
+      "Skill Buffer"
     ]
   },
   {
-    "id": "changli-encore-shorekeeper",
-    "name": "Changli & Encore Song Sát Hỏa Diệm",
+    "id": "changli-lupa-brant",
+    "name": "Changli & Lupa Phượng Hoàng Lang Tộc",
     "core": "changli",
     "members": [
       "changli",
-      "encore",
-      "shorekeeper"
+      "lupa",
+      "brant"
     ],
     "tier": "T0",
-    "type": "Dual DPS Fusion",
-    "description": "Changli Outro buff 20% Fusion DMG và 25% Resonance Liberation DMG hoàn hảo cho ma pháp của Encore.",
+    "type": "Hypercarry Fusion",
+    "description": "Lupa buff sát thương Hỏa và đòn đánh thường, Brant hồi máu nạp năng lượng bảo hộ Changli thiêu rụi đối thủ.",
     "tags": [
       "Fusion",
-      "T0",
-      "Dual DPS"
-    ]
-  },
-  {
-    "id": "xiangli-yao-yinlin-shorekeeper",
-    "name": "Xiangli Yao Quyền Vương Lôi Điện",
-    "core": "xiangli_yao",
-    "members": [
-      "xiangli_yao",
-      "yinlin",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Electro",
-    "description": "Yinlin Outro buff 20% Electro và 25% Liberation biến cú đấm của Xiangli Yao thành sát thương cực đại.",
-    "tags": [
-      "Electro",
       "T0",
       "Hypercarry"
     ]
   },
   {
-    "id": "xiangli-yao-yinlin-verina",
-    "name": "Xiangli Yao & Yinlin Sấm Sét",
-    "core": "xiangli_yao",
+    "id": "changli-yinlin-shorekeeper",
+    "name": "Changli & Yinlin Lôi Hỏa Song Hành",
+    "core": "changli",
     "members": [
-      "xiangli_yao",
+      "changli",
       "yinlin",
+      "shorekeeper"
+    ],
+    "tier": "T0",
+    "type": "Dual DPS Fusion-Electro",
+    "description": "Cặp đôi hoán đổi linh hoạt chiêu thức bùng nổ sát thương liên tục làm chủ sàn đấu.",
+    "tags": [
+      "Fusion",
+      "T0",
+      "Dual DPS"
+    ]
+  },
+  {
+    "id": "changli-encore-verina",
+    "name": "Changli & Encore Hỏa Diệm Bùng Cháy",
+    "core": "changli",
+    "members": [
+      "changli",
+      "encore",
       "verina"
     ],
     "tier": "T0.5",
+    "type": "Dual DPS Fusion",
+    "description": "Encore và Changli luân phiên xả sát thương hỏa lực dồn dập khiến đối thủ bốc hơi.",
+    "tags": [
+      "Fusion",
+      "T0.5",
+      "Dual DPS"
+    ]
+  },
+  {
+    "id": "rover-havoc-danjin-shorekeeper",
+    "name": "Rover Havoc & Danjin Hắc Ám Bộc Phá",
+    "core": "rover_havoc",
+    "members": [
+      "rover_havoc",
+      "danjin",
+      "shorekeeper"
+    ],
+    "tier": "T0.5",
+    "type": "Hypercarry Havoc",
+    "description": "Danjin Outro truyền 23% sát thương Havoc giúp lưỡi hái Dark Surge của Rover xé nát kẻ địch.",
+    "tags": [
+      "Havoc",
+      "T0.5",
+      "Hypercarry"
+    ]
+  },
+  {
+    "id": "rover-havoc-danjin-chisa",
+    "name": "Rover Havoc & Chisa Hắc Ám Bộc Phá",
+    "core": "rover_havoc",
+    "members": [
+      "rover_havoc",
+      "danjin",
+      "chisa"
+    ],
+    "tier": "T0.5",
+    "type": "Hypercarry Havoc",
+    "description": "Chisa hỗ trợ trị liệu và gia tăng hiệu ứng bất lợi kết hợp cùng Danjin tối ưu hóa sát thương Dark Surge cho Rover Havoc.",
+    "tags": [
+      "Havoc",
+      "T0.5",
+      "Hypercarry"
+    ]
+  },
+  {
+    "id": "rover-havoc-sanhua-verina",
+    "name": "Rover Havoc Thần Tốc Miễn Phí",
+    "core": "rover_havoc",
+    "members": [
+      "rover_havoc",
+      "sanhua",
+      "verina"
+    ],
+    "tier": "T1",
+    "type": "Hypercarry Havoc",
+    "description": "Đội hình F2P hoàn hảo với độ mượt mà cao và sát thương ổn định trong mọi content.",
+    "tags": [
+      "Havoc",
+      "T1",
+      "F2P Friendly"
+    ]
+  },
+  {
+    "id": "rover-electro-yinlin-shorekeeper",
+    "name": "Rover Electro & Yinlin Lôi Đình Cuồng Nộ",
+    "core": "rover_electro",
+    "members": [
+      "rover_electro",
+      "yinlin",
+      "shorekeeper"
+    ],
+    "tier": "T0.5",
     "type": "Hypercarry Electro",
-    "description": "Đội hình Electro chuẩn mực từ phiên bản 1.2 được tin dùng trong mọi mùa Tháp.",
+    "description": "Yinlin khuếch đại sát thương Lôi và Giải Phóng Cộng Hưởng giúp Rover Electro chém bão sét liên hoàn.",
     "tags": [
       "Electro",
       "T0.5",
@@ -3417,26 +3525,26 @@ export const TEAM_TEMPLATES = [
     ]
   },
   {
-    "id": "rover-havoc-danjin-shorekeeper",
-    "name": "Rover Havoc Lưỡi Hái Hắc Ám",
-    "core": "rover_havoc",
+    "id": "rover-electro-suoming-buling",
+    "name": "Rover Electro & Suoming Lôi Minh Song Hiệp",
+    "core": "rover_electro",
     "members": [
-      "rover_havoc",
-      "danjin",
-      "shorekeeper"
+      "rover_electro",
+      "suoming",
+      "buling"
     ],
-    "tier": "T0",
-    "type": "Hypercarry Havoc",
-    "description": "Danjin Outro buff 23% Havoc DMG Deepen cho thanh kiếm Dark Surge và nộ lưỡi hái Dead Realm của Rover Havoc.",
+    "tier": "T0.5",
+    "type": "Hypercarry Electro",
+    "description": "Suoming khuếch đại sát thương Lôi kết hợp Buling hồi máu tạo nên đội hình Lôi công thủ toàn diện.",
     "tags": [
-      "Havoc",
-      "T0",
+      "Electro",
+      "T0.5",
       "Hypercarry"
     ]
   },
   {
     "id": "jiyan-mortefi-shorekeeper",
-    "name": "Jiyan Thanh Long Cuồng Phong",
+    "name": "Jiyan Thanh Long Thương Bão Tố",
     "core": "jiyan",
     "members": [
       "jiyan",
@@ -3445,25 +3553,7 @@ export const TEAM_TEMPLATES = [
     ],
     "tier": "T0",
     "type": "Hypercarry Aero",
-    "description": "Mortefi buff 38% Heavy Attack kết hợp cùng Thanh Long Thương của Jiyan quét sạch mọi sàn đấu.",
-    "tags": [
-      "Aero",
-      "T0",
-      "Hypercarry"
-    ]
-  },
-  {
-    "id": "jiyan-ciaccona-shorekeeper",
-    "name": "Jiyan & Ciaccona Bào Mòn Gió",
-    "core": "jiyan",
-    "members": [
-      "jiyan",
-      "ciaccona",
-      "shorekeeper"
-    ],
-    "tier": "T0",
-    "type": "Hypercarry Aero",
-    "description": "Hiệu ứng Aero Erosion từ Ciaccona gia tăng mạnh sát thương gió của Jiyan.",
+    "description": "Mortefi truyền 38% sát thương Heavy Attack, Shorekeeper mở Stella Field đưa thương rồng của Jiyan càn quét mọi tầng tháp.",
     "tags": [
       "Aero",
       "T0",
@@ -3472,34 +3562,106 @@ export const TEAM_TEMPLATES = [
   },
   {
     "id": "jiyan-mortefi-verina",
-    "name": "Jiyan & Mortefi Phong Lôi",
+    "name": "Jiyan & Mortefi Phong Hỏa Song Hành",
     "core": "jiyan",
     "members": [
       "jiyan",
       "mortefi",
       "verina"
     ],
-    "tier": "T0.5",
+    "tier": "T0",
     "type": "Hypercarry Aero",
-    "description": "Bộ ba kinh điển từ thời điểm ra mắt game giúp Jiyan càn quét mọi thử thách.",
+    "description": "Bộ đôi truyền thống uy lực bậc nhất giúp Jiyan tung hoành không đối thủ.",
     "tags": [
       "Aero",
-      "T0.5",
+      "T0",
       "Hypercarry"
     ]
   },
   {
-    "id": "calcharo-yinlin-shorekeeper",
-    "name": "Calcharo Lôi Thần Thức Tỉnh",
+    "id": "jiyan-iuno-jianxin",
+    "name": "Jiyan Bão Tố Khiên Khí Công",
+    "core": "jiyan",
+    "members": [
+      "jiyan",
+      "iuno",
+      "jianxin"
+    ],
+    "tier": "T0.5",
+    "type": "Hypercarry Aero",
+    "description": "Iuno buff Heavy Attack, Jianxin gom quái và tạo khiên bảo hộ Jiyan an tâm xuất kích.",
+    "tags": [
+      "Aero",
+      "T0.5",
+      "Heavy ATK"
+    ]
+  },
+  {
+    "id": "xiangli-yao-yinlin-shorekeeper",
+    "name": "Xiangli Yao & Yinlin Quyền Vương Công Nghệ",
+    "core": "xiangli_yao",
+    "members": [
+      "xiangli_yao",
+      "yinlin",
+      "shorekeeper"
+    ],
+    "tier": "T0",
+    "type": "Hypercarry Electro",
+    "description": "Yinlin truyền 20% sát thương Electro và 25% sát thương Liberation giúp Xiangli Yao tung cú đấm hạt nhân quét sạch đối thủ.",
+    "tags": [
+      "Electro",
+      "T0",
+      "Hypercarry"
+    ]
+  },
+  {
+    "id": "xiangli-yao-yinlin-verina",
+    "name": "Xiangli Yao & Yinlin Cặp Đôi Hoàn Hảo",
+    "core": "xiangli_yao",
+    "members": [
+      "xiangli_yao",
+      "yinlin",
+      "verina"
+    ],
+    "tier": "T0",
+    "type": "Hypercarry Electro",
+    "description": "Đội hình chuẩn chỉ được khuyến nghị hàng đầu trên mọi bảng xếp hạng meta.",
+    "tags": [
+      "Electro",
+      "T0",
+      "Hypercarry"
+    ]
+  },
+  {
+    "id": "xiangli-yao-jianxin-buling",
+    "name": "Xiangli Yao Lôi Quyền Khiên Khí",
+    "core": "xiangli_yao",
+    "members": [
+      "xiangli_yao",
+      "jianxin",
+      "buling"
+    ],
+    "tier": "T1",
+    "type": "Hypercarry Electro",
+    "description": "Jianxin buff sát thương Liberation, Buling hồi máu giúp Xiangli Yao an tâm dồn sát thương.",
+    "tags": [
+      "Electro",
+      "T1",
+      "F2P Friendly"
+    ]
+  },
+  {
+    "id": "calcharo-yinlin-verina",
+    "name": "Calcharo Thức Tỉnh Lôi Thần",
     "core": "calcharo",
     "members": [
       "calcharo",
       "yinlin",
-      "shorekeeper"
+      "verina"
     ],
     "tier": "T0.5",
     "type": "Hypercarry Electro",
-    "description": "Yinlin hỗ trợ trảm kích sấm sét cho chuỗi Death Messenger của Calcharo.",
+    "description": "Yinlin hỗ trợ trọn vẹn sát thương Lôi và chiêu cuối cho chuỗi chém điện thần tốc của Calcharo.",
     "tags": [
       "Electro",
       "T0.5",
@@ -3508,7 +3670,7 @@ export const TEAM_TEMPLATES = [
   },
   {
     "id": "encore-sanhua-shorekeeper",
-    "name": "Encore Ma Pháp Hỏa Lực",
+    "name": "Encore Hỏa Lực Ma Pháp Siêu Tốc",
     "core": "encore",
     "members": [
       "encore",
@@ -3517,7 +3679,7 @@ export const TEAM_TEMPLATES = [
     ],
     "tier": "T0.5",
     "type": "Hypercarry Fusion",
-    "description": "Sanhua nạp Concerto nhanh chóng để Encore bật trạng thái hóa thân xả sát thương ma pháp.",
+    "description": "Sanhua nạp Concerto nhanh buff 38% đòn đánh thường cho trạng thái cận chiến bùng nổ của Encore.",
     "tags": [
       "Fusion",
       "T0.5",
@@ -3525,21 +3687,57 @@ export const TEAM_TEMPLATES = [
     ]
   },
   {
-    "id": "rover-spectro-yangyang-verina",
-    "name": "Rover Spectro Quang Minh Kiếm",
-    "core": "rover_spectro",
+    "id": "encore-lupa-mornye",
+    "name": "Encore & Lupa Hỏa Diệm Búp Bê",
+    "core": "encore",
     "members": [
-      "rover_spectro",
-      "yangyang",
+      "encore",
+      "lupa",
+      "mornye"
+    ],
+    "tier": "T0.5",
+    "type": "Hypercarry Fusion",
+    "description": "Lupa buff sát thương Hỏa, Mornye hồi máu và tạo khiên drone để Encore tha hồ xả tia lửa ma pháp.",
+    "tags": [
+      "Fusion",
+      "T0.5",
+      "Hypercarry"
+    ]
+  },
+  {
+    "id": "lingyang-sanhua-verina",
+    "name": "Lingyang Vũ Điệu Múa Lân Băng",
+    "core": "lingyang",
+    "members": [
+      "lingyang",
+      "sanhua",
       "verina"
     ],
     "tier": "T1",
-    "type": "Hypercarry Spectro",
-    "description": "Yangyang hỗ trợ nạp năng lượng giúp Rover Spectro liên tục tung chiêu thức ánh sáng.",
+    "type": "Hypercarry Glacio",
+    "description": "Sanhua buff đòn đánh thường hỗ trợ các đòn quyền cước sư tử trên không của Lingyang.",
     "tags": [
-      "Spectro",
+      "Glacio",
       "T1",
-      "F2P Friendly"
+      "Aerial Combat"
+    ]
+  },
+  {
+    "id": "chixia-mortefi-verina",
+    "name": "Chixia Xạ Thủ Bão Lửa",
+    "core": "chixia",
+    "members": [
+      "chixia",
+      "mortefi",
+      "verina"
+    ],
+    "tier": "T1",
+    "type": "Hypercarry Fusion",
+    "description": "Mortefi phối hợp rồng lửa ngoài sân theo từng viên đạn liên thanh của Chixia.",
+    "tags": [
+      "Fusion",
+      "T1",
+      "Rapid Fire"
     ]
   }
 ];
