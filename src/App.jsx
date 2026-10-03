@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import { RESONATORS, ELEMENT_ICONS } from './data/resonators';
+import { RESONATORS, ELEMENT_ICONS, ELEMENT_ICONS_FALLBACK } from './data/resonators';
 import { generateOptimalTeams, solveTowerOfAdversity } from './utils/teamBuilder';
 import { supabase } from './supabaseClient';
 import RotationModal from './components/RotationModal';
@@ -476,7 +476,16 @@ export default function App() {
                       }}
                     >
                       {ELEMENT_ICONS[ele] && (
-                        <img src={ELEMENT_ICONS[ele]} alt={ele} style={{ width: '14px', height: '14px' }} />
+                        <img 
+                          src={ELEMENT_ICONS[ele]} 
+                          alt={ele} 
+                          style={{ width: '14px', height: '14px' }} 
+                          onError={(e) => {
+                            if (ELEMENT_ICONS_FALLBACK && ELEMENT_ICONS_FALLBACK[ele] && e.currentTarget.src !== ELEMENT_ICONS_FALLBACK[ele]) {
+                              e.currentTarget.src = ELEMENT_ICONS_FALLBACK[ele];
+                            }
+                          }}
+                        />
                       )}
                       {ele}
                     </button>
@@ -535,7 +544,16 @@ export default function App() {
                         justifyContent: 'center',
                         border: '1px solid rgba(255, 255, 255, 0.2)'
                       }}>
-                        <img src={ELEMENT_ICONS[r.element]} alt={r.element} style={{ width: '13px', height: '13px' }} />
+                        <img 
+                          src={ELEMENT_ICONS[r.element]} 
+                          alt={r.element} 
+                          style={{ width: '13px', height: '13px' }} 
+                          onError={(e) => {
+                            if (ELEMENT_ICONS_FALLBACK && ELEMENT_ICONS_FALLBACK[r.element] && e.currentTarget.src !== ELEMENT_ICONS_FALLBACK[r.element]) {
+                              e.currentTarget.src = ELEMENT_ICONS_FALLBACK[r.element];
+                            }
+                          }}
+                        />
                       </div>
                     )}
 
