@@ -506,9 +506,63 @@ export default function RotationModal({ team, onClose }) {
               border: '1px solid rgba(255, 255, 255, 0.08)',
               marginBottom: '20px'
             }}>
-              <div style={{ fontSize: '0.9rem', fontWeight: 900, color: '#fff', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Award size={18} color="var(--accent-gold)" />
-                <span>Bộ Echo Khuyên Dùng: <strong style={{ color: 'var(--accent-gold)' }}>{buildGuide.bestEchoSet}</strong></span>
+              <div style={{
+                marginBottom: '16px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
+                gap: '10px',
+                padding: '10px 14px',
+                background: 'rgba(255, 255, 255, 0.03)',
+                borderRadius: '10px',
+                border: '1px solid rgba(243, 186, 47, 0.25)'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  {buildGuide.sonataIcon ? (
+                    <div style={{
+                      width: '36px',
+                      height: '36px',
+                      borderRadius: '8px',
+                      overflow: 'hidden',
+                      background: 'rgba(243, 186, 47, 0.12)',
+                      border: '1px solid rgba(243, 186, 47, 0.35)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}>
+                      <img
+                        src={buildGuide.sonataIcon}
+                        alt={buildGuide.bestEchoSet}
+                        style={{ width: '26px', height: '26px', objectFit: 'contain' }}
+                        onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                      />
+                    </div>
+                  ) : (
+                    <Award size={18} color="var(--accent-gold)" />
+                  )}
+                  <div>
+                    <div style={{ fontSize: '0.72rem', color: 'var(--text-secondary)', fontWeight: 800, textTransform: 'uppercase' }}>
+                      Bộ Echo Khuyên Dùng:
+                    </div>
+                    <div style={{ fontSize: '0.96rem', fontWeight: 900, color: 'var(--accent-gold)', marginTop: '2px' }}>
+                      {buildGuide.bestEchoSet}
+                    </div>
+                  </div>
+                </div>
+
+                <span style={{
+                  fontSize: '0.74rem',
+                  padding: '4px 10px',
+                  borderRadius: '6px',
+                  background: 'rgba(255, 255, 255, 0.06)',
+                  color: '#fff',
+                  fontWeight: 800,
+                  border: '1px solid rgba(255, 255, 255, 0.1)'
+                }}>
+                  {buildGuide.costStructure || '4 - 3 - 3 - 1 - 1'}
+                </span>
               </div>
 
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '12px', marginBottom: '14px' }}>

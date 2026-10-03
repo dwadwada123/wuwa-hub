@@ -81,8 +81,56 @@ export const TRUE_SUSTAIN_IDS = new Set([
   'shorekeeper', 'verina', 'baizhi', 'youhu', 'jianxin', 'taoqi', 'buling', 'suisui', 'denia', 'lucilla', 'mornye'
 ]);
 
-// Bảng ánh xạ hình ảnh chuẩn của các Echo 4-Cost và Echo chủ lực
+// Bảng ánh xạ icon chính thức của toàn bộ 36 bộ Echo Sonata (từ 1.0 đến phiên bản 3.7)
+export const SONATA_ICON_MAP = {
+  // 1.0 Core Sets
+  'Celestial Light': 'https://static.wikia.nocookie.net/wutheringwaves/images/0/0c/Icon_Celestial_Light.png/revision/latest',
+  'Sun-sinking Eclipse': 'https://static.wikia.nocookie.net/wutheringwaves/images/6/6e/Icon_Sun-sinking_Eclipse.png/revision/latest',
+  'Molten Rift': 'https://static.wikia.nocookie.net/wutheringwaves/images/9/95/Icon_Molten_Rift.png/revision/latest',
+  'Void Thunder': 'https://static.wikia.nocookie.net/wutheringwaves/images/1/1d/Icon_Void_Thunder.png/revision/latest',
+  'Sierra Gale': 'https://static.wikia.nocookie.net/wutheringwaves/images/d/db/Icon_Sierra_Gale.png/revision/latest',
+  'Freezing Frost': 'https://static.wikia.nocookie.net/wutheringwaves/images/8/8d/Icon_Freezing_Frost.png/revision/latest',
+  'Moonlit Clouds': 'https://static.wikia.nocookie.net/wutheringwaves/images/a/a5/Icon_Moonlit_Clouds.png/revision/latest',
+  'Rejuvenating Glow': 'https://static.wikia.nocookie.net/wutheringwaves/images/7/75/Icon_Rejuvenating_Glow.png/revision/latest',
+  'Lingering Tunes': 'https://static.wikia.nocookie.net/wutheringwaves/images/a/aa/Icon_Lingering_Tunes.png/revision/latest',
+
+  // 2.0+ Rinascita Sets
+  'Frosty Resolve': 'https://static.wikia.nocookie.net/wutheringwaves/images/9/9e/Icon_Frosty_Resolve.png/revision/latest',
+  'Eternal Radiance': 'https://static.wikia.nocookie.net/wutheringwaves/images/8/82/Icon_Eternal_Radiance.png/revision/latest',
+  'Midnight Veil': 'https://static.wikia.nocookie.net/wutheringwaves/images/0/0a/Icon_Midnight_Veil.png/revision/latest',
+  'Empyrean Anthem': 'https://static.wikia.nocookie.net/wutheringwaves/images/3/3a/Icon_Empyrean_Anthem.png/revision/latest',
+  'Tidebreaking Courage': 'https://static.wikia.nocookie.net/wutheringwaves/images/a/a8/Icon_Tidebreaking_Courage.png/revision/latest',
+
+  // 3.0 Roya Frostlands Sets
+  'Pact of Neonlight Leap': 'https://static.wikia.nocookie.net/wutheringwaves/images/d/de/Icon_Pact_of_Neonlight_Leap.png/revision/latest',
+  'Halo of Starry Radiance': 'https://static.wikia.nocookie.net/wutheringwaves/images/c/ce/Icon_Halo_of_Starry_Radiance.png/revision/latest',
+  'Rite of Gilded Revelation': 'https://static.wikia.nocookie.net/wutheringwaves/images/a/a1/Icon_Rite_of_Gilded_Revelation.png/revision/latest',
+
+  // 3.7 Mengzhou & Simulacrum Nexus Sets
+  'Heart of Sworn Vigil': 'https://static.wikia.nocookie.net/wutheringwaves/images/1/10/Icon_Heart_of_Sworn_Vigil.png/revision/latest',
+  'Heart of Evil\'s Purge': 'https://static.wikia.nocookie.net/wutheringwaves/images/2/20/Icon_Heart_of_Evil%27s_Purge.png/revision/latest',
+  'Wishes of Quiet Snowfall': 'https://static.wikia.nocookie.net/wutheringwaves/images/1/17/Icon_Wishes_of_Quiet_Snowfall.png/revision/latest',
+  'Crown of Valor': 'https://static.wikia.nocookie.net/wutheringwaves/images/1/1d/Icon_Crown_of_Valor.png/revision/latest',
+  'Thread of Severed Fate': 'https://static.wikia.nocookie.net/wutheringwaves/images/c/cb/Icon_Thread_of_Severed_Fate.png/revision/latest',
+  'Lamp of Nether Road': 'https://static.wikia.nocookie.net/wutheringwaves/images/1/10/Icon_Lamp_of_Nether_Road.png/revision/latest',
+  'Chromatic Foam': 'https://static.wikia.nocookie.net/wutheringwaves/images/c/ce/Icon_Chromatic_Foam.png/revision/latest',
+  'Dream of the Lost': 'https://static.wikia.nocookie.net/wutheringwaves/images/f/fe/Icon_Dream_of_the_Lost.png/revision/latest'
+};
+
+export function getSonataIcon(sonataName) {
+  if (!sonataName) return SONATA_ICON_MAP['Moonlit Clouds'];
+  const clean = sonataName.toLowerCase();
+  for (const [key, url] of Object.entries(SONATA_ICON_MAP)) {
+    if (clean.includes(key.toLowerCase())) {
+      return url;
+    }
+  }
+  return SONATA_ICON_MAP['Moonlit Clouds'];
+}
+
+// Bảng ánh xạ hình ảnh chính thức của toàn bộ các Echo 4-Cost và 3-Cost quan trọng (đến phiên bản 3.7)
 export const ECHO_IMAGE_MAP = {
+  // 1.0 - 1.4 Calamity & Overlord Bosses
   'Bell-Borne Geochelone': 'https://wutheringlab.com/wp-content/uploads/Bell-Borne-Geochelone.webp',
   'Fallacy of No Return': 'https://wutheringlab.com/wp-content/uploads/Fallacy-of-No-Return.webp',
   'Impermanence Heron': 'https://wutheringlab.com/wp-content/uploads/Impermanence-Heron.webp',
@@ -93,17 +141,21 @@ export const ECHO_IMAGE_MAP = {
   'Mourning Aix': 'https://wutheringlab.com/wp-content/uploads/Mourning-Aix.webp',
   'Lampylumen Myriad': 'https://wutheringlab.com/wp-content/uploads/Lampylumen-Myriad.webp',
   'Inferno Rider': 'https://wutheringlab.com/wp-content/uploads/Inferno-Rider.webp',
-  'Nightmare Inferno Rider': 'https://wutheringlab.com/wp-content/uploads/Nightmare-Inferno-Rider.webp',
   'Feilian Beringal': 'https://wutheringlab.com/wp-content/uploads/Feilian-Beringal.webp',
   'Thundering Mephis': 'https://wutheringlab.com/wp-content/uploads/Thundering-Mephis.webp',
   'Tempest Mephis': 'https://wutheringlab.com/wp-content/uploads/Tempest-Mephis.webp',
   'Mech Abomination': 'https://wutheringlab.com/wp-content/uploads/Mech-Abomination.webp',
+
+  // 2.0 - 3.7 New Bosses & Elites
+  'Nightmare Inferno Rider': 'https://wutheringlab.com/wp-content/uploads/Nightmare-Inferno-Rider.webp',
   'Lorelei': 'https://wutheringlab.com/wp-content/uploads/Lorelei.webp',
   'Sentry Construct': 'https://wutheringlab.com/wp-content/uploads/Sentry-Construct.webp',
   'Chasm Guardian': 'https://wutheringlab.com/wp-content/uploads/Chasm-Guardian.webp',
   'Violet-Feathered Heron': 'https://wutheringlab.com/wp-content/uploads/Violet-Feathered-Heron.webp',
   'Havoc Dreadmane': 'https://wutheringlab.com/wp-content/uploads/Havoc-Dreadmane.webp',
-  'Glacio Dreadmane': 'https://wutheringlab.com/wp-content/uploads/Glacio-Dreadmane.webp'
+  'Glacio Dreadmane': 'https://wutheringlab.com/wp-content/uploads/Glacio-Dreadmane.webp',
+  'Tambourinist': 'https://wutheringlab.com/wp-content/uploads/Tambourinist.webp',
+  'Flautist': 'https://wutheringlab.com/wp-content/uploads/Flautist.webp'
 };
 
 export function getEchoImage(echoName) {
@@ -122,6 +174,15 @@ export function getEchoImage(echoName) {
  * dựa trên cơ chế scalers thực tế của từng nhân vật
  */
 export function getResonatorBuildGuide(resonator) {
+  const guide = _getResonatorBuildGuideInternal(resonator);
+  if (guide) {
+    if (!guide.sonataIcon) guide.sonataIcon = getSonataIcon(guide.bestEchoSet);
+    if (!guide.echoImage) guide.echoImage = getEchoImage(guide.mainEcho4Cost);
+  }
+  return guide;
+}
+
+function _getResonatorBuildGuideInternal(resonator) {
   if (!resonator) return null;
 
   const id = resonator.id;
@@ -141,6 +202,7 @@ export function getResonatorBuildGuide(resonator) {
         energyRegen: '170% - 190%'
       },
       bestEchoSet: '5-pc Rejuvenating Glow',
+      sonataIcon: getSonataIcon('Rejuvenating Glow'),
       mainEcho4Cost: 'Fallacy of No Return',
       costStructure: '4 - 3 - 3 - 1 - 1',
       mainStats: {
@@ -170,6 +232,7 @@ export function getResonatorBuildGuide(resonator) {
         energyRegen: '160% - 175%'
       },
       bestEchoSet: '5-pc Rejuvenating Glow',
+      sonataIcon: getSonataIcon('Rejuvenating Glow'),
       mainEcho4Cost: 'Bell-Borne Geochelone',
       costStructure: '4 - 3 - 3 - 1 - 1',
       mainStats: {
@@ -280,6 +343,7 @@ export function getResonatorBuildGuide(resonator) {
         energyRegen: '120% - 130%'
       },
       bestEchoSet: '5-pc Heart of Sworn Vigil',
+      sonataIcon: getSonataIcon('Heart of Sworn Vigil'),
       mainEcho4Cost: 'Thundering Mephis',
       costStructure: '4 - 3 - 3 - 1 - 1',
       mainStats: {
@@ -315,6 +379,7 @@ export function getResonatorBuildGuide(resonator) {
         energyRegen: '130% - 145%'
       },
       bestEchoSet: '5-pc Void Thunder',
+      sonataIcon: getSonataIcon('Void Thunder'),
       mainEcho4Cost: 'Tempest Mephis',
       costStructure: '4 - 3 - 3 - 1 - 1',
       mainStats: {
@@ -350,6 +415,7 @@ export function getResonatorBuildGuide(resonator) {
         energyRegen: '120% - 130%'
       },
       bestEchoSet: '5-pc Celestial Light',
+      sonataIcon: getSonataIcon('Celestial Light'),
       mainEcho4Cost: 'Jué',
       costStructure: '4 - 3 - 3 - 1 - 1',
       mainStats: {
@@ -386,6 +452,7 @@ export function getResonatorBuildGuide(resonator) {
         energyRegen: '130% - 145%+'
       },
       bestEchoSet: '5-pc Moonlit Clouds',
+      sonataIcon: getSonataIcon('Moonlit Clouds'),
       mainEcho4Cost: 'Impermanence Heron',
       costStructure: '4 - 3 - 3 - 1 - 1',
       mainStats: {
@@ -435,6 +502,7 @@ export function getResonatorBuildGuide(resonator) {
       energyRegen: '120% - 130%'
     },
     bestEchoSet: resonator.bestEchoSet || `5-pc Nguyên Tố ${element}`,
+    sonataIcon: getSonataIcon(resonator.bestEchoSet || element),
     mainEcho4Cost: mainEchoName,
     costStructure: '4 - 3 - 3 - 1 - 1',
     mainStats: {

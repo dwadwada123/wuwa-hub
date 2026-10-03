@@ -4,7 +4,7 @@
 // Đầy đủ thông tin: Vũ khí, Hệ, Sonata Echo, Chỉ số chính, Outro Skill & Rotation Game8 chi tiết
 // =========================================================================================
 
-export const RESONATORS = [
+export const RESONATORS = [ 
   {
     "id": "hsin",
     "name": "Hsin",
@@ -24,7 +24,7 @@ export const RESONATORS = [
     ],
     "bestWeapon": "Blooming Jadehaven",
     "bestEchoSet": "5-pc Heart of Sworn Vigil",
-    "echoMainStats": "4-Cost: Crit Rate/DMG | 3-Cost: Electro DMG | 1-Cost: ATK%",
+    "echoMainStats": "4-Cost: Tỉ Lệ Bạo Kích hoặc Sát Thương Bạo Kích (Thundering Mephis) | 3-Cost: Sát Thương Lôi | 1-Cost: Tấn Công%",
     "outroDescription": "Kích hoạt Phản Hồi Đồng Điệu (Unison Response): Tiêu hao trạng thái Unison để kích hoạt Outro cá nhân và kéo đồng minh vào sân bằng Intro Skill mà không cần tiêu tốn thanh Concerto truyền thống.",
     "rotations": {
       "standard": [
@@ -82,7 +82,7 @@ export const RESONATORS = [
     ],
     "bestWeapon": "Thunder's Horizon",
     "bestEchoSet": "5-pc Void Thunder",
-    "echoMainStats": "4-Cost: Crit Rate/DMG (Tempest Mephis) | 3-Cost: Electro DMG | 1-Cost: ATK%",
+    "echoMainStats": "4-Cost: Tỉ Lệ Bạo Kích hoặc Sát Thương Bạo Kích (Tempest Mephis) | 3-Cost: Sát Thương Lôi | 1-Cost: Tấn Công%",
     "outroDescription": "Tạo Lôi Vũ Đồng Điệu: 3 đòn đánh kế tiếp của đồng minh vào sân sẽ phát nổ sát thương Lôi diện rộng và nạp 25% thanh Concerto tức thì.",
     "rotations": {
       "standard": [
@@ -128,11 +128,12 @@ export const RESONATORS = [
     "element": "Havoc",
     "rarity": 5,
     "weaponType": "Sword",
-    "role": "Main DPS / Basic ATK Specialist",
+    "role": "Main DPS / Sát Thương Đánh Thường Havoc",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Camellya.webp",
     "iconColor": "#ec4899",
     "tags": [
       "Havoc",
+      "Main DPS",
       "Basic ATK",
       "Sword",
       "Black Shores"
@@ -185,11 +186,12 @@ export const RESONATORS = [
     "element": "Spectro",
     "rarity": 5,
     "weaponType": "Rectifier",
-    "role": "Universal Support / Crit Buffer / Healer",
+    "role": "Sustain / Hồi Máu & Siêu Buff Toàn Năng",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Shorekeeper.png",
     "iconColor": "#38bdf8",
     "tags": [
       "Spectro",
+      "Sustain",
       "Healer",
       "Crit Buffer",
       "Rectifier",
@@ -197,7 +199,7 @@ export const RESONATORS = [
     ],
     "bestWeapon": "Stellar Symphony",
     "bestEchoSet": "5-pc Rejuvenating Glow",
-    "echoMainStats": "4-Cost: Healing Bonus (Fallacy of No Return) | 3-Cost: Energy Regen | 1-Cost: HP%",
+    "echoMainStats": "4-Cost: Tăng Lượng Trị Liệu hoặc HP% (Fallacy of No Return) | 3-Cost: Hiệu Quả Nạp Năng Lượng% | 1-Cost: HP%",
     "outroDescription": "Nâng cấp Stella Field lên Giai Đoạn 3: Tăng 12.5% Tỷ Lệ Bạo Kích và 25% Sát Thương Bạo Kích cho toàn đội trong 30 giây.",
     "rotations": {
       "standard": [
@@ -216,18 +218,19 @@ export const RESONATORS = [
     "element": "Spectro",
     "rarity": 5,
     "weaponType": "Broadblade",
-    "role": "Burst Main DPS / Skill DMG King",
+    "role": "Main DPS / Bộc Phá Kỹ Năng Cộng Hưởng",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Jinhsi.png",
     "iconColor": "#facc15",
     "tags": [
       "Spectro",
+      "Main DPS",
       "Resonance Skill DMG",
       "Broadblade",
       "Tier 0 DPS"
     ],
     "bestWeapon": "Ages of Harvest",
     "bestEchoSet": "5-pc Celestial Light",
-    "echoMainStats": "4-Cost: Crit Rate/DMG (Jué) | 3-Cost: Spectro DMG | 1-Cost: ATK%",
+    "echoMainStats": "4-Cost: Tỉ Lệ Bạo Kích hoặc Sát Thương Bạo Kích (Jué) | 3-Cost: Sát Thương Spectro | 1-Cost: Tấn Công%",
     "outroDescription": "Giảm thời gian hồi chiêu của các đòn Coordinated Attack (Đòn tấn công phối hợp) từ đồng đội đi 1 giây.",
     "rotations": {
       "standard": [
@@ -256,11 +259,12 @@ export const RESONATORS = [
     "element": "Fusion",
     "rarity": 5,
     "weaponType": "Sword",
-    "role": "Main / Quickswap DPS / Fusion Buffer",
+    "role": "Main DPS / Hỏa Kiếm Bộc Phá & Quickswap",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Changli.png",
     "iconColor": "#f97316",
     "tags": [
       "Fusion",
+      "Main DPS",
       "Quickswap",
       "Resonance Liberation",
       "Sword"
@@ -313,11 +317,12 @@ export const RESONATORS = [
     "element": "Electro",
     "rarity": 5,
     "weaponType": "Gauntlets",
-    "role": "Burst Main DPS / Liberation Specialist",
+    "role": "Main DPS / Quyền Vương Công Nghệ Lôi",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/XiangliYao.png",
     "iconColor": "#8b5cf6",
     "tags": [
       "Electro",
+      "Main DPS",
       "Resonance Liberation",
       "Gauntlets",
       "Huaxu"
@@ -370,13 +375,14 @@ export const RESONATORS = [
     "element": "Electro",
     "rarity": 5,
     "weaponType": "Rectifier",
-    "role": "Sub-DPS / Electro & Liberation Buffer",
+    "role": "Sub-DPS / Đòn Phối Hợp & Khuếch Đại Lôi",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Yinlin.png",
     "iconColor": "#9333ea",
     "tags": [
       "Electro",
-      "Coordinated ATK",
+      "Sub-DPS",
       "Buffer",
+      "Coordinated ATK",
       "Rectifier"
     ],
     "bestWeapon": "Stringmaster",
@@ -412,11 +418,13 @@ export const RESONATORS = [
     "element": "Glacio",
     "rarity": 5,
     "weaponType": "Rectifier",
-    "role": "Sub-DPS / Skill DMG & Glacio Buffer",
+    "role": "Sub-DPS / Bút Họa Phối Hợp & Buff Băng",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Zhezhi.png",
     "iconColor": "#06b6d4",
     "tags": [
       "Glacio",
+      "Sub-DPS",
+      "Buffer",
       "Coordinated ATK",
       "Skill DMG Buffer",
       "Rectifier"
@@ -442,19 +450,20 @@ export const RESONATORS = [
     "element": "Glacio",
     "rarity": 5,
     "weaponType": "Pistols",
-    "role": "Main DPS / Shotgun Skill Specialist",
+    "role": "Main DPS / Xạ Thủ Shotgun Băng",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Carlotta.webp",
     "iconColor": "#0ea5e9",
     "tags": [
       "Glacio",
+      "Main DPS",
       "Pistols",
       "Skill DMG",
       "Rinascita",
       "Parry"
     ],
     "bestWeapon": "Cold Whisper / Static Mist",
-    "bestEchoSet": "5-pc Freezing Frost",
-    "echoMainStats": "4-Cost: Crit Rate/DMG (Lampylumen Myriad) | 3-Cost: Glacio DMG | 1-Cost: ATK%",
+    "bestEchoSet": "5-pc Frosty Resolve",
+    "echoMainStats": "4-Cost: Tỉ Lệ Bạo Kích hoặc Sát Thương Bạo Kích (Lampylumen Myriad) | 3-Cost: Sát Thương Băng | 1-Cost: Tấn Công%",
     "outroDescription": "Gây sát thương Glacio bằng 480% ATK và tăng 25% Resonance Skill DMG Deepen cho nhân vật vào sân kế tiếp trong 14 giây.",
     "rotations": {
       "standard": [
@@ -500,17 +509,18 @@ export const RESONATORS = [
     "element": "Spectro",
     "rarity": 5,
     "weaponType": "Rectifier",
-    "role": "Main DPS / Dual Form Buffer",
+    "role": "Main DPS / Biến Chuyển Hình Thái Spectro",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Phoebe.webp",
     "iconColor": "#facc15",
     "tags": [
       "Spectro",
+      "Main DPS",
       "Rectifier",
       "Spectro Frazzle",
       "Dual Form"
     ],
     "bestWeapon": "Luminous Reverie",
-    "bestEchoSet": "5-pc Celestial Light",
+    "bestEchoSet": "5-pc Eternal Radiance",
     "echoMainStats": "4-Cost: Crit Rate/DMG (Jué) | 3-Cost: Spectro DMG | 1-Cost: ATK%",
     "outroDescription": "Áp đặt trạng thái Spectro Frazzle lên mục tiêu: Kẻ địch chịu thêm 20% sát thương Spectro và khuếch đại sát thương dứt điểm trong 14 giây.",
     "rotations": {
@@ -540,17 +550,18 @@ export const RESONATORS = [
     "element": "Fusion",
     "rarity": 5,
     "weaponType": "Broadblade",
-    "role": "Main DPS / Plunge Burst",
+    "role": "Main DPS / Đại Kiếm Hỏa Bộc Phá Không Trung",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Brant.webp",
     "iconColor": "#ea580c",
     "tags": [
       "Fusion",
+      "Main DPS",
       "Broadblade",
       "Plunge DMG",
       "Rinascita"
     ],
     "bestWeapon": "Blazing Sun Anchor",
-    "bestEchoSet": "5-pc Molten Rift",
+    "bestEchoSet": "5-pc Tidebreaking Courage",
     "echoMainStats": "4-Cost: Crit Rate/DMG (Inferno Rider) | 3-Cost: Fusion DMG | 1-Cost: ATK%",
     "outroDescription": "Thực hiện cú bổ nhào rực lửa: Tăng 20% Fusion DMG và 25% Resonance Skill DMG Deepen cho đồng minh tiếp theo.",
     "rotations": {
@@ -580,17 +591,19 @@ export const RESONATORS = [
     "element": "Havoc",
     "rarity": 5,
     "weaponType": "Gauntlets",
-    "role": "Sub-DPS / Havoc & Heavy ATK Buffer",
+    "role": "Sub-DPS / Đấu Sĩ Havoc & Trọng Kích Buffer",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Roccia.webp",
     "iconColor": "#be185d",
     "tags": [
       "Havoc",
+      "Sub-DPS",
+      "Buffer",
       "Gauntlets",
       "Brawler",
       "Rinascita"
     ],
     "bestWeapon": "Obsidian Claws",
-    "bestEchoSet": "5-pc Moonlit Clouds",
+    "bestEchoSet": "5-pc Midnight Veil",
     "echoMainStats": "4-Cost: Crit Rate/DMG (Heron) | 3-Cost: Havoc DMG / Energy Regen | 1-Cost: ATK%",
     "outroDescription": "Đập mạnh xuống mặt đất gây sát thương Havoc diện rộng và buff 20% Havoc DMG Deepen & 20% Heavy ATK DMG Deepen cho đồng minh vào sân.",
     "rotations": {
@@ -610,17 +623,18 @@ export const RESONATORS = [
     "element": "Havoc",
     "rarity": 5,
     "weaponType": "Rectifier",
-    "role": "Main DPS / Dark Resonance Master",
+    "role": "Main DPS / Nữ Vương Cộng Hưởng Bóng Tối",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Cantarella.webp",
     "iconColor": "#9d174d",
     "tags": [
       "Havoc",
+      "Main DPS",
       "Rectifier",
       "Fisalia",
       "Dark Resonance"
     ],
     "bestWeapon": "Echo of the Abyss",
-    "bestEchoSet": "5-pc Sun-sinking Eclipse",
+    "bestEchoSet": "5-pc Midnight Veil",
     "echoMainStats": "4-Cost: Crit Rate/DMG (Crownless) | 3-Cost: Havoc DMG | 1-Cost: ATK%",
     "outroDescription": "Gắn Dấu Ấn Hư Vô lên mục tiêu: Khi đồng minh tấn công mục tiêu sẽ giảm 15% Kháng Havoc của đối thủ trong 15 giây.",
     "rotations": {
@@ -650,17 +664,18 @@ export const RESONATORS = [
     "element": "Aero",
     "rarity": 5,
     "weaponType": "Pistols",
-    "role": "Sub-DPS / Aero Erosion Buffer",
+    "role": "Sub-DPS / Xạ Thủ Bào Mòn Gió & Buffer",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Ciaccona_Icon.webp",
     "iconColor": "#059669",
     "tags": [
       "Aero",
+      "Sub-DPS",
+      "Buffer",
       "Pistols",
-      "Aero Erosion",
-      "Buffer"
+      "Aero Erosion"
     ],
     "bestWeapon": "Whirlwind Serenade",
-    "bestEchoSet": "5-pc Moonlit Clouds",
+    "bestEchoSet": "5-pc Empyrean Anthem",
     "echoMainStats": "4-Cost: Crit Rate/DMG (Heron) | 3-Cost: Aero DMG / Energy Regen | 1-Cost: ATK%",
     "outroDescription": "Gây hiệu ứng Xói Mòn Phong (Aero Erosion): Khiến kẻ địch chịu thêm 23% sát thương Aero Deepen trong 14 giây.",
     "rotations": {
@@ -680,11 +695,12 @@ export const RESONATORS = [
     "element": "Aero",
     "rarity": 5,
     "weaponType": "Broadblade",
-    "role": "Main DPS / Heavy ATK AOE King",
+    "role": "Main DPS / Thanh Long Thương Trọng Kích AOE",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Jiyan.png",
     "iconColor": "#10b981",
     "tags": [
       "Aero",
+      "Main DPS",
       "Heavy ATK",
       "Broadblade",
       "Midnight Rangers",
@@ -721,11 +737,12 @@ export const RESONATORS = [
     "element": "Electro",
     "rarity": 5,
     "weaponType": "Broadblade",
-    "role": "Main DPS / Burst Awakening",
+    "role": "Main DPS / Thức Tỉnh Lôi Thần",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Calcharo.png",
     "iconColor": "#9333ea",
     "tags": [
       "Electro",
+      "Main DPS",
       "Broadblade",
       "Resonance Liberation",
       "Ghost Hounds"
@@ -778,11 +795,12 @@ export const RESONATORS = [
     "element": "Fusion",
     "rarity": 5,
     "weaponType": "Rectifier",
-    "role": "Main / Quickswap DPS / Basic ATK Specialist",
+    "role": "Main DPS / Hỏa Lực Ma Pháp Cosmos",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Encore.png",
     "iconColor": "#fb923c",
     "tags": [
       "Fusion",
+      "Main DPS",
       "Basic ATK",
       "Quickswap",
       "Rectifier",
@@ -836,11 +854,12 @@ export const RESONATORS = [
     "element": "Spectro",
     "rarity": 5,
     "weaponType": "Rectifier",
-    "role": "Universal Support / Healer / Buffer",
+    "role": "Sustain / Hồi Phục Sinh Mệnh & Buff Công",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Verina.png",
     "iconColor": "#eab308",
     "tags": [
       "Spectro",
+      "Sustain",
       "Healer",
       "Universal Buffer",
       "Rectifier",
@@ -867,18 +886,20 @@ export const RESONATORS = [
     "element": "Aero",
     "rarity": 5,
     "weaponType": "Gauntlets",
-    "role": "Support / Shielder / Liberation Buffer",
+    "role": "Sustain / Khiên Khí Công & Hóa Giải Đòn",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Jianxin.png",
     "iconColor": "#14b8a6",
     "tags": [
       "Aero",
+      "Sustain",
+      "Shielder",
       "Shield",
       "Parry",
       "Liberation Buffer",
       "Gauntlets"
     ],
     "bestWeapon": "Abyss Surges / Marcato",
-    "bestEchoSet": "5-pc Moonlit Clouds",
+    "bestEchoSet": "5-pc Rejuvenating Glow",
     "echoMainStats": "4-Cost: Crit Rate / ATK (Heron) | 3-Cost: Aero DMG / Energy Regen | 1-Cost: ATK%",
     "outroDescription": "Buff cực mạnh 38% Resonance Liberation DMG Deepen trong 14 giây cho nhân vật tiếp theo.",
     "rotations": {
@@ -898,11 +919,12 @@ export const RESONATORS = [
     "element": "Glacio",
     "rarity": 5,
     "weaponType": "Gauntlets",
-    "role": "Main DPS / Aerial Flurry",
+    "role": "Main DPS / Vũ Điệu Múa Lân Băng",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Lingyang.png",
     "iconColor": "#38bdf8",
     "tags": [
       "Glacio",
+      "Main DPS",
       "Gauntlets",
       "Aerial Combat",
       "Basic ATK"
@@ -938,11 +960,12 @@ export const RESONATORS = [
     "element": "Havoc",
     "rarity": 5,
     "weaponType": "Sword",
-    "role": "Main DPS / Dark Surge Burst",
+    "role": "Main DPS / Bộc Phá Hắc Ám Dark Surge",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Rover-Havoc.png",
     "iconColor": "#be123c",
     "tags": [
       "Havoc",
+      "Main DPS",
       "Sword",
       "Dark Surge",
       "Free 5-Star S6"
@@ -995,17 +1018,19 @@ export const RESONATORS = [
     "element": "Spectro",
     "rarity": 5,
     "weaponType": "Sword",
-    "role": "Sub-DPS / Time Stop CC / Buffer",
+    "role": "Sub-DPS / Ngưng Đọng Thời Gian & Khống Chế",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Rover-Spectro.png",
     "iconColor": "#eab308",
     "tags": [
       "Spectro",
+      "Sub-DPS",
+      "Buffer",
       "Sword",
       "Time Stop",
       "Free 5-Star S6"
     ],
     "bestWeapon": "Emerald of Genesis",
-    "bestEchoSet": "5-pc Celestial Light",
+    "bestEchoSet": "5-pc Moonlit Clouds",
     "echoMainStats": "4-Cost: Crit Rate/DMG (Jué) | 3-Cost: Spectro DMG | 1-Cost: ATK%",
     "outroDescription": "Tạo vùng quang trường ngưng đọng thời gian (Time-Stop) làm bất động mọi kẻ địch trong 3 giây.",
     "rotations": {
@@ -1025,17 +1050,19 @@ export const RESONATORS = [
     "element": "Aero",
     "rarity": 5,
     "weaponType": "Sword",
-    "role": "Sub-DPS / Crowd Control Vortex",
+    "role": "Sub-DPS / Lốc Xoáy Hút Quái & Chém Gió",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Rover-Spectro.png",
     "iconColor": "#10b981",
     "tags": [
       "Aero",
+      "Sub-DPS",
+      "Buffer",
       "Sword",
       "Vortex",
       "Wind Slashing"
     ],
     "bestWeapon": "Emerald of Genesis",
-    "bestEchoSet": "5-pc Sierra Gale",
+    "bestEchoSet": "5-pc Moonlit Clouds",
     "echoMainStats": "4-Cost: Crit Rate/DMG (Feilian) | 3-Cost: Aero DMG | 1-Cost: ATK%",
     "outroDescription": "Tạo lốc xoáy Aero hút chặt kẻ địch nhỏ vào tâm điểm và gây sát thương kéo dài.",
     "rotations": {
@@ -1055,11 +1082,12 @@ export const RESONATORS = [
     "element": "Electro",
     "rarity": 5,
     "weaponType": "Sword",
-    "role": "Main DPS / Electro Chain Burst",
+    "role": "Main DPS / Lôi Kiếm Liên Hoàn Bão Sét",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Rover-Havoc.png",
     "iconColor": "#a855f7",
     "tags": [
       "Electro",
+      "Main DPS",
       "Sword",
       "Burst DPS",
       "Rover",
@@ -1096,11 +1124,13 @@ export const RESONATORS = [
     "element": "Glacio",
     "rarity": 4,
     "weaponType": "Sword",
-    "role": "Sub-DPS / Basic ATK Buffer / Fast Concerto",
+    "role": "Sub-DPS / Siêu Nạp Concerto & Buff Đánh Thường",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Sanhua.png",
     "iconColor": "#38bdf8",
     "tags": [
       "Glacio",
+      "Sub-DPS",
+      "Buffer",
       "Basic ATK Buffer",
       "Fast Concerto",
       "Sword",
@@ -1127,11 +1157,13 @@ export const RESONATORS = [
     "element": "Fusion",
     "rarity": 4,
     "weaponType": "Pistols",
-    "role": "Sub-DPS / Heavy ATK Buffer / Coordinated ATK",
+    "role": "Sub-DPS / Hỏa Long Phối Hợp & Buff Trọng Kích",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Mortefi.png",
     "iconColor": "#ef4444",
     "tags": [
       "Fusion",
+      "Sub-DPS",
+      "Buffer",
       "Heavy ATK Buffer",
       "Coordinated ATK",
       "Pistols",
@@ -1158,17 +1190,19 @@ export const RESONATORS = [
     "element": "Havoc",
     "rarity": 4,
     "weaponType": "Sword",
-    "role": "Sub-DPS / Havoc DMG Buffer",
+    "role": "Sub-DPS / Huyết Kiếm Khuếch Đại Havoc",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Danjin.png",
     "iconColor": "#e11d48",
     "tags": [
       "Havoc",
+      "Sub-DPS",
+      "Buffer",
       "Havoc Buffer",
       "HP Consume",
       "Sword"
     ],
     "bestWeapon": "Emerald of Genesis",
-    "bestEchoSet": "5-pc Moonlit Clouds / Sun-sinking",
+    "bestEchoSet": "5-pc Moonlit Clouds",
     "echoMainStats": "4-Cost: Crit Rate/DMG | 3-Cost: Havoc DMG | 1-Cost: ATK%",
     "outroDescription": "Buff 23% Sát Thương Thuộc Tính Havoc (Havoc DMG Deepen) trong 14 giây cho đồng minh tiếp theo.",
     "rotations": {
@@ -1188,11 +1222,12 @@ export const RESONATORS = [
     "element": "Fusion",
     "rarity": 4,
     "weaponType": "Pistols",
-    "role": "Main / Burst DPS / Rapid Fire",
+    "role": "Main DPS / Xạ Thủ Hỏa Lực Liên Thanh",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Chixia.png",
     "iconColor": "#f97316",
     "tags": [
       "Fusion",
+      "Main DPS",
       "Pistols",
       "Rapid Fire",
       "Patroller"
@@ -1228,11 +1263,12 @@ export const RESONATORS = [
     "element": "Glacio",
     "rarity": 4,
     "weaponType": "Rectifier",
-    "role": "F2P Healer / Team Buffer",
+    "role": "Sustain / Y Sĩ Băng & Trị Liệu Toàn Đội",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Baizhi.png",
     "iconColor": "#0ea5e9",
     "tags": [
       "Glacio",
+      "Sustain",
       "Healer",
       "Rectifier",
       "F2P Friendly"
@@ -1258,11 +1294,13 @@ export const RESONATORS = [
     "element": "Aero",
     "rarity": 4,
     "weaponType": "Sword",
-    "role": "Sub-DPS / Energy Battery / Crowd Control",
+    "role": "Sub-DPS / Nạp Năng Lượng & Hút Quái",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Yangyang.png",
     "iconColor": "#10b981",
     "tags": [
       "Aero",
+      "Sub-DPS",
+      "Buffer",
       "Energy Battery",
       "Sword",
       "Fast Concerto"
@@ -1288,18 +1326,20 @@ export const RESONATORS = [
     "element": "Havoc",
     "rarity": 4,
     "weaponType": "Broadblade",
-    "role": "Support / Shielder / Skill DMG Buffer",
+    "role": "Sustain / Đại Kiếm Hộ Thuẫn & Chống Chịu",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Taoqi.png",
     "iconColor": "#ec4899",
     "tags": [
       "Havoc",
+      "Sustain",
+      "Shielder",
       "Broadblade",
       "Shield",
       "Skill DMG Buffer",
       "DEF Scaler"
     ],
     "bestWeapon": "Dauntless Evernight / Discord",
-    "bestEchoSet": "5-pc Moonlit Clouds / Rejuvenating",
+    "bestEchoSet": "5-pc Rejuvenating Glow",
     "echoMainStats": "4-Cost: Bell-Borne | 3-Cost: DEF% / Energy Regen | 1-Cost: DEF%",
     "outroDescription": "Buff cực mạnh 38% Sát Thương Kỹ Năng (Resonance Skill DMG Deepen) trong 14 giây cho nhân vật kế tiếp.",
     "rotations": {
@@ -1319,18 +1359,20 @@ export const RESONATORS = [
     "element": "Electro",
     "rarity": 4,
     "weaponType": "Gauntlets",
-    "role": "Fast Coordinated Sub-DPS / Vibration Shredder",
+    "role": "Sub-DPS / Đột Phá Bào Mòn Trụ Lôi & Phối Hợp",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Yuanwu.png",
     "iconColor": "#a855f7",
     "tags": [
       "Electro",
+      "Sub-DPS",
+      "Buffer",
       "Coordinated ATK",
       "Gauntlets",
       "Vibration Break",
       "Jinhsi Best Friend"
     ],
     "bestWeapon": "Originite: Type IV",
-    "bestEchoSet": "5-pc Rejuvenating Glow",
+    "bestEchoSet": "5-pc Moonlit Clouds",
     "echoMainStats": "4-Cost: Bell-Borne | 3-Cost: DEF% / Energy Regen | 1-Cost: DEF%",
     "outroDescription": "Gây sát thương Electro phá vỡ thanh Rung Chấn (Vibration Strength) của boss cực nhanh.",
     "rotations": {
@@ -1350,11 +1392,13 @@ export const RESONATORS = [
     "element": "Aero",
     "rarity": 4,
     "weaponType": "Pistols",
-    "role": "Sub-DPS / Aero DMG Buffer / Taunt",
+    "role": "Sub-DPS / Cổng Khói Tăng Tốc & Buff Aero",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Aalto.png",
     "iconColor": "#059669",
     "tags": [
       "Aero",
+      "Sub-DPS",
+      "Buffer",
       "Pistols",
       "Aero Buffer",
       "Taunt Gate"
@@ -1380,13 +1424,14 @@ export const RESONATORS = [
     "element": "Glacio",
     "rarity": 4,
     "weaponType": "Gauntlets",
-    "role": "Healer / Coordinated ATK Buffer / Gambler",
+    "role": "Sustain / Thẩm Định Đồ Cổ & Hồi Máu Toàn Năng",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Youhu.png",
     "iconColor": "#0284c7",
     "tags": [
       "Glacio",
-      "Gauntlets",
+      "Sustain",
       "Healer",
+      "Gauntlets",
       "Coordinated Buffer",
       "Rinascita"
     ],
@@ -1411,17 +1456,18 @@ export const RESONATORS = [
     "element": "Electro",
     "rarity": 4,
     "weaponType": "Broadblade",
-    "role": "Main / Sub-DPS / Logistics Delivery",
+    "role": "Sub-DPS / Giao Hàng Siêu Tốc & Bộc Phá Lôi",
     "avatar": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_character/Lumi.webp",
     "iconColor": "#7c3aed",
     "tags": [
       "Electro",
+      "Sub-DPS",
       "Broadblade",
       "Lollo Logistics",
       "Electro Burst"
     ],
     "bestWeapon": "Autumntrace / Broadblade#41",
-    "bestEchoSet": "5-pc Void Thunder",
+    "bestEchoSet": "5-pc Moonlit Clouds",
     "echoMainStats": "4-Cost: Crit Rate/DMG (Tempest Mephis) | 3-Cost: Electro DMG | 1-Cost: ATK%",
     "outroDescription": "Ném gói hàng sấm sét gây 320% sát thương Electro và tăng 15% Electro DMG & 15% Basic ATK Deepen cho nhân vật kế tiếp.",
     "rotations": {
@@ -1441,13 +1487,14 @@ export const RESONATORS = [
     "element": "Electro",
     "rarity": 4,
     "weaponType": "Rectifier",
-    "role": "Support / Healer / Electro Buffer",
+    "role": "Sustain / Trị Liệu Trợ Lực & Buff Lôi",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Buling.webp",
     "iconColor": "#9333ea",
     "tags": [
       "Electro",
-      "Rectifier",
+      "Sustain",
       "Healer",
+      "Rectifier",
       "Electro Buffer"
     ],
     "bestWeapon": "Variation",
@@ -1471,14 +1518,15 @@ export const RESONATORS = [
     "element": "Aero",
     "rarity": 5,
     "weaponType": "Sword",
-    "role": "Main DPS / Aero Slash",
+    "role": "Main DPS / Trảm Phong Bão Tố",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Cartethyia-icon.webp",
     "iconColor": "#10b981",
     "tags": [
       "Aero",
-      "Sword",
       "Main DPS",
-      "Aero Shred"
+      "Sword",
+      "Aero Shred",
+      "Tier 0"
     ],
     "bestWeapon": "Emerald of Genesis / Blazing Gale",
     "bestEchoSet": "5-pc Sierra Gale",
@@ -1511,11 +1559,12 @@ export const RESONATORS = [
     "element": "Havoc",
     "rarity": 5,
     "weaponType": "Rectifier",
-    "role": "Burst DPS / Havoc Decay",
+    "role": "Main DPS / Khúc Ca Tang Lễ Havoc Decay",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Phrolova-icon.webp",
     "iconColor": "#e11d48",
     "tags": [
       "Havoc",
+      "Main DPS",
       "Rectifier",
       "Burst DPS",
       "Decay",
@@ -1552,13 +1601,13 @@ export const RESONATORS = [
     "element": "Electro",
     "rarity": 5,
     "weaponType": "Broadblade",
-    "role": "Main DPS / Electro Cleave",
+    "role": "Main DPS / Tiên Phong Đại Kiếm Lôi",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Augusta-icon.webp",
     "iconColor": "#a855f7",
     "tags": [
       "Electro",
-      "Broadblade",
       "Main DPS",
+      "Broadblade",
       "Vanguard"
     ],
     "bestWeapon": "Verdant Summit / Lustrous Razor",
@@ -1592,17 +1641,18 @@ export const RESONATORS = [
     "element": "Aero",
     "rarity": 5,
     "weaponType": "Gauntlets",
-    "role": "Sub-DPS / Aero Brawler",
+    "role": "Sub-DPS / Quyền Sĩ Bão Tố & Tiếp Nạp",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Iuno.webp",
     "iconColor": "#10b981",
     "tags": [
       "Aero",
-      "Gauntlets",
       "Sub-DPS",
+      "Buffer",
+      "Gauntlets",
       "Brawler"
     ],
     "bestWeapon": "Abyss Surges / Marcato",
-    "bestEchoSet": "5-pc Sierra Gale",
+    "bestEchoSet": "5-pc Moonlit Clouds",
     "echoMainStats": "4-Cost: Crit Rate/DMG (Feilian Beringal) | 3-Cost: Aero DMG | 1-Cost: ATK%",
     "outroDescription": "Liên Hoàn Cước Gió: Tăng 20% Aero DMG và 25% Resonance Skill DMG cho nhân vật kế tiếp.",
     "rotations": {
@@ -1632,13 +1682,13 @@ export const RESONATORS = [
     "element": "Havoc",
     "rarity": 5,
     "weaponType": "Broadblade",
-    "role": "Main DPS / Havoc Berserker",
+    "role": "Main DPS / Cuồng Nộ Hắc Ám Berserker",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Chisa.webp",
     "iconColor": "#f43f5e",
     "tags": [
       "Havoc",
-      "Broadblade",
       "Main DPS",
+      "Broadblade",
       "Berserker"
     ],
     "bestWeapon": "Verdant Summit / Helios Cleaver",
@@ -1672,13 +1722,14 @@ export const RESONATORS = [
     "element": "Spectro",
     "rarity": 5,
     "weaponType": "Pistols",
-    "role": "Sub-DPS / Spectro Frazzle",
+    "role": "Sub-DPS / Xạ Thủ Đạn Tinh Tú & Frazzle",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Lynae.webp",
     "iconColor": "#facc15",
     "tags": [
       "Spectro",
-      "Pistols",
       "Sub-DPS",
+      "Buffer",
+      "Pistols",
       "Frazzle"
     ],
     "bestWeapon": "Static Mist",
@@ -1753,17 +1804,18 @@ export const RESONATORS = [
     "element": "Fusion",
     "rarity": 5,
     "weaponType": "Sword",
-    "role": "Quickswap DPS / Fusion Burn",
+    "role": "Sub-DPS / Hỏa Kiếm Thiêu Rụi & Quickswap",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Aemeath.webp",
     "iconColor": "#f97316",
     "tags": [
       "Fusion",
+      "Sub-DPS",
       "Sword",
       "Quickswap",
       "Burn"
     ],
     "bestWeapon": "Blazing Brilliance / Emerald of Genesis",
-    "bestEchoSet": "5-pc Molten Rift",
+    "bestEchoSet": "5-pc Moonlit Clouds",
     "echoMainStats": "4-Cost: Crit Rate/DMG (Inferno Rider) | 3-Cost: Fusion DMG | 1-Cost: ATK%",
     "outroDescription": "Vũ Điệu Hoa Hồng Lửa: Tăng 20% Fusion DMG và 20% Basic ATK Deepen cho đồng minh.",
     "rotations": {
@@ -1793,13 +1845,13 @@ export const RESONATORS = [
     "element": "Glacio",
     "rarity": 5,
     "weaponType": "Broadblade",
-    "role": "Main DPS / Glacio Broadblade",
+    "role": "Main DPS / Đại Kiếm Hàn Băng Bộc Phá",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Luuk-Herssen.png",
     "iconColor": "#38bdf8",
     "tags": [
       "Glacio",
-      "Broadblade",
       "Main DPS",
+      "Broadblade",
       "Burst Carry"
     ],
     "bestWeapon": "Ages of Harvest / Verdant Summit / Autumntrace",
@@ -1833,14 +1885,15 @@ export const RESONATORS = [
     "element": "Aero",
     "rarity": 5,
     "weaponType": "Gauntlets",
-    "role": "Sub-DPS / Vacuum Gatherer",
+    "role": "Sub-DPS / Hút Chân Không & Gom Quái Khí Tụ",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Sigrika.webp",
     "iconColor": "#10b981",
     "tags": [
       "Aero",
+      "Sub-DPS",
+      "Buffer",
       "Gauntlets",
-      "Crowd Control",
-      "Sub-DPS"
+      "Crowd Control"
     ],
     "bestWeapon": "Abyss Surges / Stonedge",
     "bestEchoSet": "5-pc Moonlit Clouds",
@@ -1873,13 +1926,13 @@ export const RESONATORS = [
     "element": "Glacio",
     "rarity": 5,
     "weaponType": "Sword",
-    "role": "Main DPS / Frostbite",
+    "role": "Main DPS / Kiếm Sĩ Băng Giá Sương Giá",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Hiyuki.webp",
     "iconColor": "#38bdf8",
     "tags": [
       "Glacio",
-      "Sword",
       "Main DPS",
+      "Sword",
       "Frostbite"
     ],
     "bestWeapon": "Emerald of Genesis / Winter Needle",
@@ -1913,14 +1966,15 @@ export const RESONATORS = [
     "element": "Fusion",
     "rarity": 5,
     "weaponType": "Rectifier",
-    "role": "Buffer / Healer / Fusion Amplify",
+    "role": "Sustain / Hỏa Ngục Hồi Sinh & Khuếch Đại",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Denia.webp",
     "iconColor": "#f97316",
     "tags": [
       "Fusion",
-      "Rectifier",
+      "Sustain",
       "Healer",
-      "Buffer"
+      "Buffer",
+      "Rectifier"
     ],
     "bestWeapon": "Variation / Rectifier#25",
     "bestEchoSet": "5-pc Rejuvenating Glow",
@@ -1953,13 +2007,13 @@ export const RESONATORS = [
     "element": "Havoc",
     "rarity": 5,
     "weaponType": "Sword",
-    "role": "Main DPS / Dark Plume",
+    "role": "Main DPS / Hắc Vũ Trảm Thức Tỉnh",
     "avatar": "https://wutheringlab.com/wp-content/uploads/YangYang-Xuanling.webp",
     "iconColor": "#f43f5e",
     "tags": [
       "Havoc",
-      "Sword",
       "Main DPS",
+      "Sword",
       "Awakened",
       "Xuanling"
     ],
@@ -1994,13 +2048,14 @@ export const RESONATORS = [
     "element": "Glacio",
     "rarity": 5,
     "weaponType": "Rectifier",
-    "role": "Healer / Sub-DPS / Freeze Enabler",
+    "role": "Sustain / Trị Liệu Hàn Băng & Đóng Băng",
     "avatar": "https://wutheringlab.com/wp-content/uploads/SuiSui.webp",
     "iconColor": "#38bdf8",
     "tags": [
       "Glacio",
-      "Rectifier",
+      "Sustain",
       "Healer",
+      "Rectifier",
       "Freeze"
     ],
     "bestWeapon": "Variation / Cosmic Ripples",
@@ -2034,17 +2089,18 @@ export const RESONATORS = [
     "element": "Aero",
     "rarity": 5,
     "weaponType": "Sword",
-    "role": "Quickswap DPS / Windblade",
+    "role": "Sub-DPS / Ẩn Sĩ Phi Kiếm Khí",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Qingxiao-1.webp",
     "iconColor": "#10b981",
     "tags": [
       "Aero",
+      "Sub-DPS",
       "Sword",
       "Quickswap",
       "Hermit"
     ],
     "bestWeapon": "Emerald of Genesis / Blazing Gale",
-    "bestEchoSet": "5-pc Sierra Gale",
+    "bestEchoSet": "5-pc Moonlit Clouds",
     "echoMainStats": "4-Cost: Crit Rate/DMG (Feilian Beringal) | 3-Cost: Aero DMG | 1-Cost: ATK%",
     "outroDescription": "Thanh Vân Kiếm Ý: Tăng 20% Aero DMG và 20% Resonance Liberation DMG cho đồng minh.",
     "rotations": {
@@ -2074,13 +2130,13 @@ export const RESONATORS = [
     "element": "Fusion",
     "rarity": 5,
     "weaponType": "Broadblade",
-    "role": "Main DPS / Flame Sentinel",
+    "role": "Main DPS / Hỏa Tiên Phong Vệ Thần",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Jingran-icon-2.webp",
     "iconColor": "#f97316",
     "tags": [
       "Fusion",
-      "Broadblade",
       "Main DPS",
+      "Broadblade",
       "Sentinel"
     ],
     "bestWeapon": "Verdant Summit / Helios Cleaver",
@@ -2114,13 +2170,14 @@ export const RESONATORS = [
     "element": "Fusion",
     "rarity": 5,
     "weaponType": "Pistols",
-    "role": "Sub-DPS / Fusion Burst",
+    "role": "Sub-DPS / Hỏa Xạ Kích Nhanh & Buffer",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Galbrena.webp",
     "iconColor": "#f97316",
     "tags": [
       "Fusion",
-      "Pistols",
       "Sub-DPS",
+      "Buffer",
+      "Pistols",
       "Burst"
     ],
     "bestWeapon": "Static Mist",
@@ -2154,13 +2211,13 @@ export const RESONATORS = [
     "element": "Spectro",
     "rarity": 5,
     "weaponType": "Gauntlets",
-    "role": "Main DPS / Spectro Impact",
+    "role": "Main DPS / Kim Cang Quyền Quang Minh",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Zani_Icon.webp",
     "iconColor": "#facc15",
     "tags": [
       "Spectro",
-      "Gauntlets",
       "Main DPS",
+      "Gauntlets",
       "Monk"
     ],
     "bestWeapon": "Abyss Surges / Marcato",
@@ -2194,13 +2251,13 @@ export const RESONATORS = [
     "element": "Fusion",
     "rarity": 5,
     "weaponType": "Broadblade",
-    "role": "Main DPS / Beast Slayer",
+    "role": "Main DPS / Lang Vương Đại Kiếm Hỏa Diệm",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Lupa-icon.webp",
     "iconColor": "#f97316",
     "tags": [
       "Fusion",
-      "Broadblade",
       "Main DPS",
+      "Broadblade",
       "Wolf"
     ],
     "bestWeapon": "Verdant Summit / Helios Cleaver",
@@ -2234,13 +2291,14 @@ export const RESONATORS = [
     "element": "Aero",
     "rarity": 5,
     "weaponType": "Sword",
-    "role": "Sub-DPS / Aero Resonance Buffer",
+    "role": "Sub-DPS / Kiếm Sư Cường Hóa Phong Lực",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Qiuyuan.webp",
     "iconColor": "#10b981",
     "tags": [
       "Aero",
-      "Sword",
       "Sub-DPS",
+      "Buffer",
+      "Sword",
       "Bladesmith"
     ],
     "bestWeapon": "Emerald of Genesis",
@@ -2279,8 +2337,8 @@ export const RESONATORS = [
     "iconColor": "#facc15",
     "tags": [
       "Spectro",
-      "Pistols",
       "Main DPS",
+      "Pistols",
       "Starlight"
     ],
     "bestWeapon": "Static Mist",
@@ -2314,17 +2372,19 @@ export const RESONATORS = [
     "element": "Electro",
     "rarity": 5,
     "weaponType": "Pistols",
-    "role": "Quickswap DPS / Electro Shock",
+    "role": "Sub-DPS / Xạ Thủ Lôi Quá Tải Overdrive",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Rebecca.webp",
     "iconColor": "#a855f7",
     "tags": [
       "Electro",
+      "Sub-DPS",
+      "Buffer",
       "Pistols",
       "Quickswap",
       "Overdrive"
     ],
     "bestWeapon": "Static Mist",
-    "bestEchoSet": "5-pc Void Thunder",
+    "bestEchoSet": "5-pc Moonlit Clouds",
     "echoMainStats": "4-Cost: Crit Rate/DMG (Tempest Mephis) | 3-Cost: Electro DMG | 1-Cost: ATK%",
     "outroDescription": "Quá Tải Điện Trường: Gây hiệu ứng Tê Liệt Electro và tăng 25% Electro DMG Deepen trong 14 giây.",
     "rotations": {
@@ -2354,11 +2414,13 @@ export const RESONATORS = [
     "element": "Glacio",
     "rarity": 5,
     "weaponType": "Rectifier",
-    "role": "Support / Glacio Shielder",
+    "role": "Sustain / Hộ Thuẫn Băng Giá & Bảo Vệ",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Lucilla.webp",
     "iconColor": "#38bdf8",
     "tags": [
       "Glacio",
+      "Sustain",
+      "Shielder",
       "Rectifier",
       "Support",
       "Shielder"
@@ -2388,15 +2450,6 @@ export const RESONATORS = [
     }
   }
 ];
-
-export const ELEMENT_ICONS = {
-  "Spectro": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_ele/spectro.png",
-  "Havoc": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_ele/havoc.png",
-  "Fusion": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_ele/fusion.png",
-  "Aero": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_ele/aero.png",
-  "Electro": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_ele/electro.png",
-  "Glacio": "https://whisperingsea.github.io/wuthering-waves-assets/images/icons_ele/glacio.png"
-};
 
 export const TEAM_TEMPLATES = [
   {
@@ -2941,3 +2994,12 @@ export const TEAM_TEMPLATES = [
     ]
   }
 ];
+
+export const ELEMENT_ICONS = {
+  'Spectro': 'https://whisperingsea.github.io/wuthering-waves-assets/images/icons_element/Spectro.webp',
+  'Havoc': 'https://whisperingsea.github.io/wuthering-waves-assets/images/icons_element/Havoc.webp',
+  'Aero': 'https://whisperingsea.github.io/wuthering-waves-assets/images/icons_element/Aero.webp',
+  'Electro': 'https://whisperingsea.github.io/wuthering-waves-assets/images/icons_element/Electro.webp',
+  'Fusion': 'https://whisperingsea.github.io/wuthering-waves-assets/images/icons_element/Fusion.webp',
+  'Glacio': 'https://whisperingsea.github.io/wuthering-waves-assets/images/icons_element/Glacio.webp'
+};
