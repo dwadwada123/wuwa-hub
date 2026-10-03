@@ -689,9 +689,11 @@ export function generateOptimalTeams(ownedCharacterIds) {
   );
   const sustainPool = healerList.length > 0 ? healerList : defensiveFallbackList.length > 0 ? defensiveFallbackList : ownedResonators;
 
-  const customTeams = [];
+  const customTeamsByDPS = new Map();
 
   for (const dps of mainDPSList) {
+    const teamsForDPS = [];
+
     for (const buff of bufferList) {
       if (buff.id === dps.id) continue;
 
@@ -736,6 +738,9 @@ export function generateOptimalTeams(ownedCharacterIds) {
         } else if (dps.id === 'rover_electro' && (buff.id === 'yinlin' || buff.id === 'sanhua')) {
           synergyScore += 28;
           notes = `${buff.name} khuếch đại đòn chém sấm sét Lôi Minh Trảm của Rover Electro`;
+        } else if (dps.id === 'hsin' && buff.id === 'suoming') {
+          synergyScore += 35;
+          notes = 'Suoming kích hoạt Unison Boon buff cực mạnh cho Main DPS Hsin';
         }
 
         // Điểm cộng nếu có Sustain xịn
@@ -746,8 +751,7 @@ export function generateOptimalTeams(ownedCharacterIds) {
         const avgPower = ((RESONATOR_POWER_TIER[dps.id] || 75) + (RESONATOR_POWER_TIER[buff.id] || 75) + (RESONATOR_POWER_TIER[flex.id] || 75)) / 3;
         const totalScore = Math.min(100, Math.round(synergyScore * 0.55 + avgPower * 0.45));
 
-        seenTeamKeys.add(teamKey);
-        customTeams.push({
+        teamsForDPS.push({
           id: `custom-${teamKey}`,
           name: `${dps.name} + ${buff.name} Synergy`,
           core: dps.id,
@@ -764,27 +768,26 @@ export function generateOptimalTeams(ownedCharacterIds) {
         });
       }
     }
+
+    teamsForDPS.sort((a, b) => b.matchScore - a.matchScore);
+    const topTeams = teamsForDPS.slice(0, 2);
+    topTeams.forEach(t => {
+      seenTeamKeys.add([...t.members].sort().join('-'));
+    });
+    customTeamsByDPS.set(dps.id, topTeams);
   }
+
+  const flattenedCustomTeams = Array.from(customTeamsByDPS.values()).flat();
 
   // Sắp xếp: Matched Templates lên đầu tiên (ưu tiên tuyệt đối các đội hình chuẩn meta), sau đó mới tới Custom Teams
   matchedTemplates.sort((a, b) => b.matchScore - a.matchScore);
-  customTeams.sort((a, b) => b.matchScore - a.matchScore);
+  flattenedCustomTeams.sort((a, b) => b.matchScore - a.matchScore);
 
-  const allCandidates = [...matchedTemplates, ...customTeams];
+  // KẾT HỢP TẤT CẢ ĐỘI HÌNH TỐI ƯU (CHO PHÉP TRÙNG NHÂN VẬT GIỮA CÁC ĐỘI ĐỀ XUẤT ĐỂ NGƯỜI DÙNG CÓ ĐỦ LỰA CHỌN)
+  const allCandidates = [...matchedTemplates, ...flattenedCustomTeams];
+  allCandidates.sort((a, b) => b.matchScore - a.matchScore);
 
-  // 3. LỌC ĐỘI HÌNH KHÔNG TRÙNG LẶP BẤT KỲ NHÂN VẬT NÀO
-  const nonOverlappingTeams = [];
-  const globallyUsedCharacters = new Set();
-
-  for (const team of allCandidates) {
-    const hasOverlap = team.members.some(memberId => globallyUsedCharacters.has(memberId));
-    if (!hasOverlap) {
-      nonOverlappingTeams.push(team);
-      team.members.forEach(memberId => globallyUsedCharacters.add(memberId));
-    }
-  }
-
-  return nonOverlappingTeams.filter(team => {
+  return allCandidates.filter(team => {
     const isQuickswap = 
       team.type?.toLowerCase().includes('quickswap') ||
       team.id?.toLowerCase().includes('quickswap') ||
@@ -942,20 +945,81 @@ export function solveTowerOfAdversity(ownedCharacterIds) {
     return score;
   };
 
-  const sortedByHazardBuff = [...optimalTeams].sort((a, b) => scoreForHazardBossBuff(b) - scoreForHazardBossBuff(a));
+  // BẮT BUỘC: TUYỆT ĐỐI KHÔNG TRÙNG NHÂN VẬT GIỮA CÁC ĐỘI HÌNH TOA (LUẬT THỂ LỰC VIGOR 10/10)
+  const usedToaCharacters = new Set();
+  const isAvailable = (team) => team && team.members.every(m => !usedToaCharacters.has(m));
+
+  // Hàm tạo đội hình dự phòng từ các nhân vật độc lập còn lại nếu các template đã hết người
+  const buildFallbackToaTeam = (namePrefix) => {
+    const unusedIds = ownedCharacterIds.filter(id => !usedToaCharacters.has(id));
+    if (unusedIds.length < 3) return null;
+
+    const pool = unusedIds.map(id => getResonator(id)).filter(Boolean);
+    pool.sort((a, b) => (RESONATOR_POWER_TIER[b.id] || 75) - (RESONATOR_POWER_TIER[a.id] || 75));
+
+    const dps = pool.find(r => !TRUE_SUSTAIN_IDS.has(r.id) && (r.role.includes('Main') || r.tags?.includes('Main DPS'))) || pool[0];
+    const afterDPS = pool.filter(r => r.id !== dps.id);
+    const buff = afterDPS.find(r => !TRUE_SUSTAIN_IDS.has(r.id)) || afterDPS[0];
+    const afterBuff = afterDPS.filter(r => r.id !== buff.id);
+    const flex = afterBuff.find(r => TRUE_SUSTAIN_IDS.has(r.id)) || afterBuff[0] || pool[2];
+
+    const teamKey = [dps.id, buff.id, flex.id].sort().join('-');
+    return {
+      id: `toa-custom-${teamKey}`,
+      name: `${dps.name} + ${buff.name} (${namePrefix})`,
+      core: dps.id,
+      members: [dps.id, buff.id, flex.id],
+      type: 'Hypercarry',
+      description: `Đội hình độc lập hoàn toàn không trùng nhân vật cho ${namePrefix}.`,
+      tags: [dps.element, 'TOA Independent'],
+      isCustom: true,
+      matchScore: 82,
+      characters: [dps, buff, flex],
+      customRotations: {
+        standard: buildDetailedStandardRotation(dps, buff, flex)
+      }
+    };
+  };
+
+  // 1. Tháp Giữa: Tầng 3-4 (Boss Đỉnh Điểm - Ưu tiên Buff Mùa Electro/Liberation/Unison)
+  const candidateHazardBoss = optimalTeams
+    .filter(isAvailable)
+    .sort((a, b) => scoreForHazardBossBuff(b) - scoreForHazardBossBuff(a));
   
-  const hazardBossTeam = sortedByHazardBuff[0];
-  const remainingForOther = optimalTeams.filter(t => t.id !== hazardBossTeam.id);
+  let hazardBossTeam = candidateHazardBoss[0] || buildFallbackToaTeam('Hazard Boss');
+  if (hazardBossTeam) {
+    hazardBossTeam.members.forEach(m => usedToaCharacters.add(m));
+  }
 
-  const sortedForResonant = [...remainingForOther].sort((a, b) => scoreForResonant(b) - scoreForResonant(a));
-  const resonantTeam = sortedForResonant[0] || optimalTeams[0];
-  const remainingAfterResonant = remainingForOther.filter(t => t.id !== resonantTeam.id);
+  // 2. Tháp Trái: Tầng 4 Boss (Resonant Tower - Havoc / Basic ATK)
+  const candidateResonant = optimalTeams
+    .filter(isAvailable)
+    .sort((a, b) => scoreForResonant(b) - scoreForResonant(a));
+  
+  let resonantTeam = candidateResonant[0] || buildFallbackToaTeam('Resonant Tower');
+  if (resonantTeam) {
+    resonantTeam.members.forEach(m => usedToaCharacters.add(m));
+  }
 
-  const sortedForEchoing = [...remainingAfterResonant].sort((a, b) => scoreForEchoing(b) - scoreForEchoing(a));
-  const echoingTeam = sortedForEchoing[0] || remainingForOther[0] || optimalTeams[0];
-  const remainingAfterEchoing = remainingAfterResonant.filter(t => t.id !== echoingTeam.id);
+  // 3. Tháp Phải: Tầng 4 Boss (Echoing Tower - Spectro / Skill DMG)
+  const candidateEchoing = optimalTeams
+    .filter(isAvailable)
+    .sort((a, b) => scoreForEchoing(b) - scoreForEchoing(a));
+  
+  let echoingTeam = candidateEchoing[0] || buildFallbackToaTeam('Echoing Tower');
+  if (echoingTeam) {
+    echoingTeam.members.forEach(m => usedToaCharacters.add(m));
+  }
 
-  const hazardEarlyTeam = remainingAfterEchoing[0] || remainingAfterResonant[0] || remainingForOther[0] || optimalTeams[1] || hazardBossTeam;
+  // 4. Tháp Giữa: Tầng 1-2 (Hazard Early - Càn Quét)
+  const candidateHazardEarly = optimalTeams
+    .filter(isAvailable)
+    .sort((a, b) => (b.matchScore || 0) - (a.matchScore || 0));
+  
+  let hazardEarlyTeam = candidateHazardEarly[0] || buildFallbackToaTeam('Hazard Early');
+  if (hazardEarlyTeam) {
+    hazardEarlyTeam.members.forEach(m => usedToaCharacters.add(m));
+  }
 
   return {
     seasonName: TOA_DATA_SEASON_37.seasonName,

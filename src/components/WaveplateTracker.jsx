@@ -237,7 +237,7 @@ export default function WaveplateTracker() {
         <div style={{ display: 'flex', gap: '8px', marginBottom: '22px', flexWrap: 'wrap' }}>
           {[
             { label: '-40 (Echo Boss)', val: currentStamina - 40 },
-            { label: '-60 (Boss Tuần / Quái)', val: currentStamina - 60 },
+            { label: '-60 (Boss Thế Giới)', val: currentStamina - 60 },
             { label: '+60 (Khối Dung Môi)', val: currentStamina + 60 },
             { label: 'Đầy (240)', val: 240 },
             { label: 'Cạn (0)', val: 0 }

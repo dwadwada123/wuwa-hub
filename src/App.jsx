@@ -301,7 +301,7 @@ export default function App() {
           { id: 'builder', label: 'Tự Động Xếp Đội', icon: <Swords size={18} /> },
           { id: 'toa', label: 'Tower of Adversity (ToA)', icon: <Layers size={18} /> },
           { id: 'pity', label: 'Pity Tracker (Lịch Sử Roll)', icon: <Compass size={18} /> },
-          { id: 'stamina', label: 'Waveplate & Boss Tuần', icon: <Zap size={18} /> }
+          { id: 'stamina', label: 'Waveplate (Thể Lực)', icon: <Zap size={18} /> }
         ].map((tab) => {
           const isActive = activeTab === tab.id;
           return (
