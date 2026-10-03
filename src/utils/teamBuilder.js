@@ -76,9 +76,46 @@ export const RESONATOR_POWER_TIER = {
 };
 
 // Danh sách các nhân vật đảm nhiệm vai trò hồi phục / tạo lá chắn chân chính (Sustain / Healer / Shielder)
+// Danh sách các nhân vật đảm nhiệm vai trò hồi phục / tạo lá chắn chân chính (Sustain / Healer / Shielder)
 export const TRUE_SUSTAIN_IDS = new Set([
-  'shorekeeper', 'verina', 'baizhi', 'youhu', 'jianxin', 'taoqi', 'buling', 'suisui', 'denia', 'lucilla'
+  'shorekeeper', 'verina', 'baizhi', 'youhu', 'jianxin', 'taoqi', 'buling', 'suisui', 'denia', 'lucilla', 'mornye'
 ]);
+
+// Bảng ánh xạ hình ảnh chuẩn của các Echo 4-Cost và Echo chủ lực
+export const ECHO_IMAGE_MAP = {
+  'Bell-Borne Geochelone': 'https://wutheringlab.com/wp-content/uploads/Bell-Borne-Geochelone.webp',
+  'Fallacy of No Return': 'https://wutheringlab.com/wp-content/uploads/Fallacy-of-No-Return.webp',
+  'Impermanence Heron': 'https://wutheringlab.com/wp-content/uploads/Impermanence-Heron.webp',
+  'Dreamless': 'https://wutheringlab.com/wp-content/uploads/Dreamless.webp',
+  'Crownless': 'https://wutheringlab.com/wp-content/uploads/Crownless.webp',
+  'Jué': 'https://wutheringlab.com/wp-content/uploads/Jue.webp',
+  'Jue': 'https://wutheringlab.com/wp-content/uploads/Jue.webp',
+  'Mourning Aix': 'https://wutheringlab.com/wp-content/uploads/Mourning-Aix.webp',
+  'Lampylumen Myriad': 'https://wutheringlab.com/wp-content/uploads/Lampylumen-Myriad.webp',
+  'Inferno Rider': 'https://wutheringlab.com/wp-content/uploads/Inferno-Rider.webp',
+  'Nightmare Inferno Rider': 'https://wutheringlab.com/wp-content/uploads/Nightmare-Inferno-Rider.webp',
+  'Feilian Beringal': 'https://wutheringlab.com/wp-content/uploads/Feilian-Beringal.webp',
+  'Thundering Mephis': 'https://wutheringlab.com/wp-content/uploads/Thundering-Mephis.webp',
+  'Tempest Mephis': 'https://wutheringlab.com/wp-content/uploads/Tempest-Mephis.webp',
+  'Mech Abomination': 'https://wutheringlab.com/wp-content/uploads/Mech-Abomination.webp',
+  'Lorelei': 'https://wutheringlab.com/wp-content/uploads/Lorelei.webp',
+  'Sentry Construct': 'https://wutheringlab.com/wp-content/uploads/Sentry-Construct.webp',
+  'Chasm Guardian': 'https://wutheringlab.com/wp-content/uploads/Chasm-Guardian.webp',
+  'Violet-Feathered Heron': 'https://wutheringlab.com/wp-content/uploads/Violet-Feathered-Heron.webp',
+  'Havoc Dreadmane': 'https://wutheringlab.com/wp-content/uploads/Havoc-Dreadmane.webp',
+  'Glacio Dreadmane': 'https://wutheringlab.com/wp-content/uploads/Glacio-Dreadmane.webp'
+};
+
+export function getEchoImage(echoName) {
+  if (!echoName) return 'https://wutheringlab.com/wp-content/uploads/Bell-Borne-Geochelone.webp';
+  const clean = echoName.toLowerCase();
+  for (const [key, url] of Object.entries(ECHO_IMAGE_MAP)) {
+    if (clean.includes(key.toLowerCase()) || key.toLowerCase().includes(clean)) {
+      return url;
+    }
+  }
+  return 'https://wutheringlab.com/wp-content/uploads/Bell-Borne-Geochelone.webp';
+}
 
 /**
  * Trả về thông số chỉ số chuẩn khuyến nghị (Target Benchmark Stats) và hướng dẫn build Echo/Vũ khí
@@ -95,22 +132,23 @@ export function getResonatorBuildGuide(resonator) {
   if (id === 'shorekeeper') {
     return {
       statType: 'HP Scaler',
+      echoImage: ECHO_IMAGE_MAP['Fallacy of No Return'],
       targetStats: {
         primaryLabel: 'HP Tối Đa',
         primaryValue: '35,000 - 38,000+',
-        critRate: 'Không yêu cầu (Nội tại tự buff)',
+        critRate: 'Không yêu cầu',
         critDmg: 'Không yêu cầu',
-        energyRegen: '170% - 190% (Bắt buộc tối thiểu 160%)'
+        energyRegen: '170% - 190%'
       },
       bestEchoSet: '5-pc Rejuvenating Glow',
-      mainEcho4Cost: 'Fallacy of No Return (Hoặc Bell-Borne)',
+      mainEcho4Cost: 'Fallacy of No Return',
       costStructure: '4 - 3 - 3 - 1 - 1',
       mainStats: {
-        cost4: 'Tăng Lượng Trị Liệu (Healing Bonus) hoặc HP%',
-        cost3: 'Hiệu Quả Nạp Năng Lượng% + Hiệu Quả Nạp Năng Lượng% (hoặc HP%)',
+        cost4: 'Tăng Lượng Trị Liệu hoặc HP%',
+        cost3: 'Hiệu Quả Nạp Năng Lượng% + Hiệu Quả Nạp Năng Lượng%',
         cost1: 'HP% + HP%'
       },
-      subStatsPriority: ['Hiệu Quả Nạp Năng Lượng (Đạt mốc 170%)', 'HP%', 'HP Cố Định', 'Kháng Sát Thương'],
+      subStatsPriority: ['Hiệu Quả Nạp Năng Lượng', 'HP%', 'HP Cố Định', 'Kháng Sát Thương'],
       recommendedWeapons: [
         'Stellar Symphony (Trấn 5★)',
         'Variation (4★ Nạp Concerto Tối Ưu)',
@@ -123,22 +161,23 @@ export function getResonatorBuildGuide(resonator) {
   if (id === 'verina') {
     return {
       statType: 'ATK Scaler',
+      echoImage: ECHO_IMAGE_MAP['Bell-Borne Geochelone'],
       targetStats: {
-        primaryLabel: 'Tấn Công (ATK)',
+        primaryLabel: 'Tấn Công',
         primaryValue: '2,000 - 2,200+',
-        critRate: 'Cơ bản (Không bắt buộc)',
+        critRate: 'Cơ bản',
         critDmg: 'Cơ bản',
-        energyRegen: '160% - 175% (Để xoay vòng Nộ mượt)'
+        energyRegen: '160% - 175%'
       },
       bestEchoSet: '5-pc Rejuvenating Glow',
-      mainEcho4Cost: 'Bell-Borne Geochelone (Khiên giảm 50% DMG & buff 12% ATK)',
+      mainEcho4Cost: 'Bell-Borne Geochelone',
       costStructure: '4 - 3 - 3 - 1 - 1',
       mainStats: {
-        cost4: 'Tăng Lượng Trị Liệu (Healing Bonus)',
-        cost3: 'Hiệu Quả Nạp Năng Lượng% + Hiệu Quả Nạp Năng Lượng% (hoặc ATK%)',
-        cost1: 'Tấn Công% (ATK%) + Tấn Công% (ATK%)'
+        cost4: 'Tăng Lượng Trị Liệu',
+        cost3: 'Hiệu Quả Nạp Năng Lượng% + Hiệu Quả Nạp Năng Lượng%',
+        cost1: 'Tấn Công% + Tấn Công%'
       },
-      subStatsPriority: ['Hiệu Quả Nạp Năng Lượng (Tối ưu nhất)', 'Tấn Công%', 'Tấn Công Cố Định'],
+      subStatsPriority: ['Hiệu Quả Nạp Năng Lượng', 'Tấn Công%', 'Tấn Công Cố Định'],
       recommendedWeapons: [
         'Variation (4★ Nạp Concerto Thần Tốc)',
         'Cosmic Ripples (5★ Chuẩn)',
@@ -151,18 +190,19 @@ export function getResonatorBuildGuide(resonator) {
   if (id === 'baizhi') {
     return {
       statType: 'HP Scaler',
+      echoImage: ECHO_IMAGE_MAP['Bell-Borne Geochelone'],
       targetStats: {
         primaryLabel: 'HP Tối Đa',
         primaryValue: '32,000 - 36,000+',
         critRate: 'Cơ bản',
         critDmg: 'Cơ bản',
-        energyRegen: '160% - 180%+'
+        energyRegen: '160% - 180%'
       },
       bestEchoSet: '5-pc Rejuvenating Glow',
       mainEcho4Cost: 'Bell-Borne Geochelone',
       costStructure: '4 - 3 - 3 - 1 - 1',
       mainStats: {
-        cost4: 'Tăng Lượng Trị Liệu (Healing Bonus)',
+        cost4: 'Tăng Lượng Trị Liệu',
         cost3: 'Hiệu Quả Nạp Năng Lượng% + HP%',
         cost1: 'HP% + HP%'
       },
@@ -171,24 +211,54 @@ export function getResonatorBuildGuide(resonator) {
     };
   }
 
-  // 4. Taoqi / Yuanwu (DEF Scaler Shielder)
+  // 4. Mornye (5★ Fusion Broadblade Sustain & Shield)
+  if (id === 'mornye') {
+    return {
+      statType: 'Sustain / Hồi Phục & Bảo Hộ',
+      echoImage: ECHO_IMAGE_MAP['Bell-Borne Geochelone'],
+      targetStats: {
+        primaryLabel: 'HP Tối Đa',
+        primaryValue: '32,000 - 36,000+',
+        critRate: 'Cơ bản',
+        critDmg: 'Cơ bản',
+        energyRegen: '160% - 175%'
+      },
+      bestEchoSet: '5-pc Rejuvenating Glow',
+      mainEcho4Cost: 'Bell-Borne Geochelone',
+      costStructure: '4 - 3 - 3 - 1 - 1',
+      mainStats: {
+        cost4: 'Tăng Lượng Trị Liệu hoặc HP%',
+        cost3: 'Hiệu Quả Nạp Năng Lượng% + HP%',
+        cost1: 'HP% + HP%'
+      },
+      subStatsPriority: ['Hiệu Quả Nạp Năng Lượng', 'HP%', 'HP Cố Định', 'Phòng Ngự%'],
+      recommendedWeapons: [
+        'Broadblade#41 (4★ Nạp Concerto)',
+        'Discord (4★)',
+        'Originite: Type IV (3★ Hồi Máu Toàn Đội)'
+      ]
+    };
+  }
+
+  // 5. Taoqi / Yuanwu (DEF Scaler Shielder)
   if (id === 'taoqi' || id === 'yuanwu') {
     return {
       statType: 'DEF Scaler',
+      echoImage: ECHO_IMAGE_MAP['Bell-Borne Geochelone'],
       targetStats: {
-        primaryLabel: 'Phòng Ngự (DEF)',
+        primaryLabel: 'Phòng Ngự',
         primaryValue: '2,500 - 2,900+',
         critRate: id === 'yuanwu' ? '60%+' : 'Cơ bản',
         critDmg: '200%+',
         energyRegen: '135% - 150%'
       },
-      bestEchoSet: id === 'taoqi' ? '5-pc Moonlit Clouds (hoặc Rejuvenating)' : '5-pc Rejuvenating Glow',
+      bestEchoSet: id === 'taoqi' ? '5-pc Moonlit Clouds' : '5-pc Rejuvenating Glow',
       mainEcho4Cost: 'Bell-Borne Geochelone',
       costStructure: '4 - 3 - 3 - 1 - 1',
       mainStats: {
-        cost4: 'Phòng Ngự% (DEF%) hoặc Crit Rate',
+        cost4: 'Phòng Ngự% hoặc Tỉ Lệ Bạo Kích',
         cost3: 'Hiệu Quả Nạp% + Phòng Ngự%',
-        cost1: 'Phòng Ngự% (DEF%) + Phòng Ngự% (DEF%)'
+        cost1: 'Phòng Ngự% + Phòng Ngự%'
       },
       subStatsPriority: ['Phòng Ngự%', 'Hiệu Quả Nạp', 'Phòng Ngự Cố Định', 'Tỉ Lệ Bạo Kích'],
       recommendedWeapons: [
@@ -197,27 +267,133 @@ export function getResonatorBuildGuide(resonator) {
     };
   }
 
-  // 5. Buffer / Sub-DPS (Sanhua, Zhezhi, Yinlin, Mortefi, Danjin, Ciaccona, Roccia)
+  // 6. Hsin (5★ Electro Rectifier Sentinel - Main DPS)
+  if (id === 'hsin') {
+    return {
+      statType: 'Main Carry DPS (Unison)',
+      echoImage: ECHO_IMAGE_MAP['Thundering Mephis'],
+      targetStats: {
+        primaryLabel: 'Tấn Công',
+        primaryValue: '2,150 - 2,400+',
+        critRate: '72% - 80%+',
+        critDmg: '260% - 290%+',
+        energyRegen: '120% - 130%'
+      },
+      bestEchoSet: '5-pc Heart of Sworn Vigil',
+      mainEcho4Cost: 'Thundering Mephis',
+      costStructure: '4 - 3 - 3 - 1 - 1',
+      mainStats: {
+        cost4: 'Tỉ Lệ Bạo Kích hoặc Sát Thương Bạo Kích',
+        cost3: 'Sát Thương Electro% + Sát Thương Electro%',
+        cost1: 'Tấn Công% + Tấn Công%'
+      },
+      subStatsPriority: [
+        'Tỉ Lệ Bạo Kích',
+        'Sát Thương Bạo Kích',
+        'Tấn Công%',
+        'Hiệu Quả Nạp Năng Lượng',
+        'Sát Thương Kỹ Năng Cộng Hưởng'
+      ],
+      recommendedWeapons: [
+        'Blooming Jadehaven (Trấn 5★)',
+        'Cosmic Ripples (5★ Chuẩn)',
+        'Augment (4★ Battlepass)'
+      ]
+    };
+  }
+
+  // 7. Suoming (5★ Electro Sword - Sub-DPS / Unison Buffer)
+  if (id === 'suoming') {
+    return {
+      statType: 'Sub-DPS / Khuếch Đại Unison',
+      echoImage: ECHO_IMAGE_MAP['Tempest Mephis'],
+      targetStats: {
+        primaryLabel: 'Tấn Công',
+        primaryValue: '2,000 - 2,250+',
+        critRate: '70% - 78%+',
+        critDmg: '240% - 270%+',
+        energyRegen: '130% - 145%'
+      },
+      bestEchoSet: '5-pc Void Thunder',
+      mainEcho4Cost: 'Tempest Mephis',
+      costStructure: '4 - 3 - 3 - 1 - 1',
+      mainStats: {
+        cost4: 'Tỉ Lệ Bạo Kích hoặc Sát Thương Bạo Kích',
+        cost3: 'Sát Thương Electro% + Sát Thương Electro%',
+        cost1: 'Tấn Công% + Tấn Công%'
+      },
+      subStatsPriority: [
+        'Tỉ Lệ Bạo Kích',
+        'Sát Thương Bạo Kích',
+        'Hiệu Quả Nạp Năng Lượng',
+        'Tấn Công%',
+        'Sát Thương Giải Phóng Cộng Hưởng'
+      ],
+      recommendedWeapons: [
+        "Thunder's Horizon (Trấn 5★)",
+        'Emerald of Genesis (5★ Chuẩn)',
+        'Commando of Conviction (4★)'
+      ]
+    };
+  }
+
+  // 8. Lucy (5★ Spectro Pistols - Main DPS)
+  if (id === 'lucy') {
+    return {
+      statType: 'Main Carry DPS (Spectro)',
+      echoImage: ECHO_IMAGE_MAP['Jué'],
+      targetStats: {
+        primaryLabel: 'Tấn Công',
+        primaryValue: '2,100 - 2,350+',
+        critRate: '70% - 78%+',
+        critDmg: '250% - 280%+',
+        energyRegen: '120% - 130%'
+      },
+      bestEchoSet: '5-pc Celestial Light',
+      mainEcho4Cost: 'Jué',
+      costStructure: '4 - 3 - 3 - 1 - 1',
+      mainStats: {
+        cost4: 'Tỉ Lệ Bạo Kích hoặc Sát Thương Bạo Kích',
+        cost3: 'Sát Thương Spectro% + Sát Thương Spectro%',
+        cost1: 'Tấn Công% + Tấn Công%'
+      },
+      subStatsPriority: [
+        'Tỉ Lệ Bạo Kích',
+        'Sát Thương Bạo Kích',
+        'Tấn Công%',
+        'Hiệu Quả Nạp Năng Lượng',
+        'Sát Thương Đánh Thường & Trọng Kích'
+      ],
+      recommendedWeapons: [
+        'Static Mist (5★ Chuẩn)',
+        'Novaburst (4★ Battlepass)',
+        'Cadenza (4★)'
+      ]
+    };
+  }
+
+  // 9. Buffer / Sub-DPS (Sanhua, Zhezhi, Yinlin, Mortefi, Danjin, Ciaccona, Roccia)
   const isBufferSubDPS = resonator.role.includes('Sub-DPS') || resonator.role.includes('Buffer') || resonator.tags.includes('Buffer');
   if (isBufferSubDPS) {
     return {
       statType: 'Sub-DPS / Buffer',
+      echoImage: ECHO_IMAGE_MAP['Impermanence Heron'],
       targetStats: {
-        primaryLabel: 'Tấn Công (ATK)',
+        primaryLabel: 'Tấn Công',
         primaryValue: '1,900 - 2,150+',
         critRate: '68% - 75%+',
         critDmg: '230% - 260%+',
-        energyRegen: '130% - 145%+ (Đảm bảo vòng lặp 14s)'
+        energyRegen: '130% - 145%+'
       },
-      bestEchoSet: '5-pc Moonlit Clouds (Bộ Khinh Vân khuếch đại 22.5% ATK đồng minh)',
-      mainEcho4Cost: 'Impermanence Heron (Bắt buộc để Outro buff 12% DMG)',
+      bestEchoSet: '5-pc Moonlit Clouds',
+      mainEcho4Cost: 'Impermanence Heron',
       costStructure: '4 - 3 - 3 - 1 - 1',
       mainStats: {
-        cost4: 'Tỉ Lệ Bạo Kích (Crit Rate) hoặc Sát Thương Bạo Kích (Crit DMG)',
-        cost3: `Sát Thương ${element}% + Sát Thương ${element}% (hoặc 1 Nạp Năng Lượng%)`,
-        cost1: 'Tấn Công% (ATK%) + Tấn Công% (ATK%)'
+        cost4: 'Tỉ Lệ Bạo Kích hoặc Sát Thương Bạo Kích',
+        cost3: `Sát Thương ${element}% + Sát Thương ${element}%`,
+        cost1: 'Tấn Công% + Tấn Công%'
       },
-      subStatsPriority: ['Tỉ Lệ Bạo Kích = Sát Thương Bạo Kích', 'Hiệu Quả Nạp Năng Lượng', 'Tấn Công%', 'Tấn Công Cố Định'],
+      subStatsPriority: ['Tỉ Lệ Bạo Kích', 'Sát Thương Bạo Kích', 'Hiệu Quả Nạp Năng Lượng', 'Tấn Công%', 'Tấn Công Cố Định'],
       recommendedWeapons: [
         resonator.bestWeapon || 'Vũ khí 5★ Chuẩn / Signature',
         'Vũ khí 4★ có dòng Nạp Concerto hoặc Tỉ lệ Bạo kích'
@@ -225,37 +401,52 @@ export function getResonatorBuildGuide(resonator) {
     };
   }
 
-  // 6. Main DPS Chuẩn (Camellya, Jinhsi, Changli, Carlotta, Jiyan, Xiangli Yao, Rover Havoc, Rover Electro, Luuk Herssen, etc.)
-  let mainEchoName = 'Echo Trùm 4-Cost Tương Ứng';
-  if (element === 'Havoc') mainEchoName = 'Dreamless (hoặc Crownless)';
-  else if (element === 'Spectro') mainEchoName = 'Jué (hoặc Mourning Aix)';
-  else if (element === 'Glacio') mainEchoName = 'Lampylumen Myriad';
-  else if (element === 'Fusion') mainEchoName = 'Inferno Rider';
-  else if (element === 'Aero') mainEchoName = 'Feilian Beringal';
-  else if (element === 'Electro') mainEchoName = 'Thundering Mephis / Tempest Mephis';
+  // 10. Main DPS Chuẩn (Camellya, Jinhsi, Changli, Carlotta, Jiyan, Xiangli Yao, Rover Havoc, Rover Electro, Luuk Herssen, etc.)
+  let mainEchoName = 'Echo Trùm 4-Cost';
+  let mainEchoImg = ECHO_IMAGE_MAP['Crownless'];
+  if (element === 'Havoc') {
+    mainEchoName = 'Dreamless';
+    mainEchoImg = ECHO_IMAGE_MAP['Dreamless'];
+  } else if (element === 'Spectro') {
+    mainEchoName = 'Jué';
+    mainEchoImg = ECHO_IMAGE_MAP['Jué'];
+  } else if (element === 'Glacio') {
+    mainEchoName = 'Lampylumen Myriad';
+    mainEchoImg = ECHO_IMAGE_MAP['Lampylumen Myriad'];
+  } else if (element === 'Fusion') {
+    mainEchoName = 'Inferno Rider';
+    mainEchoImg = ECHO_IMAGE_MAP['Inferno Rider'];
+  } else if (element === 'Aero') {
+    mainEchoName = 'Feilian Beringal';
+    mainEchoImg = ECHO_IMAGE_MAP['Feilian Beringal'];
+  } else if (element === 'Electro') {
+    mainEchoName = 'Thundering Mephis';
+    mainEchoImg = ECHO_IMAGE_MAP['Thundering Mephis'];
+  }
 
   return {
     statType: 'Main Carry DPS',
+    echoImage: mainEchoImg,
     targetStats: {
-      primaryLabel: 'Tấn Công (ATK)',
-      primaryValue: '2,100 - 2,350+ (Endgame)',
-      critRate: '70% - 78%+ (Tỉ Lệ Vàng)',
-      critDmg: '250% - 280%+ (Ngưỡng Sát Thương Chuẩn)',
-      energyRegen: '120% - 130% (Đủ nạp Nộ mỗi vòng)'
+      primaryLabel: 'Tấn Công',
+      primaryValue: '2,100 - 2,350+',
+      critRate: '70% - 78%+',
+      critDmg: '250% - 280%+',
+      energyRegen: '120% - 130%'
     },
     bestEchoSet: resonator.bestEchoSet || `5-pc Nguyên Tố ${element}`,
     mainEcho4Cost: mainEchoName,
     costStructure: '4 - 3 - 3 - 1 - 1',
     mainStats: {
-      cost4: 'Tỉ Lệ Bạo Kích (Crit Rate) hoặc Sát Thương Bạo Kích (Crit DMG)',
+      cost4: 'Tỉ Lệ Bạo Kích hoặc Sát Thương Bạo Kích',
       cost3: `Sát Thương ${element}% + Sát Thương ${element}%`,
-      cost1: 'Tấn Công% (ATK%) + Tấn Công% (ATK%)'
+      cost1: 'Tấn Công% + Tấn Công%'
     },
     subStatsPriority: [
-      'Tỉ Lệ Bạo Kích (Crit Rate)',
-      'Sát Thương Bạo Kích (Crit DMG)',
-      'Tấn Công% (ATK%)',
-      'Hiệu Quả Nạp Năng Lượng (120%+)',
+      'Tỉ Lệ Bạo Kích',
+      'Sát Thương Bạo Kích',
+      'Tấn Công%',
+      'Hiệu Quả Nạp Năng Lượng',
       'Sát Thương Kỹ Năng / Giải Phóng Cộng Hưởng'
     ],
     recommendedWeapons: [
@@ -279,6 +470,8 @@ function buildDetailedStandardRotation(mainDps, buffer, sustain) {
   let sEcho = 'Bell-Borne Geochelone (Tạo khiên chắn giảm 50% sát thương và tăng 12% ATK)';
   if (sustain?.id === 'shorekeeper') {
     sEcho = 'Fallacy of No Return (Kích hoạt Stella Field buff 10% ATK & tăng 10% Energy Regen)';
+  } else if (sustain?.id === 'mornye') {
+    sEcho = 'Bell-Borne Geochelone (Kích hoạt lá chắn dung nham giảm 50% sát thương)';
   }
 
   const step1 = {
@@ -292,7 +485,11 @@ function buildDetailedStandardRotation(mainDps, buffer, sustain) {
   // 2. Bước 2: Sub-DPS / Buffer
   let bufferDetail = `Intro nhận buff từ Sustain ➔ Dùng Skill E và Resonance Liberation (R) ➔ Bật Echo Sonata Moonlit Clouds (Impermanence Heron) khuếch đại 12% ATK ➔ Kích hoạt cơ chế Forte tích thần tốc 100% thanh Concerto ➔ Outro truyền buff chuyên biệt cho ${mName}.`;
   
-  if (buffer?.id === 'sanhua') {
+  if (buffer?.id === 'suoming') {
+    bufferDetail = `Intro vào sân nhận buff từ Sustain ➔ Tung Skill E chuyển đổi thế kiếm Azure Surge ➔ Tích nạp Concerto nhanh ➔ Bật Impermanence Heron ➔ Outro truyền Lôi Vũ Đồng Điệu nạp 25% Concerto và tăng cường sát thương Lôi cho ${mName}.`;
+  } else if (buffer?.id === 'rebecca') {
+    bufferDetail = `Intro vào sân ➔ Tung đòn súng điện Overdrive E ➔ Bấm R kích hoạt điện thế nạp đầy Concerto ➔ Bật Heron Echo ➔ Outro buff sát thương cho ${mName}.`;
+  } else if (buffer?.id === 'sanhua') {
     bufferDetail = `Intro vào sân ➔ Skill (E) giáng băng ➔ Liberation (R) tạo vết nứt băng ➔ Giữ Trọng Kích Detonate căn đúng thanh chuẩn nổ toàn bộ sông băng ➔ Bật Heron Echo ➔ Outro truyền trọn vẹn 38% Basic ATK DMG Deepen cho ${mName}.`;
   } else if (buffer?.id === 'zhezhi') {
     bufferDetail = `Intro vào sân nhận buff ➔ E ➔ R triệu hồi linh hồn mực vẽ bắn đòn phối hợp ➔ Chuỗi đánh thường lướt bút nạp đầy thanh Concerto ➔ Bật Heron Echo ➔ Outro buff 20% Glacio DMG và 25% Resonance Skill DMG Deepen cho ${mName}.`;
@@ -315,7 +512,11 @@ function buildDetailedStandardRotation(mainDps, buffer, sustain) {
   // 3. Bước 3: Main DPS Burst Window
   let dpsDetail = `Intro vào sân thừa hưởng toàn bộ hiệu ứng Deepen trong 14 giây ➔ Kích hoạt thế đánh cường hóa Forte đặc trưng ➔ Tung Skill E nạp đầy thanh năng lượng ➔ Bật Echo chủ lực (4-Cost) ➔ Xả Resonance Liberation (R) nộ dứt điểm toàn bộ kẻ địch ➔ Hoàn tất chuỗi và chuẩn bị lặp lại vòng xoay.`;
 
-  if (mId === 'camellya') {
+  if (mId === 'hsin') {
+    dpsDetail = `Intro vào sân nhận trọn vẹn buff Unison và Deepen ➔ Kích hoạt Skill E ở thể Lôi Cường Hóa (Electro Flare) ➔ Xả Resonance Liberation (R) nộ dứt điểm bão sét diện rộng ➔ Đánh thường cường hóa hoàn tất chuỗi sát thương.`;
+  } else if (mId === 'lucy') {
+    dpsDetail = `Intro vào sân nhận buff ➔ Kích hoạt trạng thái Starlight Hack ➔ Tung chuỗi đạn Spectro định hướng cường hóa liên hoàn ➔ Xả Resonance Liberation (R) pháo sáng quét sạch sàn đấu.`;
+  } else if (mId === 'camellya') {
     dpsDetail = `Đột kích bằng Intro nhận 38% Basic ATK Deepen từ Sanhua ➔ Giữ Trọng Kích vào trạng thái Ephemeral nhào lộn trên không ➔ Xả chuỗi đánh thường BA4 roi gai xoay tròn liên hoàn ➔ Nhấn E kích hoạt nổ hạt giống gai ➔ Bấm R tung nộ bão hoa bóng tối xóa sổ toàn bộ sàn đấu.`;
   } else if (mId === 'jinhsi') {
     dpsDetail = `Intro vào sân nhận đòn Coordinated Attack từ Buffer ➔ Lướt Skill E vào trạng thái Incarnation ➔ Tung chuỗi kiếm rồng tích đầy 50 tầng Incandescence ➔ Bấm R xả nộ sấm sét Thanh Long ➔ Giữ phím E kích hoạt đòn Illuminous Dragon nuke hàng triệu sát thương diện rộng.`;

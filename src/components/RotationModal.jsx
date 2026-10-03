@@ -182,7 +182,7 @@ export default function RotationModal({ team, onClose }) {
             gap: '6px'
           }}>
             <Sparkles size={14} />
-            <span>NHẤN VÀO NHÂN VẬT ĐỂ XEM CHỈ SỐ CHUẨN (ATK, CRIT, NẠP) & BỘ ECHO KHUYÊN DÙNG:</span>
+            <span>NHẤN VÀO NHÂN VẬT ĐỂ XEM CHỈ SỐ CHUẨN & BỘ ECHO KHUYÊN DÙNG:</span>
           </div>
 
           <div style={{
@@ -288,7 +288,7 @@ export default function RotationModal({ team, onClose }) {
               transition: 'all 0.2s ease'
             }}
           >
-            <RefreshCw size={16} /> Chuỗi Tiêu Chuẩn (Concerto Outro Rotation)
+            <RefreshCw size={16} /> Chuỗi Tiêu Chuẩn
           </button>
 
           <button
@@ -460,7 +460,7 @@ export default function RotationModal({ team, onClose }) {
                 border: '1px solid rgba(250, 204, 21, 0.2)'
               }}>
                 <div style={{ fontSize: '0.74rem', color: 'var(--accent-gold)', fontWeight: 800, textTransform: 'uppercase' }}>
-                  Tỉ Lệ Bạo Kích (Crit Rate)
+                  Tỉ Lệ Bạo Kích
                 </div>
                 <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--accent-gold)', marginTop: '4px' }}>
                   {buildGuide.targetStats.critRate}
@@ -475,7 +475,7 @@ export default function RotationModal({ team, onClose }) {
                 border: '1px solid rgba(192, 132, 252, 0.2)'
               }}>
                 <div style={{ fontSize: '0.74rem', color: 'var(--accent-purple)', fontWeight: 800, textTransform: 'uppercase' }}>
-                  Sát Thương Bạo Kích (Crit DMG)
+                  Sát Thương Bạo Kích
                 </div>
                 <div style={{ fontSize: '1.2rem', fontWeight: 900, color: 'var(--accent-purple)', marginTop: '4px' }}>
                   {buildGuide.targetStats.critDmg}
@@ -508,14 +508,43 @@ export default function RotationModal({ team, onClose }) {
             }}>
               <div style={{ fontSize: '0.9rem', fontWeight: 900, color: '#fff', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <Award size={18} color="var(--accent-gold)" />
-                <span>Bộ Echo Khuyên Dùng (Sonata Set): <strong style={{ color: 'var(--accent-gold)' }}>{buildGuide.bestEchoSet}</strong></span>
+                <span>Bộ Echo Khuyên Dùng: <strong style={{ color: 'var(--accent-gold)' }}>{buildGuide.bestEchoSet}</strong></span>
               </div>
 
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '12px', marginBottom: '14px' }}>
-                <div style={{ background: 'rgba(255, 255, 255, 0.03)', padding: '10px 14px', borderRadius: '8px' }}>
-                  <div style={{ fontSize: '0.74rem', color: 'var(--accent-gold)', fontWeight: 800 }}>Echo Chủ Lực (Cost 4):</div>
-                  <div style={{ fontSize: '0.86rem', fontWeight: 700, color: '#fff', marginTop: '2px' }}>{buildGuide.mainEcho4Cost}</div>
-                  <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)', marginTop: '2px' }}>Dòng chính: {buildGuide.mainStats.cost4}</div>
+                <div style={{
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  padding: '10px 14px',
+                  borderRadius: '10px',
+                  border: '1px solid rgba(243, 186, 47, 0.25)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px'
+                }}>
+                  {buildGuide.echoImage && (
+                    <div style={{
+                      width: '52px',
+                      height: '52px',
+                      borderRadius: '8px',
+                      overflow: 'hidden',
+                      border: '1.5px solid var(--accent-gold)',
+                      background: 'rgba(0, 0, 0, 0.5)',
+                      flexShrink: 0,
+                      boxShadow: '0 0 10px rgba(243, 186, 47, 0.2)'
+                    }}>
+                      <img
+                        src={buildGuide.echoImage}
+                        alt={buildGuide.mainEcho4Cost}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                        onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                      />
+                    </div>
+                  )}
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontSize: '0.74rem', color: 'var(--accent-gold)', fontWeight: 800 }}>Echo Chủ Lực (Cost 4):</div>
+                    <div style={{ fontSize: '0.88rem', fontWeight: 800, color: '#fff', marginTop: '2px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{buildGuide.mainEcho4Cost}</div>
+                    <div style={{ fontSize: '0.74rem', color: 'var(--text-secondary)', marginTop: '2px' }}>Dòng chính: {buildGuide.mainStats.cost4}</div>
+                  </div>
                 </div>
 
                 <div style={{ background: 'rgba(255, 255, 255, 0.03)', padding: '10px 14px', borderRadius: '8px' }}>
@@ -532,7 +561,7 @@ export default function RotationModal({ team, onClose }) {
               {/* Sub-stats Priority */}
               <div>
                 <span style={{ fontSize: '0.76rem', color: 'var(--text-muted)', fontWeight: 800, textTransform: 'uppercase' }}>
-                  Thứ Tự Ưu Tiên Dòng Phụ (Sub-stats):
+                  Thứ Tự Ưu Tiên Dòng Phụ:
                 </span>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '6px' }}>
                   {buildGuide.subStatsPriority.map((sub, sIdx) => (

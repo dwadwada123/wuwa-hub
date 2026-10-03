@@ -12,13 +12,13 @@ export const RESONATORS = [
     "element": "Electro",
     "rarity": 5,
     "weaponType": "Rectifier",
-    "role": "Quickswap DPS / Burst Buffer",
+    "role": "Main DPS / Sát Thương Lôi Định",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Hsin.webp",
     "iconColor": "#a855f7",
     "tags": [
       "Electro",
+      "Main DPS",
       "Unison",
-      "Quickswap",
       "Rectifier",
       "Sentinel"
     ],
@@ -70,14 +70,15 @@ export const RESONATORS = [
     "element": "Electro",
     "rarity": 5,
     "weaponType": "Sword",
-    "role": "Main DPS / Form Switcher",
+    "role": "Sub-DPS / Khuếch Đại Unison",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Suoming.webp",
     "iconColor": "#8b5cf6",
     "tags": [
       "Electro",
+      "Sub-DPS",
+      "Buffer",
       "Sword",
-      "Unison",
-      "Main DPS"
+      "Unison"
     ],
     "bestWeapon": "Thunder's Horizon",
     "bestEchoSet": "5-pc Void Thunder",
@@ -92,13 +93,13 @@ export const RESONATORS = [
         },
         {
           "step": 2,
-          "char": "Hsin / Yinlin",
-          "action": "Thi triển đòn Lôi diện rộng ➔ Outro truyền buff Electro DMG và Liberation Deepen."
+          "char": "Suoming",
+          "action": "Intro vào sân ➔ Kích hoạt Resonance Skill chuyển đổi thế kiếm Azure Surge ➔ Tích nạp Concerto nhanh ➔ Bật Impermanence Heron ➔ Outro truyền Lôi Vũ Đồng Điệu cho Hsin."
         },
         {
           "step": 3,
-          "char": "Suoming",
-          "action": "Intro vào sân ➔ Kích hoạt Resonance Skill chuyển đổi thế kiếm Azure Surge ➔ Chuỗi combo 4 nhịp đánh thường ➔ Resonance Liberation R nổ sét màn hình."
+          "char": "Hsin",
+          "action": "Intro vào sân nhận trọn vẹn buff Unison ➔ Kích hoạt Skill E cường hóa ➔ Xả Resonance Liberation R nổ sét màn hình tiêu diệt mục tiêu."
         }
       ],
       "quickswap": [
@@ -197,7 +198,7 @@ export const RESONATORS = [
     "bestWeapon": "Stellar Symphony",
     "bestEchoSet": "5-pc Rejuvenating Glow",
     "echoMainStats": "4-Cost: Healing Bonus (Fallacy of No Return) | 3-Cost: Energy Regen | 1-Cost: HP%",
-    "outroDescription": "Nâng cấp Stella Field lên Giai Đoạn 3: Tăng 12.5% Tỷ Lệ Bạo Kích (Crit Rate) và 25% Sát Thương Bạo Kích (Crit DMG) cho toàn đội trong 30 giây.",
+    "outroDescription": "Nâng cấp Stella Field lên Giai Đoạn 3: Tăng 12.5% Tỷ Lệ Bạo Kích và 25% Sát Thương Bạo Kích cho toàn đội trong 30 giây.",
     "rotations": {
       "standard": [
         {
@@ -1711,35 +1712,36 @@ export const RESONATORS = [
     "element": "Fusion",
     "rarity": 5,
     "weaponType": "Broadblade",
-    "role": "Main DPS / Fusion Slam",
+    "role": "Sustain / Hồi Phục & Bảo Hộ Đội",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Mornye.webp",
     "iconColor": "#f97316",
     "tags": [
       "Fusion",
       "Broadblade",
-      "Main DPS",
+      "Sustain",
+      "Healer",
       "Flameforged"
     ],
-    "bestWeapon": "Verdant Summit / Broadblade#41",
-    "bestEchoSet": "5-pc Molten Rift",
-    "echoMainStats": "4-Cost: Crit Rate/DMG (Inferno Rider) | 3-Cost: Fusion DMG | 1-Cost: ATK%",
-    "outroDescription": "Vụ Nổ Dung Nham: Gây 460% sát thương Fusion diện rộng và tăng 20% Fusion DMG cho nhân vật kế tiếp.",
+    "bestWeapon": "Broadblade#41",
+    "bestEchoSet": "5-pc Rejuvenating Glow",
+    "echoMainStats": "4-Cost: Tăng Lượng Trị Liệu (Bell-Borne Geochelone) | 3-Cost: Hiệu Quả Nạp Năng Lượng% | 1-Cost: HP%",
+    "outroDescription": "Bảo Hộ Dung Nham: Hồi phục lượng lớn HP cho toàn đội và tạo lá chắn hấp thụ sát thương tương đương 20% giới hạn HP.",
     "rotations": {
       "standard": [
         {
           "step": 1,
-          "char": "Shorekeeper / Baizhi",
-          "action": "Tạo vùng an toàn buff sát thương ➔ Outro."
+          "char": "Mornye",
+          "action": "Ra sân đầu tiên ➔ Tung Resonance Skill mở màn chắn nhiệt lượng ➔ Kích hoạt Resonance Liberation hồi máu toàn đội ➔ Kích hoạt Bell-Borne Geochelone ➔ Outro chuyển giao."
         },
         {
           "step": 2,
-          "char": "Changli / Mortefi",
-          "action": "Buff Fusion DMG Deepen và Heavy ATK ➔ Outro."
+          "char": "Rebecca / Mortefi / Sanhua",
+          "action": "Intro nhận buff ➔ E ➔ R tích đầy thanh Concerto ➔ Bật Heron Echo ➔ Outro buff sát thương cho Main DPS."
         },
         {
           "step": 3,
-          "char": "Mornye",
-          "action": "Vào sân bổ đại kiếm lửa thiêu rụi kẻ địch."
+          "char": "Lucy",
+          "action": "Intro vào sân nhận trọn vẹn buff ➔ Kích hoạt đạn Spectro dồn dập ➔ Xả Resonance Liberation dứt điểm toàn bộ quái vật."
         }
       ]
     }
@@ -2272,35 +2274,35 @@ export const RESONATORS = [
     "element": "Spectro",
     "rarity": 5,
     "weaponType": "Pistols",
-    "role": "Sub-DPS / Starlight Tracker",
+    "role": "Main DPS / Xạ Thủ Spectro Hack",
     "avatar": "https://wutheringlab.com/wp-content/uploads/Lucy.webp",
     "iconColor": "#facc15",
     "tags": [
       "Spectro",
       "Pistols",
-      "Sub-DPS",
+      "Main DPS",
       "Starlight"
     ],
     "bestWeapon": "Static Mist",
     "bestEchoSet": "5-pc Celestial Light",
-    "echoMainStats": "4-Cost: Crit Rate/DMG (Jué) | 3-Cost: Spectro DMG | 1-Cost: ATK%",
-    "outroDescription": "Đạn Định Hướng Tinh Tú: Đánh dấu điểm yếu kẻ địch, tăng 20% Crit DMG cho đòn đánh kế tiếp.",
+    "echoMainStats": "4-Cost: Tỉ Lệ Bạo Kích hoặc Sát Thương Bạo Kích (Jué) | 3-Cost: Sát Thương Spectro | 1-Cost: Tấn Công%",
+    "outroDescription": "Đạn Định Hướng Tinh Tú: Đánh dấu điểm yếu kẻ địch, tăng 20% Sát Thương Bạo Kích cho đòn đánh kế tiếp của đồng minh.",
     "rotations": {
       "standard": [
         {
           "step": 1,
-          "char": "Verina",
-          "action": "Buff ATK ➔ Outro."
+          "char": "Mornye / Shorekeeper / Baizhi",
+          "action": "Tung Skill E và R mở vùng hồi máu và buff công toàn đội ➔ Kích hoạt Bell-Borne / Fallacy ➔ Outro."
         },
         {
           "step": 2,
-          "char": "Lucy",
-          "action": "Bắn tia sáng tinh tú E ➔ R ➔ Outro truyền buff Crit DMG."
+          "char": "Rebecca / Sanhua / Zhezhi",
+          "action": "Intro nhận buff ➔ E ➔ R tích nhanh 100% Concerto ➔ Kích hoạt Impermanence Heron ➔ Outro truyền buff sát thương."
         },
         {
           "step": 3,
-          "char": "Jinhsi",
-          "action": "Nổ rồng khổng lồ với sát thương chí mạng cực đại."
+          "char": "Lucy",
+          "action": "Intro vào sân kích hoạt Starlight Hack ➔ Bắn súng đôi dồn dập đạn năng lượng Spectro ➔ Xả Resonance Liberation pháo sáng quét sạch chiến trường."
         }
       ]
     }
@@ -2417,15 +2419,15 @@ export const TEAM_TEMPLATES = [
   },
   {
     "id": "suoming-hsin-duo",
-    "name": "Suoming & Hsin Dual Sentinels",
-    "core": "suoming",
+    "name": "Hsin & Suoming Dual Sentinels",
+    "core": "hsin",
     "members": [
-      "suoming",
       "hsin",
+      "suoming",
       "shorekeeper"
     ],
     "type": "Dual Carry Burst",
-    "description": "Bộ đôi Lôi Tướng v3.7 tạo chuỗi nổ sét màn hình với 2 lần kích hoạt Unison không gián đoạn.",
+    "description": "Bộ đôi Mengzhou Sentinels v3.7 với Hsin đảm nhiệm vai trò Main DPS dồn sát thương Lôi diện rộng và Suoming kích hoạt Unison.",
     "tags": [
       "Electro",
       "Unison",
@@ -2775,8 +2777,8 @@ export const TEAM_TEMPLATES = [
     "core": "xiangli_yao",
     "members": [
       "xiangli_yao",
-      "buling",
-      "shorekeeper"
+      "yinlin",
+      "buling"
     ],
     "type": "Hypercarry Sustain",
     "description": "Buling đảm bảo hồi máu và cung cấp 15% Electro Deepen vững chắc cho Xiangli Yao thoải mái dồn sát thương.",
@@ -2791,8 +2793,8 @@ export const TEAM_TEMPLATES = [
     "core": "jinhsi",
     "members": [
       "jinhsi",
-      "youhu",
-      "shorekeeper"
+      "yuanwu",
+      "youhu"
     ],
     "type": "Hypercarry",
     "description": "Youhu vừa đảm nhận vai trò hồi phục vừa buff 100% Coordinated Attack DMG cho đòn rồng của Jinhsi.",
@@ -2901,6 +2903,24 @@ export const TEAM_TEMPLATES = [
       "Electro",
       "Sword",
       "Hypercarry"
+    ]
+  },
+  {
+    "id": "lucy-rebecca-mornye",
+    "name": "Lucy & Rebecca Cyber Starlight",
+    "core": "lucy",
+    "members": [
+      "lucy",
+      "rebecca",
+      "mornye"
+    ],
+    "type": "Hypercarry",
+    "tier": "T0",
+    "description": "Đội hình Lucy dồn hỏa lực Spectro cực đại với hiệu ứng Overdrive của Rebecca và lá chắn nhiệt lượng từ Mornye.",
+    "tags": [
+      "Spectro",
+      "Hypercarry",
+      "Collab"
     ]
   },
   {
